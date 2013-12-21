@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Function/Common.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Function/Common.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php" />
     </list>
     <ignored path="hdphp.iws" />
@@ -51,7 +50,7 @@
       <file leaf-file-name="ViewCompile.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="101" column="21" selection-start="3502" selection-end="3502" vertical-scroll-proportion="0.41898528" vertical-offset="1710" max-vertical-offset="9174">
+            <state line="101" column="16" selection-start="3512" selection-end="3512" vertical-scroll-proportion="0.41898528" vertical-offset="1710" max-vertical-offset="9262">
               <folding />
             </state>
           </provider>
@@ -134,8 +133,8 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Alias.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Function/Common.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php" />
       </list>
     </option>
   </component>
@@ -443,7 +442,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="21" selection-start="3502" selection-end="3502" vertical-scroll-proportion="0.41898528" vertical-offset="1710" max-vertical-offset="9174">
+        <state line="101" column="16" selection-start="3512" selection-end="3512" vertical-scroll-proportion="0.41898528" vertical-offset="1710" max-vertical-offset="9262">
           <folding />
         </state>
       </provider>

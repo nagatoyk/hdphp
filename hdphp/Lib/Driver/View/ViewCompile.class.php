@@ -95,12 +95,16 @@ class ViewCompile
         if (!empty($tags) && is_array($tags)) { //如果配置文件中存在标签定义
             foreach ($tags as $class) { //加载其他模块或应用中的标签库
                 $file = ucfirst($class) . '.class.php'; //类文件
-                class_exists($class, false) or
-                require_array(array(
+                if (class_exists($class, false)) {
+                } else if (require_array(array(
                     TAG_PATH . $file,
                     COMMON_TAG_PATH . $file
-                )) or
-                import($class);
+                ))
+                ) {
+                } else if (import($class)) {
+                } else {
+                    error("模板标签{$class}不存在");
+                }
                 $tagClass[] = $class;
             }
         }
