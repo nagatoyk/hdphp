@@ -32,9 +32,9 @@ final class HDPHP
         defined("LANGUAGE_PATH") or define("LANGUAGE_PATH", APP_PATH . 'Language/');
         defined("TAG_PATH") or define("TAG_PATH", APP_PATH . 'Tag/');
         defined("LIB_PATH") or define("LIB_PATH", APP_PATH . 'Lib/');
-        defined("COMPILE_PATH") or define("COMPILE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP.'/'.APP . '/Compile/' : 'Compile/'));
-        defined("CACHE_PATH") or define("CACHE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP.'/'.APP . '/Cache/' : 'Cache/'));
-        defined("TABLE_PATH") or define("TABLE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP.'/'.APP . '/Table/' : 'Table/'));
+        defined("COMPILE_PATH") or define("COMPILE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Compile/' : 'Compile/'));
+        defined("CACHE_PATH") or define("CACHE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Cache/' : 'Cache/'));
+        defined("TABLE_PATH") or define("TABLE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Table/' : 'Table/'));
         defined("LOG_PATH") or define("LOG_PATH", TEMP_PATH . 'Log/');
         //应用配置
         $app_config = CONFIG_PATH . 'config.php';
@@ -84,6 +84,29 @@ final class HDPHP
         //别名导入
         IS_GROUP and is_file(COMMON_LIB_PATH . 'Alias.php') and alias_import(COMMON_LIB_PATH . 'Alias.php');
         is_file(LIB_PATH . 'Alias.php') and alias_import(LIB_PATH . 'Alias.php');
+        //自动加载应用文件文件
+        HDPHP::appFileAutoLoad();
+    }
+
+    /**
+     * 自动加载应用文件
+     */
+    static private function appFileAutoLoad()
+    {
+        //自动加载文件列表
+        $files = C("AUTO_LOAD_FILE");
+        if (is_array($files) && !empty($files)) {
+            foreach ($files as $f) {
+                //加载应用文件
+                if (strpos($f, '/') === false) {
+                    $f = LIB_PATH . $f;
+                    if (!is_file($f)) {
+                        $f = COMMON_LIB_PATH . $f;
+                    }
+                }
+                require_cache($f);
+            }
+        }
     }
 
     /**
@@ -119,12 +142,12 @@ final class HDPHP
                 HDPHP_DRIVER_PATH . 'Cache/' . $class,
             ))
             ) return;
-        } elseif (substr($className, 0,4) == "View") {
+        } elseif (substr($className, 0, 4) == "View") {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'View/' . $class,
             ))
             ) return;
-        }elseif (substr($className, 0, 7) == "Session") {
+        } elseif (substr($className, 0, 7) == "Session") {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'Session/' . $class
             ))
@@ -141,7 +164,7 @@ final class HDPHP
                 COMMON_TAG_PATH . $class
             ))
             ) return;
-        }  elseif (alias_import($className)) {
+        } elseif (alias_import($className)) {
             return;
         } elseif (require_array(array(
             EVENT_PATH . $class,

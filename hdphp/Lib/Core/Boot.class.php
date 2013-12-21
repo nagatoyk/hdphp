@@ -68,12 +68,10 @@ final class Boot
         alias_import(require(HDPHP_CORE_PATH . 'Alias.php'));
         //编译核心文件
         self::compile();
-        //获得应用变量
+        //应用初始化
         HDPHP::init();
         //创建应用目录
         self::mkDirs();
-        //自动加载文件
-        self::compileAppLib();
         //运行应用
         App::run();
     }
@@ -96,6 +94,7 @@ final class Boot
             HDPHP_CORE_PATH . 'Log.class.php', //公共函数
             HDPHP_FUNCTION_PATH . 'Functions.php', //应用函数
             HDPHP_FUNCTION_PATH . 'Common.php', //公共函数
+            HDPHP_CORE_PATH . 'Debug.class.php', //Debug处理类
         );
         foreach ($files as $v) {
             require($v);
@@ -253,60 +252,25 @@ final class Boot
             $con = compress(trim(file_get_contents($f)));
             $compile .= substr($con, -2) == '?>' ? trim(substr($con, 5, -2)) : trim(substr($con, 5));
         }
+        //HDPHP框加核心配置
         $compile .= 'C(' . var_export(C(), true) . ');';
+        //HDPHP框架核心语言包
         $compile .= 'L(' . var_export(L(), true) . ');';
+        //别名配置文件
         $compile .= 'alias_import(' . var_export(alias_import(), true) . ');';
         self::$_compile = $compile;
-    }
-
-    /**
-     * 编译Boot.php文件
-     */
-    static private function compileAppLib()
-    {
-        $compile = '';
-        //自动加载文件列表
-        $files = C("AUTO_LOAD_FILE");
-        if (is_array($files) && !empty($files)) {
-            foreach ($files as $f) {
-                $f = preg_replace('@\.php@i', '', trim($f)) . '.php';
-                //加载应用文件
-                if (strpos($f, '/') === false) {
-                    $f = LIB_PATH . $f;
-                    if (!is_file($f)) {
-                        $f = COMMON_LIB_PATH . $f;
-                    }
-                }
-                //检测文件
-                if (!is_file($f) && !is_readable($f)) {
-                    continue;
-                }
-                require_cache($f);
-                //编译自动加载文件
-                if (!DEBUG) {
-                    $con = trim(file_get_contents($f));
-                    $compile .= substr($con, -2) == '?>' ? trim(substr($con, 5, -2)) : trim(substr($con, 5));
-                }
-            }
-        }
-        //DEBUG时删除编译文件
-        $boot = TEMP_PATH . TEMP_FILE;
-        if (DEBUG) {
-            is_file($boot) and unlink($boot);
-            return;
-        }
+        //编译Boot.php文件
         //公共文件编译
-        $compile = self::$_compile . $compile . 'HDPHP::init();';
-        //如果网址发生变化，生新生成编译文件
-        $compile .= 'define("CLEAR_TPL_COMPILE_FILE",strstr(__HOST__,$_SERVER["SERVER_NAME"])==false);';
+        $compile = self::$_compile  . 'HDPHP::init();';
         //编译内容
         $compile = '<?php ' . $compile . 'App::run();?>';
-        //创建编译文件
+        //创建Boot编译文件
         if (is_dir(TEMP_PATH) or dir_create(TEMP_PATH) and is_writable(TEMP_PATH))
             return file_put_contents($boot, compress($compile));
         header("Content-type:text/html;charset=utf-8");
         exit("<div style='border:solid 1px #dcdcdc;padding:30px;'>目录创建失败，请修改" . realpath(dirname(TEMP_PATH)) . "目录权限</div>");
     }
+
 }
 
 ?>
