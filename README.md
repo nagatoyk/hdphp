@@ -51,6 +51,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 ```
 1. 修改在应用组模式时，配置auto_load_file失败的问题
+2. 压缩HDPHP数据，去除一些不用的JS插件如ICHECK
 ```
 2013.12.19
 
