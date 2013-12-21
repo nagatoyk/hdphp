@@ -97,14 +97,11 @@ final class HDPHP
         $files = C("AUTO_LOAD_FILE");
         if (is_array($files) && !empty($files)) {
             foreach ($files as $f) {
-                //加载应用文件
-                if (strpos($f, '/') === false) {
-                    $f = LIB_PATH . $f;
-                    if (!is_file($f)) {
-                        $f = COMMON_LIB_PATH . $f;
-                    }
-                }
-                require_cache($f);
+                $file = $f . '.php';
+                require_array(array(
+                    LIB_PATH . $file,
+                    COMMON_LIB_PATH . $file
+                )) || require_cache($f);
             }
         }
     }
@@ -167,9 +164,7 @@ final class HDPHP
         } elseif (alias_import($className)) {
             return;
         } elseif (require_array(array(
-            EVENT_PATH . $class,
             LIB_PATH . $class,
-            TAG_PATH . $class,
             COMMON_LIB_PATH . $class,
             HDPHP_CORE_PATH . $class,
             HDPHP_EXTEND_PATH . $class,

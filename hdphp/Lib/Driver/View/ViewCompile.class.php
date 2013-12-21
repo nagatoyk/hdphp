@@ -93,21 +93,15 @@ class ViewCompile
         $tagClass = array(); //标签库类
         $tags = C('TPL_TAGS'); //加载扩展标签库
         if (!empty($tags) && is_array($tags)) { //如果配置文件中存在标签定义
-            foreach ($tags as $k) { //加载其他模块或应用中的标签库
-                $arr = explode('.', $k); //如果拆分后大于1的为其他模块或应用的标签定义
-//                $count = count($arr);
-//                $tagClass[] = $arr[$count - 1] . "Tag"; //压入标签库类
-//                switch (count($arr)) {
-//                    case 1:
-//                        $tagFile = TAG_PATH . $arr[0] . 'Tag.class.php';
-//                        break;
-//                    case 2:
-//                        $tagFile = GROUP_PATH . APP_GROUP . '/' . $arr[0] . '/Tag/' . $arr[1] . 'Tag.class.php';
-//                        break;
-//                }
-                if (import($k)) {
-                    $tagClass[] = array_pop($arr);
-                }
+            foreach ($tags as $class) { //加载其他模块或应用中的标签库
+                $file = ucfirst($class) . '.class.php'; //类文件
+                class_exists($class, false) or
+                require_array(array(
+                    TAG_PATH . $file,
+                    COMMON_TAG_PATH . $file
+                )) or
+                import($class);
+                $tagClass[] = $class;
             }
         }
         //加载框架核心标签库

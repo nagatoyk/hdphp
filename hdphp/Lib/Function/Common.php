@@ -190,7 +190,6 @@ function dir_create($dirName, $auth = 0755)
 function require_cache($path = null)
 {
     static $_files = array();
-//    $name = strtolower($path);
     if (is_null($path)) return $_files;
     //缓存中存在  即代表文件已经加载  停止加载
     if (isset($_files[$path])) {
