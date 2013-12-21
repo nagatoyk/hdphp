@@ -47,6 +47,11 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ```
 
 ###以往更新
+2013.12.21
+
+```
+1. 修改在应用组模式时，配置auto_load_file失败的问题
+```
 2013.12.19
 
 ```
@@ -54,5 +59,5 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 2. 增加目录安全文件创建方法Dir::safeFile
 3. 更新HDPHP手册
 4. 优化Html静态文件生成类
-5. 修复js自动验证confirm不起作用问题
+5. 修复js自动验证confirm不起作用问题6. 
 ```
