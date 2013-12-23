@@ -129,7 +129,7 @@ return array(
     "THUMB_PATH"                    => "",          //缩略图路径
     /********************************验证码********************************/
     "CODE_FONT"                     => HDPHP_PATH . "Data/Font/font.ttf",       //字体
-    "CODE_STR"                      => "123456789abcdefghijklmnpqrstuvwsyz", //验证码种子
+    "CODE_STR"                      => "23456789abcdefghjkmnpqrstuvwsyz", //验证码种子
     "CODE_WIDTH"                    => 120,         //宽度
     "CODE_HEIGHT"                   => 35,          //高度
     "CODE_BG_COLOR"                 => "#ffffff",   //背景颜色

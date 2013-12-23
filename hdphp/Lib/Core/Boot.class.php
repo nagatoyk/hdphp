@@ -58,10 +58,6 @@ final class Boot
         C(require(HDPHP_CONFIG_PATH . 'config.php'));
         //系统事件
         C("CORE_EVENT", require(HDPHP_CONFIG_PATH . 'event.php'));
-        //应用组配置与语言包处理
-        if (IS_GROUP) {
-            is_file(COMMON_CONFIG_PATH . 'config.php') and C(require(COMMON_CONFIG_PATH . 'config.php'));
-        }
         //系统语言
         L(require(HDPHP_LANGUAGE_PATH . 'zh.php'));
         //别名

@@ -16,6 +16,8 @@ final class HDPHP
      */
     static public function init()
     {
+        //应用组配置与语言包处理
+        IS_GROUP and is_file(COMMON_CONFIG_PATH . 'config.php') and C(require(COMMON_CONFIG_PATH . 'config.php'));
         //应用组模式URL解析
         IS_GROUP and  Route::group();
         //应用
