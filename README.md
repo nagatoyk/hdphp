@@ -55,6 +55,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 2. 压缩HDPHP数据，去除一些不用的JS插件如ICHECK
 3. 修改模板标签加载失败问题
 4. 修复Data::parentChannel()由于使用static在生成全站静态时造成的问题
+5. hdui中添加slide轮换效果
 ```
 2013.12.19
 
