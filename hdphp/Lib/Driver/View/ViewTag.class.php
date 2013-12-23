@@ -53,7 +53,8 @@ class ViewTag
         'jsconst' => array("block" => 0), //定义JS常量
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
-        "hdui" => array("block" => 0)
+        "hdui" => array("block" => 0),
+        "slide" => array("block" => 0)
     );
 
     //格式化参数 字符串加引号
@@ -663,6 +664,12 @@ class ViewTag
         }
         $str .= "</script>";
         return $str;
+    }
+
+    //js轮换版
+    public function _slide($attr, $content)
+    {
+        return '<script src="__HDPHP_EXTEND__/Org/hdui/js/slide.js"></script>';
     }
 
     //HdUi
