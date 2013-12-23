@@ -401,10 +401,10 @@ class Model
     }
 
     //SQL中的LIKE规则
-    public function like()
+    public function like($arg = array())
     {
-        $args = func_get_args();
-        $this->db->like($args);
+        if (empty($arg)) return $this;
+        $this->db->like($arg);
         return $this;
     }
 

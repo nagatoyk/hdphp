@@ -493,19 +493,14 @@ function Q($var, $default = null, $filter = null)
     } else if (isset($data[$var[1]])) {
         //要获得参数如$this->_get("page")中的page
         $value = $data[$var[1]];
-        //如果没有函数时，直接返回值
-        if (is_null($filter)) {
-            return $value;
-        }
         //对参数进行过滤的函数
-        $funcArr = !empty($filter) ? $filter : C("FILTER_FUNCTION");
-
+        $funcArr = is_null($filter) ?C("FILTER_FUNCTION"):$filter;
+        //参数过滤函数
+        if (is_string($funcArr)) {
+            $funcArr = explode(",", $funcArr);
+        }
         //是否存在过滤函数
-        if (!empty($funcArr)) {
-            //参数过滤函数
-            if (is_string($funcArr)) {
-                $funcArr = explode(",", $funcArr);
-            }
+        if (!empty($funcArr) && is_array($funcArr)) {
             //对数据进行过滤处理
             foreach ($funcArr as $func) {
                 if (!function_exists($func))

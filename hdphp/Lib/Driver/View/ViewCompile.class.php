@@ -90,10 +90,14 @@ class ViewCompile
      */
     private function loadParseTags()
     {
-        $tagClass = array(); //标签库类
-        $tags = C('TPL_TAGS'); //加载扩展标签库
-        if (!empty($tags) && is_array($tags)) { //如果配置文件中存在标签定义
-            foreach ($tags as $class) { //加载其他模块或应用中的标签库
+        //标签库类
+        $tagClass = array();
+        //加载扩展标签库
+        $tags = C('TPL_TAGS');
+        //如果配置文件中存在标签定义
+        if (!empty($tags) && is_array($tags)) {
+            //加载其他模块或应用中的标签库
+            foreach ($tags as $class) {
                 $file = ucfirst($class) . '.class.php'; //类文件
                 if (class_exists($class, false)) {
                 } else if (require_array(array(
@@ -103,9 +107,10 @@ class ViewCompile
                 ) {
                 } else if (import($class)) {
                 } else {
-                    error("模板标签{$class}不存在");
+                    error("标签类文件{$class}不存在");
                 }
-                $tagClass[] = $class;
+                $tmp=explode(".", $class);
+                $tagClass[] = array_pop($tmp);
             }
         }
         //加载框架核心标签库

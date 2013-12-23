@@ -109,7 +109,7 @@ final class Data
                 }
             }
             if ($v['level'] != 1) {
-                $t = $title? $v[$title]:"";
+                $t = $title ? $v[$title] : "";
                 if (isset($arr[$k + 1]) && $arr[$k + 1]['level'] >= $arr[$k]['level']) {
                     $arr[$k][$title] = $str . "├─" . $v['html'] . $t;
                 } else {
@@ -151,21 +151,23 @@ final class Data
      * 获得所有父级栏目
      * @param $data 栏目数据
      * @param $sid 子栏目
-     * @param string $html 栏目名称前缀
      * @param string $fieldPri 唯一键名，如果是表则是表的主键
      * @param string $fieldPid 父ID键名
      * @return array
      */
-    static public function parentChannel($data, $sid, $html = "&nbsp;", $fieldPri = 'cid', $fieldPid = 'pid')
+    static public function parentChannel($data, $sid, $fieldPri = 'cid', $fieldPid = 'pid')
     {
         if (!$data) {
             return NULL;
         }
-        static $arr = array();
+        $arr = array();
         foreach ($data as $v) {
             if ($v[$fieldPri] == $sid) {
                 $arr[] = $v;
-                self::parentChannel($data, $v[$fieldPid], $html, $fieldPri, $fieldPid);
+                $_n = self::parentChannel($data, $v[$fieldPid], $fieldPri, $fieldPid);
+                if (!empty($_n)) {
+                    $arr = array_merge($arr, $_n);
+                }
             }
         }
         return $arr;

@@ -74,7 +74,7 @@ return array(
     "DEFAULT_METHOD"                => "index",     //默认方法
     "CONTROL_FIX"                   => "Control",   //控制器文件后缀
     "MODEL_FIX"                     => "Model",     //模型文件名后缀
-    "FILTER_FUNCTION"               => array("htmlspecialchars","strip_tags"), //过滤函数如$this->_get("hdphp")
+    "FILTER_FUNCTION"               => array("htmlspecialchars","strip_tags"), //过滤函数会在Q()函数等中使用
     /********************************URL路由设置********************************/
     "route" => array(),                             //路由规则
     /********************************缓存控制********************************/

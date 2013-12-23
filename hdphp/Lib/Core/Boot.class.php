@@ -43,15 +43,15 @@ final class Boot
         define("HDPHP_FUNCTION_PATH", HDPHP_LIB_PATH . 'Function/'); //函数目录
         define("HDPHP_LANGUAGE_PATH", HDPHP_LIB_PATH . 'Language/'); //语言目录
         define("HDPHP_TPL_PATH", HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
-        defined("COMMON_PATH") or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : APP_PATH); //应用组公共目录
-        defined("COMMON_CONFIG_PATH") or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : APP_PATH); //应用组公共目录
-        defined("COMMON_MODEL_PATH") or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : APP_PATH); //应用组公共目录
-        defined("COMMON_CONTROL_PATH") or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : APP_PATH); //应用组公共目录
-        defined("COMMON_LANGUAGE_PATH") or define("COMMON_LANGUAGE_PATH", IS_GROUP ? COMMON_PATH . 'Language/' : APP_PATH); //应用组语言包目录
-        defined("COMMON_EXTEND_PATH") or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' : APP_PATH); //应用组扩展目录
-        defined("COMMON_EVENT_PATH") or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : APP_PATH); //应用组事件目录
-        defined("COMMON_TAG_PATH") or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' : APP_PATH); //应用组标签目录
-        defined("COMMON_LIB_PATH") or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : APP_PATH); //应用组扩展包目录
+        defined("COMMON_PATH") or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : ""); //应用组公共目录
+        defined("COMMON_CONFIG_PATH") or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : ""); //应用组公共目录
+        defined("COMMON_MODEL_PATH") or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : ""); //应用组公共目录
+        defined("COMMON_CONTROL_PATH") or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : ""); //应用组公共目录
+        defined("COMMON_LANGUAGE_PATH") or define("COMMON_LANGUAGE_PATH", IS_GROUP ? COMMON_PATH . 'Language/' : ""); //应用组语言包目录
+        defined("COMMON_EXTEND_PATH") or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' : ""); //应用组扩展目录
+        defined("COMMON_EVENT_PATH") or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : ""); //应用组事件目录
+        defined("COMMON_TAG_PATH") or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' : ""); //应用组标签目录
+        defined("COMMON_LIB_PATH") or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : ""); //应用组扩展包目录
         //加载核心文件
         self::loadCoreFile();
         //系统配置
@@ -75,7 +75,6 @@ final class Boot
         //运行应用
         App::run();
     }
-
 
     /**
      * 加载核心文件
@@ -258,12 +257,8 @@ final class Boot
         $compile .= 'L(' . var_export(L(), true) . ');';
         //别名配置文件
         $compile .= 'alias_import(' . var_export(alias_import(), true) . ');';
-        self::$_compile = $compile;
-        //编译Boot.php文件
-        //公共文件编译
-        $compile = self::$_compile  . 'HDPHP::init();';
         //编译内容
-        $compile = '<?php ' . $compile . 'App::run();?>';
+        $compile = '<?php ' . $compile . 'HDPHP::init();App::run();?>';
         //创建Boot编译文件
         if (is_dir(TEMP_PATH) or dir_create(TEMP_PATH) and is_writable(TEMP_PATH))
             return file_put_contents($boot, compress($compile));

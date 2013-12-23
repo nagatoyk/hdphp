@@ -666,22 +666,17 @@ class ViewTag
     }
 
     //HdUi
-    public function _hdui()
+    public function _hdui($attr, $content)
     {
+        $bootstrap = isset($attr['bootstrap']) ? $attr['bootstrap'] : false;
         $str = '';
         $str .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
-        $str .= '<script src="__HDPHP_EXTEND__/Org/hdui/js/lhgcalendar.min.js"></script>'."\n";
-        $str .= '<link href="__HDPHP_EXTEND__/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">'."\n";
-        $str .= '<script src="__HDPHP_EXTEND__/Org/bootstrap/js/bootstrap.min.js"></script>'."\n";
-        $str .= '<!--[if lte IE 6]>
-  <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/bootstrap-ie6.css">
-  <![endif]-->
-  <!--[if lte IE 7]>
-  <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/ie.css">
-  <![endif]-->';
+        $str .= '<script src="__HDPHP_EXTEND__/Org/hdui/js/lhgcalendar.min.js"></script>' . "\n";
         $str .= "<link href='__HDPHP_EXTEND__/Org/hdui/css/hdui.css' rel='stylesheet' media='screen'>\n";
         $str .= "<script src='__HDPHP_EXTEND__/Org/hdui/js/hdui.js'></script>\n";
+        $str .= $bootstrap ? $this->_bootstrap() : "";
         $str .= $this->_jsconst(null, null);
+
         return $str;
     }
 }

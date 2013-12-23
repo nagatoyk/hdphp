@@ -44,6 +44,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 1. 修复盾友“笑风痴”提出的购物车类问题
 2. DEBUG调式，增加session与cookie监控
 3. 增加Cookie处理函数
+4. 更新ckeditor最新版本
 ```
 
 ###以往更新
@@ -53,6 +54,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 1. 修改在应用组模式时，配置auto_load_file失败的问题
 2. 压缩HDPHP数据，去除一些不用的JS插件如ICHECK
 3. 修改模板标签加载失败问题
+4. 修复Data::parentChannel()由于使用static在生成全站静态时造成的问题
 ```
 2013.12.19
 
