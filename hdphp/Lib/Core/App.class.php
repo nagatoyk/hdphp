@@ -18,6 +18,9 @@ final class App
      */
     public static function run()
     {
+
+        //session处理
+        session(C("SESSION_OPTIONS"));
         //加载应用与事件处理类
         self::loadEventClass();
         //执行应用开始事件

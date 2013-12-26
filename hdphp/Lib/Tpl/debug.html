@@ -13,7 +13,7 @@
         overflow: hidden;
         word-wrap: word-break;
         word-break: break-word;
-        position: fixed;
+        /*position: absolute;*/
         /*top: 200px;*/
         left: 0px;
         bottom: 0px;
@@ -301,10 +301,8 @@
         if (_hd_debug.style.display) {
             _hd_debug.style.display = "";
         } else {
-            var _t = document.body.scrollTop+200;
+//            var _t = document.body.scrollTop+200;
             _hd_debug.style.display = "block";
-//            var _t = Math.max(document.body.clientHeight-_hd_debug.offsetHeight-20,0)+document.body.scrollTop;
-//            _hd_debug.style.top=_t+"px";
         }
     }
     //f11显示debug

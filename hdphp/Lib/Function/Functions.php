@@ -298,38 +298,137 @@ function control($control, $method = NULl, $args = array())
 }
 
 /**
- * SESSION
- * @param bool $name 名称
+ * session处理
+ * @param string|array $name 数组为初始session
  * @param string $value 值
- * @return null
+ * @return mixed
  */
-function session($name = false, $value = '')
+function session($name, $value = '')
 {
-    static $_start = false;
-    if ($name === false) return $_SESSION;
-    if ($_start === false) {
-        $_start = true;
-        session_id() || session_start();
-    }
-    //清空SESSION
-    if (is_null($name)) {
+    //session初始化
+    if (is_array($name)) {
+        //关闭session自启动
+        ini_set('session.auto_start', 0);
+        //设置session_id
+        if (isset($name['name']))
+            session_name($name['name']);
+        if (isset($_REQUEST[session_name()]))
+            session_id($_REQUEST[session_name()]);
+        if (isset($name['path']))
+            session_save_path($name['path']);
+        if (isset($name['domain']))
+            ini_set('session.cookie_domain', $name['domain']);
+        if (isset($name['expire']))
+            ini_set('session.gc_maxlifetime', $name['expire']);
+        if (isset($name['use_trans_sid']))
+            ini_set('session.use_trans_sid', $name['use_trans_sid'] ? 1 : 0);
+        if (isset($name['use_cookies']))
+            ini_set('session.use_cookies', $name['use_cookies'] ? 1 : 0);
+        if (isset($name['cache_limiter']))
+            session_cache_limiter($name['cache_limiter']);
+        if (isset($name['cache_expire']))
+            session_cache_expire($name['cache_expire']);
+        if (isset($name['type']))
+            C('SESSION_TYPE', $name['type']);
+        if (C('SESSION_TYPE') and C('SESSION_TYPE') != 'file') { // 读取session驱动
+            $class = 'Session' . ucwords(strtolower(C('SESSION_TYPE')));
+            // 检查驱动类
+            if (require_cache(HDPHP_DRIVER_PATH . '/Session/' . $class . '.class.php')) {
+                $hander = new $class();
+                $hander->run();
+            } else {
+                error("类文件不存在:$class");
+            }
+        }
+        //自动开启SESSION
+        if (C("SESSION_AUTO_START")) {
+            session_start();
+        }
+    } elseif ($value === "") {
+        if ('[pause]' == $name) { // 暂停
+            session_write_close();
+        } elseif ('[start]' == $name) { //开启
+            session_start();
+        } elseif ('[destroy]' == $name) { //销毁
+            $_SESSION = array();
+            session_unset();
+            session_destroy();
+        } elseif ('[regenerate]' == $name) { //生成id
+            session_regenerate_id();
+        } elseif (0 === strpos($name, '?')) { // 检查session
+            $name = substr($name, 1);
+            return isset($_SESSION[$name]);
+        } elseif (is_null($name)) { // 清空session
+            $_SESSION = array();
+        } else {
+            return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
+        }
+    } elseif (is_null($value)) { // 删除session
+        unset($_SESSION[$name]);
+    } elseif (is_null($name)) {
         $_SESSION = array();
         session_unset();
         session_destroy();
-    } elseif (is_null($value)) { //删除SESSION
-        unset($_SESSION[$name]);
-    } elseif (empty($value)) { //获得SESSION赋值
-        switch (strtolower($name)) {
-            case "[parse]": //停止SESSION
-                session_write_close();
-                break;
-        }
-        return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
-    } else { //赋值SESSION
+    } else { //设置session
         $_SESSION[$name] = $value;
     }
 }
 
+/**
+ * cookie处理
+ * @param $name 名称
+ * @param string $value 值
+ * @param mixed $option 选项
+ * @return mixed
+ */
+function cookie($name,$value="",$option=array()){
+    // 默认设置
+    $config = array(
+        'prefix' => C('COOKIE_PREFIX'), // cookie 名称前缀
+        'expire' => C('COOKIE_EXPIRE'), // cookie 保存时间
+        'path' => C('COOKIE_PATH'), // cookie 保存路径
+        'domain' => C('COOKIE_DOMAIN'), // cookie 有效域名
+    );
+    // 参数设置(会覆盖黙认设置)
+    if (!empty($option)) {
+        if (is_numeric($option))
+            $option = array('expire' => $option);
+        elseif (is_string($option))
+            parse_str($option, $option);
+        $config = array_merge($config, array_change_key_case($option));
+    }
+    // 清除指定前缀的所有cookie
+    if (is_null($name)) {
+        if (empty($_COOKIE))
+            return;
+        // 要删除的cookie前缀，不指定则删除config设置的指定前缀
+        $prefix = empty($value) ? $config['prefix'] : $value;
+        if (!empty($prefix)) {// 如果前缀为空字符串将不作处理直接返回
+            foreach ($_COOKIE as $key => $val) {
+                if (0 === stripos($key, $prefix)) {
+                    setcookie($key, '', time() - 3600, $config['path'], $config['domain']);
+                    unset($_COOKIE[$key]);
+                }
+            }
+        }
+        return;
+    }
+    $name = $config['prefix'] . $name;
+    if ('' === $value) {
+        return isset($_COOKIE[$name]) ? json_decode(MAGIC_QUOTES_GPC ? stripslashes($_COOKIE[$name]) : $_COOKIE[$name]) : null; // 获取指定Cookie
+    } else {
+        if (is_null($value)) {
+            setcookie($name, '', time() - 3600, $config['path'], $config['domain']);
+            unset($_COOKIE[$name]); // 删除指定cookie
+        } else {
+            // 设置cookie
+            $value = json_encode($value);
+            $expire = !empty($config['expire']) ? time() + intval($config['expire']) : 0;
+            setcookie($name, $value, $expire, $config['path'], $config['domain']);
+            $_COOKIE[$name] = $value;
+        }
+    }
+}
 
 /**
  * 载入或设置配置顶
@@ -494,7 +593,7 @@ function Q($var, $default = null, $filter = null)
         //要获得参数如$this->_get("page")中的page
         $value = $data[$var[1]];
         //对参数进行过滤的函数
-        $funcArr = is_null($filter) ?C("FILTER_FUNCTION"):$filter;
+        $funcArr = is_null($filter) ? C("FILTER_FUNCTION") : $filter;
         //参数过滤函数
         if (is_string($funcArr)) {
             $funcArr = explode(",", $funcArr);

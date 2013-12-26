@@ -18,28 +18,36 @@ if (!defined("HDPHP_PATH"))
  * @subpackage  Driver
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-class SessionMysql extends SessionAbstract
+class SessionMysql
 {
 
     private $link; //Mysql数据库连接
     private $table; //SESSION表
-    private $lifeTime; //过期时间
+    private $expire; //过期时间
 
     /**
      * 构造函数
      */
+    public function __construct()
+    {
+    }
 
     //初始
     public function run()
     {
-        session_name(C("SESSION_NAME"));
-        $table = C("SESSION_TABLE_NAME"); //SESSION表
-        $this->table = strpos($table, C("DB_PREFIX")) === false ? C("DB_PREFIX") . $table : $table;
-        $this->lifeTime = C("SESSION_LIFETIME") ? C("SESSION_LIFETIME") : ini_get('session.gc_maxlifetime'); //过期时间
-        $this->link = mysql_connect(C("DB_HOST") . ':' . C("DB_PORT"), C("DB_USER"), C("DB_PASSWORD")); //连接Mysql
-        $database = mysql_select_db(C("DB_DATABASE"), $this->link); //选择数据库
+        $options = C("SESSION_OPTIONS");
+        $this->table = $options['table']; //表
+        $this->expire = $options['expire']; //过期时间
+        $host = isset($options['host']) ? $options['host'] : C("DB_HOST");
+        $port = isset($options['port']) ? $options['port'] : C("DB_PORT");
+        $user = isset($options['user']) ? $options['user'] : C("DB_USER");
+        $password = isset($options['password']) ? $options['password'] : C("DB_PASSWORD");
+        $database = isset($options['database']) ? $options['database'] : C("DB_DATABASE");
+
+        $this->link = mysql_connect($host . ':' . $port, $user, $password); //连接Mysql
+        $db = mysql_select_db($database, $this->link); //选择数据库
+        if (!$this->link || !$db) return false;
         mysql_query("SET NAMES " . str_replace("_", "", C("CHARSET"))); //字符集
-        if (!$this->link || !$database) return false;
         session_set_save_handler(
             array(&$this, "open"),
             array(&$this, "close"),
@@ -67,7 +75,7 @@ class SessionMysql extends SessionAbstract
     public function read($id)
     {
         $sql = "SELECT data FROM " . $this->table . " WHERE sessid='$id' ";
-        $sql .= "AND atime>" . (NOW - $this->lifeTime);
+        $sql .= "AND atime>" . (NOW - $this->expire);
         $result = mysql_query($sql, $this->link);
         if ($result) {
             $data = mysql_fetch_assoc($result);
@@ -85,8 +93,8 @@ class SessionMysql extends SessionAbstract
     public function write($id, $data)
     {
         $ip = ip_get_client();
-        $sql = "REPLACE INTO " . $this->table . "(sessid,Data,atime,ip) ";
-        $sql .= "VALUES('$id','$data',".NOW.",'$ip')";
+        $sql = "REPLACE INTO " . $this->table . "(sessid,data,atime,ip) ";
+        $sql .= "VALUES('$id','$data'," . NOW . ",'$ip')";
         mysql_query($sql, $this->link);
         return mysql_affected_rows($this->link) ? true : false;
     }
@@ -109,7 +117,7 @@ class SessionMysql extends SessionAbstract
      */
     public function gc()
     {
-        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->lifeTime);
+        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->expire);
         mysql_query($sql, $this->link);
     }
 
@@ -118,7 +126,7 @@ class SessionMysql extends SessionAbstract
     public function close()
     {
         //关闭SESSION
-        if (mt_rand(1, C("SESSION_GC_DIVISOR")) == 1) {
+        if (mt_rand(1, 100) == 1) {
             $this->gc();
         }
         //关闭数据库连接

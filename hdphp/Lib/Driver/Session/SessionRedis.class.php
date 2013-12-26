@@ -18,7 +18,7 @@ if (!defined("HDPHP_PATH"))
  * @subpackage      Driver
  * @author          后盾向军 <houdunwangxj@gmail.com>
  */
-class SessionRedis extends SessionAbstract {
+class SessionRedis{
 
     /**
      * Redis连接对象
@@ -34,7 +34,15 @@ class SessionRedis extends SessionAbstract {
         if (!empty($config['password'])) {
             $this->redis->auth($config['password']);
         }
-        $this->redis->select((int) $config['Db']);
+        $this->redis->select((int) $config['db']);
+        session_set_save_handler(
+            array(&$this, "open"),
+            array(&$this, "close"),
+            array(&$this, "read"),
+            array(&$this, "write"),
+            array(&$this, "destroy"),
+            array(&$this, "gc")
+        );
     }
 
     function open() {

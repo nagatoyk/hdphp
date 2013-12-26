@@ -42,12 +42,19 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 ```
 1. 修复盾友“笑风痴”提出的购物车类问题
-2. DEBUG调式，增加session与cookie监控
-3. 增加Cookie处理函数
 4. 更新ckeditor最新版本
 ```
 
 ###以往更新
+2013.12.25
+
+```
+1. 修正session文件创建失败的问题
+2. 添加cookie支持
+3. 优化session处理机制
+4. 重新定义session的配置项设置
+5. 新增cookie配置项设置
+```
 2013.12.21
 
 ```
@@ -64,5 +71,5 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 2. 增加目录安全文件创建方法Dir::safeFile
 3. 更新HDPHP手册
 4. 优化Html静态文件生成类
-5. 修复js自动验证confirm不起作用问题6. 
+5. 修复js自动验证confirm不起作用问题
 ```

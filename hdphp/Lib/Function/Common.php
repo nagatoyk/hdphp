@@ -493,15 +493,13 @@ function get_defines($name = "", $value = null, $type = 'user')
  */
 function throw_exception($msg, $type = "HdException", $code = 0)
 {
-    if (class_exists($type)) {
-        throw new $type($msg, $code);
+    if (class_exists($type, false)) {
+        throw new $type($msg, $code, true);
     } else {
-        error($msg);
+        halt($msg);
     }
 }
 
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 /**
  * 将错误记录到日志
  * @param $error 错误信息
@@ -523,24 +521,33 @@ function log_write($error)
  * 错误中断
  * @param string | array $error 错误内容
  */
-function error($error)
+function halt($error)
 {
     $e = array();
-    if (!is_array($error)) {
-        $trace = debug_backtrace();
-        $e['message'] = $error;
-        $e['file'] = $trace[0]['file'];
-        $e['line'] = $trace[0]['line'];
-        $e['class'] = isset($trace[0]['class']) ? $trace[0]['class'] : "";
-        $e['function'] = isset($trace[0]['function']) ? $trace[0]['function'] : "";
-        ob_start();
-        debug_print_backtrace();
-        $e['trace'] = htmlspecialchars(ob_get_clean());
+    if (DEBUG) {
+        if (!is_array($error)) {
+            $trace = debug_backtrace();
+            $e['message'] = $error;
+            $e['file'] = $trace[0]['file'];
+            $e['line'] = $trace[0]['line'];
+            $e['class'] = isset($trace[0]['class']) ? $trace[0]['class'] : "";
+            $e['function'] = isset($trace[0]['function']) ? $trace[0]['function'] : "";
+            ob_start();
+            debug_print_backtrace();
+            $e['trace'] = htmlspecialchars(ob_get_clean());
+        } else {
+            $e = $error;
+        }
     } else {
-        $e = $error;
-    }
-    if (!DEBUG) {
-        _404("[Error]" . $e['message'] . " [Time]" . date("y-m-d h:i") . " [File]" . $e['file'] . " [Line]" . $e['line']);
+        //错误显示url
+        if ($_url= C('ERROR_URL')) {
+            go($_url);
+        } else {
+            if (C('SHOW_ERROR_MESSAGE'))
+                $e['message'] = is_array($error) ? $error['message'] : $error;
+            else
+                $e['message'] = C('ERROR_MESSAGE');
+        }
     }
     //显示DEBUG模板，开启DEBUG显示trace
     require HDPHP_TPL_PATH . 'halt.html';
@@ -551,31 +558,56 @@ function error($error)
  * 错误中断
  * @param $error 错误内容
  */
-function halt($error)
+function error($error)
 {
-    error($error);
+    halt($error);
+}
+
+/**
+ * trace记录
+ * @param string $value 错误信息
+ * @param string $level
+ * @param bool $record
+ * @return mixed
+ */
+function trace($value = '[HDPHP]', $level = 'DEBUG', $record = false)
+{
+    static $_trace = array();
+    if ('[HDPHP]' === $value) { // 获取trace信息
+        return $_trace;
+    } else {
+        $info = ' : ' . print_r($value, true);
+        //调试模式时处理ERROR类型
+        if (DEBUG && 'ERROR' == $level) {
+            throw_exception($info);
+        }
+        if (!isset($_trace[$level])) {
+            $_trace[$level] = array();
+        }
+        $_trace[$level][] = $info;
+        if (IS_AJAX || $record) {
+            Log::record($info, $level, $record);
+        }
+    }
 }
 
 /**
  * 404错误
  * @param string $msg 提示信息
- * @param string $filePath 404模板文件
+ * @param string $url 跳转url
  */
-function _404($msg = "", $filePath = "")
+function _404($msg = "", $url = "")
 {
-    DEBUG && error($msg);
+    DEBUG && halt($msg);
     //写入日志
     Log::write($msg);
-    //把Notice Warning写入Log
-    Log::save();
-    if (empty($filePath) && C("404_TPL")) {
-        $filePath = C("404_TPL");
+    if (empty($url) && C("404_URL")) {
+        $url = C("404_TPL");
     }
-    //文件不可操作
-    set_http_state(404);
-    if (is_file($filePath) && is_readable($filePath)) {
-        include $filePath;
-    }
+    if ($url)
+        go($url);
+    else
+       set_http_state(404);
     exit;
 }
 

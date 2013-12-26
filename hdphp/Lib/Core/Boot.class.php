@@ -20,8 +20,7 @@ if (!defined("HDPHP_PATH"))
  */
 final class Boot
 {
-    static private $_dirs = array(); //初始目录
-    static private $_compile = ''; //编译内容
+    const VERSION="2013.12.20";//版本
     /**
      * 运行框架
      * 在单入口文件引入框架hdphp.php文件会自动执行run()方法，所以不用单独执行run方法
@@ -30,6 +29,10 @@ final class Boot
      */
     static public function run()
     {
+        //框架版本
+        define('HDPHP_VERSION', self::VERSION);
+        define('ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . '/');//根目录
+        define('IS_GROUP', defined("GROUP_PATH"));//应用组判断常量
         define("DS", DIRECTORY_SEPARATOR); //目录分隔符
         define("IS_WIN", strstr(PHP_OS, 'WIN') ? true : false); //window环境
         define("HDPHP_DATA_PATH", HDPHP_PATH . 'Data/'); //数据目录
@@ -43,15 +46,15 @@ final class Boot
         define("HDPHP_FUNCTION_PATH", HDPHP_LIB_PATH . 'Function/'); //函数目录
         define("HDPHP_LANGUAGE_PATH", HDPHP_LIB_PATH . 'Language/'); //语言目录
         define("HDPHP_TPL_PATH", HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
-        defined("COMMON_PATH") or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : ""); //应用组公共目录
-        defined("COMMON_CONFIG_PATH") or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : ""); //应用组公共目录
-        defined("COMMON_MODEL_PATH") or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : ""); //应用组公共目录
-        defined("COMMON_CONTROL_PATH") or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : ""); //应用组公共目录
-        defined("COMMON_LANGUAGE_PATH") or define("COMMON_LANGUAGE_PATH", IS_GROUP ? COMMON_PATH . 'Language/' : ""); //应用组语言包目录
-        defined("COMMON_EXTEND_PATH") or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' : ""); //应用组扩展目录
-        defined("COMMON_EVENT_PATH") or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : ""); //应用组事件目录
-        defined("COMMON_TAG_PATH") or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' : ""); //应用组标签目录
-        defined("COMMON_LIB_PATH") or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : ""); //应用组扩展包目录
+        defined("COMMON_PATH") or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : APP_PATH); //应用组公共目录
+        defined("COMMON_CONFIG_PATH") or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : APP_PATH); //应用组公共目录
+        defined("COMMON_MODEL_PATH") or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : APP_PATH); //应用组公共目录
+        defined("COMMON_CONTROL_PATH") or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : APP_PATH); //应用组公共目录
+        defined("COMMON_LANGUAGE_PATH") or define("COMMON_LANGUAGE_PATH", IS_GROUP ? COMMON_PATH . 'Language/' :APP_PATH); //应用组语言包目录
+        defined("COMMON_EXTEND_PATH") or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' :APP_PATH); //应用组扩展目录
+        defined("COMMON_EVENT_PATH") or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : APP_PATH); //应用组事件目录
+        defined("COMMON_TAG_PATH") or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' :APP_PATH); //应用组标签目录
+        defined("COMMON_LIB_PATH") or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : APP_PATH); //应用组扩展包目录
         //加载核心文件
         self::loadCoreFile();
         //系统配置
@@ -135,10 +138,10 @@ final class Boot
             LOG_PATH,
             TPL_PATH,
             PUBLIC_PATH,
-            TEMP_PATH
+            TEMP_PATH,
         );
         foreach ($dirs as $d) {
-            if (is_dir($d) || dir_create($d, 0755, true)):
+            if (is_dir($d) || dir_create($d, 0755)):
             else:
                 header("Content-type:text/html;charset=utf-8");
                 exit("目录" . $d . "创建失败，请检查权限");
@@ -150,6 +153,7 @@ final class Boot
         //复制配置文件
         is_file(CONFIG_PATH . "config.php") or copy(HDPHP_TPL_PATH . "config.php", CONFIG_PATH . "config.php");
         is_file(CONFIG_PATH . "event.php") or copy(HDPHP_TPL_PATH . "event.php", CONFIG_PATH . "event.php");
+        is_file(CONFIG_PATH . "alias.php") or copy(HDPHP_TPL_PATH . "alias.php", CONFIG_PATH . "alias.php");
         //创建测试控制器
         is_file(CONTROL_PATH . 'IndexControl.class.php') or file_put_contents(CONTROL_PATH . 'IndexControl.class.php', file_get_contents(HDPHP_TPL_PATH . 'control_test.php'));
         //创建安全文件
@@ -187,7 +191,7 @@ final class Boot
             LOG_PATH,
             TPL_PATH,
             PUBLIC_PATH,
-            TEMP_PATH
+            TEMP_PATH,
         );
         $file = HDPHP_TPL_PATH . '/index.html';
         foreach ($dirs as $d) {
@@ -201,9 +205,8 @@ final class Boot
      */
     static private function compile()
     {
-        $boot = TEMP_PATH . TEMP_FILE;
         if (DEBUG) {
-            is_file($boot) and unlink($boot);
+            is_file(TEMP_FILE) and unlink(TEMP_FILE);
             return;
         }
         $compile = '';
@@ -234,9 +237,6 @@ final class Boot
             HDPHP_DRIVER_PATH . 'Model/Model.class.php', //模型基类
             HDPHP_DRIVER_PATH . 'Model/RelationModel.class.php', //关联模型类
             HDPHP_DRIVER_PATH . 'Model/ViewModel.class.php', //视图模型类
-            HDPHP_DRIVER_PATH . 'Session/SessionAbstract.class.php', //Session抽象类
-            HDPHP_DRIVER_PATH . 'Session/SessionFactory.class.php', //Session工厂类
-            HDPHP_DRIVER_PATH . 'Session/SessionFile.class.php', //Session文件处理类
             HDPHP_DRIVER_PATH . 'View/ViewHd.class.php', //Hd视图驱动类
             HDPHP_DRIVER_PATH . 'View/View.class.php', //视图库
             HDPHP_DRIVER_PATH . 'View/ViewFactory.class.php', //视图工厂库
@@ -257,7 +257,7 @@ final class Boot
         $compile = '<?php ' . $compile . 'HDPHP::init();App::run();?>';
         //创建Boot编译文件
         if (is_dir(TEMP_PATH) or dir_create(TEMP_PATH) and is_writable(TEMP_PATH))
-            return file_put_contents($boot, compress($compile));
+            return file_put_contents(TEMP_FILE, compress($compile));
         header("Content-type:text/html;charset=utf-8");
         exit("<div style='border:solid 1px #dcdcdc;padding:30px;'>目录创建失败，请修改" . realpath(dirname(TEMP_PATH)) . "目录权限</div>");
     }

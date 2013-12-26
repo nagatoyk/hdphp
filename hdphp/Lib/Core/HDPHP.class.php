@@ -46,8 +46,9 @@ final class HDPHP
         //模板目录
         $tpl = rtrim(C("TPL_DIR"), '/');
         $tpl_style = rtrim(C("TPL_STYLE"), '/');
-        define("TPL_PATH", (strstr($tpl, '/') ? $tpl . '/' : APP_PATH . $tpl . '/') . ($tpl_style ? $tpl_style . '/' : $tpl_style));
-        define("PUBLIC_PATH", TPL_PATH . 'Public/');
+        defined("TPL_PATH") or define("TPL_PATH", (strstr($tpl, '/') ? $tpl . '/' : APP_PATH . $tpl . '/') . ($tpl_style ? $tpl_style . '/' : $tpl_style));
+        //公共目录
+        defined("PUBLIC_PATH") or define("PUBLIC_PATH", TPL_PATH . 'Public/');
         //应用url解析并创建常量
         Route::app();
         //=========================环境配置
@@ -72,9 +73,8 @@ final class HDPHP
         set_error_handler(array(__CLASS__, "error"), E_ALL);
         //设置异常
         set_exception_handler(array(__CLASS__, "exception"));
-        //session处理
-        O("Session" . ucwords(C("SESSION_ENGINE")), "run");
-        !ini_get("session.auto_start") and C("SESSION_AUTO") and session_start();
+        //致命错误处理
+        register_shutdown_function(array(__CLASS__, 'fatalError'));
         //加载应用组语言包
         is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //加载应用语言包
@@ -83,9 +83,9 @@ final class HDPHP
         C("CORE_EVENT", require HDPHP_CONFIG_PATH . "event.php");
         IS_GROUP and is_file(COMMON_CONFIG_PATH . 'event.php') and C("GROUP_EVENT", require COMMON_CONFIG_PATH . 'event.php');
         is_file(CONFIG_PATH . 'event.php') and C("APP_EVENT", require CONFIG_PATH . 'event.php');
-        //别名导入
-        IS_GROUP and is_file(COMMON_LIB_PATH . 'Alias.php') and alias_import(COMMON_LIB_PATH . 'Alias.php');
-        is_file(LIB_PATH . 'Alias.php') and alias_import(LIB_PATH . 'Alias.php');
+        //加载别名配置
+        IS_GROUP and is_file(COMMON_CONFIG_PATH . 'Alias.php') and alias_import(COMMON_CONFIG_PATH . 'Alias.php');
+        is_file(CONFIG_PATH . 'Alias.php') and alias_import(CONFIG_PATH . 'Alias.php');
         //自动加载应用文件文件
         HDPHP::appFileAutoLoad();
     }
@@ -146,11 +146,6 @@ final class HDPHP
                 HDPHP_DRIVER_PATH . 'View/' . $class,
             ))
             ) return;
-        } elseif (substr($className, 0, 7) == "Session") {
-            if (require_array(array(
-                HDPHP_DRIVER_PATH . 'Session/' . $class
-            ))
-            ) return;
         } elseif (substr($className, -5) == "Event") {
             if (require_array(array(
                 EVENT_PATH . $class,
@@ -186,39 +181,40 @@ final class HDPHP
      */
     static public function exception($e)
     {
-        $error = array();
-        $error['message'] = $e->getMessage();
-        $trace = $e->getTrace();
-        if ($trace[0]['function'] == 'throw_exception') {
-            $error['file'] = $trace[0]['file'];
-            $error['line'] = $trace[0]['line'];
-        } else {
-            $error['file'] = $e->getFile();
-            $error['line'] = $e->getLine();
-        }
-        error($error);
+        halt($e->__toString());
     }
 
-    /**
-     * 错误处理
-     */
+    //错误处理
     static public function error($errno, $error, $file, $line)
     {
-        $errorType = substr(FriendlyErrorType($errno), 2);
-        $msg = "[$errorType]" . $error . ' [TIME]' . date("Y-m-d h:i:s") . ' [FILE]' . $file . ' [LINE]' . $line;
         switch ($errno) {
             case E_ERROR:
             case E_PARSE:
+            case E_CORE_ERROR:
+            case E_COMPILE_ERROR:
             case E_USER_ERROR:
-                error($msg);
+                ob_end_clean();
+                $msg = "$error " . $file . " 第 $line 行.";
+                if(C("LOG_RECORD")) Log::write("[$errno] " . $msg, Log::ERROR);
+                function_exists('halt') ? halt($msg) : exit('ERROR:' . $msg);
                 break;
+            case E_STRICT:
             case E_USER_WARNING:
             case E_USER_NOTICE:
             default:
-                Log::set($msg, $errno);
-                if (DEBUG && C("DEBUG_SHOW"))
+                $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
+                trace($errorStr, 'NOTICE');
+                if (DEBUG)
                     include HDPHP_TPL_PATH . 'notice.html';
                 break;
+        }
+    }
+
+    //致命错误处理
+    static public function fatalError()
+    {
+        if ($e = error_get_last()) {
+            self::error($e['type'], $e['message'], $e['file'], $e['line']);
         }
     }
 }
