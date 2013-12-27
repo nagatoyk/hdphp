@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 /**
  * 根据配置文件的URL参数重新生成URL地址
  * @param String $pathinfo 访问url
@@ -602,7 +600,7 @@ function _404($msg = "", $url = "")
     //写入日志
     Log::write($msg);
     if (empty($url) && C("404_URL")) {
-        $url = C("404_TPL");
+        $url = C("404_URL");
     }
     if ($url)
         go($url);

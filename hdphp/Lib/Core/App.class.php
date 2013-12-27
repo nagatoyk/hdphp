@@ -18,7 +18,6 @@ final class App
      */
     public static function run()
     {
-
         //session处理
         session(C("SESSION_OPTIONS"));
         //加载应用与事件处理类
@@ -27,7 +26,6 @@ final class App
         event("APP_START");
         //Debug Start
         DEBUG and Debug::start("APP_START");
-        self::init();
         self::start();
         //Debug End
         DEBUG and Debug::show("APP_START", "APP_END");
@@ -81,19 +79,6 @@ final class App
             $method = new ReflectionMethod($control, '__call');
             $method->invokeArgs($control, array(METHOD, ''));
         }
-    }
-
-    /**
-     * 初始化
-     * @access private
-     */
-    private static function init()
-    {
-        //设置字符集
-        define("CHARSET", preg_match('@utf8@i', C("CHARSET")) ? "UTF-8" : C("CHARSET"));
-        define("CHARSET_DB", str_replace("-", "", C("CHARSET")));
-        //设置时区
-        date_default_timezone_set(C("default_time_zone"));
     }
 }
 

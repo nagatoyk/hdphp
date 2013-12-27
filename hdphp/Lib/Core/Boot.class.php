@@ -30,31 +30,32 @@ final class Boot
     static public function run()
     {
         //框架版本
-        define('HDPHP_VERSION', self::VERSION);
-        define('ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . '/');//根目录
-        define('IS_GROUP', defined("GROUP_PATH"));//应用组判断常量
-        define("DS", DIRECTORY_SEPARATOR); //目录分隔符
-        define("IS_WIN", strstr(PHP_OS, 'WIN') ? true : false); //window环境
-        define("HDPHP_DATA_PATH", HDPHP_PATH . 'Data/'); //数据目录
-        define("HDPHP_LIB_PATH", HDPHP_PATH . 'Lib/'); //lib目录
-        define("HDPHP_CONFIG_PATH", HDPHP_PATH . 'Config/'); //配置目录
-        define("HDPHP_CORE_PATH", HDPHP_LIB_PATH . 'Core/'); //核心目录
-        define("HDPHP_EXTEND_PATH", HDPHP_PATH . 'Extend/'); //扩展目录
-        define("HDPHP_ORG_PATH", HDPHP_EXTEND_PATH . 'Org/'); //org目录
-        define("HDPHP_DRIVER_PATH", HDPHP_LIB_PATH . 'Driver/'); //驱动目录
-        define("HDPHP_EVENT_PATH", HDPHP_LIB_PATH . 'Event/'); //事件目录
-        define("HDPHP_FUNCTION_PATH", HDPHP_LIB_PATH . 'Function/'); //函数目录
-        define("HDPHP_LANGUAGE_PATH", HDPHP_LIB_PATH . 'Language/'); //语言目录
-        define("HDPHP_TPL_PATH", HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
-        defined("COMMON_PATH") or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : APP_PATH); //应用组公共目录
-        defined("COMMON_CONFIG_PATH") or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : APP_PATH); //应用组公共目录
-        defined("COMMON_MODEL_PATH") or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : APP_PATH); //应用组公共目录
-        defined("COMMON_CONTROL_PATH") or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : APP_PATH); //应用组公共目录
+        define('HDPHP_VERSION',         self::VERSION);
+        define('IS_GROUP',              defined("GROUP_PATH"));
+        define('ROOT_PATH',             dirname($_SERVER['SCRIPT_FILENAME']) . '/');//根目录
+        define("DS",                    DIRECTORY_SEPARATOR); //目录分隔符
+        define("IS_WIN",                strstr(PHP_OS, 'WIN') ? true : false); //window环境
+        define("MAGIC_QUOTES_GPC",      @get_magic_quotes_gpc() ? true : false);
+        define("HDPHP_DATA_PATH",       HDPHP_PATH . 'Data/'); //数据目录
+        define("HDPHP_LIB_PATH",        HDPHP_PATH . 'Lib/'); //lib目录
+        define("HDPHP_CONFIG_PATH",     HDPHP_PATH . 'Config/'); //配置目录
+        define("HDPHP_CORE_PATH",       HDPHP_LIB_PATH . 'Core/'); //核心目录
+        define("HDPHP_EXTEND_PATH",     HDPHP_PATH . 'Extend/'); //扩展目录
+        define("HDPHP_ORG_PATH",        HDPHP_EXTEND_PATH . 'Org/'); //org目录
+        define("HDPHP_DRIVER_PATH",     HDPHP_LIB_PATH . 'Driver/'); //驱动目录
+        define("HDPHP_EVENT_PATH",      HDPHP_LIB_PATH . 'Event/'); //事件目录
+        define("HDPHP_FUNCTION_PATH",   HDPHP_LIB_PATH . 'Function/'); //函数目录
+        define("HDPHP_LANGUAGE_PATH",   HDPHP_LIB_PATH . 'Language/'); //语言目录
+        define("HDPHP_TPL_PATH",        HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
+        defined("COMMON_PATH")          or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : APP_PATH); //应用组公共目录
+        defined("COMMON_CONFIG_PATH")   or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : APP_PATH); //应用组公共目录
+        defined("COMMON_MODEL_PATH")    or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : APP_PATH); //应用组公共目录
+        defined("COMMON_CONTROL_PATH")  or define("COMMON_CONTROL_PATH", IS_GROUP ? COMMON_PATH . 'Control/' : APP_PATH); //应用组公共目录
         defined("COMMON_LANGUAGE_PATH") or define("COMMON_LANGUAGE_PATH", IS_GROUP ? COMMON_PATH . 'Language/' :APP_PATH); //应用组语言包目录
-        defined("COMMON_EXTEND_PATH") or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' :APP_PATH); //应用组扩展目录
-        defined("COMMON_EVENT_PATH") or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : APP_PATH); //应用组事件目录
-        defined("COMMON_TAG_PATH") or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' :APP_PATH); //应用组标签目录
-        defined("COMMON_LIB_PATH") or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : APP_PATH); //应用组扩展包目录
+        defined("COMMON_EXTEND_PATH")   or define("COMMON_EXTEND_PATH", IS_GROUP ? COMMON_PATH . 'Extend/' :APP_PATH); //应用组扩展目录
+        defined("COMMON_EVENT_PATH")    or define("COMMON_EVENT_PATH", IS_GROUP ? COMMON_PATH . 'Event/' : APP_PATH); //应用组事件目录
+        defined("COMMON_TAG_PATH")      or define("COMMON_TAG_PATH", IS_GROUP ? COMMON_PATH . 'Tag/' :APP_PATH); //应用组标签目录
+        defined("COMMON_LIB_PATH")      or define("COMMON_LIB_PATH", IS_GROUP ? COMMON_PATH . 'Lib/' : APP_PATH); //应用组扩展包目录
         //加载核心文件
         self::loadCoreFile();
         //系统配置
@@ -98,7 +99,6 @@ final class Boot
             require($v);
         }
     }
-
     /**
      * 创建项目运行目录
      * @access private
@@ -106,13 +106,8 @@ final class Boot
      */
     static public function mkDirs()
     {
-        //应用组时不自动创建应用目录
-        if (defined("GROUP_PATH") && is_dir(GROUP_PATH)) {
-            is_dir(TEMP_PATH) or mkdir(TEMP_PATH);
-            return;
-        }
-        //如果应用已经存在，不进行创建
-        if (is_dir(CONTROL_PATH) && is_dir(TEMP_PATH)) return;
+        if(IS_GROUP and is_dir(COMMON_PATH))return;
+        if(is_dir(CONTROL_PATH))return;
         //目录
         $dirs = array(
             COMMON_PATH,
@@ -141,10 +136,9 @@ final class Boot
             TEMP_PATH,
         );
         foreach ($dirs as $d) {
-            if (is_dir($d) || dir_create($d, 0755)):
-            else:
+            if (!dir_create($d, 0755)):
                 header("Content-type:text/html;charset=utf-8");
-                exit("目录" . $d . "创建失败，请检查权限");
+                exit("目录{$d}创建失败，请检查权限");
             endif;
         }
         //复制公共模板文件
@@ -254,7 +248,7 @@ final class Boot
         //别名配置文件
         $compile .= 'alias_import(' . var_export(alias_import(), true) . ');';
         //编译内容
-        $compile = '<?php ' . $compile . 'HDPHP::init();App::run();?>';
+        $compile = '<?php if(!defined(\'DEBUG\'))exit;' . $compile . 'HDPHP::init();App::run();?>';
         //创建Boot编译文件
         if (is_dir(TEMP_PATH) or dir_create(TEMP_PATH) and is_writable(TEMP_PATH))
             return file_put_contents(TEMP_FILE, compress($compile));

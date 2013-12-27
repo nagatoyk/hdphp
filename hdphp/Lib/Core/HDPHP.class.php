@@ -17,86 +17,69 @@ final class HDPHP
     static public function init()
     {
         //应用组配置与语言包处理
-        IS_GROUP and is_file(COMMON_CONFIG_PATH . 'config.php') and C(require(COMMON_CONFIG_PATH . 'config.php'));
-        //应用组模式URL解析
-        IS_GROUP and  Route::group();
+        if(IS_GROUP){
+            is_file(COMMON_CONFIG_PATH . 'config.php')              and C(require(COMMON_CONFIG_PATH . 'config.php'));
+            is_file(COMMON_CONFIG_PATH . 'event.php')               and C('GROUP_EVENT', require COMMON_CONFIG_PATH . 'event.php');
+            is_file(COMMON_CONFIG_PATH . 'Alias.php')               and alias_import(COMMON_CONFIG_PATH . 'Alias.php');
+            is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
+            IS_GROUP                                                and Route::group();
+        }
         //应用
-        define("APP", ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
-        //应用目录
-        $group = isset($_GET[C("VAR_GROUP")]) ? $_GET[C("VAR_GROUP")] : C("DEFAULT_GROUP");
-        define("APP_GROUP", $group);
-        IS_GROUP and define("APP_PATH", GROUP_PATH . APP_GROUP . '/' . APP . '/');
+        define('APP',               ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
+        if(!defined('GROUP_NAME'))
+            define('GROUP_NAME',                                    isset($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
+        IS_GROUP                                                    and define('APP_PATH', GROUP_PATH . GROUP_NAME . '/' . APP . '/');
         //常量
-        defined("CONTROL_PATH") or define("CONTROL_PATH", APP_PATH . 'Control/');
-        defined("MODEL_PATH") or define("MODEL_PATH", APP_PATH . 'Model/');
-        defined("CONFIG_PATH") or define("CONFIG_PATH", APP_PATH . 'Config/');
-        defined("EVENT_PATH") or define("EVENT_PATH", APP_PATH . 'Event/');
-        defined("LANGUAGE_PATH") or define("LANGUAGE_PATH", APP_PATH . 'Language/');
-        defined("TAG_PATH") or define("TAG_PATH", APP_PATH . 'Tag/');
-        defined("LIB_PATH") or define("LIB_PATH", APP_PATH . 'Lib/');
-        defined("COMPILE_PATH") or define("COMPILE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Compile/' : 'Compile/'));
-        defined("CACHE_PATH") or define("CACHE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Cache/' : 'Cache/'));
-        defined("TABLE_PATH") or define("TABLE_PATH", TEMP_PATH . (IS_GROUP ? APP_GROUP . '/' . APP . '/Table/' : 'Table/'));
-        defined("LOG_PATH") or define("LOG_PATH", TEMP_PATH . 'Log/');
+        defined('CONTROL_PATH')                         or define('CONTROL_PATH', APP_PATH . 'Control/');
+        defined('MODEL_PATH')                           or define('MODEL_PATH', APP_PATH . 'Model/');
+        defined('CONFIG_PATH')                          or define('CONFIG_PATH', APP_PATH . 'Config/');
+        defined('EVENT_PATH')                           or define('EVENT_PATH', APP_PATH . 'Event/');
+        defined('LANGUAGE_PATH')                        or define('LANGUAGE_PATH', APP_PATH . 'Language/');
+        defined('TAG_PATH')                             or define('TAG_PATH', APP_PATH . 'Tag/');
+        defined('LIB_PATH')                             or define('LIB_PATH', APP_PATH . 'Lib/');
+        defined('COMPILE_PATH')                         or define('COMPILE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Compile/' : 'Compile/'));
+        defined('CACHE_PATH')                           or define('CACHE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Cache/' : 'Cache/'));
+        defined('TABLE_PATH')                           or define('TABLE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Table/' : 'Table/'));
+        defined('LOG_PATH')                             or define('LOG_PATH', TEMP_PATH . 'Log/');
         //应用配置
-        $app_config = CONFIG_PATH . 'config.php';
-        if (is_file($app_config)) C(require($app_config));
-        //设置时区
-        date_default_timezone_set(C("DEFAULT_TIME_ZONE"));
+        is_file(CONFIG_PATH . 'event.php')              and C(CONFIG_PATH . 'config.php');
+        is_file(CONFIG_PATH . 'event.php')              and C('APP_EVENT', require CONFIG_PATH . 'event.php');
+        is_file(CONFIG_PATH . 'Alias.php')              and alias_import(CONFIG_PATH . 'Alias.php');
+        is_file(LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //模板目录
-        $tpl = rtrim(C("TPL_DIR"), '/');
-        $tpl_style = rtrim(C("TPL_STYLE"), '/');
-        defined("TPL_PATH") or define("TPL_PATH", (strstr($tpl, '/') ? $tpl . '/' : APP_PATH . $tpl . '/') . ($tpl_style ? $tpl_style . '/' : $tpl_style));
-        //公共目录
-        defined("PUBLIC_PATH") or define("PUBLIC_PATH", TPL_PATH . 'Public/');
+        $tpl_path = strstr(C('TPL_DIR'),'/')?C('TPL_DIR'):APP_PATH .C('TPL_DIR').'/';
+        defined('TPL_PATH')                             or define('TPL_PATH',  $tpl_path.(C('TPL_STYLE') ? C('TPL_STYLE') . '/' :''));
+        defined('PUBLIC_PATH')                          or define('PUBLIC_PATH', TPL_PATH . 'Public/');
         //应用url解析并创建常量
         Route::app();
         //=========================环境配置
-        @ini_set('memory_limit', '128M');
-        @ini_set("register_globals", "off");
-        @ini_set('magic_quotes_runtime', 0);
-        //当前时间
-        define('NOW', $_SERVER['REQUEST_TIME']);
-        //微秒时间
-        define("NOW_MICROTIME", microtime(true));
-        //请求方式
-        define("MAGIC_QUOTES_GPC", @get_magic_quotes_gpc() ? true : false);
-        define('REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
-        define('IS_GET', REQUEST_METHOD == 'GET' ? true : false);
-        define('IS_POST', REQUEST_METHOD == 'POST' ? true : false);
-        define('IS_PUT', REQUEST_METHOD == 'PUT' ? true : false);
-        define("IS_AJAX", ajax_request());
-        define('IS_DELETE', REQUEST_METHOD == 'DELETE' ? true : false);
+        date_default_timezone_set(C('DEFAULT_TIME_ZONE'));
+        @ini_set('memory_limit',                        '128M');
+        @ini_set('register_globals',                    'off');
+        @ini_set('magic_quotes_runtime',                0);
+        define('NOW',                                $_SERVER['REQUEST_TIME']);
+        define('NOW_MICROTIME',                     microtime(true));
+        define('REQUEST_METHOD',                    $_SERVER['REQUEST_METHOD']);
+        define('IS_GET',                            REQUEST_METHOD == 'GET' ? true : false);
+        define('IS_POST',                           REQUEST_METHOD == 'POST' ? true : false);
+        define('IS_PUT',                            REQUEST_METHOD == 'PUT' ? true : false);
+        define('IS_AJAX',                           ajax_request());
+        define('IS_DELETE',                         REQUEST_METHOD == 'DELETE' ? true : false);
         //注册自动载入函数
-        spl_autoload_register(array(__CLASS__, "autoload"));
-        //设置错误处理函数
-        set_error_handler(array(__CLASS__, "error"), E_ALL);
-        //设置异常
-        set_exception_handler(array(__CLASS__, "exception"));
-        //致命错误处理
+        spl_autoload_register(array(__CLASS__,      'autoload'));
+        set_error_handler(array(__CLASS__,          'error'), E_ALL);
+        set_exception_handler(array(__CLASS__,      'exception'));
         register_shutdown_function(array(__CLASS__, 'fatalError'));
-        //加载应用组语言包
-        is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
-        //加载应用语言包
-        is_file(LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require LANGUAGE_PATH . C('LANGUAGE') . '.php');
-        //加载行为配置
-        C("CORE_EVENT", require HDPHP_CONFIG_PATH . "event.php");
-        IS_GROUP and is_file(COMMON_CONFIG_PATH . 'event.php') and C("GROUP_EVENT", require COMMON_CONFIG_PATH . 'event.php');
-        is_file(CONFIG_PATH . 'event.php') and C("APP_EVENT", require CONFIG_PATH . 'event.php');
-        //加载别名配置
-        IS_GROUP and is_file(COMMON_CONFIG_PATH . 'Alias.php') and alias_import(COMMON_CONFIG_PATH . 'Alias.php');
-        is_file(CONFIG_PATH . 'Alias.php') and alias_import(CONFIG_PATH . 'Alias.php');
-        //自动加载应用文件文件
-        HDPHP::appFileAutoLoad();
+        HDPHP::_appAutoLoad();
     }
 
     /**
      * 自动加载应用文件
      */
-    static private function appFileAutoLoad()
+    static private function _appAutoLoad()
     {
         //自动加载文件列表
-        $files = C("AUTO_LOAD_FILE");
+        $files = C('AUTO_LOAD_FILE');
         if (is_array($files) && !empty($files)) {
             foreach ($files as $f) {
                 $file = $f . '.php';
@@ -117,14 +100,14 @@ final class HDPHP
     static public function autoload($className)
     {
         $class = ucfirst($className) . '.class.php'; //类文件
-        if (substr($className, -5) == "Model") {
+        if (substr($className, -5) == 'Model') {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'Model/' . $class,
                 MODEL_PATH . $class,
                 COMMON_MODEL_PATH . $class
             ))
             ) return;
-        } elseif (substr($className, -7) == "Control") {
+        } elseif (substr($className, -7) == 'Control') {
             if (require_array(array(
                 HDPHP_CORE_PATH . $class,
                 CONTROL_PATH . $class,
@@ -136,23 +119,23 @@ final class HDPHP
                 HDPHP_DRIVER_PATH . 'Db/' . $class
             ))
             ) return;
-        } elseif (substr($className, 0, 5) == "Cache") {
+        } elseif (substr($className, 0, 5) == 'Cache') {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'Cache/' . $class,
             ))
             ) return;
-        } elseif (substr($className, 0, 4) == "View") {
+        } elseif (substr($className, 0, 4) == 'View') {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'View/' . $class,
             ))
             ) return;
-        } elseif (substr($className, -5) == "Event") {
+        } elseif (substr($className, -5) == 'Event') {
             if (require_array(array(
                 EVENT_PATH . $class,
                 COMMON_EVENT_PATH . $class
             ))
             ) return;
-        } elseif (substr($className, -3) == "Tag") {
+        } elseif (substr($className, -3) == 'Tag') {
             if (require_array(array(
                 TAG_PATH . $class,
                 COMMON_TAG_PATH . $class
@@ -170,7 +153,7 @@ final class HDPHP
         ) {
             return;
         }
-        $msg = "Class {$class} not found";
+        $msg = 'Class {$class} not found';
         Log::write($msg);
         error($msg);
     }
@@ -194,15 +177,15 @@ final class HDPHP
             case E_COMPILE_ERROR:
             case E_USER_ERROR:
                 ob_end_clean();
-                $msg = "$error " . $file . " 第 $line 行.";
-                if(C("LOG_RECORD")) Log::write("[$errno] " . $msg, Log::ERROR);
+                $msg = '$error ' . $file . ' 第 $line 行.';
+                if(C('LOG_RECORD')) Log::write('[$errno] ' . $msg, Log::ERROR);
                 function_exists('halt') ? halt($msg) : exit('ERROR:' . $msg);
                 break;
             case E_STRICT:
             case E_USER_WARNING:
             case E_USER_NOTICE:
             default:
-                $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
+                $errorStr = '[$errno] $error ' . $file . ' 第 $line 行.';
                 trace($errorStr, 'NOTICE');
                 if (DEBUG)
                     include HDPHP_TPL_PATH . 'notice.html';

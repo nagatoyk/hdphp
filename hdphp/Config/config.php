@@ -25,11 +25,10 @@ return array(
     'TOKEN_ON'                      => 0,           //令牌状态
     'TOKEN_NAME'                    => '__TOKEN__', //令牌的表单name
     /********************************系统调试********************************/
-    'DEBUG_MENU'                    => 1,            //显示debug菜单
-    'ERROR_URL'                    => '',           //错误跳转URL
-    '404_URL'                       => '',          //404跳转url
+    'ERROR_URL'                     => '',           //错误跳转URL
     'ERROR_MESSAGE'                 => '网站出错了，请稍候再试...', //关闭DEBUG显示的错误信息
-    'SHOW_ERROR_MESSAGE'            => false,        //显示错误信息
+    'SHOW_ERROR_MESSAGE'            => true,        //显示错误信息
+    '404_URL'                       => '',          //404跳转url
     'SHOW_SYSTEM'                   => 1,           //系统信息
     'SHOW_CACHE'                    => 1,           //缓存监控,必须将CACHE_SAVE配置开启才有效
     'SHOW_INCLUDE'                  => 1,           //文件列表
@@ -42,7 +41,7 @@ return array(
     'LOG_EXCEPTION_RECORD'          => true,       // 记录异常
     /********************************SESSION********************************/
     'SESSION_AUTO_START'            => 1,           //自动开启SESSION
-    'SESSION_NAME'                  => 'hdsid',     //session_name
+    'SESSION_NAME'                  => 'HD_SID',    //session_name
     'SESSION_TYPE'                  => '',          //引擎:mysql,memcache,redis
     'SESSION_OPTIONS'               =>array(),      //session处理参数，配置复杂，请查看手册获得帮助
     /********************************COOKIE********************************/
