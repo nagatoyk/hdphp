@@ -381,7 +381,8 @@ function session($name, $value = '')
  * @param mixed $option 选项
  * @return mixed
  */
-function cookie($name,$value="",$option=array()){
+function cookie($name, $value = "", $option = array())
+{
     // 默认设置
     $config = array(
         'prefix' => C('COOKIE_PREFIX'), // cookie 名称前缀
@@ -403,7 +404,7 @@ function cookie($name,$value="",$option=array()){
             return;
         // 要删除的cookie前缀，不指定则删除config设置的指定前缀
         $prefix = empty($value) ? $config['prefix'] : $value;
-        if (!empty($prefix)) {// 如果前缀为空字符串将不作处理直接返回
+        if (!empty($prefix)) { // 如果前缀为空字符串将不作处理直接返回
             foreach ($_COOKIE as $key => $val) {
                 if (0 === stripos($key, $prefix)) {
                     setcookie($key, '', time() - 3600, $config['path'], $config['domain']);
@@ -533,12 +534,24 @@ function event($name, &$param = array())
             $event = $group;
         }
     }
-    if (is_array($event)) {
+    if (is_array($event) && !empty($event)) {
         foreach ($event as $e) {
             E($e, $param);
         }
     }
 
+}
+
+/**
+ * 执行单一事件处理程序
+ * @param string $name 事件名称
+ * @param null $params 事件参数
+ */
+function E($name, &$params = null)
+{
+    $class = $name . "Event";
+    $event = new $class;
+    $event->run($params);
 }
 
 /**
@@ -617,17 +630,6 @@ function Q($var, $default = null, $filter = null)
     }
 }
 
-/**
- * 执行单一事件处理程序
- * @param string $name 事件名称
- * @param null $params 事件参数
- */
-function E($name, &$params = null)
-{
-    $class = $name . "Event";
-    $event = new $class;
-    $event->run($params);
-}
 
 /**
  * 打印输出数据

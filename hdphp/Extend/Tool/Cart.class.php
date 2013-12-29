@@ -44,7 +44,7 @@ final class Cart {
 
     static function add($data) {
         if (!is_array($data) || !isset($data['id']) || !isset($data['name']) || !isset($data['num']) || !isset($data['price'])) {
-            throw_exception(L("cart_add_error"));
+            throw_exception('购物车ADD方法参数设置错误');
         }
         $data = isset($data[0]) ? $data : array($data);
         $goods = self::getGoods(); //获得商品数据
@@ -88,7 +88,7 @@ final class Cart {
     static function update($data) {
         $goods = self::getGoods(); //获得商品数据
         if (!isset($data['sid']) || !isset($data['num'])) {
-            error(L("cart_update_error"));
+            halt('购物车update方法参数错误，缺少sid或num值');
         }
         $data = isset($data[0]) ? $data : array($data); //允许一次删除多个商品
         foreach ($data as $dataOne) {
@@ -144,7 +144,7 @@ final class Cart {
             $sid['sid'] = $data;
         }
         if (is_array($data) && !isset($data['sid'])) {
-            error(L("cart_del_error"));
+            halt('购物车update方法参数错误，缺少sid值');
         }
 
         $sid = isset($sid[0]) ? $sid : array($sid); //可以一次删除多个商品

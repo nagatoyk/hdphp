@@ -68,17 +68,17 @@ final class Rbac
         $fieldUserName = is_null($fieldUserName) ? C("RBAC_USERNAME_FIELD") : $fieldUserName; //用户表中的用户名字段名称
         $fieldPassword = is_null($fieldPassword) ? C("RBAC_PASSWORD_FIELD") : $fieldPassword; //用户表中的密码字段名称
         if (!C("RBAC_USER_TABLE")) {
-            error(L("rbac_rbac_user_login1"));
+            halt('用户表设置错误，请在配置文件中添加用户表');
         }
         $table_user = C('DB_PREFIX') . str_ireplace(C('DB_PREFIX'), "", C("RBAC_USER_TABLE")); //验证有无前缀得到用户表
         $db = M($table_user, true);
         $user = $db->find("$fieldUserName='$username'");
         if (!$user) {
-            self::$error = L("rbac_rbac_user_login2");
+            self::$error = '用户不存在';
             return false;
         }
         if ($user[$fieldPassword] != $password) {
-            self::$error = L("rbac_rbac_user_login3");
+            self::$error = '密码输入错误';
             return false;
         }
         $uid = C("RBAC_AUTH_KEY");//验证session中的key
@@ -101,7 +101,7 @@ final class Rbac
             return true;
         }
         if (!$_SESSION['rid']) { //不属于任何角色
-            self::$error = L("rbac_rbac_user_login4");
+            self::$error = '不属于任何组，没有访问权限';
             return false;
         }
         self::getAccess(); //获得权限写入SESSION

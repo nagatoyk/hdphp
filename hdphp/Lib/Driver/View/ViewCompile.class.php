@@ -53,7 +53,7 @@ class ViewCompile
         $this->compile(); //解析全局内容
         $this->parseTokey(); //解析POST令牌Token
         $this->replaceConst(); //将所有常量替换   如把__APP__进行替换
-        $this->content = '<?php if(!defined("HDPHP_PATH"))exit;C("DEBUG_SHOW",false);?>' . $this->content;
+        $this->content = '<?php if(!defined("HDPHP_PATH"))exit;?>' . $this->content;
         if (!is_dir(COMPILE_PATH)) {
             Dir::create(COMPILE_PATH);
             copy(HDPHP_TPL_PATH . 'index.html', COMPILE_PATH . 'index.html');

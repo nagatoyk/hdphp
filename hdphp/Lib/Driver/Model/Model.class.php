@@ -358,7 +358,7 @@ class Model
     public function __call($func, $args)
     {
         //模型中不存在方法
-        error(L("model__call_error") . $func, false);
+        error(L('模型中不存在方法') . $func, false);
     }
 
 
@@ -774,7 +774,7 @@ class Model
     {
         if (C("TOKEN_ON") || isset($_POST[C("TOKEN_NAME")]) || isset($_GET[C("TOKEN_NAME")])) {
             if (!Token::check()) {
-                $this->error = L("model_token_error");
+                $this->error = '表单Token(令牌)错误';
                 return false;
             }
         }

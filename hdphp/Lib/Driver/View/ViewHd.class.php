@@ -109,7 +109,6 @@ final class ViewHd extends View
     {
         $tplFile = $this->tplFile;
         $compileFile = $this->compileFile;
-        //CLEAR_COMPILE 如果主机变化时，重新生成编译文件
         return DEBUG || !file_exists($compileFile) || //模板不存在
         (filemtime($tplFile) > filemtime($compileFile)); //编板有更新
     }
@@ -122,7 +121,6 @@ final class ViewHd extends View
         //编译是否失效
         if (!$this->compileInvalid())
             return;
-//        $assignVar = array_keys($this->vars); //assign分配的变量
         $compileObj = new ViewCompile($this);
         $compileObj->run();
     }

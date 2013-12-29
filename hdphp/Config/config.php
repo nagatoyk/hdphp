@@ -6,11 +6,11 @@ return array(
     'CHARSET'                       => 'utf8',      //字符集
     'DEFAULT_TIME_ZONE'             => 'PRC',       //时区
     'HTML_PATH'                     => 'h',         //静态HTML保存目录
-    'DEBUG_SHOW'                    => TRUE,           //为TRUE时显示DEBUG信息否则显示按钮
+    'DEBUG_SHOW'                    => TRUE,        //为TRUE时显示DEBUG信息否则显示按钮
     'LANGUAGE'                      => '',          //语言包
     'AUTH_KEY'                      => 'houdunwang',//验证key
-    'CHECK_FILE_CASE'               => 0,           //windows区分大小写
-    'AUTO_LOAD_FILE'                => '',          //自动加载应用Lib目录或应用组Common/Lib目录下的文件
+    'CHECK_FILE_CASE'               => FALSE,      //windows区分大小写
+    'AUTO_LOAD_FILE'                => array(),          //自动加载应用Lib目录或应用组Common/Lib目录下的文件
     /********************************数据库********************************/
     'DB_DRIVER'                     => 'mysqli',    //数据库驱动
     'DB_CHARSET'                    => 'utf8',     //数据库字符集
@@ -22,23 +22,18 @@ return array(
     'DB_PREFIX'                     => '',          //表前缀
     'DB_BACKUP'                     => ROOT_PATH . 'backup/'.time(), //数据库备份目录
     /********************************表单TOKEN令牌********************************/
-    'TOKEN_ON'                      => 0,           //令牌状态
+    'TOKEN_ON'                      => FALSE,           //令牌状态
     'TOKEN_NAME'                    => '__TOKEN__', //令牌的表单name
     /********************************系统调试********************************/
     'ERROR_URL'                     => '',           //错误跳转URL
     'ERROR_MESSAGE'                 => '网站出错了，请稍候再试...', //关闭DEBUG显示的错误信息
-    'SHOW_ERROR_MESSAGE'            => true,        //显示错误信息
+    'SHOW_ERROR_MESSAGE'            => TRUE,        //显示错误信息
     '404_URL'                       => '',          //404跳转url
-    'SHOW_SYSTEM'                   => 1,           //系统信息
-    'SHOW_CACHE'                    => 1,           //缓存监控,必须将CACHE_SAVE配置开启才有效
-    'SHOW_INCLUDE'                  => 1,           //文件列表
-    'SHOW_SQL'                      => 1,           //SQL语句
-    'SHOW_TPL_COMPILE'              => 1,           //模板编译文件
     /********************************LOG日志处理********************************/
     'LOG_SIZE'                      => 2000000,     //日志文件大小
-    'LOG_RECORD'                    => false,        //记录日志
+    'LOG_RECORD'                    => FALSE,        //记录日志
     'LOG_LEVEL'                     => array('FATAL','ERROR','WARNING','SQL'),//写入日志的错误级别
-    'LOG_EXCEPTION_RECORD'          => true,       // 记录异常
+    'LOG_EXCEPTION_RECORD'          => TRUE,       // 记录异常
     /********************************SESSION********************************/
     'SESSION_AUTO_START'            => 1,           //自动开启SESSION
     'SESSION_NAME'                  => 'HD_SID',    //session_name
@@ -139,16 +134,15 @@ return array(
     'PAGE_DESC'                     => array('pre' => '上一页', 'next' => '下一页',//分页文字设置
                                             'first' => '首页', 'end' => '尾页', 'unit' => '条'),
     /********************************模板参数********************************/
-    'TPL_ENGINE'                    => 'HD',        //模板引擎 HD,Smarty
+    'TPL_PATH'                      => '',          //模板目录
+    'TPL_STYLE'                     => '',          //风格
     'TPL_FIX'                       => '.html',     //模版文件扩展名
+    'TPL_TAGS'                      => array(),     //扩展标签,多个标签用逗号分隔
+    'TPL_ERROR'                     => 'error.html', //错误页面
+    'TPL_SUCCESS'                   => 'success.html',//正确页面
+    'TPL_ENGINE'                    => 'HD',        //模板引擎 HD,Smarty
     'TPL_TAG_LEFT'                  => '<',         //左标签
     'TPL_TAG_RIGHT'                 => '>',         //右标签
-    'TPL_DIR'                       => 'Tpl',       //模板目录
-    'TPL_TAGS'                      => array(),     //扩展标签,多个标签用逗号分隔
-    'TPL_STYLE'                     => '',          //风格
-    'TPL_COMPILE'                   => 1,           //模板编译
-    'TPL_ERROR'                     => 'error.html',          //错误页面
-    'TPL_SUCCESS'                   => 'success.html',          //正确页面
     /********************************购物车参数********************************/
     'CART_NAME'                     => 'cart',      //储存在$_SESSION购物车名称
     /********************************文本编辑器********************************/

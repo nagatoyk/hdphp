@@ -255,7 +255,7 @@ abstract class Control
      */
     protected function error($msg = "", $url = "", $time = 2, $tpl = null)
     {
-        $msg = $msg ? $msg : L("control_error_msg");
+        $msg = $msg ? $msg : '出错了';
         //模板文件
         $tpl_file = $tpl ? $tpl : C("TPL_ERROR");
         $this->_error_success($msg, $url, $time, $tpl_file);
@@ -270,7 +270,7 @@ abstract class Control
      */
     protected function success($msg = NULL, $url = NULL, $time = 2, $tpl = null)
     {
-        $msg = $msg ? $msg : L("control_success_msg");
+        $msg = $msg ? $msg : '操作成功';
         //模板文件
         $tpl_file = $tpl ? $tpl : C("TPL_SUCCESS");
         $this->_error_success($msg, $url, $time, $tpl_file);

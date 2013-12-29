@@ -137,7 +137,6 @@
 </style>
 <!--右下角图标-->
 <div id="hd_debug">
-    <?php if(C("DEBUG_MENU")):?>
     <div class="debug_link">
         <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=rbac'
         target='_blank'>配置RBAC</a>
@@ -147,9 +146,7 @@
         '>删除缓存数据</a>
 
     </div>
-    <?php endif;?>
     <!--系统信息-->
-    <?php if(C("SHOW_SYSTEM")):?>
     <fieldset>
         <div class='debug_server'>
             <table>
@@ -191,9 +188,8 @@
             </table>
         </div>
     </fieldset>
-    <?php endif;?>
     <!--显示缓存统计-->
-    <?php if(self::$tpl && C("SHOW_TPL_COMPILE")):?>
+    <?php if(self::$tpl):?>
     <!--模板编译文件-->
     <fieldset>
         <legend>模板编译</legend>
@@ -216,7 +212,7 @@
     </fieldset>
     <?php endif;?>
     <!--数据库-->
-    <?php  if(!empty(self::$sqlExeArr) && C("SHOW_SQL")):?>
+    <?php  if(!empty(self::$sqlExeArr)):?>
     <fieldset>
         <legend>SQL查询</legend>
         <table width=100%>
@@ -237,7 +233,7 @@
     <?php endif;?>
     <!--数据库-->
     <!--缓存记录-->
-    <?php  if((self::$cache['write_s']||self::$cache['read_s']) && C("SHOW_CACHE")):?>
+    <?php  if((self::$cache['write_s']||self::$cache['read_s'])):?>
     <fieldset>
         <legend>缓存</legend>
         <table width=100%>
@@ -260,7 +256,6 @@
     </fieldset>
     <?php endif;?>
     <!--缓存记录-->
-    <?php if(C("SHOW_INCLUDE")):?>
     <fieldset>
         <legend style=''>引导流程</legend>
         <table width=100%>
@@ -278,7 +273,6 @@
             <?php endforeach;?>
         </table>
     </fieldset>
-    <?php endif;?>
     <fieldset class="runtime">
         执行时间 : <?php echo $debug['runtime'];?> &nbsp;
         &nbsp;
@@ -292,7 +286,6 @@
         if (_hd_debug.style.display) {
             _hd_debug.style.display = "";
         } else {
-//            var _t = document.body.scrollTop+200;
             _hd_debug.style.display = "block";
         }
     }

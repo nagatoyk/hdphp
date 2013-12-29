@@ -42,10 +42,10 @@ class Validate
     public function _maxlen($name, $value, $msg, $arg)
     {
         if (!is_numeric($value)) {
-            return L("validate__maxlen1") . $name . L("validate__maxlen2");
+            return '表单'. $name . '的值，必须为数字';
         }
         if (!is_numeric($arg)) {
-            error(L("validate__maxlen3"));
+            halt('验证规则的maxlen参数设置错误，必须为数字');
         }
         if ($value < $arg) {
 
@@ -57,10 +57,10 @@ class Validate
     public function _minlen($name, $value, $msg, $arg)
     {
         if (!is_numeric($value)) {
-            return L("validate__minlen1") . $name . L("validate__minlen2");
+            return '表单' . $name . '的值必须为数字';
         }
         if (!is_numeric($arg)) {
-            error(L("validate__minlen3"));
+            halt('验证规则的maxlen参数设置错误，必须为数字');
         }
         if ($value < $arg) {
             return true;

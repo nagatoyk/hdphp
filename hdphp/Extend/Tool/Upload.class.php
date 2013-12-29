@@ -77,7 +77,7 @@ class Upload
     public function upload($fieldName = null)
     {
         if (!$this->checkDir($this->path)) {
-            $this->error = $this->path . L("upload_upload_error");
+            $this->error = $this->path . '图片上传目录创建失败或不可写';
             return false;
         }
         $files = $this->format($fieldName);
@@ -111,13 +111,13 @@ class Upload
             $imgDir = C("UPLOAD_IMG_DIR") ? C("UPLOAD_IMG_DIR") . "/" : "";
             $filePath = $this->path . $imgDir . $uploadFileName;
             if (!$this->checkDir($this->path . $imgDir)) {
-                $this->error = L("upload_save_error1");
+                $this->error = '图片上传目录创建失败或不可写';
                 return false;
             }
             $is_img = 1;
         }
         if (!move_uploaded_file($file ['tmp_name'], $filePath)) {
-            $this->error(L("upload_save_error2"));
+            $this->error('移动临时文件失败');
             return false;
         }
 
@@ -166,7 +166,7 @@ class Upload
             $files[$fieldName] = $_FILES[$fieldName];
         }
         if (!isset($files)) {
-            $this->error = L("upload_format_error");
+            $this->error ='没有任何文件上传';
             return false;
         }
         $info = array();
@@ -209,20 +209,20 @@ class Upload
         $ext = strtoupper($file ['ext']);
         $ext_size = is_array($this->size) && isset($this->size[$ext]) ? $this->size[$ext] : $this->size;
         if (!in_array($ext, $this->ext)) {
-            $this->error = L("upload_checkFile_error1");
+            $this->error = '文件类型不允许';
             return false;
         }
         if (strstr(strtolower($file['type']), "image") && !getimagesize($file['tmp_name'])) {
-            $this->error = L("upload_checkFile_image");
+            $this->error = '上传内容不是一个合法图片';
             return false;
         }
         if ($file ['size'] > $ext_size) {
-            $this->error = L("upload_checkFile_error2") . get_size($ext_size);
+            $this->error = '上传文件大于' . get_size($ext_size);
             return false;
         }
 
         if (!is_uploaded_file($file ['tmp_name'])) {
-            $this->error = L("upload_checkFile_error3");
+            $this->error = '非法文件';
             return false;
         }
         return true;
@@ -232,22 +232,22 @@ class Upload
     {
         switch ($error) {
             case UPLOAD_ERR_INI_SIZE :
-                $this->error = L("upload_error_error1");
+                $this->error = '上传文件超过PHP.INI配置文件允许的大小';
                 break;
             case UPLOAD_ERR_FORM_SIZE :
-                $this->error = L("upload_error_error2");
+                $this->error = '文件超过表单限制大小';
                 break;
             case UPLOAD_ERR_PARTIAL :
-                $this->error = L("upload_error_error3");
+                $this->error = '文件只上有部分上传';
                 break;
             case UPLOAD_ERR_NO_FILE :
-                $this->error = L("upload_error_error4");
+                $this->error ='没有上传文件';
                 break;
             case UPLOAD_ERR_NO_TMP_DIR :
-                $this->error = L("upload_error_error5");
+                $this->error = '没有上传临时文件夹';
                 break;
             case UPLOAD_ERR_CANT_WRITE :
-                $this->error = L("upload_error_error6");
+                $this->error = '写入临时文件夹出错';
                 break;
         }
     }

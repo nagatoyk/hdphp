@@ -101,7 +101,7 @@ class ViewTag
     public function _zoom($attr, $content)
     {
         if (!isset($attr['data']) || !isset($attr['big']) || !isset($attr['small'])) {
-            error(L("hdbasetag__zoom"), false); //zoom标签必须设置 pid、sid、data属性，检查一下看哪个没有设置
+            halt('zoom标签必须设置 big、small、data属性', false); //zoom标签必须设置 pid、sid、data属性，检查一下看哪个没有设置
         }
         $data = $attr['data'];
         $big = $attr['big'];
@@ -460,8 +460,8 @@ class ViewTag
 
     public function _list($attr, $content)
     {
-        if (!isset($attr['from'])) error(L("TAG_LIST_FROM_PARAM_ERROR"));
-        if (!isset($attr['name'])) error(L("TAG_LIST_NAME_PARAM_ERROR"));
+        if (!isset($attr['from'])) halt('list标签缺少from属性');
+        if (!isset($attr['name'])) halt('list标签缺少name属性');
         $var = $attr['from'];
         $name = str_replace('$', '', $attr['name']);
         $empty = isset($attr['empty']) ? $attr['empty'] : ''; //无数据时
@@ -498,10 +498,10 @@ class ViewTag
     public function _foreach($attr, $content)
     {
         if (empty($attr['from'])) {
-            error(L("hdbasetag__foreach1"), false); //foreach 模板标签必须有from属性
+            halt('foreach 模板标签必须有from属性', false); //foreach 模板标签必须有from属性
         }
         if (empty($attr['value'])) {
-            error(L("hdbasetag__foreach2"), false); //foreach 模板标签必须有value属性
+            halt('foreach 模板标签必须有value属性', false); //foreach 模板标签必须有value属性
         }
         $php = ''; //组合成PHP
         $from = $attr['from'];
@@ -534,7 +534,7 @@ class ViewTag
     public function _load($attr, $content)
     {
         if (!isset($attr['file'])) {
-            error(L("hdbasetag__load"), false); //load标签必须有file属性
+            error('load 模板标签必须有value属性', false); //load标签必须有file属性
         }
         $const = print_const(false, true);
         foreach ($const as $k => $v) {
@@ -579,7 +579,7 @@ class ViewTag
     public function _if($attr, $content, $res)
     {
         if (empty($attr['value'])) {
-            error(L("hdbasetag__if"), false); //if 模板标签必须有value属性
+            halt('if 模板标签必须有value属性', false); //if 模板标签必须有value属性
         }
         $value = $attr['value'];
         $php = ''; //组合成PHP
@@ -608,7 +608,7 @@ class ViewTag
     public function _while($attr, $content, $res)
     {
         if (empty($attr['value'])) {
-            error(L("hdbasetag__while"), false); //while模板标签必须有value属性
+            halt('while模板标签必须有value属性', false);
         }
         $value = $attr['value'];
         $php = ''; //组合成PHP
@@ -621,7 +621,7 @@ class ViewTag
     public function _empty($attr, $content, $res)
     {
         if (empty($attr['value'])) {
-            error(L("hdbasetag__empty"), false); //empty模板标签必须有value属性
+            halt('empty模板标签必须有value属性', false); //empty模板标签必须有value属性
         }
         $value = $attr['value'];
         $php = "";

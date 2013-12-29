@@ -16,11 +16,12 @@
  * @supackage core
  * @author hdxj <houdunwangxj@gmail.com>
  */
+defined("DEBUG")        or define("DEBUG", FALSE);
 if (!defined('GROUP_PATH'))
     defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']).'/');
-defined("DEBUG")        or define("DEBUG", FALSE);
 defined('TEMP_PATH')    or define('TEMP_PATH', (defined('APP_PATH') ? APP_PATH : GROUP_PATH) . 'Temp/');
-defined('TEMP_FILE')    or define('TEMP_FILE',TEMP_PATH.'~boot.php');
+defined("TEMP_NAME")    or define("TEMP_NAME",'~boot.php');
+defined('TEMP_FILE')    or define('TEMP_FILE',TEMP_PATH.TEMP_NAME);
 //加载核心编译文件
 if (!DEBUG and is_file(TEMP_FILE)) {
     require TEMP_FILE;

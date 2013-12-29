@@ -16,19 +16,10 @@ final class HDPHP
      */
     static public function init()
     {
-        //应用组配置与语言包处理
-        if(IS_GROUP){
-            is_file(COMMON_CONFIG_PATH . 'config.php')              and C(require(COMMON_CONFIG_PATH . 'config.php'));
-            is_file(COMMON_CONFIG_PATH . 'event.php')               and C('GROUP_EVENT', require COMMON_CONFIG_PATH . 'event.php');
-            is_file(COMMON_CONFIG_PATH . 'Alias.php')               and alias_import(COMMON_CONFIG_PATH . 'Alias.php');
-            is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
-            IS_GROUP                                                and Route::group();
-        }
-        //应用
-        define('APP',               ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
-        if(!defined('GROUP_NAME'))
-            define('GROUP_NAME',                                    isset($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
-        IS_GROUP                                                    and define('APP_PATH', GROUP_PATH . GROUP_NAME . '/' . APP . '/');
+        IS_GROUP                                        and Route::group();
+        defined('GROUP_NAME')                           or define('GROUP_NAME', isset($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
+        defined('APP')                                  or define('APP',ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
+        IS_GROUP                                        and define('APP_PATH', GROUP_PATH . GROUP_NAME . '/' . APP . '/');
         //常量
         defined('CONTROL_PATH')                         or define('CONTROL_PATH', APP_PATH . 'Control/');
         defined('MODEL_PATH')                           or define('MODEL_PATH', APP_PATH . 'Model/');
@@ -42,13 +33,12 @@ final class HDPHP
         defined('TABLE_PATH')                           or define('TABLE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Table/' : 'Table/'));
         defined('LOG_PATH')                             or define('LOG_PATH', TEMP_PATH . 'Log/');
         //应用配置
-        is_file(CONFIG_PATH . 'event.php')              and C(CONFIG_PATH . 'config.php');
+        is_file(CONFIG_PATH . 'config.php')             and C(require(CONFIG_PATH . 'config.php'));
         is_file(CONFIG_PATH . 'event.php')              and C('APP_EVENT', require CONFIG_PATH . 'event.php');
-        is_file(CONFIG_PATH . 'Alias.php')              and alias_import(CONFIG_PATH . 'Alias.php');
+        is_file(CONFIG_PATH . 'alias.php')              and alias_import(CONFIG_PATH . 'alias.php');
         is_file(LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //模板目录
-        $tpl_path = strstr(C('TPL_DIR'),'/')?C('TPL_DIR'):APP_PATH .C('TPL_DIR').'/';
-        defined('TPL_PATH')                             or define('TPL_PATH',  $tpl_path.(C('TPL_STYLE') ? C('TPL_STYLE') . '/' :''));
+        defined('TPL_PATH')                             or define('TPL_PATH', (C('TPL_PATH') ?C('TPL_PATH') : APP_PATH.'Tpl/').C("TPL_STYLE"));
         defined('PUBLIC_PATH')                          or define('PUBLIC_PATH', TPL_PATH . 'Public/');
         //应用url解析并创建常量
         Route::app();
@@ -57,19 +47,19 @@ final class HDPHP
         @ini_set('memory_limit',                        '128M');
         @ini_set('register_globals',                    'off');
         @ini_set('magic_quotes_runtime',                0);
-        define('NOW',                                $_SERVER['REQUEST_TIME']);
-        define('NOW_MICROTIME',                     microtime(true));
-        define('REQUEST_METHOD',                    $_SERVER['REQUEST_METHOD']);
-        define('IS_GET',                            REQUEST_METHOD == 'GET' ? true : false);
-        define('IS_POST',                           REQUEST_METHOD == 'POST' ? true : false);
-        define('IS_PUT',                            REQUEST_METHOD == 'PUT' ? true : false);
-        define('IS_AJAX',                           ajax_request());
-        define('IS_DELETE',                         REQUEST_METHOD == 'DELETE' ? true : false);
+        define('NOW',                                   $_SERVER['REQUEST_TIME']);
+        define('NOW_MICROTIME',                         microtime(true));
+        define('REQUEST_METHOD',                        $_SERVER['REQUEST_METHOD']);
+        define('IS_GET',                                REQUEST_METHOD == 'GET' ? true : false);
+        define('IS_POST',                               REQUEST_METHOD == 'POST' ? true : false);
+        define('IS_PUT',                                REQUEST_METHOD == 'PUT' ? true : false);
+        define('IS_AJAX',                               ajax_request());
+        define('IS_DELETE',                             REQUEST_METHOD == 'DELETE' ? true : false);
         //注册自动载入函数
-        spl_autoload_register(array(__CLASS__,      'autoload'));
-        set_error_handler(array(__CLASS__,          'error'), E_ALL);
-        set_exception_handler(array(__CLASS__,      'exception'));
-        register_shutdown_function(array(__CLASS__, 'fatalError'));
+        spl_autoload_register(array(__CLASS__,          'autoload'));
+        set_error_handler(array(__CLASS__,              'error'), E_ALL);
+        set_exception_handler(array(__CLASS__,          'exception'));
+        register_shutdown_function(array(__CLASS__,     'fatalError'));
         HDPHP::_appAutoLoad();
     }
 
@@ -153,7 +143,7 @@ final class HDPHP
         ) {
             return;
         }
-        $msg = 'Class {$class} not found';
+        $msg = "Class {$className} not found";
         Log::write($msg);
         error($msg);
     }
@@ -177,15 +167,15 @@ final class HDPHP
             case E_COMPILE_ERROR:
             case E_USER_ERROR:
                 ob_end_clean();
-                $msg = '$error ' . $file . ' 第 $line 行.';
-                if(C('LOG_RECORD')) Log::write('[$errno] ' . $msg, Log::ERROR);
+                $msg = $error. $file . " 第 $line 行.";
+                if(C('LOG_RECORD')) Log::write("[$errno] " . $msg, Log::ERROR);
                 function_exists('halt') ? halt($msg) : exit('ERROR:' . $msg);
                 break;
             case E_STRICT:
             case E_USER_WARNING:
             case E_USER_NOTICE:
             default:
-                $errorStr = '[$errno] $error ' . $file . ' 第 $line 行.';
+                $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
                 trace($errorStr, 'NOTICE');
                 if (DEBUG)
                     include HDPHP_TPL_PATH . 'notice.html';

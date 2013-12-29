@@ -282,13 +282,13 @@ class Page
     //当前页记录
     public function nowPage()
     {
-        return "<span class='nowPage'>" . L("page_nowPage") . "{$this->startId}-{$this->endId}{$this->desc['unit']}</span>";
+        return "<span class='nowPage'>第{$this->startId}-{$this->endId}{$this->desc['unit']}</span>";
     }
 
     //count统计
     public function count()
     {
-        return "<span class='count'>[" . L("page_count1") . "{$this->totalPage}" . L("page_count2") . "] [{$this->totalRow}" . L("page_count3") . "]</span>";
+        return "<span class='count'>[共{$this->totalPage}页] [{$this->totalRow}条记录]</span>";
     }
 
     /**
@@ -328,7 +328,7 @@ class Page
             case 3 :
                 return $this->pre() . $this->strList() . $this->next();
             case 4 :
-                return "<span class='total'>" . L("page_show_case1") . ":{$this->totalRow}
+                return "<span class='total'>总计:{$this->totalRow}
                 {$this->desc['unit']}</span>" . $this->picList() . $this->select();
             case 5:
                 return $this->first() . $this->pre() . $this->strList() . $this->next() . $this->end();
