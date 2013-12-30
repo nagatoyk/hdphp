@@ -41,8 +41,9 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 2013.12.30
 
 ```
-1. 修复盾友“笑风痴”提出的购物车类问题
-4. 更新ckeditor最新版本
+1. 修改success.html与error.html样式
+2. 修改sessionFile.class.php目录问题
+3. 增加捕获致命性错误问题
 ```
 
 ###以往更新

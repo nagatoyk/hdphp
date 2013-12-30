@@ -17,10 +17,9 @@
 final class Route
 {
     /**
-     * 解析应用组获得应用
-     * @access public
+     * 根据不同url处理方式，得到Url参数
      */
-    static public function group()
+    static private function formatUrl()
     {
         //请求内容
         $query = C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]) ? $_GET[C("PATHINFO_VAR")] :
@@ -37,7 +36,16 @@ final class Route
             $_GET = array_merge($_GET, $gets);
         }
         //pathinfo形式
-        $args = $gets || empty($url) ? array() : explode(C("PATHINFO_DLI"), $url);
+        return $gets || empty($url) ? array() : explode(C("PATHINFO_DLI"), $url);
+    }
+
+    /**
+     * 解析应用组获得应用
+     * @access public
+     */
+    static public function group()
+    {
+        $args = self::formatUrl();
         //应用名
         $a = C("VAR_APP");
         if (isset($_GET[$a])) {
@@ -52,28 +60,14 @@ final class Route
         }
     }
 
+
     /**
      * 解析应用
      */
     static public function app()
     {
-        //请求内容
-        $query = C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]) ? $_GET[C("PATHINFO_VAR")] :
-            (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['QUERY_STRING']);
-        //分析路由 && 清除伪静态后缀
-        $url = self::parseRoute(str_ireplace(C('PATHINFO_HTML'), '', trim($query, '/')));
-        //拆分后的GET变量
-        $gets = '';
-        if (!empty($_SERVER['PATH_INFO']) || (C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]))) {
-            $url = str_replace(array('&', '='), C("PATHINFO_DLI"), $url);
-        } else {
-            //解析URL
-            parse_str($url, $gets);
-            $_GET = array_merge($_GET, $gets);
-        }
-        //pathinfo形式
-        $args = $gets || empty($url) ? array() : explode(C("PATHINFO_DLI"), $url);
-        //应用组删除应用名
+        $args = self::formatUrl();
+        //应用组模式时删除应用名变量
         if (IS_GROUP && !empty($args)) {
             if ($args[0] == C("VAR_APP")) {
                 array_shift($args);
@@ -82,7 +76,6 @@ final class Route
                 array_shift($args);
             }
         }
-
         //控制器
         if (isset($_GET[C("VAR_CONTROL")])) {
         } elseif (isset($args[0]) && !empty($args[0])) {
@@ -111,7 +104,7 @@ final class Route
         } else {
             $_GET[C('VAR_METHOD')] = C('DEFAULT_METHOD');
         }
-        //模块名称改为pascal命名
+        //以下划线分隔的模块名称改为pascal命名如hdphp_user=>HDPhpUser
         $_GET[C('VAR_CONTROL')] = ucwords(preg_replace('@_([a-z]?)@ei', 'strtoupper("\1")', $_GET[C('VAR_CONTROL')]));
         //获得$_GET数据
         if (!empty($args)) {
@@ -152,7 +145,7 @@ final class Route
         define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
         define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
         //控制器
-        define("CONTROL", $_GET[C('VAR_CONTROL')]);
+        define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
         //方法
         define("METHOD", $_GET[C('VAR_METHOD')]);
         // URL类型    1:pathinfo  2:普通模式  3:rewrite 重写  4:兼容模式
@@ -303,7 +296,6 @@ final class Route
                     foreach ($regGroup[0] as $k => $v) {
                         $v = preg_replace('@([\*\$\(\)\+\?\[\]\{\}\\\])@', '\\\$1', $v);
                         $routeUrl = preg_replace('@' . $v . '@', $urlArgs[0][$k + 1], $routeUrl, $count = 1);
-//                #debug        $routeUrl = str_ireplace($v, $urlArgs[0][$k + 1], $routeUrl, $count = 1);
                     }
 
                     return trim($routeUrl, '/');

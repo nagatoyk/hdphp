@@ -11,6 +11,7 @@ return array(
     'AUTH_KEY'                      => 'houdunwang',//验证key
     'CHECK_FILE_CASE'               => FALSE,      //windows区分大小写
     'AUTO_LOAD_FILE'                => array(),          //自动加载应用Lib目录或应用组Common/Lib目录下的文件
+    'FILTER_FUNCTION'               => array('htmlspecialchars','strip_tags'), //过滤函数会在Q()函数等中使用
     /********************************数据库********************************/
     'DB_DRIVER'                     => 'mysqli',    //数据库驱动
     'DB_CHARSET'                    => 'utf8',     //数据库字符集
@@ -48,7 +49,7 @@ return array(
     'HTTPS'                         => FALSE,       //基于https协议
     'URL_REWRITE'                   => 0,           //url重写模式
     'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
-    'PATHINFO_DLI'                  => '/',         //PATHINFO分隔符
+    'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
     'PATHINFO_HTML'                 => '',          //伪静态扩展名
     /********************************url变量********************************/
@@ -64,7 +65,6 @@ return array(
     'DEFAULT_METHOD'                => 'index',     //默认方法
     'CONTROL_FIX'                   => 'Control',   //控制器文件后缀
     'MODEL_FIX'                     => 'Model',     //模型文件名后缀
-    'FILTER_FUNCTION'               => array('htmlspecialchars','strip_tags'), //过滤函数会在Q()函数等中使用
     /********************************URL路由设置********************************/
     'route' => array(),                             //路由规则
     /********************************缓存控制********************************/

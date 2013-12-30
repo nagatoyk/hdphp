@@ -11,6 +11,7 @@
 // '-----------------------------------------------------------------------------------
 if (!defined("HDPHP_PATH"))
     exit('No direct script access allowed');
+
 /**
  * 控制器基类
  * @package     core
@@ -57,91 +58,13 @@ abstract class Control
         if (strcasecmp($method, METHOD) == 0) {
             //执行插件如uploadify|ueditor|keditor
             if (alias_import($method)) {
-                include alias_import($method);
-                //执行空方法_empty
+                require alias_import($method);
             } elseif (method_exists($this, "__empty")) {
+                //执行空方法_empty
                 $this->__empty($args);
+            } else {
                 //方法不存在时抛出404错误页
-            } else {
-                _404("控制器中不存在方法" . $method);
-            }
-            //调用方法含有Model时，即$this->userModel()
-        } else if (substr(ucfirst($method), -5) == "Model") {
-            if (strstr($method, '_')) {
-                $method = str_replace("_", "/", substr($method, 0, -5));
-                return $this->kmodel($method);
-            } else {
-                return $this->kmodel(substr($method, 0, -5));
-            }
-        } else {
-            switch (strtolower($method)) {
-                //检测请求类型ispost等方法
-                case 'ispost' :
-                case 'isget' :
-                case 'ishead' :
-                case 'isdelete' :
-                case 'isput' :
-                    return strtolower($_SERVER['REQUEST_METHOD']) == strtolower(substr($method, 2));
-                //获得数据并执行相应的安全处理
-                case '_get' :
-                    $data = & $_GET;
-                    break;
-                case '_post' :
-                    $data = & $_POST;
-                    break;
-                case '_request' :
-                    $data = & $_REQUEST;
-                    break;
-                case '_files' :
-                    $data = & $_FILES;
-                    break;
-                case '_session' :
-                    $data = & $_SESSION;
-                    break;
-                case '_cookie' :
-                    $data = & $_COOKIE;
-                    break;
-                case '_server' :
-                    $data = & $_SERVER;
-                    break;
-                case '_globals' :
-                    $data = & $GLOBALS;
-                    break;
-                default:
-                    throw_exception($method . '方法不存在');
-            }
-            //没有执行参数如$this->_get()时返回所有数据
-            if (!isset($args[0])) {
-                return $data;
-                //如果存在数据如$this->_get("page")，$_GET中存在page数据
-            } else if (isset($data[$args[0]])) {
-                //要获得参数如$this->_get("page")中的page
-                $value = $data[$args[0]];
-                //如果没有函数时，直接返回值
-                if (count($args) > 1 && empty($args[1])) {
-                    return $value;
-                }
-                //对参数进行过滤的函数
-                $funcArr = isset($args[1]) && !empty($args[1]) ? $args[1] : C("FILTER_FUNCTION");
-                //是否存在过滤函数
-                if (!empty($funcArr)) {
-                    //参数过滤函数
-                    if (!is_array($funcArr)) {
-                        $funcArr = explode(",", $funcArr);
-                    }
-                    //对数据进行过滤处理
-                    foreach ($funcArr as $func) {
-                        if (!function_exists($func))
-                            continue;
-                        $value = is_array($value) ? array_map($func, $value) : $func($value);
-                    }
-                    $data[$args[0]] = $value;
-                    return $value;
-                }
-                return $value;
-                //不存在值时返回第2个参数，例：$this->_get("page")当$_GET['page']不存在page时执行
-            } else {
-                return isset($args[2]) ? $args[2] : NULL;
+                _404('模块中不存在方法' . $method);
             }
         }
     }
@@ -236,11 +159,11 @@ abstract class Control
     /**
      * 分配变量
      * @access protected
-     * @param $name 变量名
-     * @param $value 变量值
+     * @param mixed $name 变量名
+     * @param mixed $value 变量值
      * @return mixed
      */
-    protected function assign($name, $value)
+    protected function assign($name, $value=null)
     {
         $this->getViewObj();
         return $this->view->assign($name, $value);
@@ -253,12 +176,12 @@ abstract class Control
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function error($msg = "", $url = "", $time = 2, $tpl = null)
+    protected function error($msg = '出错了', $url = NULL, $time = 2, $tpl = null)
     {
-        $msg = $msg ? $msg : '出错了';
-        //模板文件
-        $tpl_file = $tpl ? $tpl : C("TPL_ERROR");
-        $this->_error_success($msg, $url, $time, $tpl_file);
+        $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
+        $tpl = $tpl ? $tpl : PUBLIC_PATH . C("TPL_ERROR");
+        $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
+        $this->display($tpl);
     }
 
     /**
@@ -268,47 +191,12 @@ abstract class Control
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function success($msg = NULL, $url = NULL, $time = 2, $tpl = null)
+    protected function success($msg = '操作成功', $url = NULL, $time = 2, $tpl = null)
     {
-        $msg = $msg ? $msg : '操作成功';
-        //模板文件
-        $tpl_file = $tpl ? $tpl : C("TPL_SUCCESS");
-        $this->_error_success($msg, $url, $time, $tpl_file);
-        exit;
-    }
-
-    /**
-     * 显示错误或正确页面
-     * @param $msg 提示内容
-     * @param $url 跳转URL
-     * @param $time 跳转时间
-     * @param $tpl_file 模板文件
-     */
-    private function _error_success($msg, $url, $time, $tpl_file)
-    {
-        //跳转时间
-        $time = is_numeric($time) ? $time : 3;
-        //没有指定url地址时回跳历史记录
-        if (empty($url)) {
-            $url = "window.history.back(-1);";
-        } else {
-            $url = "window.location.href='" . U($url) . "'";
-        }
-        //配置文件的模板风格
-        $style_conf = C('TPL_STYLE') ? '/' . C('TPL_STYLE') . '/' : '/';
-        //模板目录
-        $tpl_dir = strstr(C("TPL_DIR"), '/') ? C("TPL_DIR") . $style_conf : APP_PATH . C("TPL_DIR") . $style_conf . 'Public/';
-        //模板文件
-        $tpl = strstr($tpl_file, '/') ? $tpl_file : $tpl_dir . $tpl_file;
-        //分配提示信息
-        $this->assign("msg", $msg);
-        //分配URL
-        $this->assign("url", $url);
-        //分配跳转时间
-        $this->assign("time", $time);
-        //显示模板
+        $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
+        $tpl = $tpl ? $tpl : PUBLIC_PATH . C("TPL_SUCCESS");
+        $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
         $this->display($tpl);
-        exit;
     }
 
     /**

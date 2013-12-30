@@ -38,7 +38,10 @@ final class HDPHP
         is_file(CONFIG_PATH . 'alias.php')              and alias_import(CONFIG_PATH . 'alias.php');
         is_file(LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //模板目录
-        defined('TPL_PATH')                             or define('TPL_PATH', (C('TPL_PATH') ?C('TPL_PATH') : APP_PATH.'Tpl/').C("TPL_STYLE"));
+        $tpl_style = C('TPL_STYLE');
+        if($tpl_style and substr($tpl_style,-1)!='/')
+            $tpl_style=substr(C('TPL_STYLE'),0,-1).'/';
+        defined('TPL_PATH')                             or define('TPL_PATH', (C('TPL_PATH') ?C('TPL_PATH') : APP_PATH.'Tpl/').$tpl_style);
         defined('PUBLIC_PATH')                          or define('PUBLIC_PATH', TPL_PATH . 'Public/');
         //应用url解析并创建常量
         Route::app();

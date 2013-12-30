@@ -566,7 +566,7 @@ function Q($var, $default = null, $filter = null)
     //拆分，支持get.id  或 id
     $var = explode(".", $var);
     if (count($var) == 1) {
-        array_unshift($var, 'get');
+        array_unshift($var, 'request');
     }
     $var[0] = strtolower($var[0]);
     //获得数据并执行相应的安全处理

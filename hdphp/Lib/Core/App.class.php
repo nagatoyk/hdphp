@@ -61,10 +61,18 @@ final class App
         $control = control(CONTROL);
         //控制器不存在
         if (!$control) {
+            //应用组检测
+            if(IS_GROUP and !is_dir(GROUP_PATH.GROUP_NAME)){
+                _404('应用组' . GROUP_PATH.GROUP_NAME . '不存在');
+            }
+            //应用检测
+            if(!is_dir(APP_PATH)){
+                _404('应用' . APP . '不存在');
+            }
             //空控制器
             $control = Control("Empty");
             if (!$control) {
-                _404('模块' . CONTROL . '不存在');
+                _404('模块' . CONTROL .C("CONTROL_FIX") .'不存在');
             }
         }
         //执行动作

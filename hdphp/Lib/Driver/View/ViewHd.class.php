@@ -142,7 +142,13 @@ final class ViewHd extends View
      */
     public function assign($var, $value)
     {
-        return $this->vars[$var] = $value; //传入变量
+        if (is_array($var)) {
+            foreach ($var as $k => $v) {
+                if (is_string($k)) $this->vars[$k] = $v;
+            }
+        } else {
+            $this->vars[$var] = $value;
+        }
     }
 
     /**
