@@ -238,12 +238,6 @@ class ViewCompile
         $parseGlobalCon = $this->parseGlobalConst($parseConstCon);
         $replaceLangCon = $this->replaceLangConfig($parseGlobalCon);
         $content = $this->removeEmpty($replaceLangCon); //去除变量空格
-
-//  debug      if ($type == 0) {
-//            $preg = '/([\'\"]?)(\$[^=!<>\s\)\(\/]+)\1/is'; //得到所有变量表示如$c.a.d|date:"y-m-d",@@
-//        } else {
-//            $preg = '/([\'\"]?)(\$[^=!<>\)\(\/]+)\1/is'; //得到所有变量表示如$c.a.d|date:"y-m-d",@@
-//        }
         if ($type == 0) {
             $preg = '/([\'\"]?)(\$[^=!<>\s\)\(]+)\1/is'; //得到所有变量表示如$c.a.d|date:"y-m-d",@@
         } else {

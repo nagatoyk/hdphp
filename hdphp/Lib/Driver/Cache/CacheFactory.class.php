@@ -51,9 +51,11 @@ final class CacheFactory
             return self::$cacheFactory->cacheList[$driverName];
         }
         $class = 'Cache' . ucwords(strtolower($driver)); //缓存驱动
-        $classFile = HDPHP_DRIVER_PATH . 'Cache/' . $class . '.class.php'; //加载驱动类库文件
-        if (!require_cache($classFile)) {
-            throw_exception("缓存类型指定错误，不存在缓存驱动文件:" . $classFile);
+        if(!class_exists($class)){
+            $classFile = HDPHP_DRIVER_PATH . 'Cache/' . $class . '.class.php'; //加载驱动类库文件
+            if (!require_cache($classFile)) {
+                halt("缓存类型指定错误，不存在缓存驱动文件:" . $classFile);
+            }
         }
         $cacheObj = new $class($options);
         self::$cacheFactory->cacheList[$driverName] = $cacheObj;

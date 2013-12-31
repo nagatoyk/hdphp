@@ -175,5 +175,3 @@ class CacheFile extends Cache
     }
 
 }
-
-?>

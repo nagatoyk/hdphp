@@ -541,10 +541,7 @@ function halt($error)
         if ($_url= C('ERROR_URL')) {
             go($_url);
         } else {
-            if (C('SHOW_ERROR_MESSAGE'))
-                $e['message'] = is_array($error) ? $error['message'] : $error;
-            else
-                $e['message'] = C('ERROR_MESSAGE');
+            $e['message'] = C('ERROR_MESSAGE');
         }
     }
     //显示DEBUG模板，开启DEBUG显示trace
