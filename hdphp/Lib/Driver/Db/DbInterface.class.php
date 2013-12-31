@@ -18,7 +18,8 @@ if (!defined("HDPHP_PATH"))
  * @package     Db
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-interface DbInterface {
+interface DbInterface
+{
 
     public function connectDb(); //获得连接   参数为表名
 
@@ -39,6 +40,8 @@ interface DbInterface {
     public function commit(); //提供一个事务
 
     public function rollback(); //回滚事务
+
+    public function escapeString($str); //数据安全处理
 }
 
 ?>

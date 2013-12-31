@@ -16,14 +16,24 @@
  * @subpackage  Driver
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-defined("INNER_JOIN") or define("INNER_JOIN", "INNER JOIN");
-defined("LEFT_JOIN") or define("LEFT_JOIN", "LEFT JOIN");
-defined("RIGHT_JOIN") or define("RIGHT_JOIN", "RIGHT JOIN");
+defined("INNER_JOIN")   or define("INNER_JOIN", "INNER JOIN");
+defined("LEFT_JOIN")    or define("LEFT_JOIN", "LEFT JOIN");
+defined("RIGHT_JOIN")   or define("RIGHT_JOIN", "RIGHT JOIN");
 
 class ViewModel extends Model
 {
     public $view = array();
-
+    //初始化
+    protected function init()
+    {
+        $opt = array(
+            'trigger' => true,
+            'joinTable' => array(),
+        );
+        foreach ($opt as $n => $v) {
+            $this->$n = $v;
+        }
+    }
     //本次需要关联的表
     private function check_join($table)
     {
@@ -53,33 +63,12 @@ class ViewModel extends Model
         return true;
     }
 
-    //初始化
-    protected function init()
-    {
-        $opt = array(
-            "trigger" => true,
-            "joinTable" => array(),
-            "result" => NULL,
-            "data" => array(),
-            "error" => ""
-        );
-        foreach ($opt as $n => $v) {
-            $this->$n = $v;
-        }
-    }
-
     //设置表join关联
     public function setJoinTable()
     {
         //不存在关联定义或不关联时
         if (is_null($this->joinTable) || empty($this->view)) {
             return;
-        }
-        //主表查询字段
-        $field = $this->db->opt['field'];
-        //字段
-        if (empty($field)) {
-            $field = "*";
         }
         //关联from 语句
         $from = " " . $this->tableFull . " ";
@@ -94,7 +83,6 @@ class ViewModel extends Model
             $from .= $set['type'] . " " . $_table . " ";
             $from .= " ON " . $set['on'] . " ";
         }
-        $this->db->opt['field'] = $field;
         $this->db->opt['table'] = $from;
     }
 
@@ -105,12 +93,33 @@ class ViewModel extends Model
         $this->setJoinTable($data);
         return parent::select($data);
     }
-    //统计
+    //count
     public function count($args = "")
     {
         //设置表关联
         $this->setJoinTable();
         return parent::count($args);
+    }
+    //min
+    public function min($args = "")
+    {
+        //设置表关联
+        $this->setJoinTable();
+        return parent::min($args);
+    }
+    //max
+    public function max($args = "")
+    {
+        //设置表关联
+        $this->setJoinTable();
+        return parent::max($args);
+    }
+    //avg
+    public function avg($args = "")
+    {
+        //设置表关联
+        $this->setJoinTable();
+        return parent::max($args);
     }
 }
 

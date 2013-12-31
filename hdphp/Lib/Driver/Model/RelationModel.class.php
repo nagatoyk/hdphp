@@ -40,7 +40,17 @@ class RelationModel extends Model
         }
 
     }
-
+    //初始化
+    protected function init()
+    {
+        $opt = array(
+            'trigger' => true,
+            'joinTable' => array(),
+        );
+        foreach ($opt as $n => $v) {
+            $this->$n = $v;
+        }
+    }
     //验证关联定义
     private function checkJoinSet($set)
     {
@@ -69,12 +79,10 @@ class RelationModel extends Model
         //插入失败或者没有定义关联join属性
         if (!$result || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->result = $result;
-            $this->trigger and $this->__before_select();
+            $this->trigger and $this->__after_select($result);
             $this->init();
             return $result;
         }
-        $this->result =& $result;
         //关联操作
         foreach ($this->join as $table => $set) {
             //本次需要关联的表
@@ -133,7 +141,7 @@ class RelationModel extends Model
             }
         }
         $this->error = $this->db->error;
-        $this->trigger and $this->__after_select();
+        $this->trigger and $this->__after_select($result);
         $data = empty($result) ? null : $result;
         $this->init();
         return $data;
@@ -143,25 +151,24 @@ class RelationModel extends Model
     public function insert($data = array(), $type = "INSERT")
     {
         $this->data($data);
-        $this->trigger and $this->__before_add();
+        $this->trigger and $this->__before_insert($data);
         $data = $this->data;
         if (empty($data)) {
             $this->error = "没有任何数据用于INSERT！";
-            $this->trigger and $this->__after_add();
             $this->init();
+            $this->data=array();
             return false;
         }
         $id = call_user_func(array($this->db, __FUNCTION__), $data, $type);
         //插入失败或者没有定义关联join属性
         if (!$id || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->result = $id;
-            $this->trigger and $this->__after_add();
+            $this->trigger and $this->__after_add($id);
             $this->init();
+            $this->data=array();
             return $id;
         }
-        $this->result = array();
-        $result_id = & $this->result;
+        $result_id = array();
         $result_id[$this->table] = $id;
         //处理表关联
         foreach ($this->join as $table => $set) {
@@ -205,8 +212,9 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $this->trigger and $this->__after_add();
+        $this->trigger and $this->__after_insert($result);
         $this->init();
+        $this->data=array();
         return $result;
     }
 
@@ -214,29 +222,28 @@ class RelationModel extends Model
     public function update($data = array())
     {
         $this->data($data);
-        $this->trigger and $this->__before_update();
         $data = $this->data;
+        $this->trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
-            $this->__after_update();
+            $this->__after_update(NULL);
             $this->init();
+            $this->data=array();
             return false;
         }
         $stat = call_user_func(array($this->db, __FUNCTION__), $data);
         //插入失败或者没有定义关联join属性
         if (!$stat || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->result = $stat;
-            $this->trigger and $this->__after_update();
+            $this->trigger and $this->__after_update($stat);
             $this->init();
+            $this->data=array();
             return $stat;
         }
         $pri = $this->db->pri;
         $where = preg_replace('@\s*WHERE@i', '', $this->db->opt_old['where']);
         $_p = M($this->table)->field($pri)->where($where)->find();
         $id = $_p[$pri];
-        $this->result = array();
-        $result_id = & $this->result;
         $result_id = array();
         $result_id[$this->table] = $stat;
         //处理表关联
@@ -280,8 +287,9 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $this->__after_update();
+        $this->__after_update($result);
         $this->init();
+        $this->data=array();
         return $result;
     }
 
@@ -302,14 +310,11 @@ class RelationModel extends Model
         //插入失败或者没有定义关联join属性
         if (!$stat || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->result = $stat;
             $this->trigger and $this->__after_del();
             $this->init();
             return $stat;
         }
-        $pri = $this->db->pri;
-        $this->result = array();
-        $result_id =& $this->result;
+        $result_id = array();
         $result_id[$this->table] = $stat;
         //处理表关联
         foreach ($this->join as $table => $set) {
@@ -337,7 +342,7 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $this->trigger and $this->__after_del();
+        $this->trigger and $this->__after_del($result);
         $this->init();
         return $result;
     }

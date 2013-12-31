@@ -20,17 +20,16 @@
 abstract class Db implements DbInterface
 {
 
-    protected $table = null; //表名
-    public $field; //字段字符串
-    public $fieldArr; //字段数组
-    public $lastQuery; //最后发送的查询结果集
-    public $pri = null; //默认表主键
-    public $opt = array(); //SQL 操作
-    public $opt_old = array();
-    public $lastSql; //最后发送的SQL
-    public $error = NULL; //错误信息
-    protected $cacheTime; //查询操作缓存时间单位秒
-    protected $dbPrefix; //表前缀
+    protected   $table      = NULL; //表名
+    public      $fieldArr;          //字段数组
+    public      $lastQuery;         //最后发送的查询结果集
+    public      $pri        = null; //默认表主键
+    public      $opt        = array(); //SQL 操作
+    public      $opt_old    = array();
+    public      $lastSql;           //最后发送的SQL
+    public      $error      = NULL; //错误信息
+    protected   $cacheTime  = NULL; //查询操作缓存时间单位秒
+    protected   $dbPrefix;          //表前缀
 
     /**
      * 将eq等替换为标准的SQL语法
@@ -53,19 +52,19 @@ abstract class Db implements DbInterface
         //通过数据驱动如MYSQLI连接数据库
         if ($this->connectDb()) {
             if (!is_null($table)) {
-                $this->dbPrefix = C("DB_PREFIX"); //表前缀
+                $this->dbPrefix = C("DB_PREFIX");
                 $this->table($table);
-                $this->table = $table;
-                $this->pri = $this->opt['pri'];
-                $this->field = $this->opt['field'];
+                $this->table    = $table;
+                $this->pri      = $this->opt['pri'];
                 $this->fieldArr = $this->opt['fieldArr'];
+                $this->cacheTime=NULL;
                 $this->optInit(); //初始始化WHERE等参数
             } else {
                 $this->optInit();
             }
             return $this->link;
         }
-        return false;
+        halt("数据库连接出错了请检查数据库配置");
     }
 
     /**
@@ -80,7 +79,6 @@ abstract class Db implements DbInterface
         $field = $this->getFields($tableName); //获得表结构信息设置字段及主键属性
         $this->opt['table'] = $tableName;
         $this->opt['pri'] = isset($field['pri']) && !empty($field['pri']) ? $field['pri'] : '';
-        $this->opt['field'] = '`' . implode('` , ' . '`', $field['field']) . '`';
         $this->opt['fieldArr'] = $field['field'];
     }
 
@@ -97,7 +95,7 @@ abstract class Db implements DbInterface
         $opt = array(
             'table' => $this->table,
             'pri' => $this->pri,
-            'field' => "",
+            'field' => '*',
             'fieldArr' => $this->fieldArr,
             'where' => '',
             'like' => '',
@@ -230,9 +228,6 @@ abstract class Db implements DbInterface
         if (!empty($where)) {
             $this->where($where);
         }
-        if (empty($this->opt['field'])) {
-            $this->opt['field'] = "*";
-        }
         //添加表前缀
         $chain = array("table", "group", "field", "order");
         foreach ($chain as $v) {
@@ -300,7 +295,7 @@ abstract class Db implements DbInterface
     //转义数据
     private function addslashes_d($v)
     {
-        return get_magic_quotes_gpc() ? $v : addslashes_d($v);
+        return MAGIC_QUOTES_GPC ? $v : addslashes_d($v);
     }
 
     /**
@@ -371,16 +366,6 @@ abstract class Db implements DbInterface
         $this->statistics(__FUNCTION__, $data);
         $result = $this->select("");
         return is_array($result) && !empty($result) ? intval(current($result[0])) : NULL;
-//        $this->statistics(__FUNCTION__, $data);
-//        $chain = array("table", "group", "field", "order");
-//        foreach ($chain as $v) {
-//            $this->opt[$v] = $this->addTableFix($this->opt[$v]);
-//        }
-//        $sql = "SELECT count(*) FROM (SELECT " . $this->opt['field'] . " FROM " . $this->opt['table'] .
-//            $this->opt['where'] . $this->opt['group'] . $this->opt['having'] .
-//            $this->opt['order'] . $this->opt['limit'] . ") AS t";
-//        $result = $this->query($sql);
-//        return is_array($result) && !empty($result) ? current($result[0]) : NULL;
     }
 
     //查找最大的值
@@ -546,7 +531,7 @@ abstract class Db implements DbInterface
         if (is_string($data)) {
             $data = explode(",", $data);
         }
-        $field = empty($this->opt['field']) ? "" : $this->opt['field'] . ',';
+        $field = trim($this->opt['field']) =='*'? '' : $this->opt['field'] . ',';
         foreach ($data as $d) {
             $a = explode("|", $d);
             $field .= trim($a[0]);
@@ -712,15 +697,12 @@ abstract class Db implements DbInterface
      */
     public function getSize($table)
     {
-        $table = empty($table) ? null : $table;
         $sql = "show table status from " . C("DB_DATABASE");
         $row = $this->query($sql);
         $size = 0;
         foreach ($row as $v) {
             if ($table) {
                 $size += in_array(strtolower($v['Name']), $table) ? $v['Data_length'] + $v['Index_length'] : 0;
-            } else {
-                $size += $v['Data_length'] + $v['Index_length'];
             }
         }
         return get_size($size);

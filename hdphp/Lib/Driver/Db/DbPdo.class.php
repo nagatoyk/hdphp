@@ -63,12 +63,19 @@ class DbPdo extends Db
         return $this->affectedRows;
     }
 
+    //数据安全处理
+    public function escapeString($str)
+    {
+        return addslashes($str);
+    }
+
     //执行SQL没有返回值
     public function exe($sql)
     {
         //查询参数初始化
         $this->optInit();
-        $this->debug($sql); //将SQL添加到调试DEBUG
+        //将SQL添加到调试DEBUG
+        $this->debug($sql);
         //释放结果
         if (!$this->PDOStatement)
             $this->resultFree();
@@ -84,7 +91,6 @@ class DbPdo extends Db
             $this->error($this->link->errorCode() . "\t" . $this->lastSql);
             return false;
         } else {
-//            $this->affectedRows = $this->PDOStatement->rowCount();
             $insert_id = $this->link->lastInsertId();
             return $insert_id ? $insert_id : TRUE;
         }

@@ -21,51 +21,28 @@ if (!defined("HDPHP_PATH"))
  */
 /**
  * 加载核心模型
- * @param String $tableName 表名
+ * @param String $table 表名
  * @param Boolean $full 是否为全表名
  * @return Object 返回模型对象
  */
-function M($tableName = null, $full = null)
+function M($table = null, $full = null)
 {
-    return new Model($tableName, $full);
+    return new Model($table, $full);
 }
 
+
 /**
- * @param $class 扩展模型名称不需要加Model后缀
- * @param $table 表名
- * @param $param 其他参数
- * @return Object Model
+ * 生成扩展模型
+ * @param $class 模型类
+ * @param mixed $table 表名
+ * @param mixed $param 参数
+ * @return mixed
  */
 function K($class, $table = false, $param = array())
 {
     $table = $table === false ? strtolower($class) : $table;
     $class .= "Model";
     return new $class($table, $param);
-//    //获得模型文件
-//    $info = explode('/', trim($model, '/'));
-//    switch (count($info)) {
-//        case 1:
-//            $class = $info[0] . C('MODEL_FIX');
-//            $path = MODEL_PATH;
-//            break;
-//        case 2:
-//            $class = $info[1] . C('MODEL_FIX');
-//            $path = APP_PATH . '../' . $info[0] . '/Model/';
-//            break;
-//        default:
-//            $class = basename($model) . C('MODEL_FIX');
-//            $path = dirname($model);
-//    }
-//    $class = ucfirst($class);
-//    if (!import($class, $path)) {
-//        //还没有定义模型文件
-//        error(L("functions_k_is_file") . $path . $class . '.class.php', false);
-//    }
-//    if (!class_exists($class, false)) {
-//        error(L("functions_k_error") . $class, false); //模型类定义有误
-//    }
-//    $table = $table === false ? substr(strtolower($class), 0, -strlen(C("MODEL_FIX"))) : $table;
-//    return new $class($table, $param);
 }
 
 /**

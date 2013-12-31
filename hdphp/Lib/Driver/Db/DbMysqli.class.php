@@ -44,9 +44,7 @@ class DbMysqli extends Db
      */
     static private function setCharset()
     {
-        $character = C("DB_CHARSET");
-        $sql = "SET character_set_connection=$character,character_set_results=$character,character_set_client=binary";
-        self::$isConnect->query($sql);
+        self::$isConnect->set_charset(C("DB_CHARSET"));
     }
 
     //获得最后插入的ID号
@@ -69,6 +67,15 @@ class DbMysqli extends Db
             $this->resultFree();
         }
         return $res;
+    }
+    //数据安全处理
+    public function escapeString($str)
+    {
+        if ($this->link) {
+            return $this->link->real_escape_string($str);
+        } else {
+            return addslashes($str);
+        }
     }
 
     //执行SQL没有返回值
@@ -93,7 +100,7 @@ class DbMysqli extends Db
     public function query($sql)
     {
         $cache_time = $this->cacheTime ? $this->cacheTime : intval(C("CACHE_SELECT_TIME"));
-        $cacheName = $sql . APP . CONTROL . METHOD;
+        $cacheName = md5($sql . APP . CONTROL . METHOD);
         if ($cache_time >= 0) {
             $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
             if ($result) {
@@ -112,7 +119,7 @@ class DbMysqli extends Db
         if ($cache_time >= 0 && count($list) <= C("CACHE_SELECT_LENGTH")) {
             S($cacheName, $list, $cache_time, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
         }
-        return is_array($list) && !empty($list) ? $list : NULL;
+        return empty($list) ? NULL : $list;
     }
 
     //释放结果集

@@ -36,8 +36,7 @@ return array(
     'LOG_LEVEL'                     => array('FATAL','ERROR','WARNING','SQL'),//写入日志的错误级别
     'LOG_EXCEPTION_RECORD'          => TRUE,       // 记录异常
     /********************************SESSION********************************/
-    'SESSION_AUTO_START'            => 1,           //自动开启SESSION
-    'SESSION_NAME'                  => 'HD_SID',    //session_name
+    'SESSION_AUTO_START'            => TRUE,           //自动开启SESSION
     'SESSION_TYPE'                  => '',          //引擎:mysql,memcache,redis
     'SESSION_OPTIONS'               =>array(),      //session处理参数，配置复杂，请查看手册获得帮助
     /********************************COOKIE********************************/
@@ -47,7 +46,7 @@ return array(
     'COOKIE_PREFIX'                 => '',          // Cookie前缀 避免冲突
     /********************************URL设置********************************/
     'HTTPS'                         => FALSE,       //基于https协议
-    'URL_REWRITE'                   => 0,           //url重写模式
+    'URL_REWRITE'                   => FALSE,           //url重写模式
     'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
     'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
@@ -89,17 +88,17 @@ return array(
     'CACHE_SELECT_LENGTH'           => 30,          //缓存最大条数
     'CACHE_TPL_TIME'                => -1,          //模板缓存时间 -1为不缓存 0为永久缓存
     /********************************文件上传********************************/
-    'UPLOAD_THUMB_ON'               => 0,           //上传图片缩略图处理
+    'UPLOAD_THUMB_ON'               => FALSE,           //上传图片缩略图处理
     'UPLOAD_EXT_SIZE'               => array('jpg' => 5000000, 'jpeg' => 5000000, 'gif' => 5000000,
                                     'png' => 5000000, 'bmg' => 5000000, 'zip' => 5000000,
                                     'txt' => 5000000, 'rar' => 5000000, 'doc' => 5000000), //上传类型与大小
     'UPLOAD_PATH'                   => ROOT_PATH . '/upload', //上传路径
     'UPLOAD_IMG_DIR'                => '',       //图片上传目录名
-    'UPLOAD_IMG_RESIZE_ON'          => 1,           //上传图片缩放处理,超过以下值系统进行缩放
+    'UPLOAD_IMG_RESIZE_ON'          => FALSE,        //上传图片缩放处理,超过以下值系统进行缩放
     'UPLOAD_IMG_MAX_WIDTH'          => 1000,     //上传图片宽度超过此值，进行缩放
     'UPLOAD_IMG_MAX_HEIGHT'         => 1000,     //上传图片高度超过此值，进行缩放
     /********************************图像水印处理********************************/
-    'WATER_ON'                      => 1,           //开关
+    'WATER_ON'                      => TRUE,           //开关
     'WATER_FONT'                    => HDPHP_PATH . 'Data/Font/font.ttf',   //水印字体
     'WATER_IMG'                     => HDPHP_PATH . 'Data/Image/water.png', //水印图像
     'WATER_POS'                     => 9,           //位置  1~9九个位置  0为随机

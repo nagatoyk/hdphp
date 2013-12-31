@@ -204,7 +204,7 @@ abstract class Control
      * @param $data 数据
      * @param string $type 数据类型 text html xml json
      */
-    protected function _ajax($data, $type = "JSON")
+    protected function ajax($data, $type = "JSON")
     {
         $type = strtoupper($type);
         switch ($type) {

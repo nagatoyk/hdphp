@@ -164,8 +164,8 @@ final class Boot
             endif;
         }
         //复制公共模板文件
-        is_file(PUBLIC_PATH . "success.html") or copy(HDPHP_TPL_PATH . "app_success.html", PUBLIC_PATH . "success.html");
-        is_file(PUBLIC_PATH . "error.html") or copy(HDPHP_TPL_PATH . "app_error.html", PUBLIC_PATH . "error.html");
+        is_file(PUBLIC_PATH . "success.html") or copy(HDPHP_TPL_PATH . "success.html", PUBLIC_PATH . "success.html");
+        is_file(PUBLIC_PATH . "error.html") or copy(HDPHP_TPL_PATH . "error.html", PUBLIC_PATH . "error.html");
         //复制配置文件
         is_file(CONFIG_PATH . "config.php") or copy(HDPHP_TPL_PATH . "config.php", CONFIG_PATH . "config.php");
         is_file(CONFIG_PATH . "event.php") or copy(HDPHP_TPL_PATH . "event.php", CONFIG_PATH . "event.php");
@@ -179,7 +179,7 @@ final class Boot
             is_file(COMMON_LANGUAGE_PATH . "alias.php") or copy(HDPHP_TPL_PATH . "alias.php", COMMON_LANGUAGE_PATH . "alias.php");
         }
         //创建测试控制器
-        is_file(CONTROL_PATH . 'IndexControl.class.php') or file_put_contents(CONTROL_PATH . 'IndexControl.class.php', file_get_contents(HDPHP_TPL_PATH . 'control_test.php'));
+        is_file(CONTROL_PATH . 'IndexControl.class.php') or file_put_contents(CONTROL_PATH . 'IndexControl.class.php', file_get_contents(HDPHP_TPL_PATH . 'control.php'));
         //创建安全文件
         self::safeFile();
     }

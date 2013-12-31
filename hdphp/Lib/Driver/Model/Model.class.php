@@ -20,22 +20,16 @@ if (!defined("HDPHP_PATH"))
 class Model
 {
 
-    public $tableFull = null; //全表名
-    public $table = null; //不带前缀表名
-//    public $field = array(); //表字段集
-    public $default = array(); //模型对象属性默认配置
-    public $trigger = TRUE; //触发器  开启时执行__after_del等方法
-    public $join = array(); //多表关联
-    public $view = array(); //多表视图
-    public $joinTable = array(); //要关联的表
-    public $result = NULL; //curd处理后的结果
-    public $db = null; //数据库连接驱动
-    public $data = array(); //数据对象Object
-    public $validate = array(); //验证规则
-    public $auto = array(); //自动完成
-    public $error = null; //验证不通过的错误信息
-    public $map = array(); //字段映射
-
+    public $tableFull   = NULL; //全表名
+    public $table       = NULL; //不带前缀表名
+    public $db          = NULL; //数据库连接驱动
+    public $error       = NULL; //验证不通过的错误信息
+    public $trigger     = TRUE; //触发器,开启时执行__after_del等方法
+    public $joinTable   = array(); //要关联的表
+    public $data        = array(); //增、改操作数据
+    public $validate    = array(); //验证规则
+    public $auto        = array(); //自动完成
+    public $map         = array(); //字段映射
 
     /**
      * @param string $table 表名
@@ -48,21 +42,6 @@ class Model
             $this->__init();
         }
         $this->run($table, $full, $driver);
-    }
-
-    //初始化
-    protected function init()
-    {
-        $opt = array(
-            "trigger" => true,
-            "joinTable" => array(),
-            "result" => NULL,
-            "data" => array(),
-            "error" => ""
-        );
-        foreach ($opt as $n => $v) {
-            $this->$n = $v;
-        }
     }
 
     //获得连接驱动
@@ -78,12 +57,9 @@ class Model
             if (DEBUG) {
                 error(mysqli_connect_error() . "数据库连接出错了请检查配置文件中的参数", false);
             } else {
-                log_write("数据库连接出错了请检查配置文件中的参数");
+                Log::write("数据库连接出错了请检查配置文件中的参数");
             }
         }
-        $vars = get_object_vars($this);
-        unset($vars['default']);
-        $this->default = $vars;
     }
 
     //设置操作表
@@ -120,16 +96,16 @@ class Model
         $property = array_keys($this->db->opt);
         if (in_array($_var, $property)) {
             $this->$_var($value);
-        } else { //压入data数组用于后期的插入与更新动作
-            $this->data[$var] = $value;
+        }else{
+            $this->data[$var]=$value;
         }
     }
 
     //获得$this->data值
-    public function __get($name)
-    {
-        return isset($this->data[$name]) ? $this->data[$name] : null;
-    }
+//    public function __get($name)
+//    {
+//        return isset($this->data[$name]) ? $this->data[$name] : null;
+//    }
 
 
     /**
@@ -144,12 +120,17 @@ class Model
         } else if (empty($this->data)) {
             $this->data = $_POST;
         }
+        foreach ($data as $key=>$val){
+            if(MAGIC_QUOTES_GPC && is_string($val)){
+                $data[$key] =   stripslashes($val);
+            }
+        }
         return $this;
     }
 
     /**
      * 执行自动映射、自动验证、自动完成
-     * @param $data 如果为空使用$_POST
+     * @param array $data 如果为空使用$_POST
      * @return bool
      */
     public function create($data = array())
@@ -162,7 +143,6 @@ class Model
         $this->data($data);
         //字段映射
         $this->fieldMap();
-
         //自动验证
         if ($this->validate()) {
             //自动完成
@@ -191,9 +171,9 @@ class Model
     }
 
     //触发器，是否执行__after等魔术方法
-    public function trigger($open = FALSE)
+    public function trigger($stat = FALSE)
     {
-        $this->trigger = $open;
+        $this->trigger = $stat;
         return $this;
     }
 
@@ -439,23 +419,7 @@ class Model
         return $this;
     }
 
-    /**
-     * LIMIT 语句定义
-     * 示例：$Db->limit(10)->all("sex=1");
-     */
-    public function limit($start = null, $end = null)
-    {
-        if (is_null($start)) return $this;
-        if (is_array($start)) {
-            $limit = $start;
-        } else if (!is_null($end)) {
-            $limit = $start . "," . $end;
-        } else {
-            $limit = $start;
-        }
-        $this->db->limit($limit);
-        return $this;
-    }
+
 
     /**
      * IN 语句定义
@@ -493,12 +457,10 @@ class Model
      */
     public function delete($data = array())
     {
-        $this->trigger and $this->__before_del();
+        $this->__before_delete($data);
         $result = $this->db->delete($data);
-        $this->result = $result;
         $this->error = $this->db->error;
-        $this->trigger and $this->__after_del();
-        $this->init();
+        $this->__after_delete($result);
         return $result;
     }
 
@@ -518,10 +480,24 @@ class Model
     public function exe($sql)
     {
         $stat = $this->db->exe($sql);
-        $this->init();
         return $stat;
     }
-
+    /**
+     * LIMIT 语句定义
+     * 示例：$Db->limit(10)->all("sex=1");
+     */
+    public function limit($start = null, $end = null)
+    {
+        if (is_null($start)){
+            return $this;
+        }else if (!is_null($end)) {
+            $limit = $start . "," . $end;
+        } else {
+            $limit = $start;
+        }
+        $this->db->limit($limit);
+        return $this;
+    }
     /**
      * 查找满足条件的一条记录
      * 示例：$Db->find("id=188")
@@ -565,12 +541,10 @@ class Model
      */
     public function select($args = array())
     {
-        $this->trigger and $this->__before_select();
+        $this->__before_select($arg);
         $result = $this->db->select($args);
-        $this->result = $result;
-        $this->trigger and $this->__after_select();
+        $this->__after_select($result);
         $this->error = $this->db->error;
-        $this->init();
         return $result;
     }
 
@@ -578,11 +552,10 @@ class Model
      * SQL中的WHERE规则
      * 示例：$Db->where("username like '%向军%')->count();
      */
-    public function where($data = array())
+    public function where($args = array())
     {
-
-        if (!empty($data)) {
-            $this->db->where($data);
+        if (!empty($args)) {
+            $this->db->where($args);
         }
         return $this;
     }
@@ -612,18 +585,16 @@ class Model
     public function update($data = array())
     {
         $this->data($data);
-        $this->trigger and $this->__before_update();
         $data = $this->data;
+        $this->data=array();
+        $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
-            $this->init();
             return false;
         }
         $this->error = $this->db->error;
         $result = $this->db->update($data);
-        $this->result = $result;
-        $this->trigger and $this->__after_update();
-        $this->init();
+        $this->__after_update($result);
         return $result;
     }
 
@@ -637,18 +608,12 @@ class Model
     public function insert($data = array(), $type = "INSERT")
     {
         $this->data($data);
-        $this->trigger and $this->__before_add();
-        $data = $this->data;
-        if (empty($data)) {
-            $this->error = "没有任何数据用于INSERT！";
-            $this->init();
-            return false;
-        }
+        $data=$this->data;
+        $this->data=array();
+        $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
-        $this->result = $result;
         $this->error = $this->db->error;
-        $this->trigger and $this->__after_add();
-        $this->init();
+        $this->__after_insert($result);
         return $result;
     }
 
@@ -689,7 +654,6 @@ class Model
     public function count($args = array())
     {
         $result = $this->db->count($args);
-        $this->init();
         return $result;
     }
 
@@ -699,7 +663,6 @@ class Model
     public function max($args = array())
     {
         $result = $this->db->max($args);
-        $this->init();
         return $result;
     }
 
@@ -709,7 +672,6 @@ class Model
     public function min($args = array())
     {
         $result = $this->db->min($args);
-        $this->init();
         return $result;
     }
 
@@ -719,7 +681,6 @@ class Model
     public function avg($args = array())
     {
         $result = $this->db->avg($args);
-        $this->init();
         return $result;
     }
 
@@ -729,7 +690,6 @@ class Model
     public function sum($args = array())
     {
         $result = $this->db->sum($args);
-        $this->init();
         return $result;
     }
 
@@ -826,8 +786,11 @@ class Model
     }
 
     //获得数据库或表大小
-    public function getSize($table = "")
+    public function getSize($table = '')
     {
+        if(empty($table))$table = array($this->tableFull);
+        if(is_string($table))
+            $table=array($table);
         return $this->db->getSize($table);
     }
 
@@ -877,6 +840,7 @@ class Model
     //删除表
     public function dropTable($table)
     {
+        if(is_string($table))$table=array($table);
         if (is_array($table) && !empty($table)) {
             foreach ($table as $t) {
                 $this->exe("DROP TABLE IF EXISTS `" . $t . "`");
@@ -940,42 +904,42 @@ class Model
     }
 
     //添加数据前执行的方法
-    public function __before_add()
+    public function __before_insert(&$data)
     {
     }
 
     //添加数据后执行的方法
-    public function __after_add()
+    public function __after_insert($result)
     {
     }
 
-    //更新数据前执行的方法
-    public function __before_del()
+    //删除数据前执行的方法
+    public function __before_delete(&$data)
     {
     }
 
     //删除数据后执行的方法
-    public function __after_del()
+    public function __after_delete($result)
     {
     }
 
     //更新数据后前执行的方法
-    public function __before_update()
+    public function __before_update(&$data)
     {
     }
 
-    //删除数据后执行的方法
-    public function __after_update()
+    //更新数据后执行的方法
+    public function __after_update($result)
     {
     }
 
     //查询数据前前执行的方法
-    public function __before_select()
+    public function __before_select(&$data)
     {
     }
 
     //查询数据后执行的方法
-    public function __after_select()
+    public function __after_select($result)
     {
     }
 

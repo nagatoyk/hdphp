@@ -70,7 +70,15 @@ class DbMysql extends Db
         }
         return $res;
     }
-
+    //数据安全处理
+    public function escapeString($str)
+    {
+        if ($this->link) {
+            return mysql_real_escape_string($str,$this->_linkID);
+        } else {
+            return mysql_escape_string($str);
+        }
+    }
     //执行SQL没有返回值
     public function exe($sql)
     {

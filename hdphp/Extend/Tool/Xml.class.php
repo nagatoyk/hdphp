@@ -25,7 +25,7 @@ class Xml
      * @return type
      */
 
-    private function compile($xml)
+    static private function compile($xml)
     {
         $xmlRes = xml_parser_create('utf-8');
         xml_parser_set_option($xmlRes, XML_OPTION_SKIP_WHITE, 1);
@@ -42,7 +42,7 @@ class Xml
      * @param string $encoding  编码
      * @return string           XML字符串
      */
-    public function create($data, $root = null, $encoding = "UTF-8")
+    static public function create($data, $root = null, $encoding = "UTF-8")
     {
         $xml = '';
         $root = is_null($root) ? "root" : $root;
@@ -53,7 +53,7 @@ class Xml
         return $xml;
     }
 
-    private function formatXml($data)
+    static private function formatXml($data)
     {
         if (is_object($data)) {
             $data = get_object_vars($data);
@@ -80,7 +80,7 @@ class Xml
      * @param string $xml   XML字符串或XML文件
      * @return array        解析后的数组
      */
-    public function toArray($xml)
+    static public function toArray($xml)
     {
         $arrData = self::compile($xml);
         $arr = array();
@@ -95,7 +95,7 @@ class Xml
      * @param int $i 层级
      * @return array    数组
      */
-    private function getData($arrData, &$i)
+    static private function getData($arrData, &$i)
     {
         $data = array();
         for ($i = $i; $i < count($arrData); $i++) {
