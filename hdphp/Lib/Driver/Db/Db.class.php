@@ -90,7 +90,7 @@ abstract class Db implements DbInterface
     public function optInit()
     {
         $this->opt_old = $this->opt;
-        $this->cacheTime = -1; //SELECT查询缓存时间
+        $this->cacheTime = NULL; //SELECT查询缓存时间
         $this->error = NULL;
         $opt = array(
             'table' => $this->table,
