@@ -599,7 +599,7 @@ function _404($msg = "", $url = "")
     DEBUG && halt($msg);
     //写入日志
     Log::write($msg);
-    if (empty($url) && C("404_URL")) {
+    if (empty($url) or C("404_URL")) {
         $url = C("404_URL");
     }
     if ($url)
