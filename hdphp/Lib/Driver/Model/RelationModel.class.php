@@ -296,12 +296,10 @@ class RelationModel extends Model
     //关联删除
     public function delete($data = array())
     {
-        $this->trigger and $this->__before_del();
+        $this->trigger and $this->__before_delete($data);
         //查找将删除的主表数据，用于副表删除时使用
         $id = M($this->table)->where($data)->select();
         if (!$id) {
-            $this->error = $this->db->error;
-            $this->trigger and $this->__after_del();
             $this->init();
             return true;
         }
@@ -310,7 +308,7 @@ class RelationModel extends Model
         //插入失败或者没有定义关联join属性
         if (!$stat || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->trigger and $this->__after_del();
+            $this->trigger and $this->__after_delete($stat);
             $this->init();
             return $stat;
         }
@@ -342,7 +340,7 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $this->trigger and $this->__after_del($result);
+        $this->trigger and $this->__after_delete($result);
         $this->init();
         return $result;
     }

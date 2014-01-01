@@ -286,9 +286,9 @@ function session($name, $value = '')
     if (is_array($name)) {
         //关闭session自启动
         ini_set('session.auto_start', 0);
-        //设置session_id
-        if (isset($name['name']))
-            session_name($name['name']);
+        //session_name
+        session_name(C('SESSION_NAME'));
+        //session_id
         if (isset($_REQUEST[session_name()]))
             session_id($_REQUEST[session_name()]);
         if (isset($name['path']))

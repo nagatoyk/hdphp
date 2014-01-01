@@ -179,7 +179,7 @@ abstract class Control
     protected function error($msg = '出错了', $url = NULL, $time = 2, $tpl = null)
     {
         $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
-        $tpl = $tpl ? $tpl : PUBLIC_PATH . C("TPL_ERROR");
+        $tpl = $tpl ? $tpl : PUBLIC_PATH . str_ireplace(C('TPL_FIX'),'',C("TPL_ERROR"));
         $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
         $this->display($tpl);
     }
@@ -194,7 +194,7 @@ abstract class Control
     protected function success($msg = '操作成功', $url = NULL, $time = 2, $tpl = null)
     {
         $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
-        $tpl = $tpl ? $tpl : PUBLIC_PATH . C("TPL_SUCCESS");
+        $tpl = $tpl ? $tpl : PUBLIC_PATH . str_ireplace(C('TPL_FIX'),'',C("TPL_SUCCESS"));
         $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
         $this->display($tpl);
     }

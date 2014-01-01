@@ -1,5 +1,5 @@
 <?php
-if (!defined("HDPHP_PATH"))
+if (!defined('HDPHP_PATH'))
     exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
@@ -26,11 +26,11 @@ abstract class View
     protected function getTemplateFile($file)
     {
         if (is_null($file)) {
-            $file = TPL_PATH . METHOD . C("TPL_FIX");
+            $file = TPL_PATH . CONTROL.'/'.METHOD . C('TPL_FIX');
         } else if (strstr($file, '/')) {
-            $file .= C("TPL_FIX");
+            $file .= C('TPL_FIX');
         } else {
-            $file=TPL_PATH . $file . C("TPL_FIX");
+            $file=TPL_PATH . $file . C('TPL_FIX');
         }
         //将目录全部转为小写
         if (!is_file($file)) {

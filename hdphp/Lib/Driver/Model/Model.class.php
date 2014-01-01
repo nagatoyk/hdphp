@@ -20,16 +20,16 @@ if (!defined("HDPHP_PATH"))
 class Model
 {
 
-    public $tableFull   = NULL; //全表名
-    public $table       = NULL; //不带前缀表名
-    public $db          = NULL; //数据库连接驱动
-    public $error       = NULL; //验证不通过的错误信息
-    public $trigger     = TRUE; //触发器,开启时执行__after_del等方法
-    public $joinTable   = array(); //要关联的表
-    public $data        = array(); //增、改操作数据
-    public $validate    = array(); //验证规则
-    public $auto        = array(); //自动完成
-    public $map         = array(); //字段映射
+    public $tableFull = NULL; //全表名
+    public $table = NULL; //不带前缀表名
+    public $db = NULL; //数据库连接驱动
+    public $error = NULL; //验证不通过的错误信息
+    public $trigger = TRUE; //触发器,开启时执行__after_delete等方法
+    public $joinTable = array(); //要关联的表
+    public $data = array(); //增、改操作数据
+    public $validate = array(); //验证规则
+    public $auto = array(); //自动完成
+    public $map = array(); //字段映射
 
     /**
      * @param string $table 表名
@@ -96,8 +96,8 @@ class Model
         $property = array_keys($this->db->opt);
         if (in_array($_var, $property)) {
             $this->$_var($value);
-        }else{
-            $this->data[$var]=$value;
+        } else {
+            $this->data[$var] = $value;
         }
     }
 
@@ -120,9 +120,9 @@ class Model
         } else if (empty($this->data)) {
             $this->data = $_POST;
         }
-        foreach ($data as $key=>$val){
-            if(MAGIC_QUOTES_GPC && is_string($val)){
-                $data[$key] =   stripslashes($val);
+        foreach ($data as $key => $val) {
+            if (MAGIC_QUOTES_GPC && is_string($val)) {
+                $data[$key] = stripslashes($val);
             }
         }
         return $this;
@@ -136,20 +136,36 @@ class Model
     public function create($data = array())
     {
         //验证令牌
-        if (!$this->tokenCheck()) {
+        if (!$this->token()) {
             return false;
         }
         //获得数据
         $this->data($data);
-        //字段映射
-        $this->fieldMap();
         //自动验证
-        if ($this->validate()) {
-            //自动完成
-            $this->auto();
-            return true;
+        if (!$this->validate()) {
+            return false;
         }
-        return false;
+        //自动完成
+        $this->auto();
+        //字段映射
+        $this->map();
+        return true;
+    }
+
+    /**
+     * 字段映射
+     */
+    protected function map()
+    {
+        if (empty($this->map)) return;
+        $this->data();
+        foreach ($this->map as $k => $v) {
+            //处理POST
+            if (isset($this->data[$k])) {
+                $this->data[$v] = $this->data[$k];
+                unset($this->data[$k]);
+            }
+        }
     }
 
     //当前操作的方法
@@ -164,13 +180,15 @@ class Model
     {
         if (is_null($table)) {
             $this->joinTable = NULL;
-        } else if (!empty($table) && is_string($table)) {
+        } else if (is_string($table)) {
             $this->joinTable = explode(",", $table);
+        } else if (is_array($table)) {
+            $this->joinTable = $table;
         }
         return $this;
     }
 
-    //触发器，是否执行__after等魔术方法
+    //触发器，是否执行__after_delete等魔术方法
     public function trigger($stat = FALSE)
     {
         $this->trigger = $stat;
@@ -181,7 +199,6 @@ class Model
     public function validate($data = array())
     {
         $this->data($data);
-        if (!is_array($this->data) || empty($this->data)) return false;
         //当前方法
         $current_method = $this->getCurrentMethod();
         $_data = & $this->data;
@@ -267,7 +284,7 @@ class Model
             //函数或方法
             $action = $v[1];
             //时间：1有这个表单项就处理  2 必须处理的表单项 3 如果表单不为空才处理
-            $condition = isset($v[2]) ? $v[2] : 1;
+            $condition = isset($v[3]) ? $v[3] : 1;
             switch ($condition) {
                 //有post这个变量就处理
                 case 1:
@@ -277,19 +294,20 @@ class Model
                     break;
                 // 必须处理
                 case 2:
+                    if (!isset($_data[$name]))
+                        $_data[$name] = '';
                     break;
                 //不为空验证
                 case 3:
-                    if (!isset($_data[$name]) || empty($_data[$name])) {
-                        unset($_data[$name]);
+                    if (empty($_data[$name])) {
                         continue 2;
                     }
                     break;
             }
             //1 插入时处理  2 更新时处理  3 插入与更新都处理
-            $type = isset($v[3]) ? $v[3] : 3;
+            $type = isset($v[4]) ? $v[4] : 3;
             //处理类型 function函数  method模型方法 string字符串
-            $handle = isset($v[4]) ? $v[4] : "string";
+            $handle = isset($v[2]) ? $v[2] : "string";
             //是否处理  更新或插入
             if ($motion != $type && $type != 3) {
                 continue;
@@ -303,7 +321,7 @@ class Model
                     break;
                 case "method":
                     if (method_exists($this, $action)) {
-                        $_data[$name] = call_user_func_array(array($this, $action), array($_data[$name]));
+                        $_data[$name] = $this->$action($_data[$name]);
                     }
                     break;
                 case "string":
@@ -313,21 +331,6 @@ class Model
         }
     }
 
-    /**
-     * 字段映射
-     */
-    protected function fieldMap()
-    {
-        if (empty($this->map)) return;
-        $this->data();
-        foreach ($this->map as $k => $v) {
-            //处理POST
-            if (isset($this->data[$k])) {
-                $this->data[$v] = $this->data[$k];
-                unset($this->data[$k]);
-            }
-        }
-    }
 
     /**
      * __call方法
@@ -420,7 +423,6 @@ class Model
     }
 
 
-
     /**
      * IN 语句定义
      * 示例：$Db->in(1,2,3)->all();
@@ -482,15 +484,16 @@ class Model
         $stat = $this->db->exe($sql);
         return $stat;
     }
+
     /**
      * LIMIT 语句定义
      * 示例：$Db->limit(10)->all("sex=1");
      */
     public function limit($start = null, $end = null)
     {
-        if (is_null($start)){
+        if (is_null($start)) {
             return $this;
-        }else if (!is_null($end)) {
+        } else if (!is_null($end)) {
             $limit = $start . "," . $end;
         } else {
             $limit = $start;
@@ -498,6 +501,7 @@ class Model
         $this->db->limit($limit);
         return $this;
     }
+
     /**
      * 查找满足条件的一条记录
      * 示例：$Db->find("id=188")
@@ -586,7 +590,7 @@ class Model
     {
         $this->data($data);
         $data = $this->data;
-        $this->data=array();
+        $this->data = array();
         $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
@@ -608,8 +612,8 @@ class Model
     public function insert($data = array(), $type = "INSERT")
     {
         $this->data($data);
-        $data=$this->data;
-        $this->data=array();
+        $data = $this->data;
+        $this->data = array();
         $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
         $this->error = $this->db->error;
@@ -730,11 +734,11 @@ class Model
     /**
      * 验证令牌
      */
-    public function tokenCheck()
+    public function token()
     {
         if (C("TOKEN_ON") || isset($_POST[C("TOKEN_NAME")]) || isset($_GET[C("TOKEN_NAME")])) {
             if (!Token::check()) {
-                $this->error = '表单Token(令牌)错误';
+                $this->error = '表单令牌错误';
                 return false;
             }
         }
@@ -788,9 +792,9 @@ class Model
     //获得数据库或表大小
     public function getSize($table = '')
     {
-        if(empty($table))$table = array($this->tableFull);
-        if(is_string($table))
-            $table=array($table);
+        if (empty($table)) $table = array($this->tableFull);
+        if (is_string($table))
+            $table = array($table);
         return $this->db->getSize($table);
     }
 
@@ -840,7 +844,7 @@ class Model
     //删除表
     public function dropTable($table)
     {
-        if(is_string($table))$table=array($table);
+        if (is_string($table)) $table = array($table);
         if (is_array($table) && !empty($table)) {
             foreach ($table as $t) {
                 $this->exe("DROP TABLE IF EXISTS `" . $t . "`");

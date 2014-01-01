@@ -31,12 +31,13 @@ return array(
     'ERROR_MESSAGE'                 => '网站出错了，请稍候再试...', //关闭DEBUG显示的错误信息
     /********************************LOG日志处理********************************/
     'LOG_SIZE'                      => 2000000,     //日志文件大小
-    'LOG_RECORD'                    => FALSE,        //记录日志
+    'LOG_RECORD'                    => FALSE,       //记录日志
     'LOG_LEVEL'                     => array('FATAL','ERROR','WARNING','SQL'),//写入日志的错误级别
-    'LOG_EXCEPTION_RECORD'          => TRUE,       // 记录异常
+    'LOG_EXCEPTION_RECORD'          => TRUE,        // 记录异常
     /********************************SESSION********************************/
-    'SESSION_AUTO_START'            => TRUE,           //自动开启SESSION
+    'SESSION_AUTO_START'            => TRUE,        //自动开启SESSION
     'SESSION_TYPE'                  => '',          //引擎:mysql,memcache,redis
+    'SESSION_NAME'                  => 'hd_sid',    //session_name
     'SESSION_OPTIONS'               =>array(),      //session处理参数，配置复杂，请查看手册获得帮助
     /********************************COOKIE********************************/
     'COOKIE_EXPIRE'                 => 0,           // Coodie有效期
@@ -136,8 +137,8 @@ return array(
     'TPL_STYLE'                     => '',          //风格
     'TPL_FIX'                       => '.html',     //模版文件扩展名
     'TPL_TAGS'                      => array(),     //扩展标签,多个标签用逗号分隔
-    'TPL_ERROR'                     => 'error.html', //错误页面
-    'TPL_SUCCESS'                   => 'success.html',//正确页面
+    'TPL_ERROR'                     => 'error.html',     //错误信息模板
+    'TPL_SUCCESS'                   => 'success.html',   //正确信息模板
     'TPL_ENGINE'                    => 'HD',        //模板引擎 HD,Smarty
     'TPL_TAG_LEFT'                  => '<',         //左标签
     'TPL_TAG_RIGHT'                 => '>',         //右标签

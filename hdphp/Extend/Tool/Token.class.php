@@ -33,10 +33,10 @@ final class Token
     static function check()
     {
         $tokenName = C("TOKEN_NAME");
-        $sess_token = session($tokenName);
+        $key = session($tokenName);
         $cli_token = isset($_POST[$tokenName]) ? $_POST[$tokenName] :
             (isset($_GET[$tokenName]) ? $_GET[$tokenName] : NULL);
-        return !is_null($sess_token) && !is_null($cli_token) && ($sess_token === $cli_token);
+        return !is_null($key) && !is_null($cli_token) && ($key === $cli_token);
     }
 
 }

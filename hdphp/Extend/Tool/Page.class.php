@@ -39,7 +39,7 @@ class Page
      * @param string $pageRow 显示页码数量
      * @param string $desc 描述文字
      * @param string $setSelfPage 当前页
-     * @param string $customUrl 当前url
+     * @param string $customUrl 自定义url地址
      * @param string $pageNumLabel 页码变量,默认为{page}
      */
 

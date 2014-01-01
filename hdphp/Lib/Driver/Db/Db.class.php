@@ -246,10 +246,9 @@ abstract class Db implements DbInterface
      * @param string $sql
      * @return string   格式化后的SQL
      */
-    private function addTableFix($sql)
+    public function addTableFix($sql)
     {
         return preg_replace("@(\w+?\.[a-z]+?)@i", C("DB_PREFIX") . '\1', $sql);
-//        return preg_replace("@(?<=[\s,=><])(\w+?\.[a-z]+?)@i", C("DB_PREFIX") . '\1', $sql);
     }
 
     /**
