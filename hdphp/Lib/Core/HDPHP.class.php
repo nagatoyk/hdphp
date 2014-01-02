@@ -181,7 +181,7 @@ final class HDPHP
                 $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
                 trace($errorStr, 'NOTICE');
                 //SHUT_NOTICE关闭提示信息
-                if (DEBUG && !C('SHUT_NOTICE'))
+                if (DEBUG && C('SHOW_NOTICE'))
                     require HDPHP_TPL_PATH . 'notice.html';
                 break;
         }

@@ -29,6 +29,7 @@ return array(
     '404_URL'                       => '',          //404跳转url
     'ERROR_URL'                     => '',          //错误跳转URL
     'ERROR_MESSAGE'                 => '网站出错了，请稍候再试...', //关闭DEBUG显示的错误信息
+    'SHOW_NOTICE'                   => TRUE,        //显示Warning与Notice错误显示
     /********************************LOG日志处理********************************/
     'LOG_SIZE'                      => 2000000,     //日志文件大小
     'LOG_RECORD'                    => FALSE,       //记录日志
