@@ -26,12 +26,13 @@ abstract class View
     protected function getTemplateFile($file)
     {
         if (is_null($file)) {
-            $file = TPL_PATH . CONTROL.'/'.METHOD . C('TPL_FIX');
-        } else if (strstr($file, '/')) {
-            $file .= C('TPL_FIX');
-        } else {
-            $file=TPL_PATH . $file . C('TPL_FIX');
+            $file = TPL_PATH . CONTROL . '/' . METHOD;
+        } else if (!strstr($file, '/')) {
+            $file = TPL_PATH . $file;
         }
+        //添加模板后缀
+        if (!preg_match('@' . C('TPL_FIX') . '$@', $file))
+            $file .= C('TPL_FIX');
         //将目录全部转为小写
         if (!is_file($file)) {
             halt("模板不存在:$file"); //模版文件不存在
