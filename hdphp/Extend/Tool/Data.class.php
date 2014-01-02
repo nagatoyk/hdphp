@@ -92,7 +92,7 @@ final class Data
     /**
      * 获得树状数据
      * @param $data 数据
-     * @param $title 字段描述
+     * @param $title 字段名
      * @param string $fieldPri 主键id
      * @param string $fieldPid 父id
      * @return array
@@ -111,10 +111,12 @@ final class Data
             if ($v['level'] != 1) {
                 $t = $title ? $v[$title] : "";
                 if (isset($arr[$k + 1]) && $arr[$k + 1]['level'] >= $arr[$k]['level']) {
-                    $arr[$k][$title] = $str . "├─" . $v['html'] . $t;
+                    $arr[$k]['_name'] = $str . "├─" . $v['html'] . $t;
                 } else {
-                    $arr[$k][$title] = $str . "└─" . $v['html'] . $t;
+                    $arr[$k]['_name'] = $str . "└─" . $v['html'] . $t;
                 }
+            }else{
+                $arr[$k]['_name']=$v[$title];
             }
         }
         return $arr;

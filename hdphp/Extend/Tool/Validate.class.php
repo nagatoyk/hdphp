@@ -24,7 +24,7 @@ class Validate
     //不能为空
     public function _nonull($name, $value, $msg)
     {
-        if (empty($value) && $value != 0) {
+        if (empty($value) && $value !== 0) {
             return $msg;
         }
         return true;
@@ -118,7 +118,7 @@ class Validate
     public function _num($name, $value, $msg, $arg)
     {
         $arg = explode(',', $arg);
-        if ($value > $arg[0] && $value < $arg[1]) {
+        if ($value >= $arg[0] && $value <= $arg[1]) {
             return true;
         }
         return $msg;
