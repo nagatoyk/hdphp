@@ -181,7 +181,7 @@ abstract class Control
         $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
         $tpl = $tpl ? $tpl : PUBLIC_PATH . str_ireplace(C('TPL_FIX'),'',C("TPL_ERROR"));
         $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
-        $this->display($tpl);
+        $this->display($tpl);exit;
     }
 
     /**
@@ -196,7 +196,7 @@ abstract class Control
         $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
         $tpl = $tpl ? $tpl : PUBLIC_PATH . str_ireplace(C('TPL_FIX'),'',C("TPL_SUCCESS"));
         $this->assign(array("msg"=>$msg,'url'=>$url,'time'=>$time));
-        $this->display($tpl);
+        $this->display($tpl);exit;
     }
 
     /**
