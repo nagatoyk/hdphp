@@ -21,7 +21,6 @@ if (!defined("HDPHP_PATH"))
  */
 final class Boot
 {
-    const VERSION = "2013.12.20"; //版本
     /**
      * 运行框架
      * 在单入口文件引入框架hdphp.php文件会自动执行run()方法，所以不用单独执行run方法
@@ -31,7 +30,6 @@ final class Boot
     static public function run()
     {
         //框架版本
-        define('HDPHP_VERSION', self::VERSION);
         define('IS_GROUP', defined("GROUP_PATH"));
         define('ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . '/'); //根目录
         define("DS", DIRECTORY_SEPARATOR); //目录分隔符
