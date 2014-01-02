@@ -1,3 +1,4 @@
+<?php if(!defined('HDPHP_PATH'))exit;?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
     #hd_debug {
@@ -13,13 +14,10 @@
         overflow: hidden;
         word-wrap: word-break;
         word-break: break-word;
-        /*position: absolute;*/
-        /*top: 200px;*/
         left: 0px;
         bottom: 0px;
         z-index: 2000;
         display: none;
-        /*box-shadow: 0px 3px 3px #dcdcdc;*/
     }
 
     #hd_debug * {

@@ -180,8 +180,9 @@ final class HDPHP
             default:
                 $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
                 trace($errorStr, 'NOTICE');
-                if (DEBUG)
-                    include HDPHP_TPL_PATH . 'notice.html';
+                //SHUT_NOTICE关闭提示信息
+                if (DEBUG && !C('SHUT_NOTICE'))
+                    require HDPHP_TPL_PATH . 'notice.html';
                 break;
         }
     }

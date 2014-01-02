@@ -73,14 +73,9 @@ class ViewTag
      */
     private function replaceAttrConstVar($attr, $php = true)
     {
-//        $const = print_const(false, $php);
         foreach ($attr as $k => $at) {
             //替换变量
             $attr[$k] = preg_replace('/\$\w+\[.*\](?!=\[)|\$\w+(?!=[a-z])/', '<?php echo \0;?>', $attr[$k]);
-            //替换常量
-//            foreach ($const as $constName => $constValue) {
-//                $attr[$k] = str_replace($constName, '<?php echo $this->const["' . strtolower($constName) . '"];? >', $attr[$k]);
-//            }
         }
         return $attr;
     }
@@ -534,7 +529,7 @@ class ViewTag
     public function _load($attr, $content)
     {
         if (!isset($attr['file'])) {
-            error('load 模板标签必须有value属性', false); //load标签必须有file属性
+            halt('load 模板标签必须有value属性', false); //load标签必须有file属性
         }
         $const = print_const(false, true);
         foreach ($const as $k => $v) {

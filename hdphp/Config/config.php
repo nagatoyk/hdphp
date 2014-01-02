@@ -23,11 +23,11 @@ return array(
     'DB_PREFIX'                     => '',          //表前缀
     'DB_BACKUP'                     => ROOT_PATH . 'backup/'.time(), //数据库备份目录
     /********************************表单TOKEN令牌********************************/
-    'TOKEN_ON'                      => FALSE,           //令牌状态
+    'TOKEN_ON'                      => FALSE,       //令牌状态
     'TOKEN_NAME'                    => '__TOKEN__', //令牌的表单name
     /********************************系统调试********************************/
     '404_URL'                       => '',          //404跳转url
-    'ERROR_URL'                     => '',           //错误跳转URL
+    'ERROR_URL'                     => '',          //错误跳转URL
     'ERROR_MESSAGE'                 => '网站出错了，请稍候再试...', //关闭DEBUG显示的错误信息
     /********************************LOG日志处理********************************/
     'LOG_SIZE'                      => 2000000,     //日志文件大小
@@ -46,7 +46,7 @@ return array(
     'COOKIE_PREFIX'                 => '',          // Cookie前缀 避免冲突
     /********************************URL设置********************************/
     'HTTPS'                         => FALSE,       //基于https协议
-    'URL_REWRITE'                   => FALSE,           //url重写模式
+    'URL_REWRITE'                   => FALSE,       //url重写模式
     'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
     'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量

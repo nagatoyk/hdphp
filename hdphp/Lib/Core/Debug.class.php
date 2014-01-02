@@ -14,7 +14,7 @@
  * @package     Core
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-final class debug
+final class Debug
 {
 
     //信息内容
@@ -98,7 +98,7 @@ final class debug
         $debug['file'] = require_cache();
         $debug['runtime'] = self::runtime($start, $end);
         $debug['memory'] = number_format(self::memory_perk($start, $end) / 1000, 0) . " KB";
-        include(HDPHP_TPL_PATH . '/debug.html');
+        require HDPHP_TPL_PATH . '/debug.php';
     }
 
 }
