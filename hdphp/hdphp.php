@@ -27,7 +27,7 @@ if (!DEBUG and is_file(TEMP_FILE)) {
     require TEMP_FILE;
 } else {
     //编译文件
-    define('HDPHP_PATH', dirname(__FILE__) . '/');
+    define('HDPHP_PATH', str_replace('\\','/',dirname(__FILE__)) . '/');
     require HDPHP_PATH . '/Lib/Core/Boot.class.php';
     Boot::run();
 }
