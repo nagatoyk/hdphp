@@ -163,7 +163,7 @@ class RelationModel extends Model
         //插入失败或者没有定义关联join属性
         if (!$id || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $this->trigger and $this->__after_add($id);
+            $this->trigger and $this->__after_insert($id);
             $this->init();
             $this->data=array();
             return $id;

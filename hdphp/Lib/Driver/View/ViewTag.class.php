@@ -304,7 +304,7 @@ class ViewTag
     //百度编辑器
     public function _ueditor($attr, $content)
     {
-        $ueditor_path = __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/'; //url路径
+//        $ueditor_path = __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/'; //url路径
         $attr = array_change_key_case_d($attr, 0);
         $attr = $this->replaceAttrConstVar($attr);
         $style = isset($attr['style']) ? $attr['style'] : C("EDITOR_STYLE"); //1 完整  2精简
@@ -323,9 +323,10 @@ class ViewTag
         $readonly = isset($attr['readonly']) ? $attr['readonly'] : "false"; //编辑区域是否是只读的
         $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
         $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
-        $toolbars = ''; //工具按钮
+        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']==1 ? '"insertimage",':''; //图片上传按钮
+        //图片按钮
         if ($style == 2) {
-            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','insertimage','insertcode','preview']]";
+            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
         }else{
             $toolbars ="[
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
@@ -391,8 +392,7 @@ class ViewTag
         $filterMode = isset($attr['filter']) ? $attr['filter'] : "false"; //过滤HTML代码
         $filterMode = $filterMode == "false" || $filterMode == "0" ? "false" : "true";
         $filemanager = isset($attr['filemanager']) ? $attr['filemanager'] : "false"; //true时显示浏览远程服务器按钮
-        $imageupload = isset($attr['imageupload']) ? $attr['imageupload'] : "true"; //true时显示图片上传按钮
-        $imageupload = $imageupload == 'false' || $imageupload == '0' ? '' : '"image",';
+        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']==1 ? '"image",':''; //图片上传按钮
         $str = '';
         if (!defined("keditor_hd")) {
             $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Editor/Keditor/kindeditor-all-min.js"></script>
@@ -432,9 +432,13 @@ class ViewTag
     public function _highlight()
     {
         return '<link type="text/css" rel="stylesheet" href="__HDPHP_EXTEND__/Org/Editor/Keditor/plugins/code/prettify.css"/>
-        <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Editor/Ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
-    <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Editor/Ueditor/third-party/SyntaxHighlighter/shCoreDefault.css"/>
-    <script>window.onload=function(){SyntaxHighlighter.highlight();}</script>';
+        <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.js"></script>
+    <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.css"/>
+    <script>
+  var editor = CodeMirror.fromTextArea(myTextarea, {
+    mode: "text/html"
+  });
+</script>';
     }
 
     //加载CSS文件

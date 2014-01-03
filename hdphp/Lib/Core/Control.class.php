@@ -70,6 +70,14 @@ abstract class Control
     }
 
     /**
+     * 魔术方法
+     * @param $name
+     * @param $value
+     */
+    public function __set($name,$value){
+        $this->assign($name,$value);
+    }
+    /**
      * 获得模型对象与M()方法相同
      * @access protected
      * @param string $tableName 表名

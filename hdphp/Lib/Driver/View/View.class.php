@@ -28,7 +28,7 @@ abstract class View
         if (is_null($file)) {
             $file = TPL_PATH . CONTROL . '/' . METHOD;
         } else if (!strstr($file, '/')) {
-            $file = TPL_PATH . $file;
+            $file = TPL_PATH . CONTROL.'/'.$file;
         }
         //添加模板后缀
         if (!preg_match('@' . C('TPL_FIX') . '$@', $file))
