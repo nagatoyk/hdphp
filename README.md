@@ -38,7 +38,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 
 ###更新日志
-2014.1.4
+2014.1.3
 
 ```
 1. $this->_post()这种调用方式废弃了
@@ -46,6 +46,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 3. 升级百度编辑器ueditor至1.3.6版本
 4. 自动验证增加身份证验证
 5. 自动验证方法maxlen与minlen改变验证字符长度(支持中文)
+6. 修改keditor目录结构
 ```
 
 2013.12.30
