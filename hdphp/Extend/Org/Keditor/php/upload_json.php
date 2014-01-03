@@ -23,7 +23,7 @@ if($_GET['maximagewidth']!='false' || $_GET['maximageheight']!='false'){
 	C("UPLOAD_IMG_MAX_WIDTH",$maximagewidth);
 	C("UPLOAD_IMG_MAX_HEIGHT",$maximageheight);
 }
-$upload = new upload('','',intval($_GET['uploadsize']));
+$upload = new Upload(C('EDITOR_SAVE_PATH'),'',intval($_GET['uploadsize']));
 $file = $upload->upload();
 if(!$file){
 	echo json_encode(array('error' => 1, 'message' =>$upload->error));

@@ -154,7 +154,8 @@ class ViewTag
         $uploadify_url = __HDPHP_EXTEND__ . '/Org/Uploadify/'; //uploadify目录
         static $_hd_uploadify_js = false; //后盾js文件只加载一次
         $attr = array_change_key_case_d($attr, 0);
-        $_input_type = isset($attr['input_type']) && !empty($attr['input_type']) ? $attr['input_type'] : "input"; //表单类型
+        //表单类型 是点击input过来的，还是img图片（缩略图）过来的
+        $_input_type = isset($attr['input_type']) && !empty($attr['input_type']) ? $attr['input_type'] : "input";
         $_elem_id = isset($attr['elem_id']) && !empty($attr['elem_id']) ? $attr['elem_id'] : ""; //表单类型
         $_name = isset($attr['name']) ? $attr['name'] : false; //上传表单name
         $_post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
@@ -164,9 +165,9 @@ class ViewTag
         $name = str_replace("[]", "", $_name);
         $id = "hd_uploadify_" . $name;
         //是否加水印
-        $_water = isset($attr['water']) ? $attr['water'] : intval(C("WATER_ON"));
-        $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 0 ? 0 : 1;
-        $water = $_water == 'false' || $_water == 0 ? 0 : 1;
+        $_water = isset($attr['water']) ? $attr['water'] : false;
+        $water = $_water==false?intval(C("WATER_ON")):($_water == 'false'? 0 : 1);
+        $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
         $removeTimeout = isset($attr['removetimeout']) ? $attr['removetimeout'] : 0; //提示框消失时间
@@ -315,7 +316,7 @@ class ViewTag
         $width = '"' . str_ireplace("px", "", $width) . '"';
         $height = '"' . str_ireplace(array("px", "%"), "", $height) . '"';
         $water = isset($attr['water']) ? $attr['water'] : false; //是否加水印
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' || $water == '0' ? 0 : 1); //是否加水印
+        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' ? 0 : 1); //是否加水印
         $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
         $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
         $uploadsize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1000 : C("EDITOR_FILE_SIZE"); //上传文件大小
@@ -323,7 +324,7 @@ class ViewTag
         $readonly = isset($attr['readonly']) ? $attr['readonly'] : "false"; //编辑区域是否是只读的
         $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
         $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']==1 ? '"insertimage",':''; //图片上传按钮
+        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"insertimage",':''; //图片上传按钮
         //图片按钮
         if ($style == 2) {
             $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
@@ -385,18 +386,18 @@ class ViewTag
         $height = isset($attr['height']) ? $attr['height'] : C("EDITOR_HEIGHT"); //编辑器高度
         $height = str_replace("px", "", $height) . "px";
         $water = isset($attr['Image']) ? $attr['Image'] : false; //编辑器宽度
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' || $water == '0' ? 0 : 1);
+        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false'? 0 : 1);
         $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
         $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
         $uploadSize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1024 : C("EDITOR_FILE_SIZE"); //上传文件大小
         $filterMode = isset($attr['filter']) ? $attr['filter'] : "false"; //过滤HTML代码
         $filterMode = $filterMode == "false" || $filterMode == "0" ? "false" : "true";
         $filemanager = isset($attr['filemanager']) ? $attr['filemanager'] : "false"; //true时显示浏览远程服务器按钮
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']==1 ? '"image",':''; //图片上传按钮
+        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"image",':''; //图片上传按钮
         $str = '';
         if (!defined("keditor_hd")) {
-            $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Editor/Keditor/kindeditor-all-min.js"></script>
-            <script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Editor/Keditor/lang/zh_CN.js"></script>';
+            $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/kindeditor-all-min.js"></script>
+            <script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/lang/zh_CN.js"></script>';
             define("keditor_hd", 1);
         }
         $session = session_name() . '=' . session_id();
@@ -411,7 +412,7 @@ class ViewTag
                 ,formatUploadUrl:false
         ,allowFileManager:' . $filemanager . '
         ,allowImageUpload:true
-        ,uploadJson : "' . __CONTROL__ . '&m=keditor_upload&editor_type=2&Image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
+        ,uploadJson : "' . __CONTROL__ . '&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
         };';
         if ($style == 2) {
             $str .= 'options_' . $name . '.items=[
