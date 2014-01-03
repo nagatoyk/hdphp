@@ -19,7 +19,7 @@ if (!defined("HDPHP_PATH")) exit('No direct script access allowed');
 return array(
     "ip" => HDPHP_EXTEND_PATH . 'Org/Ip/Ip.class.php', //IP处理类
     "mail" => HDPHP_EXTEND_PATH . 'Org/Mail/Mail.class.php', //IP处理类
-    "UEDITOR_UPLOAD" => HDPHP_EXTEND_PATH . 'Org/Editor/Ueditor/php/ueditor_upload.php', //ueditor
+    "UEDITOR_UPLOAD" => HDPHP_EXTEND_PATH . 'Org/Ueditor/php/ueditor_upload.php', //ueditor
     "KEDITOR_UPLOAD" => HDPHP_EXTEND_PATH . 'Org/Editor/Keditor/php/upload_json.php', //keditor
     "HD_UPLOADIFY" => HDPHP_EXTEND_PATH . 'Org/Uploadify/hd_uploadify.php', //uploadify上传
     "HD_UPLOADIFY_DEL" => HDPHP_EXTEND_PATH . 'Org/Uploadify/hd_uploadify.php', //uploadify删除

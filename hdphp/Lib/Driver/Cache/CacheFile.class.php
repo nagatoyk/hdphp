@@ -58,7 +58,7 @@ class CacheFile extends Cache
      */
     protected function getCacheFile($name)
     {
-        return $this->options['dir'] . '/' . $this->options['prefix'] . md5($name) . ".php";
+        return $this->options['dir'] . '/' . $this->options['prefix'] . $name . ".php";
     }
 
     /**
@@ -110,10 +110,10 @@ class CacheFile extends Cache
      * 获得缓存数据
      * @access public
      * @param string $name 缓存KEY
-     * @param null $ctime 过期时间
+     * @param int $ctime 过期时间
      * @return bool|mixed|null
      */
-    public function get($name, $ctime = null)
+    public function get($name, $ctime = 0)
     {
         $cacheFile = $this->getCacheFile($name);
         //缓存文件不存在
@@ -130,7 +130,7 @@ class CacheFile extends Cache
         //文件修改时间
         $mtime = filemtime($cacheFile);
         //缓存失效处理
-        if (is_int($ctime) && $mtime + $ctime < time()) {
+        if ($ctime>0 && $mtime + $ctime < time()) {
             @unlink($cacheFile);
             $this->record(2,0);
             return false;

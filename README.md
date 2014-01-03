@@ -42,6 +42,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 ```
 1. $this->_post()这种调用方式废弃了
+2. 自定义session处理方式发生改变，请参考手册
 ```
 
 2013.12.30

@@ -325,13 +325,27 @@ class ViewTag
         $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
         $toolbars = ''; //工具按钮
         if ($style == 2) {
-            $toolbars = ",toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','insertimage']]";
+            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','insertimage','insertcode','preview']]";
+        }else{
+            $toolbars ="[
+            ['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'pagebreak', 'template', 'background', '|',
+                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
+                'print', 'preview', 'searchreplace', 'drafts']
+            ]";
         }
         $str = '';
         if (!defined("HD_UEDITOR")) {
-            $str .= '<script type="text/javascript" charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/ueditor.config.js"></script>';
-            $str .= '<script type="text/javascript" charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/ueditor.all.min.js"></script>';
-            $str .= '<script type="text/javascript">UEDITOR_HOME_URL="' . __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/"</script>';
+            $str .= '<script type="text/javascript" charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Ueditor/ueditor.config.js"></script>';
+            $str .= '<script type="text/javascript" charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Ueditor/ueditor.all.min.js"></script>';
+            $str .= '<script type="text/javascript">UEDITOR_HOME_URL="' . __HDPHP_EXTEND__ . '/Org/Ueditor/"</script>';
             define("HD_UEDITOR", true);
         }
         $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $initContent . '</script>';
@@ -349,7 +363,7 @@ class ViewTag
             ,maximumWords:{$maxword} //允许的最大字符数
             ,readonly : {$readonly} //编辑器初始化结束后,编辑区域是否是只读的，默认是false
             ,wordCount:{$wordCount} //是否开启字数统计
-            " . $toolbars . "
+            , toolbars:$toolbars
         });
     })
     </script>";
