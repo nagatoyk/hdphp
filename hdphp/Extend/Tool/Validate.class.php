@@ -38,31 +38,24 @@ class Validate
         }
         return $msg;
     }
-
+    //最大长度
     public function _maxlen($name, $value, $msg, $arg)
     {
-        if (!is_numeric($value)) {
-            return '表单'. $name . '的值，必须为数字';
-        }
         if (!is_numeric($arg)) {
-            halt('验证规则的maxlen参数设置错误，必须为数字');
+            halt('验证规则的maxlen参数必须为数字');
         }
-        if ($value < $arg) {
-
+        if(preg_match('/^([\x{2460}-\x{2468}a-z0-9]{0,'.$arg.'}$/ui',$value)){
             return true;
         }
         return $msg;
     }
-
+    //最小长度
     public function _minlen($name, $value, $msg, $arg)
     {
-        if (!is_numeric($value)) {
-            return '表单' . $name . '的值必须为数字';
-        }
         if (!is_numeric($arg)) {
-            halt('验证规则的maxlen参数设置错误，必须为数字');
+            halt('验证规则的minlen参数必须为数字');
         }
-        if ($value < $arg) {
+        if(preg_match('/^([\x{2460}-\x{2468}a-z0-9]{'.$arg.',}$/ui',$value)){
             return true;
         }
         return $msg;
@@ -94,7 +87,7 @@ class Validate
         }
         return $msg;
     }
-
+    //身份证验证
     public function _identity($name, $value, $msg, $arg)
     {
         $preg = "/^(\d{15}|\d{18})$/";
@@ -103,7 +96,7 @@ class Validate
         }
         return $msg;
     }
-
+    //用户名验证
     public function _user($name, $value, $msg, $arg)
     {
         $arg = explode(',', $arg);
@@ -114,7 +107,7 @@ class Validate
         }
         return $msg;
     }
-
+    //数字范围
     public function _num($name, $value, $msg, $arg)
     {
         $arg = explode(',', $arg);
