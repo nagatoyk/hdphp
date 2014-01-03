@@ -363,7 +363,8 @@ class ViewTag
             ,maximumWords:{$maxword} //允许的最大字符数
             ,readonly : {$readonly} //编辑器初始化结束后,编辑区域是否是只读的，默认是false
             ,wordCount:{$wordCount} //是否开启字数统计
-            , toolbars:$toolbars
+            ,imagePath:''//图片修正地址
+            , toolbars:$toolbars//工具按钮
         });
     })
     </script>";

@@ -93,7 +93,7 @@ return array(
     'UPLOAD_EXT_SIZE'               => array('jpg' => 5000000, 'jpeg' => 5000000, 'gif' => 5000000,
                                     'png' => 5000000, 'bmg' => 5000000, 'zip' => 5000000,
                                     'txt' => 5000000, 'rar' => 5000000, 'doc' => 5000000), //上传类型与大小
-    'UPLOAD_PATH'                   => ROOT_PATH . '/upload', //上传路径
+    'UPLOAD_PATH'                   => ROOT_PATH . 'upload/', //上传路径
     'UPLOAD_IMG_DIR'                => '',       //图片上传目录名
     'UPLOAD_IMG_RESIZE_ON'          => FALSE,        //上传图片缩放处理,超过以下值系统进行缩放
     'UPLOAD_IMG_MAX_WIDTH'          => 1000,     //上传图片宽度超过此值，进行缩放
@@ -152,6 +152,7 @@ return array(
     'EDITOR_WIDTH'                  => '100%',      //编辑器高度
     'EDITOR_HEIGHT'                 => 300,         //编辑器高度
     'EDITOR_FILE_SIZE'              => 2000000,     //上传图片文件大小
+    'EDITOR_SAVE_PATH'          => ROOT_PATH . 'upload/editor/', //文件储存目录
 
     /********************************RBAC权限控制********************************/
     'RBAC_TYPE'                     => 1,           //1时时认证｜2登录认证

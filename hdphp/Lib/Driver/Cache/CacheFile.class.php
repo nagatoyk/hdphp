@@ -110,10 +110,9 @@ class CacheFile extends Cache
      * 获得缓存数据
      * @access public
      * @param string $name 缓存KEY
-     * @param int $ctime 过期时间
      * @return bool|mixed|null
      */
-    public function get($name, $ctime = 0)
+    public function get($name)
     {
         $cacheFile = $this->getCacheFile($name);
         //缓存文件不存在
@@ -130,11 +129,11 @@ class CacheFile extends Cache
         //文件修改时间
         $mtime = filemtime($cacheFile);
         //缓存失效处理
-        if ($ctime>0 && $mtime + $ctime < time()) {
-            @unlink($cacheFile);
-            $this->record(2,0);
-            return false;
-        }
+//        if ($ctime>0 && $mtime + $ctime < time()) {
+//            @unlink($cacheFile);
+//            $this->record(2,0);
+//            return false;
+//        }
         if ($expire > 0 && $mtime + $expire < time()) {
             @unlink($cacheFile);
             $this->record(2,0);
