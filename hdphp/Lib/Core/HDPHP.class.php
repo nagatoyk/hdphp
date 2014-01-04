@@ -40,7 +40,7 @@ final class HDPHP
         //模板目录
         $tpl_style = C('TPL_STYLE');
         if($tpl_style and substr($tpl_style,-1)!='/')
-            $tpl_style=substr(C('TPL_STYLE'),0,-1).'/';
+            $tpl_style.='/';
         defined('TPL_PATH')                             or define('TPL_PATH', (C('TPL_PATH') ?C('TPL_PATH') : APP_PATH.'Tpl/').$tpl_style);
         defined('PUBLIC_PATH')                          or define('PUBLIC_PATH', TPL_PATH . 'Public/');
         //应用url解析并创建常量
