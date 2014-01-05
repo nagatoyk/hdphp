@@ -31,7 +31,7 @@ abstract class View
             $file = TPL_PATH . CONTROL.'/'.$file;
         }
         //添加模板后缀
-        if (!preg_match('@' . C('TPL_FIX') . '$@', $file))
+        if (!preg_match('@\.[a-z]+$@', $file))
             $file .= C('TPL_FIX');
         //将目录全部转为小写
         if (!is_file($file)) {

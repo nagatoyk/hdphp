@@ -55,7 +55,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的minlen参数必须为数字');
         }
-        if(preg_match('/^([\x{2460}-\x{2468}a-z0-9]{'.$arg.',}$/ui',$value)){
+        if(preg_match('/^[\x{2460}-\x{2468}a-z0-9]{'.$arg.',}$/ui',$value)){
             return true;
         }
         return $msg;

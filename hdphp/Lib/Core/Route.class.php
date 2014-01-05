@@ -118,6 +118,7 @@ final class Route
         if (C('URL_TYPE') == 2) {
             unset($_GET[C('PATHINFO_VAR')]);
         }
+        $_REQUEST=array_merge($_REQUEST,$_GET);
         //设置常量
         self::setConst();
     }
