@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
-    </list>
+    <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="" />
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
