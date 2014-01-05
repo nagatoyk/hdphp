@@ -1,121 +1,87 @@
-<?php if(!defined('HDPHP_PATH'))exit;?>
+<?php if (!defined('HDPHP_PATH')) exit; ?>
+<div><!--放置jquery--></div>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-    #hd_debug {
-        padding: 10px;
-        font: 12px/20px;
-        font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-        clear: both;
-        border: solid 1px #cccccc;
-        border-bottom: none;
-        background-color: #fff;
-        width: 800px;
-        height: auto;
-        overflow: hidden;
-        word-wrap: word-break;
-        word-break: break-word;
+    div#hd_debug {
+        position: absolute;
         left: 0px;
-        bottom: 0px;
+        right: 0px;
+        bottom: 0px;;
+        height: 225px;
         z-index: 2000;
-        display: none;
-    }
-
-    #hd_debug * {
-        margin: 0px;
+        font-size: 12px;
         padding: 0px;
-    }
-
-    #hd_debug table td {
-        font-size: 12px;
-    }
-
-    #hd_debug tr {
-        word-break: break-all;
-    }
-
-    #hd_debug .debug_link {
-        border-bottom: solid 1px #dcdcdc;
-        padding-bottom: 6px;
-        margin-top: 0px;
-    }
-
-    #hd_debug .debug_link a {
-        padding: 0px 8px;
-        text-decoration: none;
-    }
-
-    #hd_debug .debug_link a:hover {
-        text-decoration: underline;
-    }
-
-    #hd_debug .debug_server {
-        line-height: 1.5em;
-        margin-bottom: 10px;
-        color: #333;
-    }
-
-    #hd_debug .debug_server table {
-        width: 100%;
-        border: none;
-    }
-
-    #hd_debug .debug_server table td {
-        border: none;
-        padding: 3px 0px;
-        border-bottom: solid 1px #eee;
-    }
-
-    #hd_debug .debug_server a {
-        color: #5d5d5d;
-        text-decoration: none;
-    }
-
-    #hd_debug .debug_server a:hover {
-        color: #5d5d5d;
-        text-decoration: underline;
-    }
-
-    #hd_debug fieldset {
-        line-height: 1.2em;
-    }
-
-    #hd_debug a {
-        color: #2F68A5;
-    }
-
-    #hd_debug table {
-        border-collapse: collapse;
-        border: solid 1px #efefef;
+        margin: 0px;
         overflow: hidden;
+        display: none;
+        background: #ffffff;
+        padding-top:3px;
+    }
+    div#hd_debug a {
+        color: #009CAE;
+        text-decoration: none;
+    }
+    div#hd_debug div#debug_menu {
+        height: 25px;
+        border-bottom: solid 2px #009CAE;
     }
 
-    #hd_debug table thead td {
-        background-color: #efefef;
-        color: #000;
-        padding: 3px 5px;
-
+    div#hd_debug div#debug_menu ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
     }
 
-    #hd_debug table tbody td {
-        color: #333;
-        padding: 3px;
-        border-bottom: solid 1px #efefef;
+    div#hd_debug div#debug_menu ul li {
+        float: left;
+        cursor: pointer;
+        height: 24px;
+        width: 65px;
+        text-align: center;
+        line-height: 28px;
+        overflow: hidden;
+        border: solid 1px #DCE3ED;
+        border-bottom: none;
+        margin-right: 6px;
     }
 
-    #hd_debug fieldset {
-        padding: 10px;
-        border: 1px solid #D0D0D0;
-        margin-top: 10px;
-    }
-
-    #hd_debug legend {
-        padding: 5px;
+    div#hd_debug div#debug_menu ul li.active {
+        background: #009CAE;
+        color: #fff;
+        height: 25px;
         border: none;
-        width: 55px;
-        font-size: 12px;
-        line-height: 10px;
     }
 
+    div#hd_debug div#debug_con div {
+        display: none;
+        height: 200px;
+        overflow: auto;
+        background: #ffffff;
+    }
+
+    div#hd_debug div#debug_con div.active {
+        display: block;
+    }
+
+    div#hd_debug div#debug_con div table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    div#hd_debug div#debug_con div table thead tr {
+        background: #f3f3f3;
+    }
+    div#hd_debug div#debug_con div table thead tr td{
+        background: #F3F3F3;
+    }
+    div#hd_debug div#debug_con div table tr td {
+        border-bottom: solid 1px #efefef;
+        font-size: 12px;
+        color: #666;
+        padding: 3px 8px;
+        word-break: break-all;
+        background: #fff;
+    }
     #hd_debug_bt {
         background: url("<?php echo __HDPHP_DATA__;?>/Image/debug.png") no-repeat;
         border-radius: 0px;
@@ -133,149 +99,158 @@
         display:block;
     }
 </style>
-<!--右下角图标-->
+<!--DEBUG-->
 <div id="hd_debug">
-    <div class="debug_link">
-        <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=rbac'
-        target='_blank'>配置RBAC</a>
-        <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=session&path_root=%2Fwww%2Fhdphp%2Fexample%2FApp%2F&app=http%3A%2F%2Flocalhost%2Fhdphp%2Fexample%2FApp%2Findex.php%2F1%2FIndex%2Findex'
-        target='_blank'>配置SESSION</a>
-        <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo realpath(TEMP_PATH);?>
-        '>删除缓存数据</a>
-
+    <div id="debug_menu">
+        <ul>
+            <li id="_server" class="active">运行环境</li>
+            <li id="_tpl">模板编译</li>
+            <li id="_sql">SQL查询</li>
+            <li id="_require">引导流程</li>
+            <li id="_cache">缓存监控</li>
+            <li>
+                <a href="http://bbs.houdunwang.com" target="_blank">论坛交流</a>
+            </li>
+        </ul>
     </div>
-    <!--系统信息-->
-    <fieldset>
-        <div class='debug_server'>
+    <div id="debug_con">
+        <!--服务器-->
+        <div id="server" class="active">
             <table>
                 <tr>
-                    <td>服务器信息</td>
-                    <td><?php echo $_SERVER['SERVER_SOFTWARE'];?></td>
+                    <td width="80">服务器信息</td>
+                    <td><?php echo $_SERVER['SERVER_SOFTWARE']; ?></td>
                 </tr>
                 <tr>
                     <td>客户端代理</td>
-                    <td><?php echo $_SERVER['HTTP_USER_AGENT'];?></td>
+                    <td><?php echo $_SERVER['HTTP_USER_AGENT']; ?></td>
                 </tr>
                 <tr>
                     <td>PHP版本</td>
-                    <td><?php echo PHP_VERSION;?></td>
+                    <td><?php echo PHP_VERSION; ?></td>
                 </tr>
                 <tr>
                     <td>请求方式</td>
-                    <td><?php echo $_SERVER['REQUEST_METHOD'];?></td>
+                    <td><?php echo $_SERVER['REQUEST_METHOD']; ?></td>
                 </tr>
                 <tr>
                     <td>通信协议</td>
-                    <td><?php echo $_SERVER['SERVER_PROTOCOL'];?></td>
+                    <td><?php echo $_SERVER['SERVER_PROTOCOL']; ?></td>
                 </tr>
                 <tr>
                     <td>当前模块</td>
-                    <td><?php echo CONTROL_PATH.CONTROL.C("CONTROL_FIX").".class.php";?></td>
+                    <td><?php echo CONTROL_PATH . CONTROL . C("CONTROL_FIX") . ".class.php"; ?></td>
                 </tr>
                 <tr>
                     <td>会话ID</td>
-                    <td><?php echo session_id();?></td>
+                    <td><?php echo session_id(); ?></td>
                 </tr>
                 <tr>
                     <td>框架版本</td>
-                    <td><?php echo HDPHP_VERSION?>
-                        <a href='http://www.hdphp.com/version.php?ver=<?php echo str_replace(".","",HDPHP_VERSION)?>'
+                    <td><?php echo HDPHP_VERSION ?>
+                        <a href='http://www.hdphp.com/version.php?ver=<?php echo str_replace(".", "", HDPHP_VERSION) ?>'
                            target='_blank'>查看新版</a>
                     </td>
                 </tr>
             </table>
         </div>
-    </fieldset>
-    <!--显示缓存统计-->
-    <?php if(self::$tpl):?>
-    <!--模板编译文件-->
-    <fieldset>
-        <legend>模板编译</legend>
-        <table width="100%">
-            <thead>
-            <tr>
-                <td style="width:80px;">模板文件</td>
-                <td>编译文件</td>
-            </tr>
-            </thead>
-            <?php foreach (self::$tpl as $k => $v):?>
-            <tr>
-                <td style="font-size:12px;width:100px;padding:6px;"><?php echo $v[0]?></td>
-                <td style="font-size:12px;padding:6px;">
-                    <?php echo str_replace(array(" / ", "\\"), DS, $v[1])?>
-                </td>
-            </tr>
-            <?php endforeach;?>
-        </table>
-    </fieldset>
-    <?php endif;?>
-    <!--数据库-->
-    <?php  if(!empty(self::$sqlExeArr)):?>
-    <fieldset>
-        <legend>SQL查询</legend>
-        <table width=100%>
-            <thead>
-            <tr>
-                <td>顺序</td>
-                <td>SQL命令</td>
-            </tr>
-            </thead>
-            <?php foreach (self::$sqlExeArr as $k => $v):?>
-            <tr>
-                <td width='35'>[<?php echo $k+1?>]</td>
-                <td><?php echo htmlspecialchars($v)?></td>
-            </tr>
-            <?php endforeach;?>
-        </table>
-    </fieldset>
-    <?php endif;?>
-    <!--数据库-->
-    <!--缓存记录-->
-    <?php  if((self::$cache['write_s']||self::$cache['read_s'])):?>
-    <fieldset>
-        <legend>缓存</legend>
-        <table width=100%>
-
-            <tr>
-                <td width="30" style='background:#ececec;color:#333;padding-left:5px;'>写入</td>
-                <td width="80"> 成功:<?php echo self::$cache['write_s'];?>次</td>
-                <td width="80">失败:<?php echo self::$cache['write_f'];?>次</td>
-                <td>
-                    命中:<?php echo self::$cache['write_s']+self::$cache['write_f']?round(self::$cache['write_s']/(self::$cache['write_s']+self::$cache['write_f'])*100,2)."%":0;?></td>
-            </tr>
-            <tr>
-                <td style='background:#ececec;color:#333;padding-left:5px;'>读取</td>
-                <td> 成功:<?php echo self::$cache['read_s'];?>次</td>
-                <td>失败:<?php echo self::$cache['read_f'];?>次</td>
-                <td>
-                    命中:<?php echo self::$cache['read_s']+self::$cache['read_f']?round(self::$cache['read_s']/(self::$cache['read_s']+self::$cache['read_f'])*100,2)."%":0;?></td>
-            </tr>
-        </table>
-    </fieldset>
-    <?php endif;?>
-    <!--缓存记录-->
-    <fieldset>
-        <legend style=''>引导流程</legend>
-        <table width=100%>
-            <thead>
-            <tr>
-                <td width="30">ID</td>
-                <td>File</td>
-            </tr>
-            </thead>
-            <?php $id=1;foreach($debug['file'] as $f=>$d):?>
-            <tr>
-                <td>[<?php echo $id++;?>]</td>
-                <td><?php echo $f;?></td>
-            </tr>
-            <?php endforeach;?>
-        </table>
-    </fieldset>
-    <fieldset class="runtime">
-        执行时间 : <?php echo $debug['runtime'];?> &nbsp;
-        &nbsp;
-        内存峰值 : <?php echo $debug['memory'];?></fieldset>
+        <!--引导流程-->
+        <div id="require">
+            <table>
+                <thead>
+                <tr>
+                    <td width="30">ID</td>
+                    <td>File</td>
+                </tr>
+                </thead>
+                <?php $id = 1;
+                foreach ($debug['file'] as $f => $d): ?>
+                    <tr>
+                        <td>[<?php echo $id++; ?>]</td>
+                        <td><?php echo $f; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <!--模板编译-->
+        <div id="tpl">
+            <table>
+                <thead>
+                <tr>
+                    <td width="100">模板文件</td>
+                    <td>编译文件</td>
+                </tr>
+                </thead>
+                <?php foreach (self::$tpl as $k => $v): ?>
+                    <tr>
+                        <td style="font-size:12px;width:100px;padding:6px;"><?php echo $v[0] ?></td>
+                        <td style="font-size:12px;padding:6px;">
+                            <?php echo str_replace(array(" / ", "\\"), DS, $v[1]) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <!--SQL查询-->
+        <div id="sql">
+            <table>
+                <thead>
+                <tr>
+                    <td width="30">ID</td>
+                    <td>SQL命令</td>
+                </tr>
+                </thead>
+                <?php foreach (self::$sqlExeArr as $k => $v): ?>
+                    <tr>
+                        <td width='35'>[<?php echo $k + 1 ?>]</td>
+                        <td><?php echo htmlspecialchars($v) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <!--缓存监控-->
+        <div id="cache">
+            <table width=100%>
+                <tr>
+                    <td width="30" style='background:#f3f3f3;color:#333;padding-left:5px;'>写入</td>
+                    <td width="80"> 成功:<?php echo self::$cache['write_s']; ?>次</td>
+                    <td width="80">失败:<?php echo self::$cache['write_f']; ?>次</td>
+                    <td>
+                        命中:<?php echo self::$cache['write_s'] + self::$cache['write_f'] ? round(self::$cache['write_s'] / (self::$cache['write_s'] + self::$cache['write_f']) * 100, 2) . "%" : 0; ?></td>
+                </tr>
+                <tr>
+                    <td style='background:#f3f3f3;color:#333;padding-left:5px;'>读取</td>
+                    <td> 成功:<?php echo self::$cache['read_s']; ?>次</td>
+                    <td>失败:<?php echo self::$cache['read_f']; ?>次</td>
+                    <td>
+                        命中:<?php echo self::$cache['read_s'] + self::$cache['read_f'] ? round(self::$cache['read_s'] / (self::$cache['read_s'] + self::$cache['read_f']) * 100, 2) . "%" : 0; ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+    var _div_con = document.getElementById("debug_con").getElementsByTagName('div');
+    var _li_menu = document.getElementById("debug_menu").getElementsByTagName('li');
+    for (var i = 0; i < _li_menu.length; i++) {
+        _li_menu[i].onclick = function () {
+            //超链接
+            if(!this.id)return;
+            //隐藏所有菜单
+            for (var n = 0; n < _li_menu.length; n++) {
+                _li_menu[n].className = '';
+            }
+            //隐藏所有div
+            for (var n = 0; n < _div_con.length; n++) {
+                _div_con[n].className = '';
+            }
+            this.className = 'active';
+            document.getElementById(this.id.substr(1)).className = 'active';
+        }
+    }
+</script>
+
+<!--开启debug按钮-->
 <div id="hd_debug_bt">HDPHP</div>
 <script>
     var _hd_debug_bt = document.getElementById("hd_debug_bt");
@@ -287,27 +262,5 @@
             _hd_debug.style.display = "block";
         }
     }
-    //f11显示debug
-    document.onkeydown=function(event){
-    }
 </script>
-<script language="javascript" type="text/javascript" defer="defer">
-    javascript:(function () {
-        var D = document;
-        F(D.body);
-        function F(n) {
-            var u, r, c, x;
-            if (n.nodeType == 3) {
-                u = n.data.search(/\S{10}/);
-                if (u >= 0) {
-                    r = n.splitText(u + 10);
-                    n.parentNode.insertBefore(D.createElement("WBR"), r);
-                }
-            } else if (n.tagName != "STYLE" && n.tagName != "SCRIPT") {
-                for (c = 0; x = n.childNodes[c]; ++c) {
-                    F(x);
-                }
-            }
-        }
-    })();
-</script>
+
