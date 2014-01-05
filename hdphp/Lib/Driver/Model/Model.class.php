@@ -913,7 +913,7 @@ class Model
     }
 
     //添加数据后执行的方法
-    public function __after_insert($result)
+    public function __after_insert($data)
     {
     }
 
@@ -923,7 +923,7 @@ class Model
     }
 
     //删除数据后执行的方法
-    public function __after_delete($result)
+    public function __after_delete($data)
     {
     }
 
@@ -933,7 +933,7 @@ class Model
     }
 
     //更新数据后执行的方法
-    public function __after_update($result)
+    public function __after_update($data)
     {
     }
 
@@ -943,7 +943,7 @@ class Model
     }
 
     //查询数据后执行的方法
-    public function __after_select($result)
+    public function __after_select($data)
     {
     }
 
