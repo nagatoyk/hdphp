@@ -7,7 +7,7 @@
         left: 0px;
         right: 0px;
         bottom: 0px;;
-        height: 225px;
+        height: 245px;
         z-index: 2000;
         font-size: 12px;
         padding: 0px;
@@ -54,7 +54,7 @@
 
     div#hd_debug div#debug_con div {
         display: none;
-        height: 200px;
+        height: 220px;
         overflow: auto;
         background: #ffffff;
     }
