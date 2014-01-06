@@ -102,9 +102,11 @@ div.line {
 
 .hd-form input[type='text']:focus, .hd-form input[type='password']:focus, .hd-form textarea:focus {
     background: #fffbde;
-    outline: 2px solid #51B4FF;
+    outline: 1px solid #51B4FF;
     box-shadow: none !important;
+    border: solid 2px #51B4FF;
 }
+
 .hd-form input[type="file"], .hd-form input[type="text"], .hd-form input[type="password"] {
     height: 28px;
 }
@@ -322,9 +324,11 @@ table.table2 tr, table.table2 th, table.table2 td {
     text-indent: 0px;
     line-height: 2em;
     margin-right: 10px;
+    box-shadow: none !important;
 }
 
 .btn1 {
+    margin-right: 10px;
     background: #4BAED4;
 }
 
@@ -334,6 +338,7 @@ table.table2 tr, table.table2 th, table.table2 td {
 }
 
 .btn2 {
+    margin-right: 10px;
     background: #aaa;
 }
 
@@ -342,6 +347,7 @@ table.table2 tr, table.table2 th, table.table2 td {
 }
 
 .btn3 {
+    margin-right: 10px;
     text-align: center;
     display: inline-block;
     border: solid 1px #999;
@@ -354,6 +360,58 @@ table.table2 tr, table.table2 th, table.table2 td {
 .btn3:hover {
     background: -moz-linear-gradient(top, #fff, #bbbbbb);
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#bbbbbb));;
+}
+
+.btn4 {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #006DCC;
+    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn4:hover{
+    background-image: linear-gradient(to bottom, #0088EE, #0044EE);
+}
+.btn5 {
+    margin-right: 10px;
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+.btn5:hover {
+    background-image: linear-gradient(to bottom, #FFFFFF, #dcdcdc);
 }
 
 /* ====================================================================================
@@ -381,6 +439,10 @@ table.table2 tr, table.table2 th, table.table2 td {
 
 .w80 {
     width: 80px;
+}
+
+.w90 {
+    width: 90px;
 }
 
 .w100 {
@@ -431,12 +493,24 @@ table.table2 tr, table.table2 th, table.table2 td {
     width: 700px;
 }
 
+.w800 {
+    width: 800px;
+}
+
 .h60 {
     height: 60px;
 }
 
+.h70 {
+    height: 70px;
+}
+
 .h80 {
     height: 80px;
+}
+
+.h90 {
+    height: 90px;
 }
 
 .h100 {
@@ -554,7 +628,7 @@ div.page1 span.count {
 }
 
 /* ====================================================================================
-/* ===================================--|提示信息|--========================================
+/* ===================================--|验证提示信息|--========================================
 /* ====================================================================================*/
 .label, .message {
     font-size: 12px;
@@ -579,7 +653,7 @@ div.page1 span.count {
     color: #999999;
     display: inline-block;
     background: url(../img/icon_2.png) 0px -30px no-repeat;
-    text-indent: 18px;
+    text-indent: 32px;
     line-height: 25px;
     margin-left: 5px;
 }
@@ -632,17 +706,60 @@ div.menu span {
     top: -1px;
 }
 
+/***********简单信息框******************/
+div#hd_message_bg {
+    background: #f3f3f3;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1000;
+}
+
+div#hd_message {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -80px;
+    z-index: 2000;
+    padding: 20px;
+    text-align: center;
+    width: 160px;
+    font-size: 16px;
+    color: #03565E;
+    height: 10px;
+    line-height: 10px;
+    background-color: #ffffff;
+    background-repeat: repeat-x;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 0px;
+    box-shadow: 0px 0px 16px #999;
+}
+
 /***********模态弹出框******************/
-/*div.modal {*/
-/*width: 650px;*/
-/*height: auto;*/
-/*overflow: hidden;*/
-/*background: #fff;*/
-/*position: absolute;*/
-/*z-index: 999;*/
-/*border: solid 1px #03565E;*/
-/*box-shadow: 0px 3px 26px #333;*/
-/*}*/
+div.modal {
+    width: 650px;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    position: absolute;
+    z-index: 999;
+    border: solid 1px #03565E;
+    box-shadow: 0px 3px 26px #333;
+}
+
+div.modal_bg {
+    position: fixed;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: #f3f3f3;
+    z-index: 900;
+}
 
 div.modal div.modal_title {
     height: 35px;
@@ -656,7 +773,7 @@ div.modal div.modal_title {
 }
 
 div.modal div.content {
-    padding: 0px;
+    padding: 5px;
     overflow: auto;
 }
 
@@ -667,6 +784,10 @@ div.modal div.modal_footer {
     margin-bottom: 0;
     padding: 12px 15px 12px;
     text-align: right;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 div.modal_message strong {
@@ -675,13 +796,13 @@ div.modal_message strong {
     float: left;
     height: 62px;
     width: 65px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 30px;
 }
 
 div.modal_message span {
     font-size: 14px;
-    margin-top: 40px;
+    margin-top: 30px;
     display: block;
     float: left;
     margin-left: 10px;
@@ -695,7 +816,7 @@ div.modal_message div.error {
     background: none;
 }
 
-div.modal_message div.error strong {
+div.modal_message strong.error {
     background: url(../img/ico_face.jpg) -468px -336px no-repeat;
 }
 
@@ -703,19 +824,47 @@ div.modal_message div.error strong {
 div.modal a.hd_success {
     display: inline-block;
     margin-right: 20px;
+    background-color: #006DCC;
+    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    vertical-align: middle;
 }
 
-/**********简单对话框**************/
-div#hd_message {
-    border: solid 3px #dcdcdc;
-    padding: 20px;
+/*模态关闭按钮*/
+div.modal a.hd_close {
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
     text-align: center;
-    width: 150px;
-    font-size: 18px;
-    color: #EB5252;
-    height: 10px;
-    line-height: 10px;
-    background: #fff;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
 }
 
 /**********弹出对话框**************/
@@ -725,9 +874,22 @@ div.dialog {
     background: #fff;
     border: solid 2px #03565E;
     border-radius: 6px;
-    position: absolute;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -150px;
     box-shadow: 0px 3px 26px #333;
     z-index: 9999;
+}
+
+div.dialog_bg {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: #f3f3f3;
+    z-index: 2000;
 }
 
 div.dialog h2#dialog_title {
@@ -758,8 +920,6 @@ div.dialog div.close {
 }
 
 div.dialog div.close a {
-
-    /*color: #68767B;*/
     color: #aaaaaa;
     font-family: Helvetica, STHeiti;
     font-size: 18px;

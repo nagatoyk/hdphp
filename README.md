@@ -50,6 +50,8 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 ```
 1. 添加新的DEBUG调试界面
+2. 修正HDJS中confirm方法验证失败问题
+3. 
 ```
 
 2014.1.5

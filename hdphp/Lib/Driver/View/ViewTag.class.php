@@ -53,7 +53,7 @@ class ViewTag
         'jsconst' => array("block" => 0), //定义JS常量
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
-        "hdui" => array("block" => 0),
+        "hdjs" => array("block" => 0),
         "slide" => array("block" => 0)
     );
 
@@ -166,7 +166,7 @@ class ViewTag
         $id = "hd_uploadify_" . $name;
         //是否加水印
         $_water = isset($attr['water']) ? $attr['water'] : false;
-        $water = $_water==false?intval(C("WATER_ON")):($_water == 'false'? 0 : 1);
+        $water = $_water == false ? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
         $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
@@ -324,12 +324,12 @@ class ViewTag
         $readonly = isset($attr['readonly']) ? $attr['readonly'] : "false"; //编辑区域是否是只读的
         $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
         $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"insertimage",':''; //图片上传按钮
+        $imageupload = isset($attr['imageupload']) && $attr['imageupload'] == 'true' ? '"insertimage",' : ''; //图片上传按钮
         //图片按钮
         if ($style == 2) {
             $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
-        }else{
-            $toolbars ="[
+        } else {
+            $toolbars = "[
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
                 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
                 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
@@ -386,14 +386,14 @@ class ViewTag
         $height = isset($attr['height']) ? $attr['height'] : C("EDITOR_HEIGHT"); //编辑器高度
         $height = str_replace("px", "", $height) . "px";
         $water = isset($attr['Image']) ? $attr['Image'] : false; //编辑器宽度
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false'? 0 : 1);
+        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' ? 0 : 1);
         $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
         $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
         $uploadSize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1024 : C("EDITOR_FILE_SIZE"); //上传文件大小
         $filterMode = isset($attr['filter']) ? $attr['filter'] : "false"; //过滤HTML代码
         $filterMode = $filterMode == "false" || $filterMode == "0" ? "false" : "true";
         $filemanager = isset($attr['filemanager']) ? $attr['filemanager'] : "false"; //true时显示浏览远程服务器按钮
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"image",':''; //图片上传按钮
+        $imageupload = isset($attr['imageupload']) && $attr['imageupload'] == 'true' ? '"image",' : ''; //图片上传按钮
         $str = '';
         if (!defined("keditor_hd")) {
             $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/kindeditor-all-min.js"></script>
@@ -458,20 +458,6 @@ class ViewTag
         return '<script type="text/javascript" src="' . $attr['file'] . '"></script>';
     }
 
-    public function _jquery($attr, $content)
-    {
-        $file = '__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js';
-        return "<script type='text/javascript' src='$file'></script>";
-    }
-
-    public function _jqueryui($attr, $content)
-    {
-        $path = '__HDPHP_EXTEND__/Org/JqueryUi/';
-        $str = '';
-        $str .= '<link href="' . $path . 'css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">';
-        $str .= '<script src="' . $path . 'js/jquery-ui-1.10.3.custom.js"></script>';
-        return $str;
-    }
 
     public function _list($attr, $content)
     {
@@ -687,18 +673,24 @@ class ViewTag
         return '<script src="__HDPHP_EXTEND__/Org/hdui/js/slide.js"></script>';
     }
 
+    //jquery
+    public function _jquery($attr, $content)
+    {
+        $file = '__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js';
+        return "<script type='text/javascript' src='$file'></script>";
+    }
+
     //HdUi
-    public function _hdui($attr, $content)
+    public function _hdjs($attr, $content)
     {
         $bootstrap = isset($attr['bootstrap']) ? $attr['bootstrap'] : false;
         $str = '';
-        $str .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
-        $str .= '<script src="__HDPHP_EXTEND__/Org/hdui/js/lhgcalendar.min.js"></script>' . "\n";
-        $str .= "<link href='__HDPHP_EXTEND__/Org/hdui/css/hdui.css' rel='stylesheet' media='screen'>\n";
-        $str .= "<script src='__HDPHP_EXTEND__/Org/hdui/js/hdui.js'></script>\n";
+        $str .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+        $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
+        $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
+        $str .= "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
         $str .= $bootstrap ? $this->_bootstrap() : "";
         $str .= $this->_jsconst(null, null);
-
         return $str;
     }
 }

@@ -1,9 +1,8 @@
 <?php if (!defined('HDPHP_PATH')) exit; ?>
-<div><!--放置jquery--></div>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
     div#hd_debug {
-        position: absolute;
+        position: fixed;
         left: 0px;
         right: 0px;
         bottom: 0px;;
@@ -16,9 +15,11 @@
         display: none;
         background: #ffffff;
         padding-top:3px;
+        _position: absolute;
+        _bottom:0px;
     }
     div#hd_debug a {
-        color: #009CAE;
+        color: #333;
         text-decoration: none;
     }
     div#hd_debug div#debug_menu {
@@ -55,7 +56,8 @@
     div#hd_debug div#debug_con div {
         display: none;
         height: 200px;
-        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y: auto;
         background: #ffffff;
     }
 
@@ -94,12 +96,12 @@
         height:25px;
         text-indent: -9999px;
         position: fixed;
-        right: 5px;
         bottom: 5px;
         position: fixed;
         top:50%;
-        right:20px;
+        right:10px;
         display:block;
+        _position: absolute;
     }
 </style>
 <!--DEBUG-->
@@ -111,6 +113,14 @@
             <li id="_sql">SQL查询</li>
             <li id="_require">引导流程</li>
             <li id="_cache">缓存监控</li>
+            <li id="_session">SESSION</li>
+            <li id="_cookie">COOKIE</li>
+            <li>
+                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo realpath(TEMP_PATH);?>'>删除缓存</a>
+            </li>
+            <li>
+                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=rbac' target='_blank'>RBAC</a>
+            </li>
             <li>
                 <a href="http://bbs.houdunwang.com" target="_blank">论坛交流</a>
             </li>
@@ -230,6 +240,44 @@
                 </tr>
             </table>
         </div>
+        <!--SESSION-->
+        <div id="session">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="100">name</td>
+                    <td>
+                        value
+                        <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=session&path_root=%2Fwww%2Fhdphp%2Fexample%2FApp%2F&app=http%3A%2F%2Flocalhost%2Fhdphp%2Fexample%2FApp%2Findex.php%2F1%2FIndex%2Findex'
+                            target='_blank'> 配置SESSION </a>
+                    </td>
+                </tr>
+                </thead>
+                <?php foreach ($_SESSION as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo print_r($value,true);?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <!--COOKIE-->
+        <div id="cookie">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="100">name</td>
+                    <td>value</td>
+                </tr>
+                </thead>
+                <?php foreach ($_COOKIE as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo print_r($value,true);?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
@@ -266,4 +314,3 @@
         }
     }
 </script>
-

@@ -1,5 +1,5 @@
 // ====================================================================================
-// ===================================--|函数库|--======================================
+// ===================================--|HDJS前端库|--======================================
 // ====================================================================================
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDJS framework]
@@ -96,7 +96,7 @@ $.extend({
         //创建元素
         if ($("div.dialog").length == 0) {
             var div = '';
-            div += '<div class="dialog" style="z-index: 1000;position: absolute">';
+            div += '<div class="dialog">';
             div += '<div class="close">';
             div += '<a href="#" title="关闭">×</a></div>';
             div += '<h2 id="dialog_title">提示信息</h2>';
@@ -104,15 +104,13 @@ $.extend({
             div += '<span>' + opt.msg + '</span>';
             div += '</div>';
             div += '</div>';
-            div += '<div class="dialog_bg" style="background: #f3f3f3;position:absolute;left:0px;top:0px;z-index: 100;"></div>'
+            div += '<div class="dialog_bg"></div>'
             $(div).appendTo("body");
         }
         var _w = $(document).width();
         var _h = $(document).height();
-        $("div.dialog_bg").css({width: _w, height: _h, opacity: 0.8}).show();
+        $("div.dialog_bg").css({opacity: 0.8}).show();
         $("div.dialog").show();
-        var pos = center_pos($(".dialog"));
-        $("div.dialog").css({left: pos[0], top: pos[1] - 50});
         //定时id
         var dialog_id;
         //点击关闭dialog
@@ -133,25 +131,18 @@ $.extend({
     }
 })
 //简单提示框
-function dialog_message(message, dialog_close) {
-    $("div#hd_message").remove();
-    $("div#hd_message_bg").remove();
-    if (dialog_close) {
-        return false;
-    } else {
-        //创建背景色
-        var html = '<div id="hd_message_bg" style="background: #f3f3f3;position:absolute;left:0px;top:0px;z-index: 100;"></div>';
-        html += "<div id='hd_message' style='display:none;position: absolute;z-index: 1000'>" + message + "</div>";
-        $("body").append(html);
-        //改变背景色
-        var _w = $(document).width();
-        var _h = $(document).height();
-        $("div#hd_message_bg").css({width: _w, height: _h, opacity: 0.9}).show();
-        //显示文字
-        var pos = center_pos($("#hd_message"));
-        $("#hd_message").css({left: pos[0], top: pos[1]}).show();
-
-    }
+function dialog_message(message, timeOut) {
+    var timeOut = timeOut ? timeOut * 1000 : 2000;
+    //创建背景色
+    var html = '<div id="hd_message_bg"></div>';
+    html += "<div id='hd_message'>" + message + "</div>";
+    $("body").append(html);
+    //改变背景色
+    $("div#hd_message_bg").css({opacity: 0.9});
+    setTimeout(function () {
+        $("div#hd_message").fadeOut("fast");
+        $("div#hd_message_bg").remove();
+    }, timeOut);
 }
 /**
  * 模态对话框
@@ -174,7 +165,7 @@ $.extend({
         $("div.modal").remove();
         var div = '';
         var show = opt.show ? "" : ";display:none;"
-        div += '<div class="modal" style="position:absolute;left:50%;top:50%;margin-top:-' + (opt['height'] / 2 + 150) + 'px;margin-left:-' + (opt['width'] / 2) + 'px;width:' + opt['width'] + 'px;' + show + 'height:' + opt['height'] + 'px;z-index:1000">';
+        div += '<div class="modal" style="position:fixed;left:50%;top:50px;margin-left:-' + (opt['width'] / 2) + 'px;width:' + opt['width'] + 'px;' + show + 'height:' + opt['height'] + 'px;z-index:1000">';
         if (opt['title']) {
             div += '<div class="modal_title">' + opt['title'] + '</div>';
         }
@@ -194,7 +185,7 @@ $.extend({
             div += '</div>';
         }
         div += '</div>';
-        div += '<div class="modal_bg" style="background: #f3f3f3;position:absolute;left:0px;display:none;top:0px;z-index: 900;"></div>';
+        div += '<div class="modal_bg"></div>';
         $(div).appendTo("body");
         var pos = center_pos($(".modal"));
         //点击确定
@@ -207,7 +198,7 @@ $.extend({
         })
         var _w = $(document).width();
         var _h = $(document).height();
-        $("div.modal_bg").css({width: _w, height: _h, opacity: 0.6});
+        $("div.modal_bg").css({ opacity: 0.6});
         if (opt.show) {
             $("div.modal_bg").show();
         }
@@ -216,13 +207,14 @@ $.extend({
             $("div.modal_footer a.hd_close").live("click", opt.cancel);
         } else {
             $("div.modal_footer a.hd_close").bind("click", function () {
-                $(this).parents("div.modal").eq(0).fadeOut(function () {
-                    $(this).parents("div.modal").eq(0).remove();
-                });
-                $("div.modal_bg").remove();
+                $.removeModal();
                 return false;
             })
         }
+    },
+    "removeModal": function () {
+        $("div.modal").fadeOut().remove();
+        $("div.modal_bg").remove();
     }
 });
 // ====================================================================================
@@ -244,7 +236,7 @@ $.extend({
  */
 
 $.fn.extend({
-    validation: function (options) {
+    validate: function (options) {
         //缓存数据
         $(this).data("validation", options);
         //验证规则
@@ -493,20 +485,29 @@ $.fn.extend({
                 var spanObj = data.spanObj;//提示信息表单
                 $(data.spanObj).removeClass("error success").addClass("validation").html("");
                 $(obj).removeClass("input_error");
-                if (stat) {//验证通过
+                if (stat) {
+                    //验证通过
                     //添加表单属性validation
                     obj.removeAttr("validation");
                     //设置正确提示信息a
                     var msg = (options[data.name].success || options[data.name].message);
-                    if (options[data.name].success) {
+                    //如果非必填项，且内容为空时，为没有错误
+                    if (!data.required && data.obj.val() == '') {
+                        msg = options[data.name].message || '';
+                        $(data.spanObj).html(msg);
+                    } else if (options[data.name].success) {
                         $(data.spanObj).addClass("success").html(msg);
                     } else {
                         $(data.spanObj).html(msg);
                     }
-                } else {//验证失败
+                } else {
+                    //验证失败
                     obj.attr("validation", 0);//添加表单属性validation
                     //设置错误提示信息
-                    var msg = (options[data.name].error[data.rule] || "输入错误");
+                    if (options[data.name].error && options[data.name].error[data.rule])
+                        var msg = (options[data.name].error[data.rule]);
+                    else
+                        var msg = "输入错误";
                     $(obj).addClass("input_error");
                     $(data.spanObj).addClass("error");
                     $(data.spanObj).html(msg);
@@ -529,19 +530,20 @@ $.fn.extend({
                     var msg = options[name].message || "";
                     spanObj.removeClass('error success').html(msg);
                 })
-                //必须验证字段加validation属性
+                //必须验证字段与确认密码加validation属性
                 if (options[name].rule.required) {
                     fieldObj.attr("validation", 0);
                 }
                 //设置默认提示信息
                 method.setDefaultMessage(name, spanObj);
-                //确认密码加属性confirm
-                if(options[name]['rule']['confirm']){
-                    $(fieldObj).attr("confirm",1);
+                //
+                if (options[name]['rule']['confirm']) {
+                    $(fieldObj).attr("confirm", 1);
                 }
                 fieldObj.live("blur", function (event, send) {
                     //没有设置required必须验证时，默认为不用验证
                     options[name].rule.required || (options[name].rule.required = false);
+                    var required = options[name].rule.required;
                     for (var rule in options[name].rule) {
                         //验证方法存在
                         if (method[rule]) {
@@ -553,7 +555,7 @@ $.fn.extend({
                              * rule 规则的具体值
                              * send 是否为submit激活的
                              */
-                            if (!method[rule]({name: name, obj: fieldObj, rule: rule, spanObj: spanObj, send: send}))break;
+                            if (!method[rule]({name: name, obj: fieldObj, rule: rule, spanObj: spanObj, send: send, required: required}))break;
                         }
                     }
                 });
@@ -593,13 +595,14 @@ $.fn.extend({
                 method.set(name);
             }
         }
-
-
         /**
          * 提交验证
          * action
          */
         $(this).bind("submit", function (event, action) {
+            //验证确认密码
+            $(this).find("[validation='0'],[confirm]").trigger("blur");
+            //验证表单
             var obj = $(this).find("[validation='0']");
             if (obj.length > 0) {
                 obj.each(function (i) {
@@ -613,7 +616,7 @@ $.fn.extend({
         })
     },
     //验证表单
-    is_validation: function () {
+    is_validate: function () {
         $(this).find("[validation='0'],[confirm]").trigger("blur");
         if ($(this).find("*[validation='0']").length > 0) {
             return false;
