@@ -2,6 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdjs/org/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index_10e82.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index_b93da.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdjs/jquery-1.8.2.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_10e82.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_17ccd.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_b93da.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/setconfig_17ccd.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/success_6cc45.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/animated-overlay.gif" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_0_eeeeee_40x100.png" afterPath="" />
@@ -21,20 +31,20 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-1.9.1.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-ui-1.10.3.custom.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-ui-1.10.3.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/css/hdjs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/img/ico.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/img/ico_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/img/ico_face.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/img/icon_2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/img/tr_border.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/hdjs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/lhgcalendar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/skins/default/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/skins/default/default_s.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/skins/default/default_s2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/skins/lhgcalendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdjs/js/slide.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/css/hdui.css" afterPath="$PROJECT_DIR$/hdjs/css/hdjs.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico.png" afterPath="$PROJECT_DIR$/hdjs/img/ico.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico_2.jpg" afterPath="$PROJECT_DIR$/hdjs/img/ico_2.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico_face.jpg" afterPath="$PROJECT_DIR$/hdjs/img/ico_face.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/icon_2.png" afterPath="$PROJECT_DIR$/hdjs/img/icon_2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/tr_border.png" afterPath="$PROJECT_DIR$/hdjs/img/tr_border.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/index.html" afterPath="$PROJECT_DIR$/hdjs/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/hdui.js" afterPath="$PROJECT_DIR$/hdjs/js/hdjs.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/lhgcalendar.min.js" afterPath="$PROJECT_DIR$/hdjs/org/cal/lhgcalendar.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/Thumbs.db" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/Thumbs.db" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/default_s.gif" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/default_s.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/default_s2.gif" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/default_s2.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/lhgcalendar.css" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/lhgcalendar.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/slide.js" afterPath="$PROJECT_DIR$/hdjs/js/slide.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
@@ -121,7 +131,7 @@
       <file leaf-file-name="debug.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="19" selection-start="553" selection-end="553" vertical-scroll-proportion="0.328125" vertical-offset="105" max-vertical-offset="4815">
+            <state line="13" column="25" selection-start="379" selection-end="379" vertical-scroll-proportion="0.140625" vertical-offset="105" max-vertical-offset="4815">
               <folding>
                 <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -698,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="19" selection-start="553" selection-end="553" vertical-scroll-proportion="0.328125" vertical-offset="105" max-vertical-offset="4815">
+        <state line="13" column="25" selection-start="379" selection-end="379" vertical-scroll-proportion="0.140625" vertical-offset="105" max-vertical-offset="4815">
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />

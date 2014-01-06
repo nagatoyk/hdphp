@@ -46,12 +46,20 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ***
 
 ###更新日志
+2014.1.7
+
+```
+1. hdui更名为hdjs
+2. hdjs做为单独应用处理，不做为hdphp扩展
+3. 更新HDJS的validation验证插件名为validate
+4. DEBUG添加session与cookie标签 
+5. 修正HDJS中confirm方法验证失败问题
+```
 2014.1.6
 
 ```
 1. 添加新的DEBUG调试界面
 2. 修正HDJS中confirm方法验证失败问题
-3. 
 ```
 
 2014.1.5
