@@ -3,6 +3,6 @@
     <head>        
         <title>欢迎使用  后盾HD框架安装配置</title>
         <meta http-equiv="content-type" content="text/htm;charset=utf-8"/>  
-        <link href='http://localhost/hdphp/setup/Tpl/State/Css/setup.css' rel='stylesheet' type='text/css'/>
-        <script type='text/javascript' src='http://localhost/hdphp/hdphp/Extend/Org/Jquery/jquery-1.8.2.min.js'></script>
+        <link href='http://192.168.1.100/hdphp/setup/Tpl/State/Css/setup.css' rel='stylesheet' type='text/css'/>
+        <script type='text/javascript' src='http://192.168.1.100/hdphp/hdphp/Extend/Org/Jquery/jquery-1.8.2.min.js'></script>
     </head>

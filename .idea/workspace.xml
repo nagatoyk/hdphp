@@ -2,55 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdjs/org/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index_10e82.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index_b93da.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdjs/jquery-1.8.2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_10e82.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_17ccd.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_b93da.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/setconfig_17ccd.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Temp/Compile/success_6cc45.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/animated-overlay.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_0_eeeeee_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_55_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_highlight-soft_100_f6f6f6_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_highlight-soft_25_0073ea_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-bg_highlight-soft_50_dddddd_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-icons_0073ea_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-icons_666666_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-icons_ff0084_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/images/ui-icons_ffffff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/jquery-ui-1.10.3.custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/css/flick/jquery-ui-1.10.3.custom.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-1.9.1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-ui-1.10.3.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/JqueryUi/js/jquery-ui-1.10.3.custom.min.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/css/hdui.css" afterPath="$PROJECT_DIR$/hdjs/css/hdjs.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico.png" afterPath="$PROJECT_DIR$/hdjs/img/ico.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico_2.jpg" afterPath="$PROJECT_DIR$/hdjs/img/ico_2.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/ico_face.jpg" afterPath="$PROJECT_DIR$/hdjs/img/ico_face.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/icon_2.png" afterPath="$PROJECT_DIR$/hdjs/img/icon_2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/img/tr_border.png" afterPath="$PROJECT_DIR$/hdjs/img/tr_border.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/index.html" afterPath="$PROJECT_DIR$/hdjs/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/hdui.js" afterPath="$PROJECT_DIR$/hdjs/js/hdjs.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/lhgcalendar.min.js" afterPath="$PROJECT_DIR$/hdjs/org/cal/lhgcalendar.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/Thumbs.db" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/Thumbs.db" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/default_s.gif" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/default_s.gif" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/default/default_s2.gif" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/default/default_s2.gif" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/skins/lhgcalendar.css" afterPath="$PROJECT_DIR$/hdjs/org/cal/skins/lhgcalendar.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/hdui/js/slide.js" afterPath="$PROJECT_DIR$/hdjs/js/slide.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Tpl/Public/error.html" afterPath="$PROJECT_DIR$/setup/Tpl/Public/error.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Tpl/Public/success.html" afterPath="$PROJECT_DIR$/setup/Tpl/Public/success.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Temp/Compile/index_b93da.php" afterPath="$PROJECT_DIR$/setup/Temp/Compile/index_b93da.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Temp/Compile/public_b93da.php" afterPath="$PROJECT_DIR$/setup/Temp/Compile/public_b93da.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Temp/Compile/success_6cc45.php" afterPath="$PROJECT_DIR$/setup/Temp/Compile/success_6cc45.php" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />

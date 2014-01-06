@@ -29,7 +29,7 @@
         <p><?php echo $msg;?>&nbsp&nbsp&nbsp&nbsp</p>
                 <span><span id="_time"><?php echo $time;?></span>秒钟后将进行
                     <a href="javascript:<?php echo $url;?>">跳转</a>
-                    也可以<a href="http://localhost/hdphp/setup">返回首页</a></span>
+                    也可以<a href="http://192.168.1.100/hdphp/setup">返回首页</a></span>
     </div>
 </div>
 <script type="text/javascript">
