@@ -7,7 +7,7 @@
         left: 0px;
         right: 0px;
         bottom: 0px;;
-        height: 245px;
+        height: 235px;
         z-index: 2000;
         font-size: 12px;
         padding: 0px;
@@ -54,8 +54,8 @@
 
     div#hd_debug div#debug_con div {
         display: none;
-        height: 220px;
-        overflow: auto;
+        height: 200px;
+        overflow: scroll;
         background: #ffffff;
     }
 
@@ -73,14 +73,17 @@
     }
     div#hd_debug div#debug_con div table thead tr td{
         background: #F3F3F3;
+        font-weight: normal;
     }
     div#hd_debug div#debug_con div table tr td {
         border-bottom: solid 1px #efefef;
         font-size: 12px;
+        font-weight: normal;
         color: #666;
-        padding: 3px 8px;
+        padding: 0px 8px;
         word-break: break-all;
         background: #fff;
+        height: 25px;
     }
     #hd_debug_bt {
         background: url("<?php echo __HDPHP_DATA__;?>/Image/debug.png") no-repeat;
