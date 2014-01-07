@@ -47,7 +47,6 @@ class ViewTag
         'ueditor' => array('block' => 0),
         'highlight' => array('block' => 0),
         'jquery' => array('block' => 0),
-        'jqueryui' => array('block' => 0),
         'upload' => array('block' => 0), //uploadif上传组件
         'zoom' => array('block' => 0), //图片放大镜
         'jsconst' => array("block" => 0), //定义JS常量
@@ -688,6 +687,7 @@ class ViewTag
         $str .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
         $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
         $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
+        $str .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
         $str .= "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
         $str .= $bootstrap ? $this->_bootstrap() : "";
         $str .= $this->_jsconst(null, null);

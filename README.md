@@ -54,6 +54,9 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 3. 更新HDJS的validation验证插件名为validate
 4. DEBUG添加session与cookie标签 
 5. 修正HDJS中confirm方法验证失败问题
+6. 修改validate.class.php方法maxlen中文验证失败问题
+7. hdjs增加slide轮换版插件
+8. 更新HDJS与HDPHP手册
 ```
 2014.1.6
 

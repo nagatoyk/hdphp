@@ -32,10 +32,10 @@ final class Backup
     //还原数据
     static public function recovery($option)
     {
-        $dir = Q("get.dirname") ? str_replace('@','/',Q("get.dirname")) : $option['dir'];
+        $dir = Q("get._dirname") ? str_replace('@','/',Q("get._dirname")) : $option['dir'];
         self::$config = require($dir . '/config.php');
         //文件id
-        $fid = Q("get.fid", NULL, "intval");
+        $fid = Q("get._fid", NULL, "intval");
         //表前缀
         $db = M();
         $db_prefix = C("DB_PREFIX");
@@ -46,7 +46,7 @@ final class Backup
             if (is_file($dir . '/structure.php')) {
                 require $dir . '/structure.php';
             }
-            $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&dirname=" . str_replace('/','@',$dir) . "&fid=1';},{$step_time});</script>";
+            $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&_dirname=" . str_replace('/','@',$dir) . "&_fid=1';},{$step_time});</script>";
             $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>还原数据初始化...</div>";
             $html .= '</body></html>';
             cookie('backup_history_url',$url);
@@ -58,7 +58,7 @@ final class Backup
         foreach (glob($dir . '/*') as $d) {
             if (preg_match("@_bk_$fid\.php$@", $d)) {
                 require $d;
-                $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&dirname=" . str_replace('/','@',$dir) . "&fid=" . ($fid + 1) . "';},{$step_time});</script>";
+                $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&_dirname=" . str_replace('/','@',$dir) . "&_fid=" . ($fid + 1) . "';},{$step_time});</script>";
                 $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>分卷{$fid}还原完毕!</div>";
                 $html .= "</body></html>";
                 echo $html;
@@ -75,7 +75,7 @@ final class Backup
     //备份数据表
     static public function backup($config = array())
     {
-        if ($dirname = Q("get.dirname")) {
+        if ($dirname = Q("get._dirname")) {
             self::$dir = str_replace('@','/',$dirname);
             if (is_file(self::$dir . '/config.php')) {
                 self::$config = require(self::$dir . '/config.php');
@@ -94,7 +94,7 @@ final class Backup
             if ($structure) {
                 self::backup_structure();
             }
-            $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&dirname=" . str_replace('/','@',self::$dir) . "';},500);</script>";
+            $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&_dirname=" . str_replace('/','@',self::$dir) . "';},500);</script>";
             $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>正在进行备份初始化...</div></body></html>";
             echo $html;
             exit;
@@ -160,7 +160,8 @@ final class Backup
     //写入备份数据
     static private function write_backup_data($table, $data, $current_row)
     {
-        $fid = Q("get.fid") ? Q("get.fid") : 1;
+        $fid = Q("get._fid") ? Q("get._fid") : 1;
+        $_GET['_fid']=$fid;
         file_put_contents(self::$dir . "/{$table}_bk_{$fid}.php", "<?php if(!defined('HDPHP_PATH'))EXIT;\n{$data}");
         self::next_backup($current_row, $table);
     }
@@ -176,11 +177,11 @@ final class Backup
         if (!headers_sent()) {
             header("Content-type:text/html;charset=utf-8");
         }
-        $fid = Q("get.fid") ? Q("get.fid") : 0;
+        $fid = Q("get._fid");
         //还原时间
         $c=current(self::$config);
         $step_time = $c['step_time'];
-        $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&dirname=" . str_replace('/','@',self::$dir) . "&fid=" . ($fid + 1) . "';},{$step_time});</script>";
+        $html = "<script>setTimeout(function(){location.href='" . __METH__ . "&_dirname=" . str_replace('/','@',self::$dir) . "&_fid=" . ($fid + 1) . "';},{$step_time});</script>";
         $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>完成到{$current_row}条记录的备份，继续备份{$table}表</div></body></html>";
         echo $html;
         exit;
