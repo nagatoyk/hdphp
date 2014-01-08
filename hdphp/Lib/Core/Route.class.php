@@ -132,8 +132,8 @@ final class Route
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
         define("__HOST__", C("HTTPS") ? "https://" : "http://" . trim($host, '/'));
         //网站根-不含入口文件
-        $documentRoot = str_ireplace($_SERVER['DOCUMENT_ROOT'], '', dirname($_SERVER['SCRIPT_FILENAME']));
-        $root = empty($documentRoot) ? "" : '/' . trim(str_replace('\\', '/', $documentRoot), '/');
+        $documentRoot = dirname($_SERVER['SCRIPT_NAME']);
+        $root = rtrim(str_replace('\\', '/', $documentRoot), '/');
         define("__ROOT__", __HOST__ . $root);
         $url = isset($_SERVER['REDIRECT_URL']) ? rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') : $_SERVER['SCRIPT_NAME'];
         //网站根-含入口文件
