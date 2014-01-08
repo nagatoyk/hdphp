@@ -176,9 +176,8 @@ final class Route
         //网站根-Static目录
         defined("__TPL__") or define("__TPL__", __ROOT__ . '/' . str_ireplace(ROOT_PATH, '', str_replace('\\', '/', realpath(TPL_PATH))));
         defined("__CONTROL_TPL__") or define("__CONTROL_TPL__", __TPL__ . '/' . CONTROL);
-        defined("__STATIC__") or define("__STATIC__", __TPL__ . '/Static');
-        defined("__PUBLIC__") or define("__PUBLIC__", __TPL__ . '/Public');
-        defined("__COMMON__") or define("__COMMON__", __ROOT__ . '/Common');
+        defined("__STATIC__") or define("__STATIC__", __TPL__ . 'Static');
+        defined("__PUBLIC__") or define("__PUBLIC__", __TPL__ . 'Public');
     }
 
     /**
