@@ -33,7 +33,7 @@ final class Boot
         define('IS_GROUP', defined("GROUP_PATH"));
         define('ROOT_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . '/'); //根目录
         define("DS", DIRECTORY_SEPARATOR); //目录分隔符
-        define("IS_WIN", strstr(PHP_OS, 'WIN') ? true : false); //window环境
+        define("IS_WIN", (strstr(PHP_OS, 'WIN') ? true : false)); //window环境
         define("MAGIC_QUOTES_GPC", @get_magic_quotes_gpc() ? true : false);
         define("HDPHP_DATA_PATH", HDPHP_PATH . 'Data/'); //数据目录
         define("HDPHP_LIB_PATH", HDPHP_PATH . 'Lib/'); //lib目录
