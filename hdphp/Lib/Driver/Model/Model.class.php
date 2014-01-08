@@ -102,10 +102,10 @@ class Model
     }
 
     //获得$this->data值
-//    public function __get($name)
-//    {
-//        return isset($this->data[$name]) ? $this->data[$name] : null;
-//    }
+    public function __get($name)
+    {
+        return isset($this->data[$name]) ? $this->data[$name] : null;
+    }
 
 
     /**
@@ -120,9 +120,9 @@ class Model
         } else if (empty($this->data)) {
             $this->data = $_POST;
         }
-        foreach ($data as $key => $val) {
+        foreach ($this->data as $key => $val) {
             if (MAGIC_QUOTES_GPC && is_string($val)) {
-                $data[$key] = stripslashes($val);
+                $this->data[$key] = stripslashes($val);
             }
         }
         return $this;
@@ -341,7 +341,7 @@ class Model
     public function __call($func, $args)
     {
         //模型中不存在方法
-        error(L('模型中不存在方法') . $func, false);
+        halt('模型中不存在方法'. $func);
     }
 
 
@@ -459,10 +459,10 @@ class Model
      */
     public function delete($data = array())
     {
-        $this->__before_delete($data);
+        $this->trigger and $this->__before_delete($data);
         $result = $this->db->delete($data);
         $this->error = $this->db->error;
-        $this->__after_delete($result);
+        $this->trigger and $this->__after_delete($result);
         return $result;
     }
 
@@ -545,9 +545,9 @@ class Model
      */
     public function select($args = array())
     {
-        $this->__before_select($arg);
+        $this->trigger and $this->__before_select($arg);
         $result = $this->db->select($args);
-        $this->__after_select($result);
+        $this->trigger and $this->__after_select($result);
         $this->error = $this->db->error;
         return $result;
     }
@@ -591,14 +591,14 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->__before_update($data);
+        $this->trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
             return false;
         }
         $this->error = $this->db->error;
         $result = $this->db->update($data);
-        $this->__after_update($result);
+        $this->trigger and $this->__after_update($result);
         return $result;
     }
 
@@ -614,10 +614,10 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->__before_insert($data);
+        $this->trigger and $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
         $this->error = $this->db->error;
-        $this->__after_insert($result);
+        $this->trigger and $this->__after_insert($result);
         return $result;
     }
 

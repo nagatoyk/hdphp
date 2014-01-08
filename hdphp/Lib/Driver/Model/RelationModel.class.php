@@ -222,11 +222,11 @@ class RelationModel extends Model
     public function update($data = array())
     {
         $this->data($data);
-        $data = $this->data;
         $this->trigger and $this->__before_update($data);
+        $data = $this->data;
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
-            $this->__after_update(NULL);
+            $this->trigger and $this->__after_update(NULL);
             $this->init();
             $this->data=array();
             return false;
@@ -287,7 +287,7 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $this->__after_update($result);
+        $this->trigger and $this->__after_update($result);
         $this->init();
         $this->data=array();
         return $result;

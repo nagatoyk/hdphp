@@ -57,6 +57,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 6. 修改validate.class.php方法maxlen中文验证失败问题
 7. hdjs增加slide轮换版插件
 8. 更新HDJS与HDPHP手册
+9. Model增加触发器开关
 ```
 2014.1.6
 
