@@ -132,16 +132,16 @@ final class Route
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
         define("__HOST__", C("HTTPS") ? "https://" : "http://" . trim($host, '/'));
         //网站根-不含入口文件
-        define("__ROOT__", __HOST__ . str_ireplace('\\','/',dirname($_SERVER['SCRIPT_NAME'])));
+        define("__ROOT__", __HOST__ . str_ireplace('\\','/',dirname($_SERVER['SCRIPT_NAME'])).'/');
         //网站根-含入口文件
         define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
         //完整URL地址
         define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
         //框架目录相关URL
-        define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
-        define("__HDPHP_DATA__", __HDPHP__ . '/Data/');
-        define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl/');
-        define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend/');
+        define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/').'/');
+        define("__HDPHP_DATA__", __HDPHP__ . 'Data/');
+        define("__HDPHP_TPL__", __HDPHP__ . 'Lib/Tpl/');
+        define("__HDPHP_EXTEND__", __HDPHP__ . 'Extend/');
         //控制器
         define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
         //方法
