@@ -44,7 +44,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的maxlen参数必须为数字');
         }
-        if(preg_match('/^[\x{4e00}-\x{9fa5}a-z0-9]{0,'.$arg.'}$/ui',$value)){
+        if(preg_match('/^[\x{4e00}-\x{9fa5}.]{0,'.$arg.'}$/ui',$value)){
             return true;
         }
         return $msg;
@@ -55,7 +55,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的minlen参数必须为数字');
         }
-        if(preg_match('/^[\x{4e00}-\x{9fa5}a-z0-9]{'.$arg.',}$/ui',$value)){
+        if(preg_match('/^[\x{4e00}-\x{9fa5}.]{'.$arg.',}$/ui',$value)){
             return true;
         }
         return $msg;
