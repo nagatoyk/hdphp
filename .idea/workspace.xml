@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,19 +34,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewTag.class.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ViewTag.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="686" column="62" selection-start="29693" selection-end="29693" vertical-scroll-proportion="-16.041666" vertical-offset="9905" max-vertical-offset="10545">
+            <state line="690" column="40" selection-start="30024" selection-end="30024" vertical-scroll-proportion="0.6953125" vertical-offset="9905" max-vertical-offset="10545">
               <folding>
-                <marker date="1389248772000" expanded="true" signature="4060:4452" placeholder="..." />
-                <marker date="1389248772000" expanded="true" signature="4083:4433" placeholder="{...}" />
-                <marker date="1389248772000" expanded="true" signature="4186:4421" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-                <marker date="1389248772000" expanded="true" signature="4933:5168" placeholder="..." />
-                <marker date="1389248772000" expanded="true" signature="21400:21491" placeholder="..." />
-                <marker date="1389248772000" expanded="true" signature="21453:21480" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-                <marker date="1389248772000" expanded="true" signature="28423:28555" placeholder="..." />
-                <marker date="1389248772000" expanded="true" signature="28565:28686" placeholder="..." />
+                <marker date="1389255181000" expanded="true" signature="4060:4452" placeholder="..." />
+                <marker date="1389255181000" expanded="true" signature="4083:4433" placeholder="{...}" />
+                <marker date="1389255181000" expanded="true" signature="4186:4421" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+                <marker date="1389255181000" expanded="true" signature="4933:5168" placeholder="..." />
+                <marker date="1389255181000" expanded="true" signature="21400:21491" placeholder="..." />
+                <marker date="1389255181000" expanded="true" signature="21453:21480" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+                <marker date="1389255181000" expanded="true" signature="28423:28555" placeholder="..." />
+                <marker date="1389255181000" expanded="true" signature="28565:28686" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -61,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Route.class.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Route.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="129" column="5" selection-start="4131" selection-end="4131" vertical-scroll-proportion="-0.25407165" vertical-offset="1956" max-vertical-offset="5820">
+            <state line="145" column="60" selection-start="5029" selection-end="5029" vertical-scroll-proportion="-2.28" vertical-offset="1926" max-vertical-offset="5820">
               <folding />
             </state>
           </provider>
@@ -154,9 +154,9 @@
         <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
       </list>
     </option>
   </component>
@@ -697,22 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="686" column="62" selection-start="29693" selection-end="29693" vertical-scroll-proportion="-16.041666" vertical-offset="9905" max-vertical-offset="10545">
-          <folding>
-            <marker date="1389248772000" expanded="true" signature="4060:4452" placeholder="..." />
-            <marker date="1389248772000" expanded="true" signature="4083:4433" placeholder="{...}" />
-            <marker date="1389248772000" expanded="true" signature="4186:4421" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-            <marker date="1389248772000" expanded="true" signature="4933:5168" placeholder="..." />
-            <marker date="1389248772000" expanded="true" signature="21400:21491" placeholder="..." />
-            <marker date="1389248772000" expanded="true" signature="21453:21480" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-            <marker date="1389248772000" expanded="true" signature="28423:28555" placeholder="..." />
-            <marker date="1389248772000" expanded="true" signature="28565:28686" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Control.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="207" column="5" selection-start="5791" selection-end="5791" vertical-scroll-proportion="-5.25" vertical-offset="2844" max-vertical-offset="3510">
@@ -729,8 +713,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="5" selection-start="4131" selection-end="4131" vertical-scroll-proportion="-0.25407165" vertical-offset="1956" max-vertical-offset="5820">
+        <state line="145" column="60" selection-start="5029" selection-end="5029" vertical-scroll-proportion="-2.28" vertical-offset="1926" max-vertical-offset="5820">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="690" column="40" selection-start="30024" selection-end="30024" vertical-scroll-proportion="0.6953125" vertical-offset="9905" max-vertical-offset="10545">
+          <folding>
+            <marker date="1389255181000" expanded="true" signature="4060:4452" placeholder="..." />
+            <marker date="1389255181000" expanded="true" signature="4083:4433" placeholder="{...}" />
+            <marker date="1389255181000" expanded="true" signature="4186:4421" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+            <marker date="1389255181000" expanded="true" signature="4933:5168" placeholder="..." />
+            <marker date="1389255181000" expanded="true" signature="21400:21491" placeholder="..." />
+            <marker date="1389255181000" expanded="true" signature="21453:21480" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+            <marker date="1389255181000" expanded="true" signature="28423:28555" placeholder="..." />
+            <marker date="1389255181000" expanded="true" signature="28565:28686" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
