@@ -684,11 +684,11 @@ class ViewTag
     {
         $bootstrap = isset($attr['bootstrap']) ? $attr['bootstrap'] : false;
         $str = '';
-        $str .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
-        $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+        $str .= "<script type='text/javascript' src='__HDPHP__../hdjs/jquery-1.8.2.min.js'></script>\n";
+        $str .= "<link href='__HDPHP__../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
+        $str .= "<script src='__HDPHP__../hdjs/js/hdjs.js'></script>\n";
+        $str .= "<script src='__HDPHP__../hdjs/js/slide.js'></script>\n";
+        $str .= "<script src='__HDPHP__../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
         $str .= $bootstrap ? $this->_bootstrap() : "";
         $str .= $this->_jsconst(null, null);
         return $str;
