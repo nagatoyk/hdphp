@@ -69,27 +69,6 @@ final class Boot
         //运行应用
         App::run();
     }
-
-    /**
-     * 加载基本配置
-     * @access private
-     */
-    static private function loadConfig(){
-        //系统配置
-        C(require(HDPHP_CONFIG_PATH . 'config.php'));
-        //系统事件
-        C("CORE_EVENT", require(HDPHP_CONFIG_PATH . 'event.php'));
-        //系统语言
-        L(require(HDPHP_LANGUAGE_PATH . 'zh.php'));
-        //别名
-        alias_import(require(HDPHP_CORE_PATH . 'Alias.php'));
-        if(IS_GROUP){
-            is_file(COMMON_CONFIG_PATH . 'config.php')              and C(require(COMMON_CONFIG_PATH . 'config.php'));
-            is_file(COMMON_CONFIG_PATH . 'event.php')               and C('GROUP_EVENT', require COMMON_CONFIG_PATH . 'event.php');
-            is_file(COMMON_CONFIG_PATH . 'alias.php')               and alias_import(COMMON_CONFIG_PATH . 'alias.php');
-            is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
-        }
-    }
     /**
      * 加载核心文件
      * @access private
@@ -113,6 +92,21 @@ final class Boot
             require($v);
         }
     }
+    /**
+     * 加载基本配置
+     * @access private
+     */
+    static private function loadConfig(){
+        //系统配置
+        C(require(HDPHP_CONFIG_PATH . 'config.php'));
+        //系统事件
+        C("CORE_EVENT", require(HDPHP_CONFIG_PATH . 'event.php'));
+        //系统语言
+        L(require(HDPHP_LANGUAGE_PATH . 'zh.php'));
+        //别名
+        alias_import(require(HDPHP_CORE_PATH . 'Alias.php'));
+    }
+
 
     /**
      * 创建项目运行目录

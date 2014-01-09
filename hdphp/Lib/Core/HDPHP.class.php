@@ -16,6 +16,13 @@ final class HDPHP
      */
     static public function init()
     {
+        //加载应用组配置
+        if(IS_GROUP){
+            is_file(COMMON_CONFIG_PATH . 'config.php')              and C(require(COMMON_CONFIG_PATH . 'config.php'));
+            is_file(COMMON_CONFIG_PATH . 'event.php')               and C('GROUP_EVENT', require COMMON_CONFIG_PATH . 'event.php');
+            is_file(COMMON_CONFIG_PATH . 'alias.php')               and alias_import(COMMON_CONFIG_PATH . 'alias.php');
+            is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
+        }
         IS_GROUP                                        and Route::group();
         defined('GROUP_NAME')                           or define('GROUP_NAME', isset($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
         defined('APP')                                  or define('APP',ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
