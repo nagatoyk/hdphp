@@ -127,7 +127,7 @@ final class Route
      * 设置常量
      */
     static private function setConst()
-    {p($_SERVER);
+    {
         //域名
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
         define("__HOST__", C("HTTPS") ? "https://" : "http://" . trim($host, '/'));
