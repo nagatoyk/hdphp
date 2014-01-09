@@ -132,7 +132,7 @@ final class Route
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
         define("__HOST__", C("HTTPS") ? "https://" : "http://" . trim($host, '/'));
         //网站根-不含入口文件
-        define("__ROOT__", __HOST__ . str_ireplace('\\','/',dirname($_SERVER['SCRIPT_NAME'])).'/');
+        define("__ROOT__", __HOST__ . trim(str_ireplace('\\','/',dirname($_SERVER['SCRIPT_NAME'])),'/').'/');
         //网站根-含入口文件
         define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
         //完整URL地址
