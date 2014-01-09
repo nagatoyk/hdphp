@@ -169,7 +169,7 @@ final class Route
                 break;
         }
         if (defined("GROUP_PATH"))
-            defined("__GROUP__") or define("__GROUP__", __ROOT__ . str_ireplace(ROOT_PATH, '', realpath(GROUP_PATH)));
+            defined("__GROUP__") or define("__GROUP__", __ROOT__ . str_ireplace(ROOT_PATH, '', realpath(GROUP_PATH)).'/');
         //网站根-Static目录
         defined("__TPL__") or define("__TPL__", __ROOT__  . str_ireplace(ROOT_PATH, '', str_ireplace('\\','/',realpath(TPL_PATH)).'/'));
         defined("__CONTROL_TPL__") or define("__CONTROL_TPL__", __TPL__  . CONTROL.'/');
