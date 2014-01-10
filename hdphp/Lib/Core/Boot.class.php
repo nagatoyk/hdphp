@@ -29,20 +29,19 @@ final class Boot
      */
     static public function run()
     {
-        //框架版本
-        define('IS_GROUP',  defined("GROUP_PATH"));
-        $root = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
-        define('ROOT_PATH', rtrim($root,'/').'/'); //根目录
-        define("DS",        DIRECTORY_SEPARATOR); //目录分隔符
-        define('IS_CGI',    substr(PHP_SAPI, 0, 3) == 'cgi' ? TRUE : FALSE);
-        define('IS_WIN',    strstr(PHP_OS, 'WIN') ? TRUE : FALSE);
-        define('IS_CLI',    PHP_SAPI == 'cli' ? TRUE : FALSE);
         if (version_compare(PHP_VERSION, '5.4.0', '<')) {
             ini_set('magic_quotes_runtime', 0);
             define('MAGIC_QUOTES_GPC', get_magic_quotes_gpc() ? TRUE : FALSE);
         } else {
             define('MAGIC_QUOTES_GPC', false);
         }
+
+        $root = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+        define('ROOT_PATH',             $root.'/'); //根目录
+        define("DS",                    DIRECTORY_SEPARATOR); //目录分隔符
+        define('IS_CGI',                substr(PHP_SAPI, 0, 3) == 'cgi' ? TRUE : FALSE);
+        define('IS_WIN',                strstr(PHP_OS, 'WIN') ? TRUE : FALSE);
+        define('IS_CLI',                PHP_SAPI == 'cli' ? TRUE : FALSE);
         define("HDPHP_DATA_PATH",       HDPHP_PATH . 'Data/'); //数据目录
         define("HDPHP_LIB_PATH",        HDPHP_PATH . 'Lib/'); //lib目录
         define("HDPHP_CONFIG_PATH",     HDPHP_PATH . 'Config/'); //配置目录
@@ -54,7 +53,8 @@ final class Boot
         define("HDPHP_FUNCTION_PATH",   HDPHP_LIB_PATH . 'Function/'); //函数目录
         define("HDPHP_LANGUAGE_PATH",   HDPHP_LIB_PATH . 'Language/'); //语言目录
         define("HDPHP_TPL_PATH",        HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
-        define("STATIC_PATH",           ROOT_PATH . 'Static'); //网站静态文件目录
+        define("STATIC_PATH",           ROOT_PATH . 'Static/'); //网站静态文件目录
+        define('IS_GROUP',              defined("GROUP_PATH"));
         defined("COMMON_PATH")          or define("COMMON_PATH", IS_GROUP ? GROUP_PATH . 'Common/' : APP_PATH); //应用组公共目录
         defined("COMMON_CONFIG_PATH")   or define("COMMON_CONFIG_PATH", IS_GROUP ? COMMON_PATH . 'Config/' : APP_PATH); //应用组公共目录
         defined("COMMON_MODEL_PATH")    or define("COMMON_MODEL_PATH", IS_GROUP ? COMMON_PATH . 'Model/' : APP_PATH); //应用组公共目录

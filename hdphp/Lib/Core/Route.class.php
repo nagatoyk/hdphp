@@ -132,7 +132,9 @@ final class Route
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
         define("__HOST__", C("HTTPS") ? "https://" : "http://" .$host);
         //网站根-不含入口文件
-        define("__ROOT__", __HOST__ . rtrim(ROOT_PATH,'/'));
+        $script_file = rtrim($_SERVER['SCRIPT_NAME'],'/');
+        $root = rtrim(dirname($script_file),'/');
+        define("__ROOT__", __HOST__ . ($root=='/' || $root=='\\'?'':$root));
         //网站根-含入口文件
         define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
         //完整URL地址
@@ -173,7 +175,7 @@ final class Route
         //网站根-Static目录
         defined("__TPL__") or define("__TPL__", __ROOT__  . '/'.rtrim(TPL_PATH,'/'));
         defined("__CONTROL_TPL__") or define("__CONTROL_TPL__", __TPL__  .'/'. CONTROL);
-        defined("__STATIC__") or define("__STATIC__", __TPL__ . '/Static');
+        defined("__STATIC__") or define("__STATIC__", __ROOT__ . '/Static');
         defined("__PUBLIC__") or define("__PUBLIC__", __TPL__ . '/Public');
     }
 
