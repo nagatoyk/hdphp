@@ -53,7 +53,8 @@ class ViewTag
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
         "hdjs" => array("block" => 0),
-        "slide" => array("block" => 0)
+        "slide" => array("block" => 0),
+        "cal" => array("block" => 0)
     );
 
     //格式化参数 字符串加引号
@@ -638,7 +639,7 @@ class ViewTag
     }
 
     //bootstrap
-    public function _bootstrap()
+    public function _bootstrap($attr,$content)
     {
         $str = '';
         $str .= '<link href="__HDPHP_EXTEND__/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
@@ -678,7 +679,10 @@ class ViewTag
         $file = '__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js';
         return "<script type='text/javascript' src='$file'></script>";
     }
-
+    //日历
+    public function _cal($attr,$content){
+        return "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+    }
     //HdUi
     public function _hdjs($attr, $content)
     {
@@ -688,8 +692,8 @@ class ViewTag
         $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
         $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
         $str .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
-        $str .= $bootstrap ? $this->_bootstrap() : "";
+        $str .= $this->_cal(null,null);
+        $str .= $bootstrap ? $this->_bootstrap(null,null) : "";
         $str .= $this->_jsconst(null, null);
         return $str;
     }

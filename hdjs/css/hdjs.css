@@ -237,7 +237,7 @@ table.table1 {
 table.table1 tr, table.table1 th, table.table1 td {
     background: url("../img/tr_border.png") repeat-x scroll 0 bottom rgba(0, 0, 0, 0);
     vertical-align: middle;
-    padding: 4px 15px;
+    padding: 6px 15px;
 }
 
 table.table1 tr th {
