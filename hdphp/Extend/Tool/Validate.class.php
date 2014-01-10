@@ -44,7 +44,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的maxlen参数必须为数字');
         }
-        if(mb_strlen($value,'utf8')<=$arg){
+        if(mb_strlen($value,'utf-8')<=$arg){
             return true;
         }
         return $msg;
@@ -55,7 +55,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的minlen参数必须为数字');
         }
-        if(mb_strlen($value,'utf8')>=$arg){
+        if(mb_strlen($value,'utf-8')>=$arg){
             return true;
         }
         return $msg;
