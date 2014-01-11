@@ -620,7 +620,17 @@ class Model
         $this->trigger and $this->__after_insert($result);
         return $result;
     }
-
+    //批量插入数据
+    public function addAll($data,$type='INSERT'){
+        $id = array();
+        if(is_array($data) && !empty($data)){
+            foreach($data as $d){
+                if(is_array($d))
+                    $id[]=$this->insert($d,$type);
+            }
+        }
+        return empty($id)?NULL:$id;
+    }
     //replace方式插入数据
     public function replace($data = array())
     {
@@ -628,9 +638,9 @@ class Model
     }
 
     //插入数据
-    public function add($data = array())
+    public function add($data = array(),$type='INSERT')
     {
-        return $this->insert($data);
+        return $this->insert($data,$type);
     }
 
 

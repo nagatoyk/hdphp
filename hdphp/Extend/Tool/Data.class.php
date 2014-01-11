@@ -111,7 +111,7 @@ final class Data
             if ($v['level'] != 1) {
                 $t = $title ? $v[$title] : "";
                 if (isset($arr[$k + 1]) && $arr[$k + 1]['level'] >= $arr[$k]['level']) {
-                    $arr[$k]['_name'] = $str . "┝─" . $v['html'] . $t;
+                    $arr[$k]['_name'] = $str . "├─" . $v['html'] . $t;
                 } else {
                     $arr[$k]['_name'] = $str . "└─" . $v['html'] . $t;
                 }
