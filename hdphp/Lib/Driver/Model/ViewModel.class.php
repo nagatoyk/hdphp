@@ -83,7 +83,7 @@ class ViewModel extends Model
             $from .= $set['type'] . " " . $_table . " ";
             $from .= " ON " . $set['on'] . " ";
         }
-        $this->db->opt['table'] = $from;
+        $this->db->opt['table'] = preg_replace('@(\w+?\.[a-z]+?)@i', C('DB_PREFIX') . '\1', $from);
     }
 
     //查询

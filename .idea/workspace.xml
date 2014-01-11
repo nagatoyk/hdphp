@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
@@ -42,7 +39,7 @@
       <file leaf-file-name="Model.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="642" column="42" selection-start="16716" selection-end="16716" vertical-scroll-proportion="-6.6666665" vertical-offset="9470" max-vertical-offset="14490">
+            <state line="545" column="20" selection-start="14091" selection-end="14091" vertical-scroll-proportion="-9.041667" vertical-offset="7958" max-vertical-offset="14490">
               <folding />
             </state>
           </provider>
@@ -51,7 +48,16 @@
       <file leaf-file-name="Db.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="483" column="60" selection-start="14344" selection-end="14344" vertical-scroll-proportion="0.28330782" vertical-offset="6925" max-vertical-offset="10530">
+            <state line="221" column="20" selection-start="6029" selection-end="6029" vertical-scroll-proportion="0.3598775" vertical-offset="2945" max-vertical-offset="10530">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewModel.class.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="98" selection-start="2675" selection-end="2675" vertical-scroll-proportion="-1.875" vertical-offset="1095" max-vertical-offset="2205">
               <folding />
             </state>
           </provider>
@@ -101,7 +107,6 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbInterface.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysql.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbPdo.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/App.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysqli.class.php" />
@@ -137,6 +142,7 @@
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php" />
       </list>
     </option>
@@ -656,11 +662,6 @@
         <state line="641" column="45" selection-start="28212" selection-end="28212" vertical-scroll-proportion="0.3328125" vertical-offset="9402" max-vertical-offset="10605" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="46" selection-start="2461" selection-end="2461" vertical-scroll-proportion="-0.20673813" vertical-offset="1215" max-vertical-offset="2205" />
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/mbstring.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="237" column="9" selection-start="7384" selection-end="7384" vertical-scroll-proportion="0.34603176" vertical-offset="3337" max-vertical-offset="18195">
@@ -738,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="642" column="42" selection-start="16716" selection-end="16716" vertical-scroll-proportion="-6.6666665" vertical-offset="9470" max-vertical-offset="14490">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/App.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="5" selection-start="1149" selection-end="1149" vertical-scroll-proportion="-15.5" vertical-offset="3" max-vertical-offset="1335">
@@ -752,9 +746,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="545" column="20" selection-start="14091" selection-end="14091" vertical-scroll-proportion="-9.041667" vertical-offset="7958" max-vertical-offset="14490">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="98" selection-start="2675" selection-end="2675" vertical-scroll-proportion="-1.875" vertical-offset="1095" max-vertical-offset="2205">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="483" column="60" selection-start="14344" selection-end="14344" vertical-scroll-proportion="0.28330782" vertical-offset="6925" max-vertical-offset="10530">
+        <state line="221" column="20" selection-start="6029" selection-end="6029" vertical-scroll-proportion="0.3598775" vertical-offset="2945" max-vertical-offset="10530">
           <folding />
         </state>
       </provider>

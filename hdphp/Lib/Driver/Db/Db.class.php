@@ -225,15 +225,15 @@ abstract class Db implements DbInterface
             $this->error("没有可操作的数据表");
             return false;
         }
-        if (!empty($where)) {
+        //设置条件
+        if (!empty($where))
             $this->where($where);
-        }
-        //添加表前缀
-        $chain = array("table", "group", "field", "order");
-        foreach ($chain as $v) {
-            $this->opt[$v] = $this->addTableFix($this->opt[$v]);
-        }
-        $sql = "SELECT " . $this->opt['field'] . " FROM " . $this->opt['table'] .
+//        //添加表前缀
+//        $chain = array('table', 'group','field','order');
+//        foreach ($chain as $v) {
+//            $this->opt[$v] = $this->addTableFix($this->opt[$v]);
+//        }
+        $sql = 'SELECT ' . $this->opt['field'] . ' FROM ' . $this->opt['table'] .
             $this->opt['where'] . $this->opt['group'] . $this->opt['having'] .
             $this->opt['order'] . $this->opt['limit'];
         $data = $this->query($sql);
@@ -246,10 +246,10 @@ abstract class Db implements DbInterface
      * @param string $sql
      * @return string   格式化后的SQL
      */
-    public function addTableFix($sql)
-    {
-        return preg_replace("@(\w+?\.[a-z]+?)@i", C("DB_PREFIX") . '\1', $sql);
-    }
+//    public function addTableFix($sql)
+//    {
+//        return preg_replace('@(\w+?\.[a-z]+?)@i', C('DB_PREFIX') . '\1', $sql);
+//    }
 
     /**
      * SQL中的REPLACE方法，如果存在与插入记录相同的主键或unique字段进行更新操作
@@ -257,7 +257,7 @@ abstract class Db implements DbInterface
      * @param string $type
      * @return array|bool
      */
-    public function insert($data, $type = "INSERT")
+    public function insert($data, $type = 'INSERT')
     {
         $value = $this->formatField($data);
         if (empty($value)) {
