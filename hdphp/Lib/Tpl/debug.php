@@ -86,6 +86,7 @@
         word-break: break-all;
         background: #fff;
         height: 25px;
+        text-align: left;
     }
     #hd_debug_bt {
         background: url("<?php echo __HDPHP_DATA__;?>/Image/debug.png") no-repeat;
