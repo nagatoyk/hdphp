@@ -362,58 +362,6 @@ table.table2 tr, table.table2 th, table.table2 td {
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#bbbbbb));;
 }
 
-.btn4 {
-    display: inline-block;
-    margin-right: 10px;
-    background-color: #006DCC;
-    background-image: linear-gradient(to bottom, #0088CC, #0044CC);
-    background-repeat: repeat-x;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-    color: #FFFFFF;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    border-image: none;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 0;
-    padding: 4px 12px;
-    text-align: center;
-    vertical-align: middle;
-}
-.btn4:hover{
-    background-image: linear-gradient(to bottom, #0088EE, #0044EE);
-}
-.btn5 {
-    margin-right: 10px;
-    background-color: #F5F5F5;
-    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
-    background-repeat: repeat-x;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
-    border-image: none;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #333333;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 0;
-    padding: 4px 12px;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    vertical-align: middle;
-}
-
-.btn5:hover {
-    background-image: linear-gradient(to bottom, #FFFFFF, #dcdcdc);
-}
-
 /* ====================================================================================
 /* ===================================--|尺寸|--========================================
 /* ====================================================================================*/
@@ -771,7 +719,22 @@ div.modal div.modal_title {
     line-height: 35px;
     text-indent: 20px;
 }
-
+div.modal div.modal_title button.close{
+    margin-top: 2px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    cursor: pointer;
+    padding: 0;
+    color: #000000;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
+    opacity: 0.2;
+    text-shadow: 0 1px 0 #FFFFFF;
+    vertical-align: middle;
+    margin-right: 10px;
+}
 div.modal div.content {
     padding: 5px;
     overflow: auto;
@@ -782,12 +745,13 @@ div.modal div.modal_footer {
     border-top: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 #FFFFFF inset;
     margin-bottom: 0;
-    padding: 12px 15px 12px;
     text-align: right;
     position: absolute;
     bottom: 0px;
     left: 0px;
     right: 0px;
+    padding: 8px 15px;
+    height: 30px;overflow: hidden;
 }
 
 div.modal_message strong {
@@ -821,7 +785,7 @@ div.modal_message strong.error {
 }
 
 /*确定按钮*/
-div.modal a.hd_success {
+.hd-success {
     display: inline-block;
     margin-right: 20px;
     background-color: #006DCC;
@@ -839,13 +803,15 @@ div.modal a.hd_success {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 0;
-    padding: 4px 12px;
+    padding: 3px 12px;
     text-align: center;
     vertical-align: middle;
 }
-
-/*模态关闭按钮*/
-div.modal a.hd_close {
+.hd-success:hover,.hd-success:focus{
+    background-position: 0 30px;
+}
+/*关闭按钮*/
+.hd-cancel {
     background-color: #F5F5F5;
     background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
     background-repeat: repeat-x;
@@ -861,12 +827,14 @@ div.modal a.hd_close {
     font-size: 14px;
     line-height: 20px;
     margin-bottom: 0;
-    padding: 4px 12px;
+    padding: 3px 12px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
 }
-
+.hd-cancel:hover ,.hd-cancel:focus{
+    background-position: 0 -115px;
+}
 /**********弹出对话框**************/
 div.dialog {
     width: 300px;

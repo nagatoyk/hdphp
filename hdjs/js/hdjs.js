@@ -151,37 +151,51 @@ function dialog_message(message, timeOut) {
 $.extend({
     "modal": function (options) {
         var _default = {
-            title: '', content: false, width: 650, button: true,
-            send_title: "确定",
-            cancel_title: "关闭",
+            title: '',
+            content: '',
+            height: 400,
+            width: 600,
+            button_success: '',
+            button_cancel: '',
             message: false,
             type: "success",
             cancel: false,//事件
-            send: false,//事件
+            success: false,//事件
             show: true//是否显示
         };
         var opt = $.extend(_default, options);
-        //删除所有弹出框
+        //----------删除所有弹出框
         $("div.modal").remove();
         var div = '';
         var show = opt.show ? "" : ";display:none;"
         div += '<div class="modal" style="position:fixed;left:50%;top:50px;margin-left:-' + (opt['width'] / 2) + 'px;width:' + opt['width'] + 'px;' + show + 'height:' + opt['height'] + 'px;z-index:1000">';
+        //---------------标题设置
         if (opt['title']) {
-            div += '<div class="modal_title">' + opt['title'] + '</div>';
+            div += '<div class="modal_title">' + opt['title'];
+            //---------x关闭按钮
+            div += '<button class="close" aria-hidden="true" data-dismiss="modal" type="button" onclick="$.removeModal()">×</button>';
+            div += '</div>';
         }
-        var con_h = opt['height'] - (opt['title'] ? 35 : 0) - (opt.button ? 55 : 0);
-        div += '<div class="content" style="height:' + (con_h) + 'px;">';
+        //--------------内容区域
+        content_height = opt.height-35-46;
+        div += '<div class="content" style="height:'+content_height+'px">';
         if (opt.message) {
             div += '<div class="modal_message"><strong class="' + opt.type + '"></strong><span>' + opt.message + '</span></div>';
         } else {
             div += opt.content;
         }
         div += '</div>';
-        if (opt.button) {
+        //------------按钮处理
+        if (opt.button_success || opt.button_cancel) {
             div += '<div class="modal_footer" ' + (opt.message ? 'style="text-align:center"' : "") + '>';
-            div += '<a href="javascript:;" class="btn btn-primary hd_success">' + opt.send_title + '</a>';
-            if (opt.cancel_title)
-                div += '<a href="javascript:;" class="btn hd_close">' + opt.cancel_title + '</a>';
+            //确定按钮
+            if (opt.button_success){
+                div += '<a href="javascript:;" class="btn btn-primary hd-success">' + opt.button_success + '</a>';
+            }
+            //放弃按钮
+            if (opt.button_cancel){
+                div += '<a href="javascript:;" class="btn hd-close">' + opt.button_cancel + '</a>';
+            }
             div += '</div>';
         }
         div += '</div>';
@@ -189,11 +203,11 @@ $.extend({
         $(div).appendTo("body");
         var pos = center_pos($(".modal"));
         //点击确定
-        $("div.modal_footer a.hd_success").click(function () {
-            if (opt.send) {
-                opt.send();
+        $("div.modal_footer a.hd-success").click(function () {
+            if (opt.success) {
+                opt.success();
             } else {
-                $("div.modal_footer a.hd_close").trigger("click");
+                $("div.modal_footer a.hd-close").trigger("click");
             }
         })
         var _w = $(document).width();
@@ -204,9 +218,9 @@ $.extend({
         }
         //点击关闭modal
         if (opt.cancel) {
-            $("div.modal_footer a.hd_close").live("click", opt.cancel);
+            $("div.modal_footer a.hd-close").live("click", opt.cancel);
         } else {
-            $("div.modal_footer a.hd_close").bind("click", function () {
+            $("div.modal_footer a.hd-close").bind("click", function () {
                 $.removeModal();
                 return false;
             })
