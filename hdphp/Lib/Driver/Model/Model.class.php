@@ -176,10 +176,10 @@ class Model
     }
 
     //设置关联模型
-    public function join($table = null)
+    public function join($table = FALSE)
     {
-        if (is_null($table)) {
-            $this->joinTable = NULL;
+        if (!$table) {
+            $this->joinTable = FALSE;
         } else if (is_string($table)) {
             $this->joinTable = explode(",", $table);
         } else if (is_array($table)) {
@@ -279,6 +279,12 @@ class Model
         $_data = & $this->data;
         $motion = $this->getCurrentMethod();
         foreach ($this->auto as $v) {
+            //1 插入时处理  2 更新时处理  3 插入与更新都处理
+            $type = isset($v[4]) ? $v[4] : 3;
+            //是否处理  更新或插入
+            if ($motion != $type && $type != 3) {
+                continue;
+            }
             //验证的表单名称
             $name = $v[0];
             //函数或方法
@@ -304,14 +310,8 @@ class Model
                     }
                     break;
             }
-            //1 插入时处理  2 更新时处理  3 插入与更新都处理
-            $type = isset($v[4]) ? $v[4] : 3;
             //处理类型 function函数  method模型方法 string字符串
             $handle = isset($v[2]) ? $v[2] : "string";
-            //是否处理  更新或插入
-            if ($motion != $type && $type != 3) {
-                continue;
-            }
             $_data[$name] = isset($_data[$name]) ? $_data[$name] : NULL;
             switch (strtolower($handle)) {
                 case "function":
@@ -357,7 +357,8 @@ class Model
             $table = C("DB_PREFIX") . $table;
         }
         $this->db->table($table);
-        $this->join(NULL);
+        $this->join(FALSE);
+        $this->trigger(FALSE);
         return $this;
     }
 

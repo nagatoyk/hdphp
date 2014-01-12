@@ -558,7 +558,7 @@ $.fn.extend({
                 if (options[name]['rule']['confirm']) {
                     $(fieldObj).attr("confirm", 1);
                 }
-                fieldObj.live("blur", function (event, send) {
+                fieldObj.live("blur change", function (event, send) {
                     //没有设置required必须验证时，默认为不用验证
                     options[name].rule.required || (options[name].rule.required = false);
                     var required = options[name].rule.required;

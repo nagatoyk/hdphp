@@ -14,6 +14,7 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-size: 12px;
 }
 
 .l {
@@ -34,6 +35,7 @@ li {
 
 a, a:hover, a:focus {
     text-decoration: none;
+    color: #266AAE;
 }
 
 ul, ol {
@@ -47,6 +49,7 @@ ul, ol {
 
 img {
     border: none;
+    vertical-align: middle
 }
 
 iframe {
@@ -161,6 +164,17 @@ div.tab ul.tab_menu li a:hover {
     text-decoration: none;
 }
 
+div.wrap {
+    padding: 10px;
+    background: #f3f3f3;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding: 20px 20px 50px;
+}
+
 /**内容块**/
 div.tab_content {
     position: relative;
@@ -216,13 +230,12 @@ div.menu_list ul li a.action {
 }
 
 /*表格菜单*/
-div.table_title {
+div.title-header {
     background: none repeat scroll 0 0 #E6E6E6;
     border-bottom: 1px solid #FFFFFF;
     border-top: 1px solid #DDDDDD;
     color: #666666;
     font-size: 12px;
-    /*font-weight: 700;*/
     padding: 5px 9px;
 }
 
@@ -248,7 +261,7 @@ table.table1 tr th {
     color: #666;
     line-height: 24px;
     padding: 7px 10px 9px;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 table.table1 tr.header {
@@ -433,16 +446,32 @@ table.table2 tr, table.table2 th, table.table2 td {
     width: 500px;
 }
 
+.w550 {
+    width: 550px;
+}
+
 .w600 {
     width: 600px;
+}
+
+.w650 {
+    width: 650px;
 }
 
 .w700 {
     width: 700px;
 }
 
+.w750 {
+    width: 750px;
+}
+
 .w800 {
     width: 800px;
+}
+
+.w850 {
+    width: 850px;
 }
 
 .h60 {
@@ -605,6 +634,24 @@ div.page1 span.count {
     line-height: 25px;
 }
 
+.position-bottom {
+    position: fixed;
+    background: none repeat scroll 0 0 #F0F0F0;
+    border-color: #DCDCDC -moz-use-text-color -moz-use-text-color;
+    border-image: none;
+    border-right: medium none;
+    border-style: solid none none;
+    border-width: 1px medium medium;
+    bottom: 0;
+    height: 25px;
+    left: 0;
+    overflow: hidden;
+    padding: 8px 30px 5px;
+    right: 0;
+    text-align: left;
+    z-index: 100;
+}
+
 .success {
     font-size: 12px;
     color: #999999;
@@ -728,7 +775,8 @@ div.modal div.modal_title {
     line-height: 35px;
     text-indent: 20px;
 }
-div.modal div.modal_title button.close{
+
+div.modal div.modal_title button.close {
     margin-top: 2px;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     border: 0 none;
@@ -744,6 +792,7 @@ div.modal div.modal_title button.close{
     vertical-align: middle;
     margin-right: 10px;
 }
+
 div.modal div.content {
     padding: 5px;
     overflow: auto;
@@ -760,7 +809,8 @@ div.modal div.modal_footer {
     left: 0px;
     right: 0px;
     padding: 8px 15px;
-    height: 30px;overflow: hidden;
+    height: 30px;
+    overflow: hidden;
 }
 
 div.modal_message strong {
@@ -816,9 +866,11 @@ div.modal_message strong.error {
     text-align: center;
     vertical-align: middle;
 }
-.hd-success:hover,.hd-success:focus{
+
+.hd-success:hover, .hd-success:focus {
     background-position: 0 30px;
 }
+
 /*关闭按钮*/
 .hd-cancel {
     background-color: #F5F5F5;
@@ -841,9 +893,11 @@ div.modal_message strong.error {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
 }
-.hd-cancel:hover ,.hd-cancel:focus{
+
+.hd-cancel:hover, .hd-cancel:focus {
     background-position: 0 -115px;
 }
+
 /**********弹出对话框**************/
 div.dialog {
     width: 300px;

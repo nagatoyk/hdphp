@@ -585,7 +585,7 @@ function Q($var, $default = null, $filter = null)
         //对参数进行过滤的函数
         $funcArr = is_null($filter) ? C("FILTER_FUNCTION") : $filter;
         //参数过滤函数
-        if (is_string($funcArr)) {
+        if (is_string($funcArr)&&!empty($funcArr)) {
             $funcArr = explode(",", $funcArr);
         }
         //是否存在过滤函数

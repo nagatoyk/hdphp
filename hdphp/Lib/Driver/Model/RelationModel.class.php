@@ -77,7 +77,7 @@ class RelationModel extends Model
         $pri = $this->db->pri;
         $result = call_user_func(array($this->db, __FUNCTION__), $data);
         //插入失败或者没有定义关联join属性
-        if (!$result || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
+        if (!$result || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
             $this->trigger and $this->__after_select($result);
             $this->init();
@@ -161,7 +161,7 @@ class RelationModel extends Model
         }
         $id = call_user_func(array($this->db, __FUNCTION__), $data, $type);
         //插入失败或者没有定义关联join属性
-        if (!$id || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
+        if (!$id || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
             $this->trigger and $this->__after_insert($id);
             $this->init();
@@ -233,7 +233,7 @@ class RelationModel extends Model
         }
         $stat = call_user_func(array($this->db, __FUNCTION__), $data);
         //插入失败或者没有定义关联join属性
-        if (!$stat || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
+        if (!$stat || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
             $this->trigger and $this->__after_update($stat);
             $this->init();
@@ -306,7 +306,7 @@ class RelationModel extends Model
         $this->db->opt = $this->db->opt_old;
         $stat = call_user_func(array($this->db, __FUNCTION__));
         //插入失败或者没有定义关联join属性
-        if (!$stat || is_null($this->joinTable) || empty($this->join) || !is_array($this->join)) {
+        if (!$stat || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
             $this->trigger and $this->__after_delete($stat);
             $this->init();
