@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdjs/js/hdjs.js" afterPath="$PROJECT_DIR$/hdjs/js/hdjs.js" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,11 +43,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hdphp.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="hdphp.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="0.21428572" vertical-offset="0" max-vertical-offset="630">
+            <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hdjs.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hdjs/js/hdjs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="836" column="24" selection-start="29851" selection-end="29851" vertical-scroll-proportion="0.95319813" vertical-offset="11929" max-vertical-offset="12990">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <marker date="1389568299000" expanded="false" signature="6048:6094" placeholder="..." />
+                <marker date="1389568299000" expanded="false" signature="6652:6659" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,12 +146,12 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdjs/css/hdjs.css" />
-        <option value="$PROJECT_DIR$/hdjs/js/hdjs.js" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
         <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
+        <option value="$PROJECT_DIR$/hdjs/js/hdjs.js" />
       </list>
     </option>
   </component>
@@ -401,7 +413,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.49926144" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19386107" sideWeight="0.6686478" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19386107" sideWeight="0.6686478" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.221875" sideWeight="0.33135214" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -665,17 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdjs/js/hdjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="560" column="36" selection-start="21654" selection-end="21654" vertical-scroll-proportion="0.3447738" vertical-offset="8179" max-vertical-offset="12525">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1389538539000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1389538539000" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdjs/css/hdjs.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="263" column="27" selection-start="6010" selection-end="6010" vertical-scroll-proportion="-3.9296637" vertical-offset="6515" max-vertical-offset="15300">
@@ -720,8 +721,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="0.21428572" vertical-offset="0" max-vertical-offset="630">
+        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdjs/js/hdjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="836" column="24" selection-start="29851" selection-end="29851" vertical-scroll-proportion="0.95319813" vertical-offset="11929" max-vertical-offset="12990">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <marker date="1389568299000" expanded="false" signature="6048:6094" placeholder="..." />
+            <marker date="1389568299000" expanded="false" signature="6652:6659" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
