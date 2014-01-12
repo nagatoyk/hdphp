@@ -50,7 +50,8 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 2014.1.12
 
 ```
-1. 更新HDJS手册
+1. HDJS库增加新功能
+2. 更新HDJS手册
 ```
 
 2014.1.11

@@ -21,7 +21,11 @@ $(function () {
 function _open(url) {
     window.open(url, "");
 }
-//关闭窗口
+/**
+ * 关闭窗口
+ * @param msg 提示信息
+ * @private
+ */
 function _close(msg) {
     if (msg) {
         if (!confirm(msg))return;
@@ -87,7 +91,7 @@ $.extend({
     "dialog": function (options) {
         var _default = {
             "type": "success"//类型 CSS样式
-            , "msg": "msg属性配置错误"//提示信息
+            , "message": "msg属性配置错误"//提示信息
             , "timeout": 2//自动关闭时间
             , "close_handler": function () {
             }//关闭时的回调函数
@@ -101,7 +105,7 @@ $.extend({
             div += '<a href="#" title="关闭">×</a></div>';
             div += '<h2 id="dialog_title">提示信息</h2>';
             div += '<div class="con ' + opt.type + '"><strong>ico</strong>';
-            div += '<span>' + opt.msg + '</span>';
+            div += '<span>' + opt.message + '</span>';
             div += '</div>';
             div += '</div>';
             div += '<div class="dialog_bg"></div>'
@@ -194,7 +198,7 @@ $.extend({
             }
             //放弃按钮
             if (opt.button_cancel){
-                div += '<a href="javascript:;" class="btn hd-close">' + opt.button_cancel + '</a>';
+                div += '<a href="javascript:;" class="btn hd-cancel">' + opt.button_cancel + '</a>';
             }
             div += '</div>';
         }
@@ -207,7 +211,7 @@ $.extend({
             if (opt.success) {
                 opt.success();
             } else {
-                $("div.modal_footer a.hd-close").trigger("click");
+                $("div.modal_footer a.hd-cancel").trigger("click");
             }
         })
         var _w = $(document).width();
@@ -218,9 +222,9 @@ $.extend({
         }
         //点击关闭modal
         if (opt.cancel) {
-            $("div.modal_footer a.hd-close").live("click", opt.cancel);
+            $("div.modal_footer a.hd-cancel").live("click", opt.cancel);
         } else {
-            $("div.modal_footer a.hd-close").bind("click", function () {
+            $("div.modal_footer a.hd-cancel").bind("click", function () {
                 $.removeModal();
                 return false;
             })
@@ -640,7 +644,7 @@ $.fn.extend({
 });
 
 /**
- * 笛卡儿积组合
+ * 笛卡尔乘积
  * @param object list 对象
  * @returns {*}
  * <code>
@@ -700,7 +704,7 @@ function descarte(list) {
  * jQuery增强函数
  */
 jQuery.extend({
-    //过小空数组
+    //过滤空数组
     "array_filter": function (arr) {
         return $.grep(arr, function (n, i) {
             if ($.trim(n)) {
@@ -709,6 +713,94 @@ jQuery.extend({
         })
     }
 })
+
+/**
+ * 表单提交，没有确定按钮，倒计时关闭窗口
+ * @param obj form表单对象
+ * @param url 成功时的跳转url
+ * @returns {boolean}
+ */
+function hd_submit(obj, url) {
+    if ($(obj).is_validate()) {
+        var post = $(obj).serialize();
+        $.ajax({
+            type: "POST",
+            url: $(obj).attr("action"),
+            dataType: "JSON",
+            cache: false,
+            data: post,
+            success: function (data) {
+                if (data.state == 1) {
+                    $.dialog({
+                        message: data.message,
+                        type: "success",
+                        close_handler: function () {
+                            if (url) {
+                                location.href = url
+                            } else {
+                                window.location.reload();
+                            }
+                        }
+                    });
+                } else {
+                    $.dialog({
+                        message: data.message,
+                        type: "error"
+                    });
+                }
+            }
+        })
+    }
+    return false;
+}
+/**
+ * 表单提交，有确定按钮，需要点击确定按钮关闭窗口
+ * @param obj form表单对象
+ * @param url 成功时的跳转url
+ * @returns {boolean}
+ */
+function hd_submit_confirm(obj, url) {
+    if ($(obj).is_validate()) {
+        var _post = $(obj).serialize();
+        $.ajax({
+            type: "POST",
+            url: $(obj).attr("action"),
+            dataType: "JSON",
+            cache: false,
+            data: _post,
+            success: function (data) {
+                if (data.state == 1) {
+                    $.modal({
+                        width: 250,
+                        height: 180,
+                        title: '温馨提示',
+                        button_cancel: "关闭",
+                        message: data.message,
+                        type: "success",
+                        //点击确定窗口
+                        cancel: function () {
+                            if (url) {
+                                location.href = url
+                            } else {
+                                window.location.reload();
+                            }
+                        }
+
+                    })
+                } else {
+                    $.dialog({
+                        message: data.message || "操作失败",
+                        type: "error",
+                        close_handler: function () {
+                            location.href = url;
+                        }
+                    });
+                }
+            }
+        })
+    }
+    return false;
+}
 
 
 
