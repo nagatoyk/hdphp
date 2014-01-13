@@ -1056,4 +1056,24 @@ function date_before($time, $unit = null)
     }
 }
 
+/**
+ * 获得唯一uuid值
+ * @param string $sep 分隔符
+ * @return string
+ */
+function get_uuid($sep=''){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }else{
+        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+        $id = strtoupper(md5(uniqid(rand(), true)));
+        $sep = '';// "-"
+        $uuid = substr($id, 0, 8).$sep
+            .substr($id, 8, 4).$sep
+            .substr($id,12, 4).$sep
+            .substr($id,16, 4).$sep
+            .substr($id,20,12);
+        return $uuid;
+    }
+}
 

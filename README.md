@@ -52,6 +52,8 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ```
 1. 修改自动完成错误
 2. HDJS添加加入收藏夹方法
+3. 添加获得时空中唯一值uuid方法get_uuid
+4. Cart::getOrderId()获得定单号
 ```
 
 2014.1.12
