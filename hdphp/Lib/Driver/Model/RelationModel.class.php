@@ -204,8 +204,10 @@ class RelationModel extends Model
                     break;
                 case MANY_TO_MANY:
                     if (!isset($set['relation_table'])) break;
+                    //关联表
                     $_id = $db->add($data[$table]);
                     $result_id[$table] = $_id;
+                    //中间表
                     $_r_id = $db->table($set['relation_table'])->insert(array($pk => $id, $fk => $_id), $type);
                     $result_id[$set['relation_table']] = $_r_id;
             }

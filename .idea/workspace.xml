@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Control/IndexControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/IndexControl.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,33 +38,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="debug.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="16" selection-start="3091" selection-end="3091" vertical-scroll-proportion="-5.0" vertical-offset="1695" max-vertical-offset="4830">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hdphp.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IndexControl.class.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="33" selection-start="551" selection-end="551" vertical-scroll-proportion="0.5436573" vertical-offset="0" max-vertical-offset="607">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="showuser.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup/Tpl/Rbac/showuser.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RelationModel.class.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RelationModel.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="338" column="90" selection-start="12349" selection-end="12349" vertical-scroll-proportion="-18.041666" vertical-offset="4502" max-vertical-offset="5685">
+            <state line="209" column="25" selection-start="7499" selection-end="7499" vertical-scroll-proportion="-2.6774716" vertical-offset="4652" max-vertical-offset="5715">
               <folding />
             </state>
           </provider>
@@ -135,7 +109,6 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Cart.class.php" />
         <option value="$PROJECT_DIR$/hdjs/css/hdjs.css" />
@@ -156,10 +129,11 @@
         <option value="$PROJECT_DIR$/setup/Tpl/Rbac/index.php" />
         <option value="$PROJECT_DIR$/setup/Model/UserModel.class.php" />
         <option value="$PROJECT_DIR$/setup/Tpl/Rbac/showuser.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
         <option value="$PROJECT_DIR$/setup/Control/RbacControl.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
         <option value="$PROJECT_DIR$/setup/Control/IndexControl.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
       </list>
     </option>
   </component>
@@ -711,15 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/Tpl/Rbac/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="49" selection-start="1193" selection-end="1193" vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="645">
-          <folding>
-            <element signature="n#style#0;n#div#2;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup/Model/UserModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="26" selection-start="668" selection-end="668" vertical-scroll-proportion="-12.5" vertical-offset="0" max-vertical-offset="495">
@@ -734,13 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="338" column="90" selection-start="12349" selection-end="12349" vertical-scroll-proportion="-18.041666" vertical-offset="4502" max-vertical-offset="5685">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/setup/Control/RbacControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="201" column="37" selection-start="4933" selection-end="4933" vertical-scroll-proportion="0.33650795" vertical-offset="2698" max-vertical-offset="4710">
@@ -748,23 +706,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
+    <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="16" selection-start="3091" selection-end="3091" vertical-scroll-proportion="-5.0" vertical-offset="1695" max-vertical-offset="4830">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.024711696" vertical-offset="0" max-vertical-offset="607">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
+        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="0.21428572" vertical-offset="0" max-vertical-offset="630">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="551" selection-end="551" vertical-scroll-proportion="0.5436573" vertical-offset="0" max-vertical-offset="607">
+        <state line="121" column="16" selection-start="3091" selection-end="3091" vertical-scroll-proportion="0.19448946" vertical-offset="1695" max-vertical-offset="4830">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/Tpl/Rbac/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="49" selection-start="1193" selection-end="1193" vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="645">
+          <folding>
+            <element signature="n#style#0;n#div#2;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="209" column="25" selection-start="7499" selection-end="7499" vertical-scroll-proportion="-2.6774716" vertical-offset="4652" max-vertical-offset="5715">
           <folding />
         </state>
       </provider>
