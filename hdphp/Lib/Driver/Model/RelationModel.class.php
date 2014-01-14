@@ -335,6 +335,9 @@ class RelationModel extends Model
                 CASE BELONGS_TO:
                     break;
                 case MANY_TO_MANY:
+                    foreach ($id as $p) {
+                        $result_id[$table] = $db->table($set['relation_table'])->where($pk . '=' . $p[$pk])->delete();
+                    }
                     break;
             }
         }

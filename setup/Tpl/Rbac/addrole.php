@@ -9,7 +9,7 @@
         <a href="__APP__/rbac/lock" class="home">锁定SETUP应用</a>
     </h2>
 </div>
-<form method="post" name="form1" id="form1" action="__CONTROL__/addentrance">
+<form method="post" name="form1" id="form1" action="{|U:addentrance}">
     <input type="hidden" name="pid" value="<empty value='{$hd.get.pid}'>0<noempty/>{$hd.get.pid}</empty>"/>
     <div class="setup">
         <dl>

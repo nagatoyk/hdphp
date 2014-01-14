@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 
 /**
  * Copyright    [HDPHP框架] (C)2011-2012 houdunwang.com ,Inc.
@@ -10,26 +8,24 @@ if (!defined("HDPHP_PATH"))
  * @author      向军  houdunwangxj@gmail.com
  * Link         www.hdphp.com
  */
-class IndexControl extends SetupControl
+class IndexControl extends AuthControl
 {
     function index()
     {
-        header("Content-type:text/html;charset=utf-8");
-        go("Rbac/index");
+        header('Content-type:text/html;charset=utf-8');
+        go('Rbac/index');
     }
 
-    //删除缓存
+    //删除缓存文件
     function delcache()
     {
-        $temp = Q("temp");
-        $url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "";
+        $temp = Q('temp', null, 'trim');
         if ($temp) {
             foreach (glob($temp . '/*') as $d)
                 Dir::del($d);
         }
-        $this->success("缓存目录已经全部删除成功", $url);
+        $url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+        $this->success('缓存目录已经全部删除成功', $url);
     }
 
 }
-
-?>

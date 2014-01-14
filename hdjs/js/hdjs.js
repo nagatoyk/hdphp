@@ -91,7 +91,7 @@ $.extend({
     "dialog": function (options) {
         var _default = {
             "type": "success"//类型 CSS样式
-            , "message": "msg属性配置错误"//提示信息
+            , "message": "message属性配置错误"//提示信息
             , "timeout": 2//自动关闭时间
             , "close_handler": function () {
             }//关闭时的回调函数
@@ -181,8 +181,8 @@ $.extend({
             div += '</div>';
         }
         //--------------内容区域
-        content_height = opt.height-35-46;
-        div += '<div class="content" style="height:'+content_height+'px">';
+        content_height = opt.height - 35 - 46;
+        div += '<div class="content" style="height:' + content_height + 'px">';
         if (opt.message) {
             div += '<div class="modal_message"><strong class="' + opt.type + '"></strong><span>' + opt.message + '</span></div>';
         } else {
@@ -193,11 +193,11 @@ $.extend({
         if (opt.button_success || opt.button_cancel) {
             div += '<div class="modal_footer" ' + (opt.message ? 'style="text-align:center"' : "") + '>';
             //确定按钮
-            if (opt.button_success){
+            if (opt.button_success) {
                 div += '<a href="javascript:;" class="btn btn-primary hd-success">' + opt.button_success + '</a>';
             }
             //放弃按钮
-            if (opt.button_cancel){
+            if (opt.button_cancel) {
                 div += '<a href="javascript:;" class="btn hd-cancel">' + opt.button_cancel + '</a>';
             }
             div += '</div>';
@@ -713,7 +713,51 @@ jQuery.extend({
         })
     }
 })
-
+/**
+ * 异步提交操作
+ * @param obj
+ * @param url
+ * @returns {boolean}
+ */
+function hd_ajax(requestUrl, postData, url) {
+    $.ajax({
+        type: "POST",
+        url: requestUrl,
+        cache: false,
+        data: postData || {},
+        success: function (data) {
+            if (data.substr(0, 1) == '{') {
+                data = jQuery.parseJSON(data);
+                if (data.state == 1) {
+                    $.dialog({
+                        message: data.message,
+                        timeout: data.timeout || 3,
+                        type: "success",
+                        close_handler: function () {
+                            if (url) {
+                                location.href = url
+                            } else {
+                                window.location.reload();
+                            }
+                        }
+                    });
+                } else {
+                    $.dialog({
+                        message: data.message || "操作失败",
+                        timeout: data.timeout || 3,
+                        type: "error"
+                    });
+                }
+            } else {
+                $.dialog({
+                    message: '操作失败',
+                    timeout: 3,
+                    type: "error"
+                });
+            }
+        }
+    })
+}
 /**
  * 表单提交，没有确定按钮，倒计时关闭窗口
  * @param obj form表单对象
@@ -726,25 +770,35 @@ function hd_submit(obj, url) {
         $.ajax({
             type: "POST",
             url: $(obj).attr("action"),
-            dataType: "JSON",
             cache: false,
             data: post,
             success: function (data) {
-                if (data.state == 1) {
-                    $.dialog({
-                        message: data.message,
-                        type: "success",
-                        close_handler: function () {
-                            if (url) {
-                                location.href = url
-                            } else {
-                                window.location.reload();
+                if (data.substr(0, 1) == '{') {
+                    data = jQuery.parseJSON(data);
+                    if (data.state == 1) {
+                        $.dialog({
+                            message: data.message,
+                            timeout: data.timeout || 3,
+                            type: "success",
+                            close_handler: function () {
+                                if (url) {
+                                    location.href = url
+                                } else {
+                                    window.location.reload();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        $.dialog({
+                            message: data.message || "操作失败",
+                            timeout: data.timeout || 3,
+                            type: "error"
+                        });
+                    }
                 } else {
                     $.dialog({
-                        message: data.message,
+                        message: '操作失败',
+                        timeout: 3,
                         type: "error"
                     });
                 }
@@ -765,31 +819,41 @@ function hd_submit_confirm(obj, url) {
         $.ajax({
             type: "POST",
             url: $(obj).attr("action"),
-            dataType: "JSON",
             cache: false,
             data: _post,
             success: function (data) {
-                if (data.state == 1) {
-                    $.modal({
-                        width: 250,
-                        height: 180,
-                        title: '温馨提示',
-                        button_cancel: "关闭",
-                        message: data.message,
-                        type: "success",
-                        //点击确定窗口
-                        cancel: function () {
-                            if (url) {
-                                location.href = url
-                            } else {
-                                window.location.reload();
+                if (data.substr(0, 1) == '{') {
+                    data = jQuery.parseJSON(data);
+                    if (data.state == 1) {
+                        $.modal({
+                            width: 250,
+                            height: 180,
+                            title: '温馨提示',
+                            button_cancel: "关闭",
+                            message: data.message,
+                            type: "success",
+                            //点击确定窗口
+                            cancel: function () {
+                                if (url) {
+                                    location.href = url
+                                } else {
+                                    window.location.reload();
+                                }
                             }
-                        }
 
-                    })
+                        })
+                    } else {
+                        $.dialog({
+                            message: data.message || "操作失败",
+                            type: "error",
+                            close_handler: function () {
+                                location.href = url;
+                            }
+                        });
+                    }
                 } else {
                     $.dialog({
-                        message: data.message || "操作失败",
+                        message: "操作失败",
                         type: "error",
                         close_handler: function () {
                             location.href = url;

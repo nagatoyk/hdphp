@@ -2,14 +2,14 @@
 <div class="hd_setup">
     <strong>欢迎使用后盾HD框架，通过HD框架手册或登录<a href="http://bbs.houdunwang.com/">后盾论坛</a>学习使用HD框架安装配置</strong>
     <h2>
-        <a href="__CONTROL__/shownode">查看所有节点</a>
+        <a href="{|U:'shownode'}">查看所有节点</a>
         <br/>
         <a href="__CONTROL__" class="home">返回安装首页</a>
         <a href="javascript:void(0)"  class="home" onclick="window.close();return false;">关闭</a>
-        <a href="__APP__/rbac/lock" class="home">锁定SETUP应用</a>
+        <a href="{|U:'rbac/lock'}" class="home">锁定SETUP应用</a>
     </h2>
 </div>
-<form method="post" name="form1" id="form1" action="__CONTROL__/addnode">
+<form method="post" name="form1" id="form1" action="{|U:addnode}">
     <input type="hidden" name="pid" value="<empty value='{$hd.get.nid}'>0<noempty/>{$hd.get.nid}</empty>"/>
     <div class="setup">
         <dl>

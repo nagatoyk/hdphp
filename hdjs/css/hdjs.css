@@ -173,6 +173,7 @@ div.wrap {
     right: 0px;
     bottom: 0px;
     padding: 20px 20px 50px;
+    z-index: -9999;
 }
 
 /**内容块**/
@@ -646,7 +647,7 @@ div.page1 span.count {
     height: 25px;
     left: 0;
     overflow: hidden;
-    padding: 8px 30px 5px;
+    padding: 8px 30px 10px;
     right: 0;
     text-align: left;
     z-index: 100;
