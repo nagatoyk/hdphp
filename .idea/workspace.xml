@@ -2,42 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/setaccess.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/shownode.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/showrole.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/setup/Config/event.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/setaccess.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/shownode.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/showrole.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Control/SetupControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/AuthControl.class.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/App/index.html" afterPath="$PROJECT_DIR$/setup/Tpl/App/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Index/index.html" afterPath="$PROJECT_DIR$/setup/Tpl/Index/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/addrole.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/addrole.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/editroleshow.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/editroleshow.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/getnode.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/getnode.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/index.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/setconfig.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/setconfig.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/showaddnode.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/showaddnode.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/showadduser.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/showadduser.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Rbac/showuser.html" afterPath="$PROJECT_DIR$/setup/Tpl/Rbac/showuser.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/Session/index.html" afterPath="$PROJECT_DIR$/setup/Tpl/Session/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup/Tpl/index.html" afterPath="$PROJECT_DIR$/setup/Tpl/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HDJS手册2014.1.pdf" afterPath="$PROJECT_DIR$/HDJS手册2014.1.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HDPHP手册2014.1.pdf" afterPath="$PROJECT_DIR$/HDPHP手册2014.1.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Control/AppControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/AppControl.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Control/IndexControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/IndexControl.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Control/RbacControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/RbacControl.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Model/RoleModel.class.php" afterPath="$PROJECT_DIR$/setup/Model/RoleModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Control/SessionControl.class.php" afterPath="$PROJECT_DIR$/setup/Control/SessionControl.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Model/UserModel.class.php" afterPath="$PROJECT_DIR$/setup/Model/UserModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Config/config.db.php" afterPath="$PROJECT_DIR$/setup/Config/config.db.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/Config/config.php" afterPath="$PROJECT_DIR$/setup/Config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdjs/css/hdjs.css" afterPath="$PROJECT_DIR$/hdjs/css/hdjs.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdjs/js/hdjs.js" afterPath="$PROJECT_DIR$/hdjs/js/hdjs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup/index.php" afterPath="$PROJECT_DIR$/setup/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,10 +37,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RbacControl.class.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/setup/Control/RbacControl.class.php">
+      <file leaf-file-name="debug.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="201" column="37" selection-start="4933" selection-end="4933" vertical-scroll-proportion="0.45555556" vertical-offset="2623" max-vertical-offset="4710">
+            <state line="121" column="16" selection-start="3091" selection-end="3091" vertical-scroll-proportion="-5.0" vertical-offset="1695" max-vertical-offset="4830">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hdphp.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexControl.class.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="33" selection-start="551" selection-end="551" vertical-scroll-proportion="0.5436573" vertical-offset="0" max-vertical-offset="607">
               <folding />
             </state>
           </provider>
@@ -151,7 +135,6 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
         <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Cart.class.php" />
@@ -161,7 +144,6 @@
         <option value="$PROJECT_DIR$/setup/Tpl/Rbac/setconfig.html" />
         <option value="$PROJECT_DIR$/setup/Control/SetupControl.class.php" />
         <option value="$PROJECT_DIR$/setup/Control/AppControl.class.php" />
-        <option value="$PROJECT_DIR$/setup/Control/IndexControl.class.php" />
         <option value="$PROJECT_DIR$/setup/Control/SessionControl.class.php" />
         <option value="$PROJECT_DIR$/setup/Model/RoleModel.class.php" />
         <option value="$PROJECT_DIR$/setup/Tpl/Rbac/addrole.html" />
@@ -176,6 +158,8 @@
         <option value="$PROJECT_DIR$/setup/Tpl/Rbac/showuser.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php" />
         <option value="$PROJECT_DIR$/setup/Control/RbacControl.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
+        <option value="$PROJECT_DIR$/setup/Control/IndexControl.class.php" />
       </list>
     </option>
   </component>
@@ -281,134 +265,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Session" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rbac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tpl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="App" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Control" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -423,11 +279,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="setup" />
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Config" />
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tpl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -507,7 +399,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.49926144" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29483038" sideWeight="0.6686478" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28836834" sideWeight="0.6686478" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.221875" sideWeight="0.33135214" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -658,20 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="0.42857143" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="24" selection-start="2120" selection-end="2120" vertical-scroll-proportion="0.7293355" vertical-offset="870" max-vertical-offset="4830">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="198" column="20" selection-start="5281" selection-end="5281" vertical-scroll-proportion="4.547619" vertical-offset="105" max-vertical-offset="14505">
@@ -727,13 +605,6 @@
     <entry file="file://$PROJECT_DIR$/setup/Control/AppControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="36" selection-start="380" selection-end="380" vertical-scroll-proportion="0.25252524" vertical-offset="0" max-vertical-offset="945">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="38" selection-start="315" selection-end="315" vertical-scroll-proportion="0.24711697" vertical-offset="0" max-vertical-offset="607">
           <folding />
         </state>
       </provider>
@@ -872,7 +743,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup/Control/RbacControl.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="201" column="37" selection-start="4933" selection-end="4933" vertical-scroll-proportion="0.45555556" vertical-offset="2623" max-vertical-offset="4710">
+        <state line="201" column="37" selection-start="4933" selection-end="4933" vertical-scroll-proportion="0.33650795" vertical-offset="2698" max-vertical-offset="4710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="16" selection-start="3091" selection-end="3091" vertical-scroll-proportion="-5.0" vertical-offset="1695" max-vertical-offset="4830">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="34" selection-start="795" selection-end="795" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup/Control/IndexControl.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="33" selection-start="551" selection-end="551" vertical-scroll-proportion="0.5436573" vertical-offset="0" max-vertical-offset="607">
           <folding />
         </state>
       </provider>

@@ -20,7 +20,7 @@ class IndexControl extends AuthControl
     function delcache()
     {
         $temp = Q('temp', null, 'trim');
-        if ($temp) {
+        if ($temp && is_dir($temp)) {
             foreach (glob($temp . '/*') as $d)
                 Dir::del($d);
         }

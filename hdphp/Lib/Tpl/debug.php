@@ -117,7 +117,7 @@
             <li id="_session">SESSION</li>
             <li id="_cookie">COOKIE</li>
             <li>
-                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo realpath(TEMP_PATH);?>'>删除缓存</a>
+                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo TEMP_PATH;?>'>删除缓存</a>
             </li>
             <li>
                 <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=rbac' target='_blank'>RBAC</a>
