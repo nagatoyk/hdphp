@@ -507,13 +507,13 @@ $.fn.extend({
                     //验证通过
                     //添加表单属性validation
                     obj.removeAttr("validation");
-                    //设置正确提示信息a
+                    //设置正确提示信息
                     var msg = (options[data.name].success || options[data.name].message);
                     //如果非必填项，且内容为空时，为没有错误
                     if (!data.required && data.obj.val() == '') {
                         msg = options[data.name].message || '';
                         $(data.spanObj).html(msg);
-                    } else if (options[data.name].success) {
+                    }else if (options[data.name].success) {
                         $(data.spanObj).addClass("success").html(msg);
                     } else {
                         $(data.spanObj).html(msg);
@@ -586,7 +586,7 @@ $.fn.extend({
             setDefaultMessage: function (name, spanObj) {
                 var defaultMessage = options[name].message;
                 if (defaultMessage) {
-                    spanObj.html(defaultMessage);
+                    spanObj.addClass('validate-success').html(defaultMessage);
                 }
             },
 
@@ -594,12 +594,12 @@ $.fn.extend({
             getSpanElement: function (name) {
                 var fieldObj = $("[name='" + name + "']");
                 var spanId = "hd_" + name;//span提示信息表单的id
-                if ($("#" + spanId).length == 0) {
+                if ($("[id='"+spanId+"']").length == 0) {
                     fieldObj.after("<span id='" + spanId + "' class='validation'></span>");
                 } else {//如果span已经存在，添加validation类
-                    $("#" + spanId).removeClass("validation").addClass("validation");
+                    $("[id='"+spanId+"']").removeClass("validation").addClass("validation");
                 }
-                spanObj = $("#" + spanId);
+                spanObj =$("[id='"+spanId+"']");
                 return [fieldObj, spanObj];
             }
         };

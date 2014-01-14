@@ -341,7 +341,7 @@ class Model
     public function __call($func, $args)
     {
         //模型中不存在方法
-        halt('模型中不存在方法'. $func);
+        halt('模型中不存在方法' . $func);
     }
 
 
@@ -423,6 +423,16 @@ class Model
         return $this;
     }
 
+    /**
+     * 判断表名是否存在
+     * @param $table 表名
+     * @param bool $full 全表（即已经加表前缀）
+     * @return mixed
+     */
+    public function isTable($table, $full = false)
+    {
+        return $this->db->isTable($table, $full);
+    }
 
     /**
      * IN 语句定义
@@ -621,17 +631,20 @@ class Model
         $this->trigger and $this->__after_insert($result);
         return $result;
     }
+
     //批量插入数据
-    public function addAll($data,$type='INSERT'){
+    public function addAll($data, $type = 'INSERT')
+    {
         $id = array();
-        if(is_array($data) && !empty($data)){
-            foreach($data as $d){
-                if(is_array($d))
-                    $id[]=$this->insert($d,$type);
+        if (is_array($data) && !empty($data)) {
+            foreach ($data as $d) {
+                if (is_array($d))
+                    $id[] = $this->insert($d, $type);
             }
         }
-        return empty($id)?NULL:$id;
+        return empty($id) ? NULL : $id;
     }
+
     //replace方式插入数据
     public function replace($data = array())
     {
@@ -639,9 +652,9 @@ class Model
     }
 
     //插入数据
-    public function add($data = array(),$type='INSERT')
+    public function add($data = array(), $type = 'INSERT')
     {
-        return $this->insert($data,$type);
+        return $this->insert($data, $type);
     }
 
 

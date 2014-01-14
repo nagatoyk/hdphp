@@ -604,28 +604,24 @@ div.page1 span.count {
     margin-right: 5px;
     padding: 3px 10px;
 }
-
-/* ====================================================================================
-/* ===================================--|验证提示信息|--========================================
-/* ====================================================================================*/
-.label, .message {
-    font-size: 12px;
-    display: inline-block;
-    margin-left: 15px;
+.message {
     background-color: #999999;
-    color: #FFFFFF;
     border-radius: 3px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 12px;
     font-weight: bold;
     line-height: 14px;
+    margin-left: 15px;
     padding: 2px 4px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     vertical-align: baseline;
     white-space: nowrap;
 }
+/* ====================================================================================
+/* ===================================--|验证提示信息|--========================================
+/* ====================================================================================*/
 
-.message {
-    color: red;
-}
 
 .validation {
     font-size: 12px;
@@ -662,7 +658,10 @@ div.page1 span.count {
     line-height: 25px;
     margin-left: 5px;
 }
-
+.validate-success{
+    font-size: 12px;
+    color: #999999;
+}
 .input_error {
     background-color: #FFE7E7;
     box-shadow: none;

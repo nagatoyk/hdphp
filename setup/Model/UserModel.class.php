@@ -17,9 +17,7 @@ class userModel extends relationModel
             'relation_table' => 'user_role', //中间关联表
             'parent_key' => 'uid',
             'foreign_key' => 'rid',
-//            'field' => 'rid,rname,title', //关联表检索的字段，起别名group_id
             "as" => "role"
-
         )
     );
 }
