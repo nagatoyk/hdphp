@@ -207,11 +207,10 @@ final class Cart
      */
     static function getOrderId()
     {
-        $year_code = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J');
-        $i = ceil((intval(date('Y')) - 2010) % 10);
-        return $year_code[$i] . strtoupper(dechex(date('m'))) . date('d') .
+        $year_code = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        $i = intval(date('Y')) - 2010-1;
+        return $year_code[$i] . date('md').
         substr(time(), -5) . substr(microtime(), 2, 5) . str_pad(mt_rand(1, 99), 2, '0', STR_PAD_LEFT);
-
     }
 
 }
