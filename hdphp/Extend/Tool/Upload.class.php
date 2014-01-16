@@ -93,12 +93,7 @@ class Upload
                 $this->uploadedFile [] = $uploadedFile;
             }
         }
-        if (empty($this->uploadedFile))
-            return NULL;
-        if (count($this->uploadedFile) == 1)
-            return array_pop($this->uploadedFile);
-        else
-            return $this->uploadedFile;
+        return $this->uploadedFile;
     }
 
     /**
@@ -127,7 +122,7 @@ class Upload
 
         if (!$is_img) {
             $filePath = ltrim(str_replace(ROOT_PATH, '', $filePath), '/');
-            $arr = array("path" => $filePath, 'fieldname' => $file['fieldname'],'image'=>0);
+            $arr = array("path" => $filePath, 'fieldname' => $file['fieldname'], 'image' => 0);
         } else {
             //处理图像类型文件
             $img = new image ();
@@ -154,16 +149,16 @@ class Upload
             $filePath = trim(str_replace(ROOT_PATH, '', $filePath), '/');
             if ($this->thumbOn) {
                 $thumbFile = trim(str_replace(ROOT_PATH, '', $thumbFile), '/');
-                $arr = array("path" => $filePath, "thumb" => $thumbFile,'fieldname' => $file['fieldname'],'image'=>1);
+                $arr = array("path" => $filePath, "thumb" => $thumbFile, 'fieldname' => $file['fieldname'], 'image' => 1);
             } else {
-                $arr = array("path" => $filePath,'fieldname' => $file['fieldname'],'image'=>1);
+                $arr = array("path" => $filePath, 'fieldname' => $file['fieldname'], 'image' => 1);
             }
         }
-        $arr['path'] = preg_replace('@\./@','',$arr['path']);
+        $arr['path'] = preg_replace('@\./@', '', $arr['path']);
         //上传时间
-        $arr['uptime']=time();
+        $arr['uptime'] = time();
         $info = pathinfo($filePath);
-        $arr['fieldname']=$file['fieldname'];
+        $arr['fieldname'] = $file['fieldname'];
         $arr['basename'] = $info['basename'];
         $arr['filename'] = $info['filename'];
         $arr['size'] = $file['size'];
