@@ -325,6 +325,7 @@ class ViewTag
         $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
         $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
         $imageupload = isset($attr['imageupload']) && $attr['imageupload'] == 'true' ? '"insertimage",' : ''; //图片上传按钮
+        $phpScript = isset($attr['php']) ? $attr['php'] : __CONTROL__ . '&m=ueditor_upload'; //PHP处理文件
         //图片按钮
         if ($style == 2) {
             $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
@@ -355,7 +356,7 @@ class ViewTag
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                imageUrl:'" . __CONTROL__ . "&m=ueditor_upload&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
+                imageUrl:'" .$phpScript. "&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
                 ,zIndex : 0
                 ,autoClearinitialContent:{$autoClear}
                 ,initialFrameWidth:{$width} //宽度1000
@@ -367,6 +368,7 @@ class ViewTag
                 ,wordCount:{$wordCount} //是否开启字数统计
                 ,imagePath:''//图片修正地址
                 , toolbars:$toolbars//工具按钮
+                , initialStyle:'p{line-height:1em; font-size: 14px; }'
             });
         })
         </script>";

@@ -165,14 +165,16 @@ div.tab ul.tab_menu li a:hover {
 }
 
 div.wrap {
-    padding: 10px;
     background: #f3f3f3;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    padding: 20px 20px 50px;
+    padding: 10px;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     z-index: -9999;
 }
 
@@ -190,7 +192,7 @@ div.tab_content div.hd_tab_content_div {
     height: auto;
     overflow: hidden;
     display: none;
-    padding: 8px 0px;
+    padding: 0px;
     margin-top: -1px;
 }
 
@@ -299,21 +301,27 @@ table.table2 tr, table.table2 th, table.table2 td {
 }
 
 /***************************table3表格************************/
-.table3 {
+table.table3 {
     width: 100%;
 }
 
-.table3, .table3 td {
-    border: solid 1px #ccc;
+table.table3 {
+    border: none;
+    background: none;
+}
+
+table.table3 tr{
+
+}
+table.table3 tr td {
     padding: 5px 8px;
 }
 
-.table3 th {
-    border: solid 1px #ccc;
+table.table3 tr th {
     width: 100px;
 }
 
-.table3 thead tr td {
+table.table3 thead tr td {
     background: #eee;
     color: #333;
 }
@@ -604,6 +612,7 @@ div.page1 span.count {
     margin-right: 5px;
     padding: 3px 10px;
 }
+
 .message {
     background-color: #999999;
     border-radius: 3px;
@@ -618,10 +627,10 @@ div.page1 span.count {
     vertical-align: baseline;
     white-space: nowrap;
 }
+
 /* ====================================================================================
 /* ===================================--|验证提示信息|--========================================
 /* ====================================================================================*/
-
 
 .validation {
     font-size: 12px;
@@ -648,8 +657,11 @@ div.page1 span.count {
     text-align: left;
     z-index: 100;
 }
-
-.success {
+.validate-message {
+    font-size: 12px;
+    color:#999;
+}
+.validate-success {
     font-size: 12px;
     color: #999999;
     display: inline-block;
@@ -658,16 +670,13 @@ div.page1 span.count {
     line-height: 25px;
     margin-left: 5px;
 }
-.validate-success{
-    font-size: 12px;
-    color: #999999;
-}
-.input_error {
+
+.input-error {
     background-color: #FFE7E7;
     box-shadow: none;
 }
 
-.error {
+.validate-error {
     font-size: 12px;
     color: #999999;
     display: inline-block;
@@ -711,7 +720,7 @@ div.menu span {
 }
 
 /***********简单信息框******************/
-div#hd_message_bg {
+div#hd_dialog_message_bg {
     background: #f3f3f3;
     position: fixed;
     left: 0px;
@@ -719,9 +728,10 @@ div#hd_message_bg {
     right: 0px;
     bottom: 0px;
     z-index: 1000;
+
 }
 
-div#hd_message {
+div#hd_dialog_message {
     position: fixed;
     top: 50px;
     left: 50%;
@@ -739,7 +749,8 @@ div#hd_message {
     border-image: none;
     border-radius: 3px;
     border-style: solid;
-    border-width: 0px;
+    border-width: 1px;
+    border-color: #03565E;
     box-shadow: 0px 0px 16px #999;
 }
 
@@ -794,7 +805,7 @@ div.modal div.modal_title button.close {
 }
 
 div.modal div.content {
-    padding: 5px;
+    padding: 0px;
     overflow: auto;
 }
 
@@ -893,7 +904,27 @@ div.modal_message strong.error {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
 }
-
+.hd-cancel-small {
+    background-color: #F5F5F5;
+    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+    border-image: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 3px 6px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
 .hd-cancel:hover, .hd-cancel:focus {
     background-position: 0 -115px;
 }

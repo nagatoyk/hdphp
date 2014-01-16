@@ -151,8 +151,8 @@ class RelationModel extends Model
     public function insert($data = array(), $type = "INSERT")
     {
         $this->data($data);
-        $this->trigger and $this->__before_insert($data);
         $data = $this->data;
+        $this->trigger and $this->__before_insert($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于INSERT！";
             $this->init();
@@ -224,8 +224,8 @@ class RelationModel extends Model
     public function update($data = array())
     {
         $this->data($data);
-        $this->trigger and $this->__before_update($data);
         $data = $this->data;
+        $this->trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
             $this->trigger and $this->__after_update(NULL);

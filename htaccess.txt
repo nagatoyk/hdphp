@@ -1,0 +1,11 @@
+<FilesMatch "\.(bak|sql|lib)$">
+    order deny,allow
+    deny from all
+</FilesMatch>
+
+RewriteEngine On
+#RewriteBase /
+
+# direct one-word access
+RewriteRule ^index\.html$    index\.php [L]
+RewriteRule ^admin$      admin\.php [L]
