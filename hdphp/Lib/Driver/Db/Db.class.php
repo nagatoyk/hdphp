@@ -284,17 +284,17 @@ abstract class Db implements DbInterface
                 continue;
             }
             $data['fields'][] = "`" . $k . "`";
-            $v = $this->addslashes_d($v);
+            $v = $this->escapeString($v);
             $data['values'][] = is_numeric($v) ? $v : "\"" . $v . "\"";
         }
         return $data;
     }
 
     //转义数据
-    private function addslashes_d($v)
-    {
-        return MAGIC_QUOTES_GPC ? $v : addslashes_d($v);
-    }
+//    private function addslashes_d($v)
+//    {
+//        return MAGIC_QUOTES_GPC ? $v : addslashes_d($v);
+//    }
 
     /**
      * 更新数据
@@ -320,6 +320,7 @@ abstract class Db implements DbInterface
             $sql .= $field . "=" . $data['values'][$n] . ',';
         }
         $sql = trim($sql, ',') . $this->opt['where'] . $this->opt['limit'];
+
         return $this->exe($sql);
     }
 
