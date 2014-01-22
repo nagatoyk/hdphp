@@ -43,8 +43,8 @@ final class Backup
             $url = isset($option['url']) ? $option['url'] : '';
             $step_time = (isset($option['step_time']) ? $option['step_time'] : 0.5) * 1000;
             //还原表结构
-            if (is_file($dir . '/structure.sql')) {
-                require $dir . '/structure.sql';
+            if (is_file($dir . '/structure.php')) {
+                require $dir . '/structure.php';
             }
             session('backup_fid',1);
             $html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
@@ -57,7 +57,7 @@ final class Backup
         }
         $step_time = session('backup_step_time');
         foreach (glob($dir . '/*') as $d) {
-            if (preg_match("@_bk_$fid\.sql$@", $d)) {
+            if (preg_match("@_bk_$fid\.php$@", $d)) {
                 require $d;
                 $_SESSION['backup_fid']+=1;
                 $html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
@@ -125,7 +125,7 @@ final class Backup
             $sql .= "\$db->exe(\"DROP TABLE IF EXISTS `\".\$db_prefix.\"" . str_replace($db_prefix, '', $table) . "`\");\n";
             $sql .= "\$db->exe(\"{$create_table_sql}\");\n";
         }
-        file_put_contents(self::$dir . '/structure.sql', $sql);
+        file_put_contents(self::$dir . '/structure.php', $sql);
     }
 
     //执行备份
@@ -173,7 +173,7 @@ final class Backup
     static private function write_backup_data($table, $data, $current_row)
     {
         $fid = Q("session.backup_fid",1,'intval');
-        file_put_contents(self::$dir . "/{$table}_bk_{$fid}.sql", "<?php if(!defined('HDPHP_PATH'))EXIT;\n{$data}");
+        file_put_contents(self::$dir . "/{$table}_bk_{$fid}.php", "<?php if(!defined('HDPHP_PATH'))EXIT;\n{$data}");
         self::next_backup($current_row, $table);
     }
 

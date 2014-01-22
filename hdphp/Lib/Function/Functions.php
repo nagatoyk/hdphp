@@ -206,7 +206,6 @@ function import($class = null, $base = null, $ext = ".class.php")
     if (substr($base, -1) != '/')
         $base .= '/';
     $file = $base . $class . $ext;
-//    echo $file."<br/>";var_dump(is_file($file));
     if (!class_exists($class, false)) {
         return require_cache($file);
     }

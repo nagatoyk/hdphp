@@ -46,6 +46,13 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ***
 
 ###更新日志
+2014.1.22
+
+```
+1. 修改uploadify插件input表单的value值错误
+2. 修改HDJS的CSS错误
+3. 更新HDPHP手册
+```
 
 2014.1.15
 

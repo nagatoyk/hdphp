@@ -27,7 +27,7 @@ function hd_open_window(url) {
  * @private
  */
 function hd_close_window(msg) {
-    msg = msg || '确定关闭窗口吗？';
+    msg = msg || '确定关闭吗？';
     if (confirm(msg))
         window.close()
 }

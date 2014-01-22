@@ -470,10 +470,12 @@ class Model
      */
     public function delete($data = array())
     {
-        $this->trigger and $this->__before_delete($data);
+        $trigger=$this->trigger;
+        $this->trigger=true;
+        $trigger and $this->__before_delete($data);
         $result = $this->db->delete($data);
         $this->error = $this->db->error;
-        $this->trigger and $this->__after_delete($result);
+        $trigger and $this->__after_delete($result);
         return $result;
     }
 
@@ -556,9 +558,11 @@ class Model
      */
     public function select($args = array())
     {
-        $this->trigger and $this->__before_select($arg);
+        $trigger=$this->trigger;
+        $this->trigger=true;
+        $trigger and $this->__before_select($arg);
         $result = $this->db->select($args);
-        $this->trigger and $this->__after_select($result);
+        $trigger and $this->__after_select($result);
         $this->error = $this->db->error;
         return $result;
     }
@@ -576,7 +580,7 @@ class Model
     }
 
     /**
-     * 查找满足条件的所有记录
+     * 查找满足条件的所有记录(一维数组)
      * 示例：$Db->getField("username")
      */
     public function getField($field, $return_all = false)
@@ -584,15 +588,30 @@ class Model
         //设置字段
         $this->field($field);
         $result = $this->select();
-        if (is_array($result) && !empty($result) && $return_all === false) {
-            if (count($result[0]) == 1) {
-                return current($result[0]);
+        if ($result) {
+            //字段数组
+            $field = explode(',', preg_replace('@\s@', '', $field));
+            //如果有多个字段时，返回多维数组并且第一个字段值做为KEY使用
+            if (count($field) > 1) {
+                $data = array();
+                foreach ($result as $v) {
+                    $data[$v[$field[0]]] = $v;
+                }
+                return $data;
+            } else if ($return_all) {
+                //只有一个字段，且返回多条记录
+                $data = array();
+                foreach ($result as $v) {
+                    if (isset($v[$field[0]]))
+                        $data[] = $v[$field[0]];
+                }
+                return $data;
             } else {
-                $k = key($result[0]);
-                return array($k => $result[0]);
+                //只有一个字段，且返回一条记录
+                return current($result[0]);
             }
         } else {
-            return $result;
+            return NULL;
         }
     }
 
@@ -602,14 +621,17 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->trigger and $this->__before_update($data);
+        $trigger=$this->trigger;
+        $this->trigger=true;
+
+        $trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
             return false;
         }
         $this->error = $this->db->error;
         $result = $this->db->update($data);
-        $this->trigger and $this->__after_update($result);
+        $trigger and $this->__after_update($result);
         return $result;
     }
 
@@ -625,10 +647,12 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->trigger and $this->__before_insert($data);
+        $trigger=$this->trigger;
+        $this->trigger=true;
+        $trigger and $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
         $this->error = $this->db->error;
-        $this->trigger and $this->__after_insert($result);
+        $trigger and $this->__after_insert($result);
         return $result;
     }
 

@@ -115,9 +115,7 @@ div.line {
 }
 
 .hd-form select {
-    height: 32px;
-    line-height: 18px;
-    padding: 5px 3px;
+    padding: 3px 3px 0px;
 }
 
 /* ====================================================================================
@@ -310,9 +308,10 @@ table.table3 {
     background: none;
 }
 
-table.table3 tr{
+table.table3 tr {
 
 }
+
 table.table3 tr td {
     padding: 5px 8px;
 }
@@ -417,6 +416,10 @@ table.table3 thead tr td {
 
 .w100 {
     width: 100px;
+}
+
+.w120 {
+    width: 120px;
 }
 
 .w150 {
@@ -657,10 +660,12 @@ div.page1 span.count {
     text-align: left;
     z-index: 100;
 }
+
 .validate-message {
     font-size: 12px;
-    color:#999;
+    color: #999;
 }
+
 .validate-success {
     font-size: 12px;
     color: #999999;
@@ -904,6 +909,7 @@ div.modal_message strong.error {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
 }
+
 .hd-cancel-small {
     background-color: #F5F5F5;
     background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
@@ -925,6 +931,7 @@ div.modal_message strong.error {
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
 }
+
 .hd-cancel:hover, .hd-cancel:focus {
     background-position: 0 -115px;
 }

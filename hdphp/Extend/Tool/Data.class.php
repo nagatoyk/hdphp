@@ -59,7 +59,7 @@ final class Data
         $data = self::_channelList($data, $pid, $html, $fieldPri, $fieldPid, $level);
         if (empty($data)) return $data;
         foreach ($data as $n => $m) {
-            if($m['_level']==1)continue;
+            if ($m['_level'] == 1) continue;
             $data[$n]['_first'] = false;
             $data[$n]['_end'] = false;
             if (!isset($data[$n - 1]) || $data[$n - 1]['_level'] != $m['_level']) {
@@ -73,7 +73,7 @@ final class Data
     }
 
     //只供channelList方法使用
-    static public function _channelList($data, $pid = 0, $html = "&nbsp;", $fieldPri = 'cid', $fieldPid = 'pid', $level = 1)
+    static private function _channelList($data, $pid = 0, $html = "&nbsp;", $fieldPri = 'cid', $fieldPid = 'pid', $level = 1)
     {
         if (empty($data))
             return array();
@@ -83,7 +83,7 @@ final class Data
             if ($v[$fieldPid] == $pid) {
                 $v['_level'] = $level;
                 $v['_html'] = str_repeat($html, $level - 1);
-                array_push($arr,$v);
+                array_push($arr, $v);
                 $tmp = self::_channelList($data, $id, $html, $fieldPri, $fieldPid, $level + 1);
                 $arr = array_merge($arr, $tmp);
             }
@@ -107,21 +107,26 @@ final class Data
             $str = "";
             if ($v['_level'] > 2) {
                 for ($i = 1; $i < $v['_level'] - 1; $i++) {
-                    $str .= "│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    $str .= "│&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
             }
             if ($v['_level'] != 1) {
                 $t = $title ? $v[$title] : "";
                 if (isset($arr[$k + 1]) && $arr[$k + 1]['_level'] >= $arr[$k]['_level']) {
-                    $arr[$k]['_name'] = $str . "├─" . $v['_html'] . $t;
+                    $arr[$k]['_name'] = $str . "├─ " . $v['_html'] . $t;
                 } else {
-                    $arr[$k]['_name'] = $str . "└─" . $v['_html'] . $t;
+                    $arr[$k]['_name'] = $str . "└─ " . $v['_html'] . $t;
                 }
             } else {
                 $arr[$k]['_name'] = $v[$title];
             }
         }
-        return $arr;
+        //设置主键为$fieldPri
+        $data = array();
+        foreach ($arr as $d) {
+            $data[$d[$fieldPri]] = $d;
+        }
+        return $data;
     }
 
 
