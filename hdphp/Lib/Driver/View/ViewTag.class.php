@@ -356,7 +356,7 @@ class ViewTag
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                imageUrl:'" .$phpScript. "&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
+                imageUrl:'" . $phpScript . "&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
                 ,zIndex : 0
                 ,autoClearinitialContent:{$autoClear}
                 ,initialFrameWidth:{$width} //宽度1000
@@ -641,7 +641,7 @@ class ViewTag
     }
 
     //bootstrap
-    public function _bootstrap($attr,$content)
+    public function _bootstrap($attr, $content)
     {
         $str = '';
         $str .= '<link href="__HDPHP_EXTEND__/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
@@ -672,19 +672,35 @@ class ViewTag
     //js轮换版
     public function _slide($attr, $content)
     {
-        return '<script src="__HDPHP_EXTEND__/Org/hdui/js/slide.js"></script>';
+        //是否引入jquery
+        $jquery = isset($attr['jquery']) ? intval($attr['jquery']) : 1;
+        $php = '';
+        if ($jquery == 1) {
+            $php .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+
+        }
+        return $php.'<script src="__HDPHP__/../hdjs/js/slide.js"></script>';
     }
 
     //jquery
     public function _jquery($attr, $content)
     {
-        $file = '__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js';
-        return "<script type='text/javascript' src='$file'></script>";
+        return "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
     }
+
     //日历
-    public function _cal($attr,$content){
-        return "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+    public function _cal($attr, $content)
+    {
+        //是否引入jquery
+        $jquery = isset($attr['jquery']) ? intval($attr['jquery']) : 1;
+        $php = '';
+        if ($jquery == 1) {
+            $php .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+
+        }
+        return $php."<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
     }
+
     //HdUi
     public function _hdjs($attr, $content)
     {
@@ -694,8 +710,8 @@ class ViewTag
         $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
         $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
         $str .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
-        $str .= $this->_cal(null,null);
-        $str .= $bootstrap ? $this->_bootstrap(null,null) : "";
+        $str .= $this->_cal(null, null);
+        $str .= $bootstrap ? $this->_bootstrap(null, null) : "";
         $str .= $this->_jsconst(null, null);
         return $str;
     }
