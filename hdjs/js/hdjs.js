@@ -186,7 +186,7 @@ $.extend({
             div += '</div>';
         }
         //--------------内容区域
-        content_height = opt.height - 38;
+        content_height = opt.height - 32;
         if (opt.button_success || opt.button_cancel) {
             content_height -= 46;
         }

@@ -480,6 +480,9 @@ abstract class Db implements DbInterface
                             $where .= ' AND ';
                         }
                     }
+                    if (!preg_match('@(or|and)\s*$@i', $where)) {
+                        $where .= ' AND ';
+                    }
                 } else {
                     if (is_numeric($k) && in_array(strtoupper($v), array('OR', 'AND'))) {
                         if (preg_match('@(or|and)\s*$@i', $where)) {

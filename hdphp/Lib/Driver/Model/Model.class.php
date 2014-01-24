@@ -470,8 +470,8 @@ class Model
      */
     public function delete($data = array())
     {
-        $trigger=$this->trigger;
-        $this->trigger=true;
+        $trigger = $this->trigger;
+        $this->trigger = true;
         $trigger and $this->__before_delete($data);
         $result = $this->db->delete($data);
         $this->error = $this->db->error;
@@ -494,8 +494,7 @@ class Model
      */
     public function exe($sql)
     {
-        $stat = $this->db->exe($sql);
-        return $stat;
+        return $this->db->exe($sql);
     }
 
     /**
@@ -558,8 +557,8 @@ class Model
      */
     public function select($args = array())
     {
-        $trigger=$this->trigger;
-        $this->trigger=true;
+        $trigger = $this->trigger;
+        $this->trigger = true;
         $trigger and $this->__before_select($arg);
         $result = $this->db->select($args);
         $trigger and $this->__after_select($result);
@@ -621,8 +620,8 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $trigger=$this->trigger;
-        $this->trigger=true;
+        $trigger = $this->trigger;
+        $this->trigger = true;
 
         $trigger and $this->__before_update($data);
         if (empty($data)) {
@@ -647,8 +646,8 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $trigger=$this->trigger;
-        $this->trigger=true;
+        $trigger = $this->trigger;
+        $this->trigger = true;
         $trigger and $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
         $this->error = $this->db->error;
