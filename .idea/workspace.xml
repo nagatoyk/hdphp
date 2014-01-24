@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,16 +55,16 @@
       <file leaf-file-name="ViewTag.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="675" column="70" selection-start="29479" selection-end="29479" vertical-scroll-proportion="0.21052632" vertical-offset="10005" max-vertical-offset="10875">
+            <state line="712" column="14" selection-start="30851" selection-end="30851" vertical-scroll-proportion="0.7368421" vertical-offset="10260" max-vertical-offset="10875">
               <folding>
-                <marker date="1390546903000" expanded="true" signature="4098:4490" placeholder="..." />
-                <marker date="1390546903000" expanded="true" signature="4121:4471" placeholder="{...}" />
-                <marker date="1390546903000" expanded="true" signature="4224:4459" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-                <marker date="1390546903000" expanded="true" signature="4971:5206" placeholder="..." />
-                <marker date="1390546903000" expanded="true" signature="21594:21685" placeholder="..." />
-                <marker date="1390546903000" expanded="true" signature="21647:21674" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-                <marker date="1390546903000" expanded="true" signature="28632:28764" placeholder="..." />
-                <marker date="1390546903000" expanded="true" signature="28774:28895" placeholder="..." />
+                <marker date="1390547414000" expanded="true" signature="4098:4490" placeholder="..." />
+                <marker date="1390547414000" expanded="true" signature="4121:4471" placeholder="{...}" />
+                <marker date="1390547414000" expanded="true" signature="4224:4459" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+                <marker date="1390547414000" expanded="true" signature="4971:5206" placeholder="..." />
+                <marker date="1390547414000" expanded="true" signature="21594:21685" placeholder="..." />
+                <marker date="1390547414000" expanded="true" signature="21647:21674" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+                <marker date="1390547414000" expanded="true" signature="28632:28764" placeholder="..." />
+                <marker date="1390547414000" expanded="true" signature="28774:28895" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -760,16 +759,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="675" column="70" selection-start="29479" selection-end="29479" vertical-scroll-proportion="0.21052632" vertical-offset="10005" max-vertical-offset="10875">
+        <state line="712" column="14" selection-start="30851" selection-end="30851" vertical-scroll-proportion="0.7368421" vertical-offset="10260" max-vertical-offset="10875">
           <folding>
-            <marker date="1390546903000" expanded="true" signature="4098:4490" placeholder="..." />
-            <marker date="1390546903000" expanded="true" signature="4121:4471" placeholder="{...}" />
-            <marker date="1390546903000" expanded="true" signature="4224:4459" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-            <marker date="1390546903000" expanded="true" signature="4971:5206" placeholder="..." />
-            <marker date="1390546903000" expanded="true" signature="21594:21685" placeholder="..." />
-            <marker date="1390546903000" expanded="true" signature="21647:21674" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-            <marker date="1390546903000" expanded="true" signature="28632:28764" placeholder="..." />
-            <marker date="1390546903000" expanded="true" signature="28774:28895" placeholder="..." />
+            <marker date="1390547414000" expanded="true" signature="4098:4490" placeholder="..." />
+            <marker date="1390547414000" expanded="true" signature="4121:4471" placeholder="{...}" />
+            <marker date="1390547414000" expanded="true" signature="4224:4459" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+            <marker date="1390547414000" expanded="true" signature="4971:5206" placeholder="..." />
+            <marker date="1390547414000" expanded="true" signature="21594:21685" placeholder="..." />
+            <marker date="1390547414000" expanded="true" signature="21647:21674" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+            <marker date="1390547414000" expanded="true" signature="28632:28764" placeholder="..." />
+            <marker date="1390547414000" expanded="true" signature="28774:28895" placeholder="..." />
           </folding>
         </state>
       </provider>

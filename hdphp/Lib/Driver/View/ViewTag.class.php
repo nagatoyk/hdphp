@@ -705,15 +705,15 @@ class ViewTag
     public function _hdjs($attr, $content)
     {
         $bootstrap = isset($attr['bootstrap']) ? $attr['bootstrap'] : false;
-        $str = '';
-        $str .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
-        $str .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
-        $str .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
-        $str .= $this->_cal(null, null);
-        $str .= $bootstrap ? $this->_bootstrap(null, null) : "";
-        $str .= $this->_jsconst(null, null);
-        return $str;
+        $php = '';
+        $php .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+        $php .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
+        $php .= "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
+        $php.="<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+        $php .= $bootstrap ? $this->_bootstrap(null, null) : "";
+        $php .= $this->_jsconst(null, null);
+        return $php;
     }
 }
 
