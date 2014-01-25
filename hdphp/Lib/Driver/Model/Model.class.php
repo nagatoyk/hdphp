@@ -32,20 +32,22 @@ class Model
     public $map = array(); //字段映射
 
     /**
-     * @param string $table 表名
-     * @param bool $full 是否为全表名
-     * @param string $driver 连接驱动
+     * 构造函数
+     * @param null $table 表名
+     * @param bool $full 是否为全表
+     * @param array $param 参数
+     * @param null $driver 驱动
      */
-    public function __construct($table = null, $full = null, $driver = null)
+    public function __construct($table = null, $full = false,$driver = null,$param=array())
     {
         if (method_exists($this, "__init")) {
-            $this->__init();
+            $this->__init($param);
         }
         $this->run($table, $full, $driver);
     }
 
     //获得连接驱动
-    protected function run($table, $full = null, $driver = null)
+    protected function run($table, $full = false, $driver = null)
     {
         //初始化默认表
         $this->getTable($table, $full);
@@ -63,7 +65,7 @@ class Model
     }
 
     //设置操作表
-    protected function getTable($table = null, $full = FALSE)
+    protected function getTable($table = null, $full = false)
     {
         if (!is_null($this->tableFull)) {
             $table = $this->tableFull;
@@ -72,7 +74,7 @@ class Model
         } else if (is_null($table)) {
             $table = null;
         } elseif (!is_null($table)) {
-            if ($full == true) {
+            if ($full === true) {
                 $table = $table;
             } else {
                 $table = C("DB_PREFIX") . $table;
