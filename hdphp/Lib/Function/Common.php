@@ -92,7 +92,8 @@ function U($pathinfo, $args = array())
                 }
             }
     }
-    $varsAll = array_merge($data, $gets); //合并GET参数
+    //合并GET参数
+    $varsAll = array_merge($data, $gets);
     $url = '';
     switch ($urlType) {
         case 1:

@@ -107,7 +107,7 @@ class ViewCompile
                 ) {
                 } else if (import($class)) {
                 } else {
-                    error("标签类文件{$class}不存在");
+                    halt("标签类文件{$class}不存在");
                 }
                 $tmp=explode(".", $class);
                 $tagClass[] = array_pop($tmp);
