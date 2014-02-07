@@ -182,6 +182,31 @@ function dir_create($dirName, $auth = 0755)
 }
 
 /**
+ * 日期格式化
+ * 使用自定义标签时格式化标准ISO日期
+ * @param int $time
+ * @param string $format
+ * @return bool|string
+ */
+function hd_date($time, $format = 'Y-m-d')
+{
+    return date($format, $time);
+}
+
+/**
+ * 截取长度
+ * 使用自定义标签时截取字符串
+ * @param $string 字符串
+ * @param int $len 长度
+ * @param string $end 结尾符
+ * @return string
+ */
+function hd_substr($string, $len = 20, $end = '...')
+{
+    return mb_substr($string, 0, $len, 'utf-8') . $end;
+}
+
+/**
  * 加载文件并缓存
  * @param null $path 导入的文件
  * @return bool
@@ -539,7 +564,7 @@ function halt($error)
         }
     } else {
         //错误显示url
-        if ($_url= C('ERROR_URL')) {
+        if ($_url = C('ERROR_URL')) {
             go($_url);
         } else {
             $e['message'] = C('ERROR_MESSAGE');
@@ -603,7 +628,7 @@ function _404($msg = "", $url = "")
     if ($url)
         go($url);
     else
-       set_http_state(404);
+        set_http_state(404);
     exit;
 }
 
