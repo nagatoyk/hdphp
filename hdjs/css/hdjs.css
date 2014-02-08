@@ -98,7 +98,9 @@ div.line {
     border: 2px solid #DDDDDD;
     background-color: #FFFFFF;
 }
-
+.hd-form textarea{
+    line-height: 20px;
+}
 .hd-form option {
     padding: 4px 6px;
 }
