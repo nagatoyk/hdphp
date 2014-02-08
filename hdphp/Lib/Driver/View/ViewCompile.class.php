@@ -97,17 +97,24 @@ class ViewCompile
         //如果配置文件中存在标签定义
         if (!empty($tags) && is_array($tags)) {
             //加载其他模块或应用中的标签库
-            foreach ($tags as $class) {
-                $file = ucfirst($class) . '.class.php'; //类文件
+            foreach ($tags as $file) {
+                $file = str_replace(".", "/", $file);
+                $info = explode("/", $file);
+                //类名
+                $class=array_pop($info);
                 if (class_exists($class, false)) {
                 } else if (require_array(array(
-                    TAG_PATH . $file,
-                    COMMON_TAG_PATH . $file
+                    TAG_PATH . $file . '.class.php',
+                    COMMON_TAG_PATH . $file . '.class.php'
                 ))
                 ) {
-                } else if (import($class)) {
+                } else if (import($file)) {
                 } else {
-                    if(DEBUG)halt("标签类文件{$class}不存在");
+                    if (DEBUG) {
+                        halt("标签类文件{$class}不存在");
+                    } else {
+                        continue;
+                    }
                 }
                 $tmp = explode(".", $class);
                 $tagClass[] = array_pop($tmp);
