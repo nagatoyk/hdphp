@@ -106,10 +106,9 @@ class ViewCompile
                 } else if (require_array(array(
                     TAG_PATH . $file . '.class.php',
                     COMMON_TAG_PATH . $file . '.class.php'
-                ))
-                ) {
-                } else if (import($file)) {
-                } else {
+                ))) {}
+                else if (import($file)) {}
+                else {
                     if (DEBUG) {
                         halt("标签类文件{$class}不存在");
                     } else {

@@ -51,6 +51,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ```
 1. import方法支持应用组中的类加载
 2. Upload类返回值增加上传目录
+3. 修改ViewCompile重复加载标签类的问题
 ```
  
 2014.1.22
