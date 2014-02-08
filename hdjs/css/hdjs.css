@@ -513,7 +513,12 @@ table.table3 thead tr td {
 .w850 {
     width: 850px;
 }
-
+.h30 {
+    height: 30px;
+}
+.h50 {
+    height: 50px;
+}
 .h60 {
     height: 60px;
 }
