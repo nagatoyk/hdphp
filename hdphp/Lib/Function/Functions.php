@@ -191,10 +191,10 @@ function import($class = null, $base = null, $ext = ".class.php")
         if ($info[0] == '@' || APP == $info[0]) {
             $base = APP_PATH;
             $class = substr_replace($class, '', 0, strlen($info[0]) + 1);
-        } elseif($info[0] == '@@'){
+        } elseif ($info[0] == '@@') {
             $base = GROUP_PATH;
             $class = substr_replace($class, '', 0, strlen($info[0]) + 1);
-        }elseif (strtoupper($info[0]) == 'HDPHP') {
+        } elseif (strtoupper($info[0]) == 'HDPHP') {
             $base = dirname(substr_replace($class, HDPHP_PATH, 0, 6));
             $class = basename($class);
         } elseif (in_array(strtoupper($info[0]), array("LIB", "ORG"))) {
@@ -208,7 +208,7 @@ function import($class = null, $base = null, $ext = ".class.php")
     if (substr($base, -1) != '/')
         $base .= '/';
     $file = $base . $class . $ext;
-    if (!class_exists($class, false)) {
+    if (!class_exists(basename($class), false)) {
         return require_cache($file);
     }
     return true;

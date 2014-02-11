@@ -715,6 +715,7 @@ function tag($tag, $attr = array(), $content = "")
     if (!empty($tags) && is_array($tags)) { //如果配置文件中存在标签定义
         foreach ($tags as $k) { //加载其他模块或应用中的标签库
             $arr = explode('.', $k); //如果拆分后大于1的为其他模块或应用的标签定义
+
             if (import($k)) {
                 $tagClass[] = array_pop($arr); //压入标签库类
             }

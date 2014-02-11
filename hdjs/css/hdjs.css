@@ -16,7 +16,9 @@
     margin: 0px;
     font-size: 12px;
 }
-
+.h{
+    display:none;
+}
 .l {
     float: left;
 }
@@ -696,16 +698,21 @@ div.page1 span.count {
 }
 
 .validate-message {
+    background: url(../img/msg_bg.png) 3px -147px no-repeat;
     font-size: 12px;
-    color: #999;
+    color: #999999;
+    display: inline-block;
+    text-indent: 28px;
+    line-height: 25px;
+    margin-left: 5px;
 }
 
 .validate-success {
     font-size: 12px;
     color: #999999;
     display: inline-block;
-    background: url(../img/icon_2.png) 0px -30px no-repeat;
-    text-indent: 32px;
+    background: url(../img/msg_bg.png) 3px -247px no-repeat;
+    text-indent: 28px;
     line-height: 25px;
     margin-left: 5px;
 }
@@ -719,8 +726,8 @@ div.page1 span.count {
     font-size: 12px;
     color: #999999;
     display: inline-block;
-    background: url(../img/icon_2.png) 0px -60px no-repeat;
-    text-indent: 32px;
+    background: url(../img/msg_bg.png) 3px -47px no-repeat;
+    text-indent: 28px;
     margin-left: 5px;
     line-height: 25px;
 }
