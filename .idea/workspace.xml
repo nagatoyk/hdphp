@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\HDPHP手册2014.2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\css\bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\css\bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\css\bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\img\glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\img\glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\phpStudy\WWW\hdphp\hdphp\Extend\Org\bootstrap\js\bootstrap.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/bootstrap/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/bootstrap/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/bootstrap/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/bootstrap/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
@@ -77,7 +64,7 @@
       <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="20" selection-start="566" selection-end="566" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="3864">
+            <state line="13" column="55" selection-start="758" selection-end="758" vertical-scroll-proportion="0.3939394" vertical-offset="0" max-vertical-offset="3864">
               <folding />
             </state>
           </provider>
@@ -679,7 +666,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="566" selection-end="566" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="3864">
+        <state line="13" column="55" selection-start="758" selection-end="758" vertical-scroll-proportion="0.3939394" vertical-offset="0" max-vertical-offset="3864">
           <folding />
         </state>
       </provider>
