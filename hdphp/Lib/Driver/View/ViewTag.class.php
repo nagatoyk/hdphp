@@ -649,10 +649,11 @@ class ViewTag
         $str .= '
   <!--[if lte IE 6]>
   <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/bootstrap-ie6.css">
-  <![endif]-->
-  <!--[if lte IE 7]>
-  <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/ie.css">
   <![endif]-->';
+        $str.='
+      <!--[if lt IE 9]>
+<script type="text/javascript" src="__HDPHP_EXTEND__/Org/bootstrap/html5shiv.js"></script>
+<![endif]-->';
         return $str;
     }
 
