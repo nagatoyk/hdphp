@@ -16,10 +16,10 @@
  * @supackage core
  * @author hdxj <houdunwangxj@gmail.com>
  */
-define('HDPHP_VERSION', '2014-3-4');
+define('HDPHP_VERSION', '2014-3-5');
 defined("DEBUG")        or define("DEBUG", FALSE);
 if (!defined('GROUP_PATH'))
-    defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']).'/');
+    defined('APP_PATH') or define('APP_PATH', './');
 defined('TEMP_PATH')    or define('TEMP_PATH', (defined('APP_PATH') ? APP_PATH : GROUP_PATH) . 'Temp/');
 defined("TEMP_NAME")    or define("TEMP_NAME",'~boot.php');
 defined('TEMP_FILE')    or define('TEMP_FILE',TEMP_PATH.TEMP_NAME);

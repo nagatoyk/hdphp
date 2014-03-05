@@ -37,7 +37,7 @@ final class Boot
         }
 
         $root = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
-        define('ROOT_PATH',             $root.'/'); //根目录
+//        define('ROOT_PATH',             $root.'/'); //根目录
         define("DS",                    DIRECTORY_SEPARATOR); //目录分隔符
         define('IS_CGI',                substr(PHP_SAPI, 0, 3) == 'cgi' ? TRUE : FALSE);
         define('IS_WIN',                strstr(PHP_OS, 'WIN') ? TRUE : FALSE);

@@ -269,63 +269,62 @@ $.extend({
 
 $.fn.extend({
     validate: function (options) {
-        //缓存数据
-        $(this).data("validation", options);
+        //验证的form表单
+        var form = $(this);
         //验证规则
         var method = {
             "ajax": function (data) {
+                //如果是SUBMIT提交，并且表单已经验证通过了，不进行验证
+                if (data.send && data.obj.attr('validation') == 1) {
+                    return true;
+                }
+                //---------------------------------Ajax验证------------------------------
+                //默认为失败，Ajax后再处理
+                data.obj.attr("validation", 0);
                 var stat = true;
                 //内容不为空时验证
                 if (data.obj.val()) {
-                    //默认为失败，Ajax后再处理
-                    data.obj.attr("validation", 0);
-                    //清除提示信息span
-                    data.spanObj.removeClass("success").removeClass("error").html("");
-                    var stat = true;
-                    //内容不为空时验证
-                    if (data.obj.val()) {
-                        //异步提交的参数值
-                        var requestData = options[data.name].rule["ajax"];//异步请求的url
-                        var param = {};//异步传参
-                        var url = "";//请求的Url
-                        if (typeof requestData == 'object') {//传参为对象
-                            url = requestData.url;//请求Url
-                            param[data.name] = data.obj.val();
-                            //附加请求参数
-                            if (requestData['data']) {
-                                for (var i in requestData['data']) {
-                                    param[i] = requestData['data'][i];
-                                }
+                    //----------------------------------异步提交的参数值--------------------------
+                    //Ajax验证的参数 Object or String
+                    var requestData = options[data.name].rule["ajax"];
+                    var param = {};//异步传参
+                    var url = '';//请求的Url
+                    if (typeof requestData == 'object') {//传参为对象
+                        url = requestData.url;//请求Url
+                        param[data.name] = data.obj.val();
+                        //附加请求参数
+                        if (requestData['data']) {
+                            for (var i in requestData['data']) {
+                                param[i] = requestData['data'][i];
                             }
-                            //附附加字段，有field属性
-                            if (requestData['field']) {
-                                for (var i = 0; i < requestData['field'].length; i++) {
-                                    var name = requestData['field'][i];
-                                    param[name] = $("[name='" + name + "']").val();
-                                }
-                            }
-                        } else {//传参不为对象
-                            url = requestData;
-                            param[data.name] = data.obj.val();
                         }
-                        //发送异步
-                        $.post(url, param, function (result) {
-                            //成功时，如果是提交暂停状态则再次提交
-                            if (result == 1) {
-                                //移除表单属性validation
-                                data.obj.removeAttr("validation");
-                                //验证结果处理，提示信息等
-                                method.call_handler(1, data);
-                                //如果是通过submit调用，则提交
-                                if (data.send && $("[validation='0']").length == 0) {
-                                    options.form.trigger("submit", ['send']);
-                                }
-                            } else {
-                                method.call_handler(0, data);
+                        //附附加字段，有field属性
+                        if (requestData['field']) {
+                            for (var i = 0; i < requestData['field'].length; i++) {
+                                var name = requestData['field'][i];
+                                param[name] = $("[name='" + name + "']").val();
                             }
-                        });
-                        //验证结果处理，提示信息等
+                        }
+                    } else {//传参为字符串时
+                        url = requestData;
+                        param[data.name] = data.obj.val();
                     }
+                    //----------------------------------异步提交的参数值--------------------------
+                    //发送异步
+                    $.post(url, param, function (result) {
+                        //成功时，如果是提交暂停状态则再次提交
+                        if (result == 1) {
+                            //验证结果处理，提示信息等
+                            method.call_handler(1, data);
+                            //如果是通过submit调用，则提交
+                            if (data.send && $("[validation='0']").length == 0) {
+                                form.trigger("submit", ['send']);
+                            }
+                        } else {
+                            //验证结果处理，提示信息等
+                            method.call_handler(0, data);
+                        }
+                    });
                 }
                 return stat;
             },
@@ -515,18 +514,17 @@ $.fn.extend({
                 var obj = data.obj;//表单对象
                 var rule = data.rule;//规则
                 var spanObj = data.spanObj;//提示信息表单
-                $(data.spanObj).removeClass("validate-error validate-success validate-message").addClass("validation").html("");
-                $(obj).removeClass("input-error");
-                if (stat) {
-                    //验证通过
+                $(data.spanObj).removeClass("validate-error validate-success validate-message").html('');
+                if (stat) {//验证通过
                     //添加表单属性validation
-                    obj.removeAttr("validation");
+                    obj.attr("validation", 1);
                     //设置正确提示信息
                     var msg = (options[data.name].success || options[data.name].message);
                     //如果非必填项，且内容为空时，为没有错误
                     if (!data.required && data.obj.val() == '') {
                         msg = options[data.name].message || '';
-                        $(data.spanObj).html(msg);
+                        if (msg)
+                            $(data.spanObj).addClass("validate-message").html(msg);
                     } else if (options[data.name].success) {
                         $(data.spanObj).addClass("validate-success").html(msg);
                     } else {
@@ -540,7 +538,6 @@ $.fn.extend({
                         var msg = (options[data.name].error[data.rule]);
                     else
                         var msg = "输入错误";
-                    $(obj).addClass("input-error");
                     $(data.spanObj).addClass("validate-error");
                     $(data.spanObj).html(msg);
                 }
@@ -554,27 +551,33 @@ $.fn.extend({
             set: function (name, spanObj) {
                 //获得span提示信息表单
                 var obj = method.getSpanElement(name);
+                //表单
                 var fieldObj = obj[0];
+                //错误提示信息span对象
                 var spanObj = obj[1];
-                options.field.push(fieldObj);
-                //获得焦点时设置默认值
-                fieldObj.live("focus", function (event, send) {
-                    var msg = options[name].message || "";
-                    spanObj.removeClass('validate-error validate-success').addClass('validate-message').html(msg);
-                })
-                //必须验证字段与确认密码加validation属性
-                if (options[name].rule.required) {
-                    fieldObj.attr("validation", 0);
-                }
                 //设置默认提示信息
                 method.setDefaultMessage(name, spanObj);
-                //
-                if (options[name]['rule']['confirm']) {
-                    $(fieldObj).attr("confirm", 1);
+                //获得焦点时设置默认提示信息
+                fieldObj.live("focus", function (event, send) {
+                    var msg = options[name].message || '';
+                    if (msg)
+                        spanObj.removeClass('validate-error validate-success').addClass('validate-message').html(msg);
+                })
+                //没有设置required必须验证时，默认为不用验证
+                options[name].rule.required || (options[name].rule.required = false);
+                //默认添加validation属性为1（即成功），必须验证字段设置为0
+                if (options[name].rule.required) {
+                    fieldObj.attr("validation", 0);
+                } else {
+                    fieldObj.attr("validation", 1);
                 }
-                fieldObj.live("blur change", function (event, send) {
-                    //没有设置required必须验证时，默认为不用验证
-                    options[name].rule.required || (options[name].rule.required = false);
+                //密码确认表单，默认为验证失败（必须验证）
+                if (options[name]['rule']['confirm']) {
+                    $(fieldObj).attr("validation", 0);
+                }
+                //获取表单斛发的事件(blur 或 change)
+                var active = form.getFieldEvent(fieldObj);
+                fieldObj.live(active, function (event, send) {
                     var required = options[name].rule.required;
                     for (var rule in options[name].rule) {
                         //验证方法存在
@@ -598,62 +601,78 @@ $.fn.extend({
              * @param spanObj 提示信息span
              */
             setDefaultMessage: function (name, spanObj) {
-                var defaultMessage = options[name].message;
-                if (defaultMessage) {
-                    spanObj.addClass('validate-message').html(defaultMessage);
+                var msg = options[name].message;
+                if (msg) {
+                    spanObj.addClass('validate-message').html(msg);
                 }
             },
-
             //获得span提示信息表单
             getSpanElement: function (name) {
                 var fieldObj = $("[name='" + name + "']");
                 var spanId = "hd_" + name;//span提示信息表单的id
                 if ($("[id='" + spanId + "']").length == 0) {
-                    fieldObj.after("<span id='" + spanId + "' class='validation'></span>");
-                } else {//如果span已经存在，添加validation类
-                    $("[id='" + spanId + "']").removeClass("validation").addClass("validation");
+                    fieldObj.after("<span id='" + spanId + "'></span>");
                 }
                 spanObj = $("[id='" + spanId + "']");
                 return [fieldObj, spanObj];
-            }
+            },
+
         };
-        //当前操作的form表单
-        options.form = $(this);
-        options.field = [];
         //处理事件
         for (var name in options) {
-            if (name != 'field' && name != 'form') {
-                //验证表单规则
-                method.set(name);
-            }
+            //验证表单规则
+            method.set(name);
         }
+        /**
+         * 阻止回车提交表单
+         */
+        $(this).keydown(function (event) {
+            if (event.keyCode == 13)return false;
+        })
         /**
          * 提交验证
          * action
          */
         $(this).bind("submit", function (event, action) {
-            //验证确认密码
-            $(this).find("[validation='0'],[confirm]").trigger("blur");
-            //验证表单
-            var obj = $(this).find("[validation='0']");
-            if (obj.length > 0) {
-                obj.each(function (i) {
-                    $(this).trigger("blur", ['submit']);
-                    $(this).trigger("change", ['submit']);
-                })
-                var obj = $(this).find("[validation='0']");
-                return obj.length == 0;
-            }
-            return true;
+            $(this).trigger_field_event();
+            return $(this).find("[validation='0']").length == 0;
         })
+    },
+    //获得表单对象事件类型（小写如text select)
+    getFieldEvent: function (fieldObj) {
+        var _type = $.trim($(fieldObj).attr('type')).toLowerCase();
+        //斛发的事件
+        var _event = '';
+        switch (_type) {
+            case 'text':
+            case 'password':
+                _event = 'blur';
+                break;
+            case 'select':
+                _event = 'change';
+                break;
+        }
+        return _event;
     },
     //验证表单
     is_validate: function () {
-        $(this).find("[validation='0'],[confirm]").trigger("blur");
-        if ($(this).find("*[validation='0']").length > 0) {
-            return false;
+        $(this).trigger_field_event();
+        return $(this).find("[validation='0']").length == 0;
+    },
+    //submit事件或is_validate事件时，触发表单事件
+    trigger_field_event: function () {
+        var form = $(this);
+        //查找验证失败与未验证的表单
+        var obj = $(this).find("[validation='0']");
+        //存在验证失败或未验证的表单
+        if (obj.length > 0) {
+            //执行对象事件
+            obj.each(function (i) {
+                //表单事件
+                var active = form.getFieldEvent(this);
+                $(this).trigger(active, ['submit']);
+            })
         }
-        return true;
     }
 });
 

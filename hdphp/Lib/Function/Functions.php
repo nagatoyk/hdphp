@@ -856,7 +856,6 @@ function rand_str($len = 6)
     return $str;
 }
 
-
 /**
  * 加密方法
  * @param $data 加密字符串
