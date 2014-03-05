@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98133d90-3416-464a-af79-8760fd9ad0e3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Encry.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Encry.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Config/config.php" afterPath="$PROJECT_DIR$/hdphp/Config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdjs/js/hdjs.js" afterPath="$PROJECT_DIR$/hdjs/js/hdjs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hdjs.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="hdjs.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdjs/js/hdjs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="337" column="57" selection-start="13068" selection-end="13068" vertical-scroll-proportion="0.5416667" vertical-offset="6427" max-vertical-offset="16674">
+            <state line="337" column="57" selection-start="13068" selection-end="13068" vertical-scroll-proportion="0.0" vertical-offset="6427" max-vertical-offset="16674">
               <folding>
                 <element signature="e#13271#13742#0" expanded="false" />
                 <element signature="e#13800#14135#0" expanded="false" />
@@ -80,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hdphp.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="hdphp.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="50" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="861">
+            <state line="18" column="33" selection-start="794" selection-end="794" vertical-scroll-proportion="0.2783505" vertical-offset="0" max-vertical-offset="679">
               <folding />
             </state>
           </provider>
@@ -183,8 +175,8 @@
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Config/config.php" />
-        <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
         <option value="$PROJECT_DIR$/hdjs/js/hdjs.js" />
+        <option value="$PROJECT_DIR$/hdphp/hdphp.php" />
       </list>
     </option>
   </component>
@@ -239,6 +231,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="hdphp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hdphp" />
@@ -679,13 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="50" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="861">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdjs/css/hdjs.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="913" column="23" selection-start="17344" selection-end="17344" vertical-scroll-proportion="0.20943953" vertical-offset="19031" max-vertical-offset="23079">
@@ -695,7 +694,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdjs/js/hdjs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="337" column="57" selection-start="13068" selection-end="13068" vertical-scroll-proportion="0.5416667" vertical-offset="6427" max-vertical-offset="16674">
+        <state line="337" column="57" selection-start="13068" selection-end="13068" vertical-scroll-proportion="0.0" vertical-offset="6427" max-vertical-offset="16674">
           <folding>
             <element signature="e#13271#13742#0" expanded="false" />
             <element signature="e#13800#14135#0" expanded="false" />
@@ -717,6 +716,13 @@
             <marker date="1394042393082" expanded="false" signature="6294:6340" placeholder="..." />
             <marker date="1394042393082" expanded="false" signature="6996:7003" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="33" selection-start="794" selection-end="794" vertical-scroll-proportion="0.2783505" vertical-offset="0" max-vertical-offset="679">
+          <folding />
         </state>
       </provider>
     </entry>
