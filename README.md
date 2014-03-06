@@ -7,7 +7,8 @@
 >后盾网： [http://www.houdunwang.com](http://www.houdunwang.com "后盾网")
 > 
 >HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
-
+>
+![后盾网  人人做后盾](http://www.hdphp.com/preview/houdunwang.jpg)
 
 ## 全面的WEB开发特性支持
 * HDPHP是完全免费的，你不用担心任何版权问题
