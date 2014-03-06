@@ -323,7 +323,7 @@ function session($name, $value = '')
         if (C("SESSION_AUTO_START")) {
             session_start();
         }
-    } elseif ($value === "") {
+    } elseif ($value === '') {
         if ('[pause]' == $name) { // 暂停
             session_write_close();
         } elseif ('[start]' == $name) { //开启

@@ -14,7 +14,7 @@ return array(
     'FILTER_FUNCTION'               => array('htmlspecialchars','strip_tags'), //过滤函数会在Q(),date_format()等函数中使用
     /********************************数据库********************************/
     'DB_DRIVER'                     => 'mysqli',    //数据库驱动
-    'DB_CHARSET'                    => 'utf8',     //数据库字符集
+    'DB_CHARSET'                    => 'utf8',      //数据库字符集
     'DB_HOST'                       => '127.0.0.1', //数据库连接主机  如127.0.0.1
     'DB_PORT'                       => 3306,        //数据库连接端口
     'DB_USER'                       => 'root',      //数据库用户名
@@ -39,7 +39,10 @@ return array(
     'SESSION_AUTO_START'            => TRUE,        //自动开启SESSION
     'SESSION_TYPE'                  => '',          //引擎:mysql,memcache,redis
     'SESSION_NAME'                  => 'hd_sid',    //session_name
-    'SESSION_OPTIONS'               =>array(),      //session处理参数，配置复杂，请查看手册获得帮助
+    'SESSION_OPTIONS'               =>array(//session配置复杂，请查看手册获得帮助
+                                            'table'=>'session',
+                                            'expire'=>'3600'
+                                      ),
     /********************************COOKIE********************************/
     'COOKIE_EXPIRE'                 => 0,           // Coodie有效期
     'COOKIE_DOMAIN'                 => '',          // Cookie有效域名
