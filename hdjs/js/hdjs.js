@@ -177,10 +177,10 @@ $.extend({
         $("div.modal").remove();
         var div = '';
         var show = opt.show ? "" : ";display:none;"
-        div += '<div class="modal" style="position:fixed;left:50%;top:50px;margin-left:-' + (opt['width'] / 2) + 'px;width:' + opt['width'] + 'px;' + show + 'height:' + opt['height'] + 'px;z-index:1000">';
+        div += '<div class="hd-modal" style="position:fixed;left:50%;top:50px;margin-left:-' + (opt['width'] / 2) + 'px;width:' + opt['width'] + 'px;' + show + 'height:' + opt['height'] + 'px;z-index:1000">';
         //---------------标题设置
         if (opt['title']) {
-            div += '<div class="modal_title">' + opt['title'];
+            div += '<div class="hd-modal-title">' + opt['title'];
             //---------x关闭按钮
             div += '<button class="close" aria-hidden="true" data-dismiss="modal" type="button" onclick="$.removeModal()">×</button>';
             div += '</div>';
@@ -192,14 +192,14 @@ $.extend({
         }
         div += '<div class="content" style="height:' + content_height + 'px">';
         if (opt.message) {
-            div += '<div class="modal_message"><strong class="' + opt.type + '"></strong><span>' + opt.message + '</span></div>';
+            div += '<div class="hd-modal-message"><strong class="' + opt.type + '"></strong><span>' + opt.message + '</span></div>';
         } else {
             div += opt.content;
         }
         div += '</div>';
         //------------按钮处理
         if (opt.button_success || opt.button_cancel) {
-            div += '<div class="modal_footer" ' + (opt.message ? 'style="text-align:center"' : "") + '>';
+            div += '<div class="hd-modal-footer" ' + (opt.message ? 'style="text-align:center"' : "") + '>';
             //确定按钮
             if (opt.button_success) {
                 div += '<a href="javascript:;" class="btn btn-primary hd-success">' + opt.button_success + '</a>';
@@ -211,40 +211,40 @@ $.extend({
             div += '</div>';
         }
         div += '</div>';
-        div += '<div class="modal_bg" style="' + show + '"></div>';
+        div += '<div class="hd-modal-bg" style="' + show + '"></div>';
         $(div).appendTo("body");
         var pos = center_pos($(".modal"));
         //点击确定
-        $("div.modal_footer a.hd-success").click(function () {
+        $("div.hd-modal-footer a.hd-success").click(function () {
             if (opt.success) {
                 opt.success();
             } else {
-                $("div.modal_footer a.hd-cancel").trigger("click");
+                $("div.hd-modal-footer a.hd-cancel").trigger("click");
             }
         })
         var _w = $(document).width();
         var _h = $(document).height();
-        $("div.modal_bg").css({ opacity: 0.6});
+        $("div.hd-modal-bg").css({ opacity: 0.6});
         if (opt.show) {
-            $("div.modal_bg").show();
+            $("div.hd-modal-bg").show();
         }
         //点击关闭modal
         if (opt.cancel) {
-            $("div.modal_footer a.hd-cancel").live("click", opt.cancel);
+            $("div.hd-modal-footer a.hd-cancel").live("click", opt.cancel);
         } else {
-            $("div.modal_footer a.hd-cancel").bind("click", function () {
+            $("div.hd-modal-footer a.hd-cancel").bind("click", function () {
                 $.removeModal();
                 return false;
             })
         }
     },
     "removeModal": function () {
-        $("div.modal").fadeOut().remove();
-        $("div.modal_bg").remove();
+        $("div.hd-modal").fadeOut().remove();
+        $("div.hd-modal-bg").remove();
     },
     modalShow: function (func) {
         $("div.modal").show();
-        $("div.modal_bg").show();
+        $("div.hd-modal-bg").show();
         if (typeof func == 'function')
             func();
     }

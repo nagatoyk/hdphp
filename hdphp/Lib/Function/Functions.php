@@ -204,6 +204,8 @@ function import($class = null, $base = null, $ext = ".class.php")
             $base = APP_PATH . '../' . $info[0] . '/';
             $class = substr_replace($class, '', 0, strlen($info[0]) + 1);
         }
+    }else{
+        $base=str_replace('.','/',$base);
     }
     if (substr($base, -1) != '/')
         $base .= '/';

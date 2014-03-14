@@ -32,10 +32,13 @@ final class Backup
     //还原数据
     static public function recovery($option)
     {
-        $dir = session("backup_dir",$option['dir']);
+       if(!isset($option['dir']) || !is_dir($option['dir'])){
+            halt('还原目录不存在');
+       }
+        $dir = $option['dir'];
         self::$config = require($dir . '/config.php');
         //文件id
-        $fid = session("backup_fid", NULL, "intval");
+        $fid = Q("session.backup_fid", NULL, "intval");
         //表前缀
         $db = M();
         $db_prefix = C("DB_PREFIX");
@@ -50,11 +53,14 @@ final class Backup
             $html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
             $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>还原数据初始化...</div>";
             $html .= '</body></html>';
+            //还原成功后跳转的url地址
             session('backup_history_url', $url);
+            //每次还原间隔时间，默认1秒
             session('backup_step_time', $step_time);
             echo $html;
             exit;
         }
+        //每次还原间隔时间，默认1秒
         $step_time = session('backup_step_time');
         foreach (glob($dir . '/*') as $d) {
             if (preg_match("@_bk_$fid\.php$@", $d)) {
@@ -68,7 +74,12 @@ final class Backup
             }
         }
         $html = "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>所有分卷还原完毕!";
+        //还原成功后跳转地址
         $url = session('backup_history_url');
+        //清空SESSION数据
+        unset($_SESSION['backup_history_url']);
+        unset($_SESSION['backup_step_time']);
+        unset($_SESSION['backup_fid']);
         if (!empty($url))
             $html .= "<a href='javascript:parent.location.href=\"" . $url . "\"' class='btn'>返回</a>";
         $html .= '</div></body></html>';

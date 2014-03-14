@@ -652,8 +652,9 @@ class ViewTag
   <![endif]-->';
         $str.='
       <!--[if lt IE 9]>
-<script type="text/javascript" src="__HDPHP_EXTEND__/Org/bootstrap/html5shiv.js"></script>
-<![endif]-->';
+    <script src="__HDPHP_EXTEND__/Org/bootstrap/js/html5shiv.min.js"></script>
+    <script src="__HDPHP_EXTEND__/Org/bootstrap/js/respond.min.js"></script>
+    <![endif]-->';
         return $str;
     }
 

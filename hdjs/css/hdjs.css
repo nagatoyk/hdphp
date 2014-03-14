@@ -682,13 +682,9 @@ div.page1 span.count {
 .position-bottom {
     position: fixed;
     background: none repeat scroll 0 0 #F0F0F0;
-    border-color: #DCDCDC -moz-use-text-color -moz-use-text-color;
-    border-image: none;
-    border-right: medium none;
-    border-style: solid none none;
-    border-width: 1px medium medium;
+    border-top: solid 1px #aaa;
     bottom: 0;
-    height: 25px;
+ 
     left: 0;
     overflow: hidden;
     padding: 8px 30px 10px;
@@ -801,7 +797,7 @@ div#hd_dialog_message {
 }
 
 /***********模态弹出框******************/
-div.modal {
+div.hd-modal {
     width: 650px;
     height: auto;
     overflow: hidden;
@@ -812,7 +808,7 @@ div.modal {
     box-shadow: 0px 3px 26px #333;
 }
 
-div.modal_bg {
+div.hd-modal-bg {
     position: fixed;
     bottom: 0px;
     top: 0px;
@@ -822,7 +818,7 @@ div.modal_bg {
     z-index: 900;
 }
 
-div.modal div.modal_title {
+div.hd-modal div.hd-modal-title {
     height: 35px;
     background: #F6F6F6;
     border-bottom: solid 1px #999;
@@ -833,7 +829,7 @@ div.modal div.modal_title {
     text-indent: 20px;
 }
 
-div.modal div.modal_title button.close {
+div.hd-modal div.hd-modal-title button.close {
     margin-top: 2px;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     border: 0 none;
@@ -850,12 +846,12 @@ div.modal div.modal_title button.close {
     margin-right: 10px;
 }
 
-div.modal div.content {
+div.hd-modal div.content {
     padding: 0px;
     overflow: auto;
 }
 
-div.modal div.modal_footer {
+div.hd-modal div.hd-modal-footer {
     background-color: #F5F5F5;
     border-top: 1px solid #DDDDDD;
     box-shadow: 0 1px 0 #FFFFFF inset;
@@ -866,11 +862,10 @@ div.modal div.modal_footer {
     left: 0px;
     right: 0px;
     padding: 8px 15px;
-    height: 30px;
     overflow: hidden;
 }
 
-div.modal_message strong {
+div.hd-modal-message strong {
     text-indent: -9999px;
     display: block;
     float: left;
@@ -880,7 +875,7 @@ div.modal_message strong {
     margin-left: 30px;
 }
 
-div.modal_message span {
+div.hd-modal-message span {
     font-size: 14px;
     margin-top: 30px;
     display: block;
@@ -888,15 +883,15 @@ div.modal_message span {
     margin-left: 10px;
 }
 
-div.modal_message strong.success {
+div.hd-modal-message strong.success {
     background: url(../img/ico_face.jpg) -466px -6px no-repeat;
 }
 
-div.modal_message div.error {
+div.hd-modal-message div.error {
     background: none;
 }
 
-div.modal_message strong.error {
+div.hd-modal-message strong.error {
     background: url(../img/ico_face.jpg) -468px -336px no-repeat;
 }
 
