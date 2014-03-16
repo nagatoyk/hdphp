@@ -204,8 +204,8 @@ function import($class = null, $base = null, $ext = ".class.php")
             $base = APP_PATH . '../' . $info[0] . '/';
             $class = substr_replace($class, '', 0, strlen($info[0]) + 1);
         }
-    }else{
-        $base=str_replace('.','/',$base);
+    } else {
+        $base = str_replace('.', '/', $base);
     }
     if (substr($base, -1) != '/')
         $base .= '/';
@@ -284,10 +284,12 @@ function control($control, $method = NULl, $args = array())
  * @param string $value 值
  * @return mixed
  */
-function session($name, $value = '')
+function session($name = '', $value = '')
 {
-    //session初始化
-    if (is_array($name)) {
+
+    if ($name === '') {
+        return $_SESSION;
+    } elseif (is_array($name)) {
         //关闭session自启动
         ini_set('session.auto_start', 0);
         //session_name

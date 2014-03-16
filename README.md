@@ -52,6 +52,12 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ***
 
 ###更新日志
+2014.3.16
+
+```
+1. 修复uploadify插件上传文件失败问题
+2. 修复Backup::recovery()还原数据失败
+```
 
 2014.3.14
 
