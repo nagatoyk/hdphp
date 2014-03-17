@@ -358,6 +358,33 @@ function session($name = '', $value = '')
 }
 
 /**
+ * 获得浏览器版本
+ */
+function browser_info()
+{
+    $agent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    $browser = null;
+    if (strstr($agent, 'msie 9.0')) {
+        $browser = 'msie9';
+    } else if (strstr($agent, 'msie 8.0')) {
+        $browser = 'msie8';
+    } else if (strstr($agent, 'msie 7.0')) {
+        $browser = 'msie7';
+    } else if (strstr($agent, 'msie 6.0')) {
+        $browser = 'msie6';
+    } else if (strstr($agent, 'firefox')) {
+        $browser = 'firefox';
+    } else if (strstr($agent, 'chrome')) {
+        $browser = 'chrome';
+    } else if (strstr($agent, 'safari')) {
+        $browser = 'safari';
+    } else if (strstr($agent, 'opera')) {
+        $browser = 'opera';
+    }
+    return $browser;
+}
+
+/**
  * cookie处理
  * @param $name 名称
  * @param string $value 值

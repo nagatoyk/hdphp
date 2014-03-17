@@ -52,6 +52,7 @@ class ViewTag
         'jsconst' => array("block" => 0), //定义JS常量
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
+        'less' => array('block' => 0),
         "hdjs" => array("block" => 0),
         "slide" => array("block" => 0),
         "cal" => array("block" => 0)
@@ -418,7 +419,7 @@ class ViewTag
         };';
         if ($style == 2) {
             $str .= 'options_' . $name . '.items=[
-            "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline",
+            "source","code","image","fullscreen","|","forecolor", "bold", "italic", "underline",
             "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
             "insertunorderedlist", "|", "emoticons", ' . $imageupload . ' "link"];';
         }
@@ -657,7 +658,10 @@ class ViewTag
     <![endif]-->';
         return $str;
     }
-
+    //less
+    public function _less($attr,$content){
+        return '<script src="__HDPHP_EXTEND__/Org/Less/less-1.5.0.min.js"></script>';
+    }
     //设置js常量
     public function _jsconst($attr, $content)
     {
