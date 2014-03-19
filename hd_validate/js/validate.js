@@ -158,7 +158,7 @@ $.fn.extend({
                 }
             },
             "ajax": function (data) {
-                if ($(data.obj).attr('ajaxRun'))return;
+                if ($(data.obj).attr('ajax_run'))return;
                 if (data.obj.attr('ajax_validate') == 1) {
                     if (data.send)
                         formObj.trigger("submit");
@@ -187,7 +187,7 @@ $.fn.extend({
                         }
                     }
                 }
-                $(data.obj).attr('ajaxRun', 1);
+                $(data.obj).attr('ajax_run', 1);
                 //----------------------------------异步提交的参数值--------------------------
                 //发送异步
                 $.ajax({
@@ -197,7 +197,7 @@ $.fn.extend({
                     type: 'POST',
                     data: param,
                     success: function (state) {
-                        $(data.obj).removeAttr('ajaxRun');
+                        $(data.obj).removeAttr('ajax_run');
                         //成功时，如果是提交暂停状态则再次提交
                         if (state == 1) {
                             //记录验证结果
@@ -350,7 +350,9 @@ $.fn.extend({
          * action
          */
         $(this).submit(function (event, action) {
-            $('input[validate=0]', this).trigger('blur');
+            //如果是通过hd_submit提交时，此方法失效
+            if($(this).attr('hd_submit'))return false;
+            $('input[validate=0]', this).trigger('blur', 'submit');
             $('input[ajax_validate=0]', this).trigger('blur', 'submit');
             if ($(this).find("[validate='0']").length == 0
                 && $(this).find("[ajax_validate='0']").length == 0
@@ -362,12 +364,18 @@ $.fn.extend({
     },
     //验证表单
     is_validate: function () {
-        $('input[validate=0]', this).trigger('blur');
+        $('input[validate=0]', this).trigger('blur', 'submit');
         $('input[ajax_validate=0]', this).trigger('blur', 'submit');
         if ($(this).find("[validate='0']").length == 0
             && $(this).find("[ajax_validate='0']").length == 0
             ) {
-            return true;
+            //阻止多次表单提交，提交结束后在hd_submit方法中解锁
+            if ($(this).attr('disabled')) {
+                return false;
+            } else {
+                $(this).attr('disabled', 'disabled');
+                return true;
+            }
         }
         return false;
     }

@@ -263,6 +263,7 @@ $.extend({
 // |   License: http://www.apache.org/licenses/LICENSE-2.0
 // '-----------------------------------------------------------------------------------
 
+
 /**
  * 表单提交，没有确定按钮，倒计时关闭窗口
  * @param obj form表单对象
@@ -270,6 +271,7 @@ $.extend({
  * @returns {boolean}
  */
 function hd_submit(obj, url) {
+    $(obj).attr('hd_submit', 1);
     if ($(obj).is_validate()) {
         var post = $(obj).serialize();
         $.ajax({
@@ -278,7 +280,7 @@ function hd_submit(obj, url) {
             cache: false,
             data: post,
             success: function (data) {
-                if (data.substr(0, 1) == '{') {
+                if (typeof data == 'object' || data.substr(0, 1) == '{') {
                     data = jQuery.parseJSON(data);
                     if (data.state == 1) {
                         $.dialog({
@@ -294,18 +296,24 @@ function hd_submit(obj, url) {
                             }
                         });
                     } else {
+                        //解锁
+                        $(obj).removeAttr('disabled');
                         $.dialog({
                             message: data.message || "操作失败",
                             timeout: data.timeout || 3,
                             type: "error"
                         });
+
                     }
                 } else {
+                    //解锁
+                    $(obj).removeAttr('disabled');
                     $.dialog({
                         message: '操作失败',
                         timeout: 3,
                         type: "error"
                     });
+
                 }
             }
         })
