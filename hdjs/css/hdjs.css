@@ -1054,3 +1054,52 @@ div.dialog div.error {
 div.dialog div.error strong {
     background: url(../img/ico_face.jpg) -468px -336px no-repeat;
 }
+
+
+/* ====================================================================================
+/* ===================================--|验证提示信息|--========================================
+/* ====================================================================================*/
+
+.validation {
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+    text-indent: 5px;
+    line-height: 25px;
+}
+
+
+.validate-message {
+    background: url(../img/msg_bg.png) 3px -147px no-repeat;
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+    text-indent: 28px;
+    line-height: 25px;
+    margin-left: 5px;
+}
+
+.validate-success {
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+    background: url(../img/msg_bg.png) 3px -247px no-repeat;
+    text-indent: 28px;
+    line-height: 25px;
+    margin-left: 5px;
+}
+
+.input-error {
+    background-color: #FFE7E7;
+    box-shadow: none;
+}
+
+.validate-error {
+    font-size: 12px;
+    color: #999999;
+    display: inline-block;
+    background: url(../img/msg_bg.png) 3px -47px no-repeat;
+    text-indent: 28px;
+    margin-left: 5px;
+    line-height: 25px;
+}

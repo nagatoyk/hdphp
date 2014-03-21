@@ -697,14 +697,6 @@ class ViewTag
         return "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
     }
 
-    //表单验证
-    public function _validate($attr, $content)
-    {
-        $php = "<link href='__HDPHP__/../hd_validate/css/validate.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<script src='__HDPHP__/../hd_validate/js/validate.js'></script>\n";
-        return $php;
-    }
-
     //hdjs
     public function _hdjs($attr, $content)
     {
@@ -712,7 +704,6 @@ class ViewTag
         $php .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
         $php .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
         $php .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
-        $php .= $this->_validate(null, null);
         $php .= $this->_slide(null, null);
         $php .= $this->_cal(null, null);
         $php .= $this->_jsconst(null, null);
