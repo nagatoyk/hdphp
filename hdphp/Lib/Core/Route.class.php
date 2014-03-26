@@ -284,17 +284,24 @@ final class Route
             if (substr($routeKey, 0, 1) === '/') {
                 $regGroup = array(); //识别正则路由中的原子组
                 preg_match_all("@\(.*?\)@i", $routeKey, $regGroup, PREG_PATTERN_ORDER);
-                $searchRegExp = $routeVal; //匹配URL的正则
-                //将正则路由的$v中的值#1换成$r中的(\d+)形式
+                //路由规则Value
+                $searchRegExp = $routeVal;
+                //将正则路由的Value中的值#1换成(\d+)等形式
                 for ($i = 0, $total = count($regGroup[0]); $i < $total; $i++) {
                     $searchRegExp = str_replace('#' . ($i + 1), $regGroup[0][$i], $searchRegExp);
                 }
-                $urlArgs = array(); //URL参数
+                //URL参数
+                $urlArgs = array();
+                //当前URL是否满足本次路由规则，如果满意获得url参数（原子组）
                 preg_match_all("@" . $searchRegExp . "@i", $url, $urlArgs, PREG_SET_ORDER);
                 //满足路由规则
                 if ($urlArgs) {
                     //清除路由中的/$与/正则边界
-                    $routeUrl = trim(str_replace(array('/^', '$/'), '', $routeKey), '/');
+                    $routeUrl = trim(preg_replace(array('@/\^@', '@/[isUx]$@','@\$@'), array('','',''), $routeKey), '/');
+                    /**
+                     * 将路由规则中的(\d+)等形式替换为url中的具体值
+                     * /admin(\d).html/   => admin1.html
+                     */
                     foreach ($regGroup[0] as $k => $v) {
                         $v = preg_replace('@([\*\$\(\)\+\?\[\]\{\}\\\])@', '\\\$1', $v);
                         $routeUrl = preg_replace('@' . $v . '@', $urlArgs[0][$k + 1], $routeUrl, $count = 1);

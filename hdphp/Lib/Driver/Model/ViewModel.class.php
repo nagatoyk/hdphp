@@ -16,13 +16,14 @@
  * @subpackage  Driver
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-defined("INNER_JOIN")   or define("INNER_JOIN", "INNER JOIN");
-defined("LEFT_JOIN")    or define("LEFT_JOIN", "LEFT JOIN");
-defined("RIGHT_JOIN")   or define("RIGHT_JOIN", "RIGHT JOIN");
+defined("INNER_JOIN") or define("INNER_JOIN", "INNER JOIN");
+defined("LEFT_JOIN") or define("LEFT_JOIN", "LEFT JOIN");
+defined("RIGHT_JOIN") or define("RIGHT_JOIN", "RIGHT JOIN");
 
 class ViewModel extends Model
 {
     public $view = array();
+
     //初始化
     protected function init()
     {
@@ -34,11 +35,12 @@ class ViewModel extends Model
             $this->$n = $v;
         }
     }
+
     //本次需要关联的表
     private function check_join($table)
     {
         //验证表
-        if ($this->joinTable===false) {
+        if ($this->joinTable === false) {
             return false;
         } else if (is_array($this->joinTable) && !empty($this->joinTable) && !in_array($table, $this->joinTable)) {
             return false;
@@ -67,7 +69,7 @@ class ViewModel extends Model
     public function setJoinTable()
     {
         //不存在关联定义或不关联时
-        if ($this->joinTable===false || empty($this->view)) {
+        if ($this->joinTable === false || empty($this->view)) {
             return;
         }
         //关联from 语句
@@ -91,41 +93,52 @@ class ViewModel extends Model
     {
         //设置表关联
         $this->setJoinTable($data);
+        $this->init();
         return parent::select($data);
     }
+
     //count
     public function count($args = "")
     {
         //设置表关联
         $this->setJoinTable();
+        $this->init();
         return parent::count($args);
     }
+
     //min
     public function min($args = "")
     {
         //设置表关联
         $this->setJoinTable();
+        $this->init();
         return parent::min($args);
     }
+
     //max
     public function max($args = "")
     {
         //设置表关联
         $this->setJoinTable();
+        $this->init();
         return parent::max($args);
     }
+
     //max
     public function sum($args = "")
     {
         //设置表关联
         $this->setJoinTable();
+        $this->init();
         return parent::sum($args);
     }
+
     //avg
     public function avg($args = "")
     {
         //设置表关联
         $this->setJoinTable();
+        $this->init();
         return parent::max($args);
     }
 }

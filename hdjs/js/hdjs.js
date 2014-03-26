@@ -27,9 +27,11 @@ function hd_open_window(url) {
  * @private
  */
 function hd_close_window(msg) {
-    msg = msg || '确定关闭吗？';
-    if (confirm(msg))
+//    msg = msg || '确定关闭吗？';
+    if (msg && confirm(msg))
         window.close()
+    else
+        window.close();
 }
 /**
  * 获得对象在页面中心的位置
@@ -87,6 +89,10 @@ $(function () {
  * dialog对话框
  */
 $.extend({
+    "close_dialog": function () {
+        $("div.dialog_bg").remove();
+        $("div.dialog").remove();
+    },
     "dialog": function (options) {
         var _default = {
             "type": "success"//类型 CSS样式
@@ -221,6 +227,7 @@ $.extend({
             } else {
                 $("div.hd-modal-footer a.hd-cancel").trigger("click");
             }
+            return true;
         })
         var _w = $(document).width();
         var _h = $(document).height();
@@ -249,6 +256,22 @@ $.extend({
             func();
     }
 });
+function hd_confirm(message, success, error) {
+    return $.modal({
+        width: 280,
+        height: 160,
+        title: "温馨提示",
+        message: message,
+        button_success: "确定",
+        button_cancel: "关闭",
+        type: 'notice',//类型
+        success: function () {
+            $.removeModal();//关闭模态
+            success();
+        }
+    });
+
+}
 // ====================================================================================
 // ===================================--|表单验证|--=====================================
 // ====================================================================================
@@ -271,8 +294,12 @@ $.extend({
  * @returns {boolean}
  */
 function hd_submit(obj, url) {
-    $(obj).attr('hd_submit', 1);
     if ($(obj).is_validate()) {
+        //阻止多次表单提交，提交结束后在hd_submit方法中解锁
+        if ($(obj).attr('disabled')) {
+            return false;
+        }
+        $(obj).attr('disabled', 1);
         var post = $(obj).serialize();
         $.ajax({
             type: "POST",
@@ -280,6 +307,7 @@ function hd_submit(obj, url) {
             cache: false,
             data: post,
             success: function (data) {
+                $(obj).removeAttr('disabled');
                 if (typeof data == 'object' || data.substr(0, 1) == '{') {
                     data = jQuery.parseJSON(data);
                     if (data.state == 1) {
@@ -548,7 +576,6 @@ function reverse_select(element) {
 }
 
 
-
 /**
  * 表单验证
  * @category validate
@@ -737,8 +764,8 @@ $.fn.extend({
                             param[name] = $("[name='" + name + "']").val();
                         }
                     }
-                }else{
-                    url =requestData;
+                } else {
+                    url = requestData;
                     param[data.name] = data.obj.val();
                 }
                 $(data.obj).attr('ajax_run', 1);
@@ -806,6 +833,11 @@ $.fn.extend({
              * @param spanObj 提示信息span
              */
             set: function (name, spanObj) {
+                //如果没有设置rule属性时，添加rule属性
+                if (!options[name].rule) {
+                    options[name].rule = {};
+                    options[name].rule.required = false;
+                }
                 var obj = method.getSpanElement(name);
                 //表单
                 var fieldObj = obj[0];
@@ -846,7 +878,12 @@ $.fn.extend({
                     //没有设置required并且内容为空时，验证通过
                     if (!required && $(this).val() == '' && !options[name]['rule']['confirm']) {
                         $(this).attr('validate', 1).attr('ajax_validate', 1);
-                        spanObj.removeClass('validate-error validate-success validate-message').html('');
+                        var msg = options[name].message || '';
+                        if (msg) {
+                            spanObj.removeClass('validate-error validate-success validate-message').addClass(' validate-message').html(msg);
+                        } else {
+                            spanObj.removeClass('validate-error validate-success validate-message').html(msg);
+                        }
                     } else {
                         for (var rule in options[name].rule) {
                             //验证方法存在
@@ -905,9 +942,9 @@ $.fn.extend({
          */
         $(this).submit(function (event, action) {
             //如果是通过hd_submit提交时，此方法失效
-            if($(this).attr('hd_submit'))return false;
-            $('input[validate=0]', this).trigger('blur', 'submit');
-            $('input[ajax_validate=0]', this).trigger('blur', 'submit');
+            if ($(this).attr('hd_submit'))return false;
+            $('[validate=0]', this).trigger('blur', 'submit');
+            $('[ajax_validate=0]', this).trigger('blur', 'submit');
             if ($(this).find("[validate='0']").length == 0
                 && $(this).find("[ajax_validate='0']").length == 0
                 ) {
@@ -918,18 +955,13 @@ $.fn.extend({
     },
     //验证表单
     is_validate: function () {
-        $('input[validate=0]', this).trigger('blur', 'submit');
-        $('input[ajax_validate=0]', this).trigger('blur', 'submit');
+        $('[validate=0]', this).trigger('blur', 'submit');
+        $('[ajax_validate=0]', this).trigger('blur', 'submit');
         if ($(this).find("[validate='0']").length == 0
             && $(this).find("[ajax_validate='0']").length == 0
             ) {
-            //阻止多次表单提交，提交结束后在hd_submit方法中解锁
-            if ($(this).attr('disabled')) {
-                return false;
-            } else {
-                $(this).attr('disabled', 'disabled');
-                return true;
-            }
+            return true;
+
         }
         return false;
     }

@@ -74,7 +74,7 @@ var hd_uploadify_options = {
         if (this.settings.showalt) {
             html += "<div class='upload_title'><input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+data.name+"' onblur=\"if(this.value=='')this.value='"+data.name+"'\" onfocus=\"this.value=''\"/></div>";
         }
-        html += "<input type='hidden' t='file'   name='" + upload_file_id.substr(13) + "[" + _index + "][path]' value1111='" + data.path + "'/>";
+        html += "<input type='hidden' t='file'   name='" + upload_file_id.substr(13) + "[" + _index + "][path]' value='" + data.path + "'/>";
         //缩略图表单
         if (data.thumb.length > 0) {
             for (var i = 0, total = data.thumb.length; i < total; i++) {

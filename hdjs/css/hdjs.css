@@ -39,7 +39,6 @@ li {
 
 a, a:hover, a:focus {
     text-decoration: none;
-    color: #266AAE;
 }
 
 ul, ol {
@@ -70,6 +69,9 @@ iframe {
 
 th, td, input,label {
     vertical-align: middle;
+}
+td a{
+    color: #266AAE;
 }
 
 div.line {
@@ -305,13 +307,15 @@ table.table1 tr th {
     padding: 7px 10px 9px;
     vertical-align: middle;
 }
-
+table.table1 tr td{
+    color: #666;
+}
 table.table1 tr.header {
     background: #eef3f6;
 }
 
 table.table1 tr:hover {
-    background: #eef3f6;
+    background: #eaeff2;
 }
 
 /***************************table2表格************************/
@@ -323,7 +327,7 @@ table.table2 {
 }
 
 table.table2 tr:hover {
-    background: #eef3f6;
+    background: #eaeff2;
 }
 
 table.table2 thead th, table.table2 thead td {
@@ -428,175 +432,177 @@ table.table3 thead tr td {
 /* ===================================--|尺寸|--========================================
 /* ====================================================================================*/
 .w30 {
-    width: 30px;
+    width: 30px !important;
 }
 
 .w40 {
-    width: 40px;
+    width: 40px !important;
 }
 
 .w50 {
-    width: 50px;
+    width: 50px !important;
 }
 
 .w60 {
-    width: 60px;
+    width: 60px !important;
 }
 
 .w70 {
-    width: 70px;
+    width: 70px !important;
 }
 
 .w80 {
-    width: 80px;
+    width: 80px !important;
 }
 
 .w90 {
-    width: 90px;
+    width: 90px !important;
 }
 
 .w100 {
-    width: 100px;
+    width: 100px !important;
 }
 
 .w120 {
-    width: 120px;
+    width: 120px !important;
 }
 
 .w150 {
-    width: 150px;
+    width: 150px !important;
 }
 
 .w180 {
-    width: 180px;
+    width: 180px !important;
 }
 
 .w200 {
-    width: 200px;
+    width: 200px !important;
 }
 
 .w250 {
-    width: 250px;
+    width: 250px !important;
 }
 
 .w300 {
-    width: 300px;
+    width: 300px !important;
 }
 
 .w350 {
-    width: 350px;
+    width: 350px !important;
 }
 
 .w400 {
-    width: 400px;
+    width: 400px !important;
 }
 
 .w450 {
-    width: 450px;
+    width: 450px !important;
 }
 
 .w500 {
-    width: 500px;
+    width: 500px !important;
 }
 
 .w550 {
-    width: 550px;
+    width: 550px !important;
 }
 
 .w600 {
-    width: 600px;
+    width: 600px !important;
 }
 
 .w650 {
-    width: 650px;
+    width: 650px !important;
 }
 
 .w700 {
-    width: 700px;
+    width: 700px !important;
 }
 
 .w750 {
-    width: 750px;
+    width: 750px !important;
 }
 
 .w800 {
-    width: 800px;
+    width: 800px !important;
 }
 
 .w850 {
-    width: 850px;
+    width: 850px !important;
 }
 
 .h30 {
-    height: 30px;
+    height: 30px !important;
 }
-
+.h40 {
+    height: 40px !important;
+}
 .h50 {
-    height: 50px;
+    height: 50px !important;
 }
 
 .h60 {
-    height: 60px;
+    height: 60px !important;
 }
 
 .h70 {
-    height: 70px;
+    height: 70px !important;
 }
 
 .h80 {
-    height: 80px;
+    height: 80px !important;
 }
 
 .h90 {
-    height: 90px;
+    height: 90px !important;
 }
 
 .h100 {
-    height: 100px;
+    height: 100px !important;
 }
 
 .h120 {
-    height: 120px;
+    height: 120px !important;
 }
 
 .h150 {
-    height: 150px;
+    height: 150px !important;
 }
 
 .h180 {
-    height: 180px;
+    height: 180px !important;
 }
 
 .h200 {
-    height: 200px;
+    height: 200px !important;
 }
 
 .h250 {
-    height: 250px;
+    height: 250px !important;
 }
 
 .h300 {
-    height: 300px;
+    height: 300px !important;
 }
 
 .h350 {
-    height: 350px;
+    height: 350px !important;
 }
 
 .h400 {
-    height: 400px;
+    height: 400px !important;
 }
 
 .h450 {
-    height: 450px;
+    height: 450px !important;
 }
 
 .h500 {
-    height: 500px;
+    height: 500px !important;
 }
 
 .h600 {
-    height: 600px;
+    height: 600px !important;
 }
 
 /* ====================================================================================
@@ -831,7 +837,11 @@ div.hd-modal div.hd-modal-footer {
     padding: 8px 15px;
     overflow: hidden;
 }
-
+div.hd-modal-message{
+    margin:0 auto;
+    height: auto;
+    overflow: hidden;
+}
 div.hd-modal-message strong {
     text-indent: -9999px;
     display: block;
@@ -854,6 +864,13 @@ div.hd-modal-message strong.success {
     background: url(../img/ico_face.jpg) -466px -6px no-repeat;
 }
 
+div.hd-modal-message strong.notice {
+    background: url(../img/ico.png) -2px -405px no-repeat;
+    height:35px;
+    width:35px;
+    margin-top:20px;
+    margin-left: 60px;
+}
 div.hd-modal-message div.error {
     background: none;
 }
@@ -1070,11 +1087,11 @@ div.dialog div.error strong {
 
 
 .validate-message {
-    background: url(../img/msg_bg.png) 3px -147px no-repeat;
+    background: url(../img/msg_bg.png) 3px -293px no-repeat;
     font-size: 12px;
     color: #999999;
     display: inline-block;
-    text-indent: 28px;
+    text-indent: 25px;
     line-height: 25px;
     margin-left: 5px;
 }

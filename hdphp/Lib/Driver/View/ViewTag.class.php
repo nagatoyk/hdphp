@@ -254,7 +254,7 @@ class ViewTag
             $str .= '<link rel="stylesheet" type="text/css" href="' . $uploadify_url . 'uploadify.css" />
             <script type="text/javascript" src="' . $uploadify_url . 'jquery.uploadify.min.js"></script>
             <script type="text/javascript">
-            var HDPHP_CONTROL         = "' . __CONTROL__ . '";
+            var HDPHP_CONTROL         = "' . __URL__ . '";
             var UPLOADIFY_URL    = "' . $uploadify_url . '";
             var HDPHP_UPLOAD_THUMB    ="' . $thumb . "\";\n";
             //已经成功上传的文件
@@ -354,11 +354,12 @@ class ViewTag
             define("HD_UEDITOR", true);
         }
         $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $initContent . '</script>';
+        $app_group=Q('g','');
         $str .= "
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                imageUrl:'" . $phpScript . "&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
+                imageUrl:'" . $phpScript . "&g={$app_group}&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
                 ,zIndex : 0
                 ,autoClearinitialContent:{$autoClear}
                 ,initialFrameWidth:{$width} //宽度1000
@@ -405,10 +406,12 @@ class ViewTag
             define("keditor_hd", 1);
         }
         $session = session_name() . '=' . session_id();
+        $app_group=Q('g','');
+        $option_var = str_replace(array('[',']'),'',$name);
         $str .= '
-        <textarea id="hd_' . $name . '" name="' . $name . '">' . $content . '</textarea>
+        <textarea id="hd_' . $option_var . '" name="' . $name . '">' . $content . '</textarea>
     <script>
-        var options_' . $name . ' = {
+        var options_' . $option_var . ' = {
         filterMode : ' . $filterMode . '
                 ,id : "editor_id"
         ,width : "' . $width . '"
@@ -416,17 +419,18 @@ class ViewTag
                 ,formatUploadUrl:false
         ,allowFileManager:' . $filemanager . '
         ,allowImageUpload:true
-        ,uploadJson : "' . __CONTROL__ . '&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
+        ,afterBlur: function(){this.sync();}
+        ,uploadJson : "' . __CONTROL__ . '&g='.$app_group.'&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
         };';
         if ($style == 2) {
-            $str .= 'options_' . $name . '.items=[
+            $str .= 'options_' . $option_var . '.items=[
             "source","code","image","fullscreen","|","forecolor", "bold", "italic", "underline",
             "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
             "insertunorderedlist", "|", "emoticons", ' . $imageupload . ' "link"];';
         }
-        $str .= 'var hd_' . $name . ';
+        $str .= 'var hd_' . $option_var . ';
         KindEditor.ready(function(K) {
-                    hd_' . $name . ' = KindEditor.create("#hd_' . $name . '",options_' . $name . ');
+                    hd_' . $option_var . ' = KindEditor.create("#hd_' . $option_var . '",options_' . $option_var . ');
         });
         </script>
         ';
