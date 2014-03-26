@@ -254,7 +254,7 @@ class ViewTag
             $str .= '<link rel="stylesheet" type="text/css" href="' . $uploadify_url . 'uploadify.css" />
             <script type="text/javascript" src="' . $uploadify_url . 'jquery.uploadify.min.js"></script>
             <script type="text/javascript">
-            var HDPHP_CONTROL         = "' . __URL__ . '";
+            var HDPHP_CONTROL         = "' . __CONTROL__ . '&g='.GROUP_NAME.'";
             var UPLOADIFY_URL    = "' . $uploadify_url . '";
             var HDPHP_UPLOAD_THUMB    ="' . $thumb . "\";\n";
             //已经成功上传的文件
@@ -341,9 +341,9 @@ class ViewTag
                 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
                 'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
                 'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'pagebreak', 'template', 'background', '|',
-                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
+                'horizontal', 'date', 'time', 'spechars',  'wordimage', '|',
                 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-                'print', 'preview', 'searchreplace', 'drafts']
+                'print', 'preview', 'searchreplace']
             ]";
         }
         $str = '';
@@ -354,7 +354,7 @@ class ViewTag
             define("HD_UEDITOR", true);
         }
         $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $initContent . '</script>';
-        $app_group=Q('g','');
+        $app_group=GROUP_NAME;
         $str .= "
         <script type='text/javascript'>
         $(function(){
@@ -406,11 +406,10 @@ class ViewTag
             define("keditor_hd", 1);
         }
         $session = session_name() . '=' . session_id();
-        $app_group=Q('g','');
         $option_var = str_replace(array('[',']'),'',$name);
         $str .= '
         <textarea id="hd_' . $option_var . '" name="' . $name . '">' . $content . '</textarea>
-    <script>
+        <script>
         var options_' . $option_var . ' = {
         filterMode : ' . $filterMode . '
                 ,id : "editor_id"
@@ -420,7 +419,7 @@ class ViewTag
         ,allowFileManager:' . $filemanager . '
         ,allowImageUpload:true
         ,afterBlur: function(){this.sync();}
-        ,uploadJson : "' . __CONTROL__ . '&g='.$app_group.'&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
+        ,uploadJson : "' . __CONTROL__ . '&g='.GROUP_NAME.'&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
         };';
         if ($style == 2) {
             $str .= 'options_' . $option_var . '.items=[

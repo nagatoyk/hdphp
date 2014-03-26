@@ -24,7 +24,7 @@ final class HDPHP
             is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         }
         IS_GROUP                                        and Route::group();
-        defined('GROUP_NAME')                           or define('GROUP_NAME', isset($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
+        defined('GROUP_NAME')                           or define('GROUP_NAME', isset($_GET[C('VAR_GROUP')]) &&!empty($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
         defined('APP')                                  or define('APP',ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
         IS_GROUP                                        and define('APP_PATH', GROUP_PATH . GROUP_NAME . '/' . APP . '/');
         //常量

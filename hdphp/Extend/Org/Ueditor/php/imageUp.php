@@ -19,7 +19,6 @@
 
     //获取存储目录
     if ( isset( $_GET[ 'fetch' ] ) ) {
-
         header( 'Content-Type: text/javascript' );
         echo 'updateSavePath('. json_encode($imgSavePathConfig) .');';
         return;
