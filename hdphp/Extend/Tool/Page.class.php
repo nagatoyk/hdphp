@@ -111,7 +111,14 @@ class Page
     protected function setUrl($customUrl)
     {
         if (!empty($customUrl)) {
-            $returnUrl = $customUrl;
+            switch( C("URL_TYPE")){
+                case 1:
+                    $returnUrl= $customUrl.'/'.C('PAGE_VAR').'/'. self::$pageNumLabel . self::$fix;
+                    break;
+                case 2:
+                    $returnUrl= $customUrl . '&'.C('PAGE_VAR') . '=' . self::$pageNumLabel . self::$fix;
+                    break;
+            }
         } elseif (is_null(self::$staticUrl)) {
             $get = $_GET;
             unset($get["a"]);
@@ -198,7 +205,7 @@ class Page
     public function strList()
     {
         $arr = $this->pageList();
-        $str = "";
+        $str = '';
         if (empty($arr))
             return "<strong class='selfpage'>1</strong>";
         foreach ($arr as $v) {

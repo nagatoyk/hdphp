@@ -85,6 +85,7 @@ class Upload
             $info = pathinfo($v ['name']);
             $v ["ext"] = isset($info ["extension"]) ? $info['extension'] : '';
             $v['filename'] = isset($info['filename']) ? $info['filename'] : '';
+
             if (!$this->checkFile($v)) {
                 continue;
             }
@@ -160,7 +161,8 @@ class Upload
         $info = pathinfo($filePath);
         $arr['fieldname'] = $file['fieldname'];
         $arr['basename'] = $info['basename'];
-        $arr['filename'] = $info['filename'];
+        $arr['filename'] = $info['filename'];//新文件名
+        $arr['name'] = $file['filename'];//旧文件名
         $arr['size'] = $file['size'];
         $arr['ext'] = $file['ext'];
         $dir= str_ireplace("\\", "/", dirname($arr['path']));

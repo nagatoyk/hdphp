@@ -347,7 +347,7 @@ function session($name = '', $value = '')
             return isset($_SESSION[$name]) ? $_SESSION[$name] : null;
         }
     } elseif (is_null($value)) { // 删除session
-        unset($_SESSION[$name]);
+        if(isset($_SESSION[$name])) unset($_SESSION[$name]);
     } elseif (is_null($name)) {
         $_SESSION = array();
         session_unset();

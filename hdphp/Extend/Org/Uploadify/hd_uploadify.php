@@ -17,7 +17,8 @@ if (METHOD == "hd_uploadify_del") {
     foreach ($files as $f) {
         @unlink($f);
     }
-    echo 1;exit;
+    echo 1;
+    exit;
 }
 //是否加水印
 $water = $_POST['water'];
@@ -26,8 +27,16 @@ if ($water == 1) {
 } elseif ($water == 0) {
     C("WATER_ON", false);
 }
+//图片裁切处理
+if ($_POST['upload_img_max_width'] || $_POST['upload_img_max_height']) {
+    //开启裁切
+    C('UPLOAD_IMG_RESIZE_ON', true);
+    C('upload_img_max_width', $_POST['upload_img_max_width']);
+    C('upload_img_max_height', $_POST['upload_img_max_height']);
+}
+
 C("UPLOAD_THUMB_ON", false); //关闭生成缩略图
-$upload_dir=isset($_POST['upload_dir'])?$_POST['upload_dir']:"";
+$upload_dir = isset($_POST['upload_dir']) ? $_POST['upload_dir'] : "";
 $data = array();
 $upload = new upload($upload_dir);
 $file = $upload->upload();
@@ -46,10 +55,10 @@ if ($file) {
         $thumbFile = array(); //缩略图
         $saveDir = dirname($data['path']);
         for ($i = 0, $total = count($size); $i < $total;) {
-            $toFile = $fileInfo['filename'] . '_' . $size[$i] . 'x' . $size[$i+1] . '.' . $fileInfo['extension'];
+            $toFile = $fileInfo['filename'] . '_' . $size[$i] . 'x' . $size[$i + 1] . '.' . $fileInfo['extension'];
             $thumbFile[] = $saveDir . '/' . $toFile;
-            $image->thumb($data['path'], $toFile, $size[$i], $size[$i+1]);
-            $i+=2;
+            $image->thumb($data['path'], $toFile, $size[$i], $size[$i + 1]);
+            $i += 2;
         }
         $data['thumb'] = $thumbFile;
     }

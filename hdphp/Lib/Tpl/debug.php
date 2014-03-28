@@ -116,6 +116,7 @@
             <li id="_cache">缓存监控</li>
             <li id="_session">SESSION</li>
             <li id="_cookie">COOKIE</li>
+            <li id="_const">常量</li>
             <li>
                 <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo TEMP_PATH;?>'>删除缓存</a>
             </li>
@@ -275,6 +276,23 @@
                     <tr>
                         <td><?php echo $name;?></td>
                         <td><?php echo print_r($value,true);?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <!--常量-->
+        <div id="const">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="150">name</td>
+                    <td>value</td>
+                </tr>
+                </thead>
+                <?php $const = get_defined_constants(true);foreach ($const['user'] as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo $value;?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>

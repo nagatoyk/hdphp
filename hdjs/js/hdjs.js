@@ -18,8 +18,9 @@ $(function () {
     });
 })
 //新窗口打开链接
-function hd_open_window(url) {
-    window.open(url, '');
+function hd_open_window(url,name) {
+    name ||'';
+    window.open(url, name);
 }
 /**
  * 关闭窗口

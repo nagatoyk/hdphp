@@ -72,7 +72,14 @@ var hd_uploadify_options = {
         html += "<img src='" + data.url + "' path='" + data.path + "' width='" + this.settings.thumb_width + "' height='" + this.settings.thumb_height + "'/>";
         //显示alt文本框
         if (this.settings.showalt) {
-            html += "<div class='upload_title'><input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+data.name+"' onblur=\"if(this.value=='')this.value='"+data.name+"'\" onfocus=\"this.value=''\"/></div>";
+             _value=data.name || '';
+            html += "<div class='upload_title'>" +
+                "<input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+_value+"' onblur=\"if(this.value=='')this.value='"+_value+"'\" onfocus=\"this.value=''\"/>" +
+                "</div>";
+        }
+        //如果表表字段id
+        if(data.table_id){
+            html +="<input type='hidden' name='table_id' value='"+data.table_id+"'/>";
         }
         html += "<input type='hidden' t='file'   name='" + upload_file_id.substr(13) + "[" + _index + "][path]' value='" + data.path + "'/>";
         //缩略图表单
