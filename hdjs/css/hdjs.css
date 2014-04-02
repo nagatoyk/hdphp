@@ -67,10 +67,11 @@ iframe {
     vertical-align: middle;
 }
 
-th, td, input,label {
+th, td, input, label {
     vertical-align: middle;
 }
-td a{
+
+td a {
     color: #266AAE;
 }
 
@@ -307,9 +308,11 @@ table.table1 tr th {
     padding: 7px 10px 9px;
     vertical-align: middle;
 }
-table.table1 tr td{
+
+table.table1 tr td {
     color: #666;
 }
+
 table.table1 tr.header {
     background: #eef3f6;
 }
@@ -534,9 +537,11 @@ table.table3 thead tr td {
 .h30 {
     height: 30px !important;
 }
+
 .h40 {
     height: 40px !important;
 }
+
 .h50 {
     height: 50px !important;
 }
@@ -755,18 +760,11 @@ div#hd_dialog_message {
     padding: 20px;
     text-align: center;
     width: 160px;
-    font-size: 16px;
-    color: #03565E;
-    height: 10px;
-    line-height: 10px;
-    background-color: #ffffff;
-    background-repeat: repeat-x;
-    border-image: none;
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #03565E;
-    box-shadow: 0px 0px 16px #999;
+    font-size: 14px;
+    color: #666;
+    background-color: #F6F6F6;
+    border: solid 1px #03565E;
+    box-shadow: 0px 3px 26px #333;
 }
 
 /***********模态弹出框******************/
@@ -837,11 +835,13 @@ div.hd-modal div.hd-modal-footer {
     padding: 8px 15px;
     overflow: hidden;
 }
-div.hd-modal-message{
-    margin:0 auto;
+
+div.hd-modal-message {
+    margin: 0 auto;
     height: auto;
     overflow: hidden;
 }
+
 div.hd-modal-message strong {
     text-indent: -9999px;
     display: block;
@@ -866,11 +866,12 @@ div.hd-modal-message strong.success {
 
 div.hd-modal-message strong.notice {
     background: url(../img/ico.png) -2px -405px no-repeat;
-    height:35px;
-    width:35px;
-    margin-top:20px;
+    height: 35px;
+    width: 35px;
+    margin-top: 20px;
     margin-left: 60px;
 }
+
 div.hd-modal-message div.error {
     background: none;
 }
@@ -961,8 +962,8 @@ div.dialog {
     width: 300px;
     height: 110px;
     background: #fff;
-    border: solid 2px #03565E;
-    border-radius: 6px;
+    border: solid 1px #03565E;
+    border-radius: 0px;
     position: fixed;
     top: 50px;
     left: 50%;
@@ -982,18 +983,19 @@ div.dialog_bg {
 }
 
 div.dialog h2#dialog_title {
-    background: #03565E;
+    background: #F6F6F6;
     margin-bottom: 0;
     margin-top: 0px;
     height: 30px;
     overflow: hidden;
-    text-indent: 10px;
-    color: #fff;
+    color: #666;
     font-size: 14px;
-    line-height: 2em;
+    line-height: 35px;
+    text-indent: 20px;
     top: 0px;
     position: absolute;
     width: 300px;
+    border-bottom: solid 1px #999;
 }
 
 div.dialog div.close {
@@ -1072,7 +1074,6 @@ div.dialog div.error strong {
     background: url(../img/ico_face.jpg) -468px -336px no-repeat;
 }
 
-
 /* ====================================================================================
 /* ===================================--|验证提示信息|--========================================
 /* ====================================================================================*/
@@ -1084,7 +1085,6 @@ div.dialog div.error strong {
     text-indent: 5px;
     line-height: 25px;
 }
-
 
 .validate-message {
     background: url(../img/msg_bg.png) 3px -293px no-repeat;

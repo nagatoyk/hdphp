@@ -804,6 +804,19 @@ class Model
     }
 
     /**
+     * 获得表字段
+     * @param $table
+     * @return mixed
+     */
+    public function getTableFields($table)
+    {
+        $fields = $this->db->getTableFields(C("DB_PREFIX") . $table);
+        if (!empty($fields)) {
+            return implode(',', array_keys($fields['fields']));
+        }
+    }
+
+    /**
      * 获得受影响的记录数
      */
     public function getAffectedRows()

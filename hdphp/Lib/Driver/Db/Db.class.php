@@ -159,7 +159,7 @@ abstract class Db implements DbInterface
      * @param string $tableName
      * @return array
      */
-    private function getTableFields($tableName)
+    public function getTableFields($tableName)
     {
         $sql = "show columns from " . $tableName;
         $fields = $this->query($sql);

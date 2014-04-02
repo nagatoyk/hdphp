@@ -307,6 +307,7 @@ function hd_submit(obj, url) {
             url: $(obj).attr("action"),
             cache: false,
             data: post,
+            timeout:5000,
             success: function (data) {
                 $(obj).removeAttr('disabled');
                 if (typeof data == 'object' || data.substr(0, 1) == '{') {
