@@ -362,6 +362,7 @@ abstract class Db implements DbInterface
     //统计记录总数
     public function count($data)
     {
+        if(empty($data))$data=' * ';
         $this->statistics(__FUNCTION__, $data);
         $result = $this->select("");
         return is_array($result) && !empty($result) ? intval(current($result[0])) : NULL;

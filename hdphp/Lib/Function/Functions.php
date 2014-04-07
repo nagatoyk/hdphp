@@ -293,8 +293,8 @@ function session($name = '', $value = '')
         //关闭session自启动
         ini_set('session.auto_start', 0);
         //session_id
-        if (isset($_REQUEST[session_name()]))
-            session_id($_REQUEST[session_name()]);
+        if (isset($_REQUEST[C('SESSION_NAME')]))
+            session_id($_REQUEST[C('SESSION_NAME')]);
         //session_name
         session_name(C('SESSION_NAME'));
         if (isset($name['path'])) session_save_path($name['path']);

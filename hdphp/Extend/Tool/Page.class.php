@@ -48,7 +48,7 @@ class Page
     {
         $this->totalRow = $total; //总条数
         $this->arcRow = empty($row) ? C("PAGE_SHOW_ROW") : $row; //每页显示条数
-        $this->pageRow = (empty($pageRow) ? C('PAGE_ROW') : $pageRow)-1; //显示页码数量
+        $this->pageRow = (empty($pageRow) ? C('PAGE_ROW') : $pageRow) - 1; //显示页码数量
         $this->totalPage = ceil($this->totalRow / $this->arcRow); //总页数
         self::$staticTotalPage = $this->totalPage; //总页数
         self::$pageNumLabel = empty($pageNumLabel) ? self::$pageNumLabel : $pageNumLabel; //替换标签
@@ -111,13 +111,18 @@ class Page
     protected function setUrl($customUrl)
     {
         if (!empty($customUrl)) {
-            switch( C("URL_TYPE")){
-                case 1:
-                    $returnUrl= $customUrl.'/'.C('PAGE_VAR').'/'. self::$pageNumLabel . self::$fix;
-                    break;
-                case 2:
-                    $returnUrl= $customUrl . '&'.C('PAGE_VAR') . '=' . self::$pageNumLabel . self::$fix;
-                    break;
+            if (strstr($customUrl, self::$pageNumLabel)) {
+                $returnUrl = $customUrl;
+            } else {
+                switch (C("URL_TYPE")) {
+                    case 1:
+
+                        $returnUrl = $customUrl . '/' . C('PAGE_VAR') . '/' . self::$pageNumLabel . self::$fix;
+                        break;
+                    case 2:
+                        $returnUrl = $customUrl . '&' . C('PAGE_VAR') . '=' . self::$pageNumLabel . self::$fix;
+                        break;
+                }
             }
         } elseif (is_null(self::$staticUrl)) {
             $get = $_GET;
@@ -332,7 +337,7 @@ class Page
             $style = C('PAGE_STYLE');
         }
         //页码显示行数
-        $this->pageRow = is_null($pageRow)? $this->pageRow:$pageRow-1 ;
+        $this->pageRow = is_null($pageRow) ? $this->pageRow : $pageRow - 1;
         switch ($style) {
             case 1 :
                 return "{$this->count()}{$this->first()}{$this->pre()}{$this->pres()}{$this->strList()}{$this->nexts()}{$this->next()}{$this->end()}

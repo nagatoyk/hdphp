@@ -73,7 +73,7 @@ var hd_uploadify_options = {
         //显示alt文本框
         if (this.settings.showalt) {
              _value=data.name || '';
-            html += "<div class='upload_title'>" +
+            html += "<div class='upl  oad_title'>" +
                 "<input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+_value+"' onblur=\"if(this.value=='')this.value='"+_value+"'\" onfocus=\"this.value=''\"/>" +
                 "</div>";
         }
@@ -106,7 +106,8 @@ function alter_upload_msg(obj) {
     if (allowUploadNums > 0) {
         obj.setStats({
             buttonClass: "disableButton"
-        });//改变按钮类
+        });
+        //改变按钮类
         msg_obj.html("你已经上传" + uploadsSuccessful + "个文件,还可以上传" + allowUploadNums+"个文件");
         $("#" + upload_file_id).uploadify('disable', false);//使按钮生效
         $("#" + upload_file_id + "-button").css({

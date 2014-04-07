@@ -13,7 +13,7 @@ if (!defined("HDPHP_PATH"))
 // '-----------------------------------------------------------------------------------
 header("Content-Type: text/html; charset=utf-8");
 C("debug",0);
-C("WATER_ON",intval($_GET['Image']));
+C("WATER_ON",intval($_GET['water']));
 if($_GET['maximagewidth']!='false' || $_GET['maximageheight']!='false'){
     $maximageheight = intval($_GET['maximageheight']);
     $maximagewidth =  intval($_GET['maximagewidth']);

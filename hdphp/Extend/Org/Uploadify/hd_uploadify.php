@@ -15,7 +15,7 @@ header("Content-Type: text/html; charset=utf-8");
 if (METHOD == "hd_uploadify_del") {
     $files = array_filter(explode("@@", $_POST['file']));
     foreach ($files as $f) {
-        @unlink($f);
+       is_file($f) && @unlink($f);
     }
     echo 1;
     exit;
