@@ -257,13 +257,16 @@ class ViewTag
         ;
         ?>';
         }
+        $get = $_GET;
+        unset($get['m']);
+        $phpScript =  __WEB__ . '?' . http_build_query($get) . '&m=keditor_upload'; //PHP处理文件
         $str = '';
         if (!$_hd_uploadify_js) {
             $_hd_uploadify_js = true; //只加载一次
             $str .= '<link rel="stylesheet" type="text/css" href="' . $uploadify_url . 'uploadify.css" />
             <script type="text/javascript" src="' . $uploadify_url . 'jquery.uploadify.min.js"></script>
             <script type="text/javascript">
-            var HDPHP_CONTROL         = "' . __CONTROL__ . '&g=' . GROUP_NAME . '";
+            var HDPHP_CONTROL         = "' . $phpScript . '&g=' . GROUP_NAME . '";
             var UPLOADIFY_URL    = "' . $uploadify_url . '";
             var HDPHP_UPLOAD_THUMB    ="' . $thumb . "\";\n";
             //已经成功上传的文件

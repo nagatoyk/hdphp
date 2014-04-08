@@ -320,8 +320,6 @@ function hd_submit(obj, url) {
                             close_handler: function () {
                                 if (url) {
                                     location.href = url
-                                } else {
-                                    window.location.reload(true);
                                 }
                             }
                         });

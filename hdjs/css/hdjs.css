@@ -687,7 +687,7 @@ div.page1 span.count {
     line-height: 14px;
     margin-left: 15px;
     padding: 2px 4px;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    /*text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);*/
     vertical-align: baseline;
     white-space: nowrap;
 }
@@ -961,6 +961,7 @@ div.hd-modal-message strong.error {
 div.dialog {
     width: 300px;
     height: 110px;
+    overflow: hidden;
     background: #fff;
     border: solid 1px #03565E;
     border-radius: 0px;
@@ -1025,8 +1026,7 @@ div.dialog div.close a {
 }
 
 div.dialog div.close a:hover {
-    /*color: #C71015;*/
-    color: #fff;
+    color: #999;
     text-decoration: none;
 }
 
