@@ -47,6 +47,7 @@ class ViewTag
         'ueditor' => array('block' => 0),
         'highlight' => array('block' => 0),
         'jquery' => array('block' => 0),
+        'jcrop' => array('block' => 0),
         'upload' => array('block' => 0), //uploadif上传组件
         'zoom' => array('block' => 0), //图片放大镜
         'jsconst' => array("block" => 0), //定义JS常量
@@ -732,6 +733,12 @@ class ViewTag
         $php .= $this->_cal(null, null);
         $php .= $this->_jsconst(null, null);
         return $php;
+    }
+    //Jcrop图片裁切
+    public function _jcrop($attr, $content)
+    {
+        return "<link type='text/css' rel='stylesheet' href='__HDPHP_EXTEND__/Org/jcrop/css/jquery.Jcrop.min.css'/>\n
+        <script src='__HDPHP_EXTEND__/Org/jcrop/js/jquery.Jcrop.min.js'></script>\n";
     }
 }
 

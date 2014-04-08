@@ -1062,7 +1062,7 @@ function print_const($view = true, $tplConst = false)
 function date_before($time, $unit = null)
 {
     $time = intval($time);
-    $unit = is_null($unit) ? array("年", "月", "星期", "日", "小时", "分钟", "秒") : $unit;
+    $unit = is_null($unit) ? array("年", "月", "星期", "天", "小时", "分钟", "秒") : $unit;
     switch (true) {
         case $time < (NOW - 31536000):
             return floor((NOW - $time) / 31536000) . $unit[0] . '前';
