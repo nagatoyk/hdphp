@@ -110,7 +110,9 @@ class Page
     //配置URL地址
     protected function setUrl($customUrl)
     {
-        if (!empty($customUrl)) {
+        if(!is_null(self::$staticUrl)){
+            $returnUrl = self::$staticUrl . self::$fix; //配置url地址
+        }else if (!empty($customUrl)) {
             if (strstr($customUrl, self::$pageNumLabel)) {
                 $returnUrl = $customUrl;
             } else {
@@ -124,7 +126,7 @@ class Page
                         break;
                 }
             }
-        } elseif (is_null(self::$staticUrl)) {
+        } else{
             $get = $_GET;
             unset($get["a"]);
             unset($get['c']);
@@ -146,8 +148,6 @@ class Page
                     }
                     $returnUrl = $url . C("PAGE_VAR") . '=' . self::$pageNumLabel . self::$fix;
             }
-        } else {
-            $returnUrl = self::$staticUrl . self::$fix; //配置url地址
         }
         return $returnUrl;
     }
