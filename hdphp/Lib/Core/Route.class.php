@@ -23,7 +23,7 @@ final class Route
     {
         //请求内容
         $query = C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]) ? $_GET[C("PATHINFO_VAR")] :
-            (C('URL_TYPE') == 1 ? $_SERVER['PATH_INFO'] : $_SERVER['QUERY_STRING']);
+            (C('URL_TYPE') == 1 && isset($_SERVER['PATH_INFO'])? $_SERVER['PATH_INFO'] : $_SERVER['QUERY_STRING']);
         //分析路由 && 清除伪静态后缀
         $url = self::parseRoute(str_ireplace(C('PATHINFO_HTML'), '', trim($query, '/')));
         //拆分后的GET变量
@@ -58,6 +58,7 @@ final class Route
         } else {
             $_GET[$a] = C("DEFAULT_APP");
         }
+
     }
 
 
@@ -130,44 +131,44 @@ final class Route
     {
         //域名
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
-        define("__HOST__", C("HTTPS") ? "https://" : "http://" .$host);
+        defined('__HOST__') or define("__HOST__", C("HTTPS") ? "https://" : "http://" .$host);
         //网站根-不含入口文件
         $script_file = rtrim($_SERVER['SCRIPT_NAME'],'/');
         $root = rtrim(dirname($script_file),'/');
-        define("__ROOT__", __HOST__ . ($root=='/' || $root=='\\'?'':$root));
+        defined('__ROOT__') or define("__ROOT__", __HOST__ . ($root=='/' || $root=='\\'?'':$root));
         //网站根-含入口文件
-        define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
+        defined('__WEB__') or define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
         //完整URL地址
-        define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
+        defined('__URL__') or define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
         //框架目录相关URL
-        define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
-        define("__HDPHP_DATA__", __HDPHP__ . '/Data');
-        define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
-        define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
+        defined('__HDPHP__') or define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
+        defined('__HDPHP_DATA__') or define("__HDPHP_DATA__", __HDPHP__ . '/Data');
+        defined('__HDPHP_TPL__') or define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
+        defined('__HDPHP_EXTEND__') or define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
         //控制器
-        define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
+        defined('CONTROL') or define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
         //方法
-        define("METHOD", $_GET[C('VAR_METHOD')]);
+        defined('METHOD') or define("METHOD", $_GET[C('VAR_METHOD')]);
         // URL类型    1:pathinfo  2:普通模式  3:rewrite 重写  4:兼容模式
         switch (C("URL_TYPE")) {
             //普通模式
             case 2:
-                define("__APP__", __WEB__ . (IS_GROUP ? '?' . C('VAR_APP') . '=' . APP : ''));
-                define("__CONTROL__", __APP__ . (IS_GROUP ? '&' . C('VAR_CONTROL') . '=' . CONTROL : '?c=' . CONTROL));
-                define("__METH__", __CONTROL__ . '&' . C('VAR_METHOD') . '=' . METHOD);
+                defined('__APP__') or define("__APP__", __WEB__ . (IS_GROUP ? '?' . C('VAR_APP') . '=' . APP : ''));
+                defined('__CONTROL__') or define("__CONTROL__", __APP__ . (IS_GROUP ? '&' . C('VAR_CONTROL') . '=' . CONTROL : '?c=' . CONTROL));
+                defined('__METH__') or define("__METH__", __CONTROL__ . '&' . C('VAR_METHOD') . '=' . METHOD);
                 break;
             //兼容模式
             case 3:
-                define("__APP__", __WEB__ . '?' . C("PATHINFO_VAR") . '=' . (IS_GROUP ? '/' . APP : ''));
-                define("__CONTROL__", __APP__ . '/' . CONTROL);
-                define("__METH__", __CONTROL__ . '/' . METHOD);
+                defined('__APP__') or define("__APP__", __WEB__ . '?' . C("PATHINFO_VAR") . '=' . (IS_GROUP ? '/' . APP : ''));
+                defined('__CONTROL__') or define("__CONTROL__", __APP__ . '/' . CONTROL);
+                defined('__METH__') or define("__METH__", __CONTROL__ . '/' . METHOD);
                 break;
             //pathinfo|rewrite
             case 1:
             default:
-                define("__APP__", __WEB__ . (IS_GROUP ? '/' . APP : ''));
-                define("__CONTROL__", __APP__ . '/' . CONTROL);
-                define("__METH__", __CONTROL__ . '/' . METHOD);
+                defined('__APP__') or define("__APP__", __WEB__ . (IS_GROUP ? '/' . APP : ''));
+                defined('__CONTROL__') or define("__CONTROL__", __APP__ . '/' . CONTROL);
+                defined('__METH__') or define("__METH__", __CONTROL__ . '/' . METHOD);
                 break;
         }
         if (defined("GROUP_PATH"))
