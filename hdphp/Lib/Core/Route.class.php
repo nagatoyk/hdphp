@@ -46,6 +46,12 @@ final class Route
     static public function group()
     {
         $args = self::formatUrl();
+        //应用组
+        $g = C('VAR_GROUP');
+        if(isset($_GET[$g])){
+        }else if($index = array_search($g,$args)){
+            $_GET[$g]=$args[$index+1];
+        }
         //应用名
         $a = C("VAR_APP");
         if (isset($_GET[$a])) {
@@ -58,7 +64,6 @@ final class Route
         } else {
             $_GET[$a] = C("DEFAULT_APP");
         }
-
     }
 
 
@@ -149,7 +154,7 @@ final class Route
         defined('CONTROL') or define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
         //方法
         defined('METHOD') or define("METHOD", $_GET[C('VAR_METHOD')]);
-        // URL类型    1:pathinfo  2:普通模式  3:rewrite 重写  4:兼容模式
+        // URL类型    1:pathinfo  2:普通模式  3:兼容模式
         switch (C("URL_TYPE")) {
             //普通模式
             case 2:
@@ -294,7 +299,7 @@ final class Route
                 //URL参数
                 $urlArgs = array();
                 //当前URL是否满足本次路由规则，如果满意获得url参数（原子组）
-                preg_match_all("@" . $searchRegExp . "@i", $url, $urlArgs, PREG_SET_ORDER);
+                preg_match_all("@^" . $searchRegExp . "$@i", $url, $urlArgs, PREG_SET_ORDER);
                 //满足路由规则
                 if ($urlArgs) {
                     //清除路由中的/$与/正则边界

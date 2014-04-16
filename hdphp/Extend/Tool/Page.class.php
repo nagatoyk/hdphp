@@ -104,7 +104,7 @@ class Page
         } else {
             $returnUrl = str_replace(self::$pageNumLabel, $pageNum, $returnUrl);
         }
-        return $returnUrl;
+        return U(str_replace(__ROOT__,'',$returnUrl));
     }
 
     //配置URL地址
@@ -118,10 +118,10 @@ class Page
             } else {
                 switch (C("URL_TYPE")) {
                     case 1:
-
                         $returnUrl = $customUrl . '/' . C('PAGE_VAR') . '/' . self::$pageNumLabel . self::$fix;
                         break;
                     case 2:
+                    default:
                         $returnUrl = $customUrl . '&' . C('PAGE_VAR') . '=' . self::$pageNumLabel . self::$fix;
                         break;
                 }
@@ -142,6 +142,7 @@ class Page
                     $returnUrl = rtrim($url, '/') . '/' . C("PAGE_VAR") . '/' . self::$pageNumLabel . self::$fix;
                     break;
                 case 2:
+                default:
                     $url = __METH__ . '&';
                     foreach ($get as $k => $v) {
                         $url .= $k . "=" . $v . '&';

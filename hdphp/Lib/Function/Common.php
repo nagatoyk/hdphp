@@ -16,8 +16,8 @@ function U($pathinfo, $args = array())
     //是否指定单入口
     $end = strpos($pathinfo, '.php');
     if ($end) {
-        $web = __ROOT__ . '/' . substr($pathinfo, 0, $end + 4);
-        $pathinfo = substr($pathinfo, $end + 4);
+        $web = __ROOT__ . '/' . trim(substr($pathinfo, 0, $end + 4),'/');
+        $pathinfo = trim(substr($pathinfo, $end + 4),'/');
     } else {
         $web = __WEB__;
     }
@@ -48,6 +48,7 @@ function U($pathinfo, $args = array())
             $root = $web . '/'; //入口位置
             break;
         case 2:
+        default:
             $root = $web . '?';
             break;
     }
@@ -104,6 +105,7 @@ function U($pathinfo, $args = array())
             $url = substr($url, 1);
             break;
         case 2:
+        default:
             foreach ($varsAll as $k => $value) {
                 if ($k % 2) {
                     $url .= '=' . $value;
@@ -114,11 +116,12 @@ function U($pathinfo, $args = array())
             $url = substr($url, 1);
             break;
     }
-    $pathinfo_html = $urlType === 1 ? '.' . trim(C("PATHINFO_HTML"), '.') : ''; //伪表态后缀如.html
-    if (C("URL_REWRITE")) {
-        $root = preg_replace('/\w+?\.php\/?/i', '', $root);
+    $pathinfo_html = $urlType === 1 ? C("PATHINFO_HTML") : ''; //伪表态后缀如.html
+    if (C("URL_REWRITE") && C('URL_TYPE')==1) {
+        $root = preg_replace('/\w+?\.php(\/|\?)?/i', '', $root);
     }
-    return $root . Route::toUrl($url) . $pathinfo_html . C("PATHINFO_HTML");
+    
+    return $root . Route::toUrl($url) . $pathinfo_html;
 }
 
 /**
