@@ -51,7 +51,7 @@ return array(
     /********************************URL设置********************************/
     'HTTPS'                         => FALSE,       //基于https协议
     'URL_REWRITE'                   => FALSE,       //url重写模式
-    'URL_TYPE'                      => 2,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
+    'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
     'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
     'PATHINFO_HTML'                 => '',          //伪静态扩展名
