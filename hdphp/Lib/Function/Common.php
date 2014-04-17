@@ -11,6 +11,7 @@
  */
 function U($pathinfo, $args = array())
 {
+    $_old_url =$pathinfo;
     if (preg_match("/^https?:\/\//i", $pathinfo))
         return $pathinfo;
     //是否指定单入口
@@ -26,6 +27,7 @@ function U($pathinfo, $args = array())
         parse_str($args, $args);
     }
     $parseUrl = parse_url(trim($pathinfo, '/'));
+    if(!isset($parseUrl['path']))return $_old_url;
     $path = trim($parseUrl['path'], '/');
     //解析字符串的?后参数 并与$args合并
     if (isset($parseUrl['query'])) {

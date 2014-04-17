@@ -861,7 +861,7 @@ div.hd-modal-message span {
 }
 
 div.hd-modal-message strong.success {
-    background: url(../img/ico_face.jpg) -466px -6px no-repeat;
+    background: url(../img/face.png) 0px 0px no-repeat;
 }
 
 div.hd-modal-message strong.notice {
@@ -877,7 +877,7 @@ div.hd-modal-message div.error {
 }
 
 div.hd-modal-message strong.error {
-    background: url(../img/ico_face.jpg) -468px -336px no-repeat;
+    background: url(../img/face.png) 0px 0px no-repeat;
 }
 
 /*确定按钮*/
@@ -1061,7 +1061,7 @@ div.dialog div.con span {
 }
 
 div.dialog div.success strong {
-    background: url(../img/ico_face.jpg) -466px -6px no-repeat;
+    background: url(../img/face.png) 0px 0px no-repeat;
 }
 
 div.dialog div.error {
@@ -1071,7 +1071,7 @@ div.dialog div.error {
 }
 
 div.dialog div.error strong {
-    background: url(../img/ico_face.jpg) -468px -336px no-repeat;
+    background: url(../img/face.png) -65px 0px no-repeat;
 }
 
 /* ====================================================================================

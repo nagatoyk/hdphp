@@ -713,7 +713,7 @@ class ViewTag
     //jquery
     public function _jquery($attr, $content)
     {
-        return "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+        return "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
     }
 
     //日历
@@ -726,7 +726,7 @@ class ViewTag
     public function _hdjs($attr, $content)
     {
         $php = '';
-        $php .= "<script type='text/javascript' src='__HDPHP__/../hdjs/jquery-1.8.2.min.js'></script>\n";
+        $php .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
         $php .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
         $php .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
         $php .= $this->_slide(null, null);

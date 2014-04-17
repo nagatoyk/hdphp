@@ -104,7 +104,7 @@ class Page
         } else {
             $returnUrl = str_replace(self::$pageNumLabel, $pageNum, $returnUrl);
         }
-        return U(str_replace(__ROOT__,'',$returnUrl));
+        return $returnUrl;
     }
 
     //配置URL地址
