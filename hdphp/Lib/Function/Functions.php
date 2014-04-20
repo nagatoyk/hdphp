@@ -229,19 +229,22 @@ function O($class, $method = null, $args = array())
     $tmp = explode(".", $class);
     $class = array_pop($tmp);
     if (!class_exists($class, false)) {
-        import($path);
+        $path = $tmp?implode('.',$tmp):null;
+        import($class,$path);
     }
-    $obj = new $class ();
-    if (!is_object($obj)) return false;
-    if ($method && method_exists($obj, $method)) {
-        if (empty($args)) {
-            $args = array();
-        } else if (!is_array($args)) {
-            error("O()函数第3个参数必须为数组，你也可以不传");
+    if(class_exists($class, false)){
+        $obj = new $class ();
+        if (!is_object($obj)) return false;
+        if ($method && method_exists($obj, $method)) {
+            if (empty($args)) {
+                $args = array();
+            } else if (!is_array($args)) {
+                error("O()函数第3个参数必须为数组，你也可以不传");
+            }
+            return call_user_func_array(array($obj, $method), $args);
+        } else {
+            return $obj;
         }
-        return call_user_func_array(array($obj, $method), $args);
-    } else {
-        return $obj;
     }
 }
 

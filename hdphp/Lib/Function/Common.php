@@ -118,11 +118,10 @@ function U($pathinfo, $args = array())
             $url = substr($url, 1);
             break;
     }
-    $pathinfo_html = $urlType === 1 ? C("PATHINFO_HTML") : ''; //伪表态后缀如.html
+    $pathinfo_html = $urlType == 1 ? C("PATHINFO_HTML") : ''; //伪表态后缀如.html
     if (C("URL_REWRITE") && C('URL_TYPE')==1) {
         $root = preg_replace('/\w+?\.php(\/|\?)?/i', '', $root);
     }
-    
     return $root . Route::toUrl($url) . $pathinfo_html;
 }
 
