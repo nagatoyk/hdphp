@@ -285,7 +285,7 @@ abstract class Db implements DbInterface
             }
             $data['fields'][] = "`" . $k . "`";
             $v = $this->escapeString($v);
-            $data['values'][] = is_numeric($v) ? $v : "\"" . $v . "\"";
+            $data['values'][] =  "\"" . $v . "\"";
         }
         return $data;
     }
