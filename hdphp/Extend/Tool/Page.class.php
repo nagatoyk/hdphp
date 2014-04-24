@@ -92,11 +92,11 @@ class Page
     protected function getUrl($pageNum)
     {
         $returnUrl = $this->url;
-        /*
-        数型返回url地址
-        b(before)返回url地址前部分
-        a(after)返回url地址后部分
-        */
+        /**
+         * 数型返回url地址
+         * b(before)返回url地址前部分
+         * a(after)返回url地址后部分
+         */
         if (strtolower($pageNum) == 'b') {
             $returnUrl = substr($returnUrl, 0, strpos($returnUrl, self::$pageNumLabel));
         } elseif (strtolower($pageNum) == 'a') {
@@ -104,7 +104,7 @@ class Page
         } else {
             $returnUrl = str_replace(self::$pageNumLabel, $pageNum, $returnUrl);
         }
-        return $returnUrl;
+        return self::$staticUrl?$returnUrl:U($returnUrl);
     }
 
     //配置URL地址
