@@ -48,6 +48,7 @@ var hd_uploadify_options = {
 
     },
     onUploadSuccess: function (file, data, response) {
+    	
         //上传失败
         if (data.substr(0, 1) !== '{'){
             alert(data);

@@ -137,7 +137,7 @@ $.extend({
             opt.close_handler();
             $("div.dialog_bg").remove();
             $("div.dialog").remove();
-        }, opt.timeout * 500);
+        }, opt.timeout * 200);
     }
 })
 //简单提示框
@@ -294,7 +294,7 @@ function hd_confirm(message, success, error) {
  * @param url 成功时的跳转url
  * @returns {boolean}
  */
-function hd_submit(obj, url) {
+function hd_submit(obj, url,func) {
     if ($(obj).is_validate()) {
         //阻止多次表单提交，提交结束后在hd_submit方法中解锁
         if ($(obj).attr('disabled')) {
@@ -320,6 +320,9 @@ function hd_submit(obj, url) {
                             close_handler: function () {
                                 if (url) {
                                     location.href = url
+                                }
+                                if(func){
+                                	func();
                                 }
                             }
                         });

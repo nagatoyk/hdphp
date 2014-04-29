@@ -15,6 +15,7 @@
     padding: 0px;
     margin: 0px;
     font-size: 12px;
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .h {
@@ -904,7 +905,7 @@ div.hd-modal-message strong.error {
     vertical-align: middle;
 }
 
-.hd-success:hover, .hd-success:focus {
+.hd-success:hover {
     background-position: 0 30px;
 }
 
