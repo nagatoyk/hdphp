@@ -185,7 +185,7 @@ div.wrap {
     left: 0px;
     right: 0px;
     bottom: 0px;
-    padding: 10px;
+    padding: 10px 10px 45px 10px;
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;

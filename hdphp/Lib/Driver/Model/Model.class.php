@@ -246,9 +246,13 @@ class Model {
 					}
 					break;
 			}
-			$method = explode(":", $v[1]);
-			$func = $method[0];
-			$args = isset($method[1]) ? str_replace(" ", '', $method[1]) : '';
+			if($_pos = strpos($v[1],':')){
+				$func = substr($v[1],0,$_pos);
+				$args = substr($v[1],$_pos+1);
+			}else{
+				$func = $v[1];
+				$args='';
+			}
 			if (method_exists($this, $func)) {
 				$res = call_user_func_array(array($this, $func), array($name, $_data[$name], $msg, $args));
 				if ($res === true) {

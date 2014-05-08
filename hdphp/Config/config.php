@@ -22,6 +22,7 @@ return array(
     'DB_DATABASE'                   => '',          //数据库名称
     'DB_PREFIX'                     => '',          //表前缀
     'DB_BACKUP'                     => 'backup/',   //数据库备份目录
+    'DB_PCONNECT'                     => false,   //数据库持久链接
     /********************************表单TOKEN令牌********************************/
     'TOKEN_ON'                      => FALSE,       //令牌状态
     'TOKEN_NAME'                    => '__TOKEN__', //令牌的表单name

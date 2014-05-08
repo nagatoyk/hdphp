@@ -209,7 +209,7 @@ function import($class = null, $base = null, $ext = ".class.php")
     }
     if (substr($base, -1) != '/')
         $base .= '/';
-    $file = $base . $class . $ext;
+    $file = $base . $class . $ext; 
     if (!class_exists(basename($class), false)) {
         return require_cache($file);
     }
@@ -228,7 +228,7 @@ function O($class, $method = null, $args = array())
     $path = $class;
     $tmp = explode(".", $class);
     $class = array_pop($tmp);
-    if (!class_exists($class, false)) {
+    if (!class_exists($class)) {
         $path = $tmp?implode('.',$tmp):null;
         import($class,$path);
     }
@@ -938,7 +938,7 @@ function data_format(&$data, $func = null)
  */
 function _default($varName, $value = "")
 {
-    return isset($varName) ? $varName : $value;
+    return isset($varName) && !empty($varName)? $varName : $value;
 }
 
 

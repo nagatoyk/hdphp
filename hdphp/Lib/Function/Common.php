@@ -13,8 +13,8 @@ function U($pathinfo, $args = array())
 {
 	$_old_url =$pathinfo;
 	$pathinfo=str_ireplace(array(__WEB__,__ROOT__),'',$pathinfo);
-    if (preg_match("/^https?:\/\//i", $pathinfo))
-        return $pathinfo;
+    if (preg_match("/^https?:\/\//i", $pathinfo) || empty($pathinfo))
+        return $_old_url;
     //是否指定单入口
     $end = strpos($pathinfo, '.php');
     if ($end) {
