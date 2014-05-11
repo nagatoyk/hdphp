@@ -295,11 +295,11 @@ function session($name = '', $value = '')
     } elseif (is_array($name)) {
         //关闭session自启动
         ini_set('session.auto_start', 0);
-		//session_name
-        session_name(C('SESSION_NAME'));
         //session_id
         if (isset($_REQUEST[C('SESSION_NAME')]))
             session_id($_REQUEST[C('SESSION_NAME')]);
+         //session_name
+       session_name(C('SESSION_NAME')); 
         if (isset($name['path'])) session_save_path($name['path']);
         if (isset($name['domain'])) ini_set('session.cookie_domain', $name['domain']);
         if (isset($name['expire'])) ini_set('session.gc_maxlifetime', $name['expire']);
