@@ -301,20 +301,14 @@ function session($name = '', $value = '')
         if (isset($name['cache_limiter'])) 	session_cache_limiter($name['cache_limiter']);
         if (isset($name['cache_expire'])) 	session_cache_expire($name['cache_expire']);
         if (isset($name['type']))					C('SESSION_TYPE', $name['type']);
-        if (C('SESSION_TYPE') and C('SESSION_TYPE') != 'file') { // 读取session驱动
+        if (C('SESSION_TYPE')) { 
             $class = 'Session' . ucwords(strtolower(C('SESSION_TYPE')));
-            // 检查驱动类
-            if (require_cache(HDPHP_DRIVER_PATH . '/Session/' . $class . '.class.php')) {
-                $hander = new $class();
-                $hander->run();
-            } else {
-                error("类文件不存在:$class");
-            }
+            require_cache(HDPHP_DRIVER_PATH . '/Session/' . $class . '.class.php');
+            $hander = new $class();
+            $hander->run();
         }
         //自动开启SESSION
-        if (C("SESSION_AUTO_START")) {
-            session_start();
-        }
+        if (C("SESSION_AUTO_START")) session_start();
     } elseif ($value === '') {
         if ('[pause]' == $name) { // 暂停
             session_write_close();
