@@ -39,11 +39,7 @@ return array(
     /********************************SESSION********************************/
     'SESSION_AUTO_START'            => TRUE,        //自动开启SESSION
     'SESSION_TYPE'                  => '',          //引擎:mysql,memcache,redis
-    'SESSION_NAME'                  => 'hd_sid',    //session_name
-    'SESSION_OPTIONS'               =>array(//session配置复杂，请查看手册获得帮助
-                                            'table'=>'session',
-                                            'expire'=>'3600'
-                                      ),
+    'SESSION_OPTIONS'               =>array(),
     /********************************COOKIE********************************/
     'COOKIE_EXPIRE'                 => 0,           // Coodie有效期
     'COOKIE_DOMAIN'                 => '',          // Cookie有效域名

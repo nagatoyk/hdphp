@@ -289,26 +289,18 @@ function control($control, $method = NULl, $args = array())
  */
 function session($name = '', $value = '')
 {
-
-    if ($name === '') {
-        return $_SESSION;
-    } elseif (is_array($name)) {
-        //关闭session自启动
-        ini_set('session.auto_start', 0);
-        //session_id
-        if (isset($_REQUEST[C('SESSION_NAME')]))
-            session_id($_REQUEST[C('SESSION_NAME')]);
-         //session_name
-       session_name(C('SESSION_NAME')); 
-        if (isset($name['path'])) session_save_path($name['path']);
-        if (isset($name['domain'])) ini_set('session.cookie_domain', $name['domain']);
-        if (isset($name['expire'])) ini_set('session.gc_maxlifetime', $name['expire']);
-        if (isset($name['use_trans_sid'])) ini_set('session.use_trans_sid', $name['use_trans_sid'] ? 1 : 0);
-        if (isset($name['use_cookies'])) ini_set('session.use_cookies', $name['use_cookies'] ? 1 : 0);
-        if (isset($name['cache_limiter'])) session_cache_limiter($name['cache_limiter']);
-        if (isset($name['cache_expire'])) session_cache_expire($name['cache_expire']);
-
-        if (isset($name['type'])) C('SESSION_TYPE', $name['type']);
+   if (is_array($name)) {
+        ini_set('session.auto_start', 0);  
+        if (isset($_REQUEST[C('SESSION_NAME')]))session_id($_REQUEST[C('SESSION_NAME')]);
+		if (isset($name['name'])) 	 			session_name($name['name']);
+        if (isset($name['path'])) 					session_save_path($name['path']);
+		if (isset($name['domain'])) 			ini_set('session.cookie_domain', $name['domain']);
+        if (isset($name['expire'])) 				ini_set('session.gc_maxlifetime', $name['expire']);
+        if (isset($name['use_trans_sid'])) 	ini_set('session.use_trans_sid', $name['use_trans_sid'] ? 1 : 0);
+        if (isset($name['use_cookies'])) 	ini_set('session.use_cookies', $name['use_cookies'] ? 1 : 0);
+        if (isset($name['cache_limiter'])) 	session_cache_limiter($name['cache_limiter']);
+        if (isset($name['cache_expire'])) 	session_cache_expire($name['cache_expire']);
+        if (isset($name['type']))					C('SESSION_TYPE', $name['type']);
         if (C('SESSION_TYPE') and C('SESSION_TYPE') != 'file') { // 读取session驱动
             $class = 'Session' . ucwords(strtolower(C('SESSION_TYPE')));
             // 检查驱动类
@@ -348,36 +340,11 @@ function session($name = '', $value = '')
         $_SESSION = array();
         session_unset();
         session_destroy();
+    }  elseif ($name === '') {
+        return $_SESSION;
     } else { //设置session
         $_SESSION[$name] = $value;
     }
-}
-
-/**
- * 获得浏览器版本
- */
-function browser_info()
-{
-    $agent = strtolower($_SERVER["HTTP_USER_AGENT"]);
-    $browser = null;
-    if (strstr($agent, 'msie 9.0')) {
-        $browser = 'msie9';
-    } else if (strstr($agent, 'msie 8.0')) {
-        $browser = 'msie8';
-    } else if (strstr($agent, 'msie 7.0')) {
-        $browser = 'msie7';
-    } else if (strstr($agent, 'msie 6.0')) {
-        $browser = 'msie6';
-    } else if (strstr($agent, 'firefox')) {
-        $browser = 'firefox';
-    } else if (strstr($agent, 'chrome')) {
-        $browser = 'chrome';
-    } else if (strstr($agent, 'safari')) {
-        $browser = 'safari';
-    } else if (strstr($agent, 'opera')) {
-        $browser = 'opera';
-    }
-    return $browser;
 }
 
 /**
@@ -437,6 +404,35 @@ function cookie($name, $value = "", $option = array())
         }
     }
 }
+
+/**
+ * 获得浏览器版本
+ */
+function browser_info()
+{
+    $agent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    $browser = null;
+    if (strstr($agent, 'msie 9.0')) {
+        $browser = 'msie9';
+    } else if (strstr($agent, 'msie 8.0')) {
+        $browser = 'msie8';
+    } else if (strstr($agent, 'msie 7.0')) {
+        $browser = 'msie7';
+    } else if (strstr($agent, 'msie 6.0')) {
+        $browser = 'msie6';
+    } else if (strstr($agent, 'firefox')) {
+        $browser = 'firefox';
+    } else if (strstr($agent, 'chrome')) {
+        $browser = 'chrome';
+    } else if (strstr($agent, 'safari')) {
+        $browser = 'safari';
+    } else if (strstr($agent, 'opera')) {
+        $browser = 'opera';
+    }
+    return $browser;
+}
+
+
 
 /**
  * 载入或设置配置顶

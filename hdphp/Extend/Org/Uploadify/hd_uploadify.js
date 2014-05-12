@@ -58,6 +58,7 @@ var hd_uploadify_options = {
         //上传失败时 成功上传的文件数量减1
         if (data.stat == 0) {
             this.queueData.uploadsSuccessful--;
+            alert(data.msg);
             return;
         }
         //成功上传的文件数量
