@@ -19,8 +19,7 @@ var hd_uploadify_options = {
     ,
     success_msg: "正在上传..."//上传成功提示文字
     ,
-    overrideEvents: ['onUploadProgress', 'onDialogOpen', 'onUploadError', 'onSelectError', 'onDialogClose']//覆盖系统默认事件
-
+    overrideEvents: ['onDialogOpen', 'onUploadError', 'onSelectError', 'onDialogClose']//覆盖系统默认事件
     ,
     onInit: function () {
         uploadify_obj = this;
@@ -43,12 +42,11 @@ var hd_uploadify_options = {
         if (queueData.filesErrored > 0) {
             var file_upload_limit = this.settings.file_upload_limit;//允许上传的文件数量
             var allowUploadNums = file_upload_limit - this.queueData.uploadsSuccessful;//还可以上传的文件数
-            alert("还可以上传" + allowUploadNums + "文件");
+            alert("上传文件过大或者类型不允许");
         }
 
     },
     onUploadSuccess: function (file, data, response) {
-    	
         //上传失败
         if (data.substr(0, 1) !== '{'){
             alert(data);

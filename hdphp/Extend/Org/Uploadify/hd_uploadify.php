@@ -12,6 +12,7 @@ if (!defined("HDPHP_PATH"))
 // |   License: http://www.apache.org/licenses/LICENSE-2.0
 // '-----------------------------------------------------------------------------------
 header("Content-Type: text/html; charset=utf-8");
+//删除图片 
 if (METHOD == "hd_uploadify_del") {
     $files = array_filter(explode("@@", $_POST['file']));
     foreach ($files as $f) {
@@ -21,24 +22,18 @@ if (METHOD == "hd_uploadify_del") {
     exit;
 }
 //是否加水印
-$water = $_POST['water'];
-if ($water == 1) {
-    C("WATER_ON", true);
-} elseif ($water == 0) {
-    C("WATER_ON", false);
-}
+C("WATER_ON", $_POST['water']==1);
 //图片裁切处理
 if ($_POST['upload_img_max_width'] || $_POST['upload_img_max_height']) {
-    //开启裁切
     C('UPLOAD_IMG_RESIZE_ON', true);
     C('upload_img_max_width', $_POST['upload_img_max_width']);
     C('upload_img_max_height', $_POST['upload_img_max_height']);
 }
-
 C("UPLOAD_THUMB_ON", false); //关闭生成缩略图
 $upload_dir = isset($_POST['upload_dir']) ? $_POST['upload_dir'] : "";
+$uploadSize = intval($_POST['fileSizeLimit']);
 $data = array();
-$upload = new upload($upload_dir);
+$upload = new upload($upload_dir,array(),$uploadSize);
 $file = $upload->upload();
 if ($file) {
     $data['stat'] = 1;
@@ -68,4 +63,3 @@ if ($file) {
 }
 echo json_encode($data);
 exit;
-?>

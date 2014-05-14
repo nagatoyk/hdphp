@@ -295,7 +295,7 @@ class ViewTag
         hd_uploadify_options.upload_img_max_width    ="' . $upload_img_max_width . '";
         hd_uploadify_options.upload_img_max_    ="' . $upload_img_max_height . '";
         hd_uploadify_options.success_msg    ="正在上传...";//上传成功提示文字
-        hd_uploadify_options.formData ={' . $_post . 'water : "' . $water . '",upload_img_max_width:"' . $upload_img_max_width . '",upload_img_max_height:"' . $upload_img_max_height . '", someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
+        hd_uploadify_options.formData ={' . $_post . 'water : "' . $water . '",upload_img_max_width:"' . $upload_img_max_width . '",upload_img_max_height:"' . $upload_img_max_height . '",fileSizeLimit:'.(intval($size)*1024*1024).', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
         hd_uploadify_options.thumb_width =' . $width . ';
         hd_uploadify_options.thumb_height          =' . $height . ';
         hd_uploadify_options.uploadsSuccessNums = ' . $uploadsSuccessful . ';
