@@ -60,7 +60,7 @@ final class ViewFactory
         }
         $class = "View" . ucfirst($driver);
         //加载类文件
-        import($class, HDPHP_DRIVER_PATH . 'View/');
+        require_cache(HDPHP_DRIVER_PATH . 'View/'.$class.'.class.php');
         $this->driverList[$driver] = new $class(); //视图操作引擎对象
         return true;
     }

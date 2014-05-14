@@ -16,7 +16,7 @@
  * @supackage core
  * @author hdxj <houdunwangxj@gmail.com>
  */
-define('HDPHP_VERSION', '2014-04-20');
+define('HDPHP_VERSION', '2014-05-14');
 defined("DEBUG")        or define("DEBUG", FALSE);
 if (!defined('GROUP_PATH'))
     defined('APP_PATH') or define('APP_PATH', './');
