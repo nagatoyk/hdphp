@@ -63,17 +63,18 @@ var hd_uploadify_options = {
         this.setStats.successful_uploads = this.queueData.uploadsSuccessful;
         //第几个上传文件，会受全局变量HDPHP_UPLOAD_TOTAL的影响
         var _index = this.setStats.successful_uploads;
-        alter_upload_msg(this);//更改上传成功信息
+        //更改上传成功信息
+        alter_upload_msg(this);
         data.url = data.isimage == 1 ? data.url : UPLOADIFY_URL + "default.png";
         var div = $("." + upload_file_id + "_files ul");
         var html = "";
         var input_type = this.settings.input_type;
-        html += "<li input_type='"+input_type+"' class='upload_thumb'style='width:" + this.settings.thumb_width + "px;'><div class='delUploadFile'></div>";
+        html += "<li input_type='"+input_type+"' class='upload_thumb' style='width:" + this.settings.thumb_width + "px;'><div class='delUploadFile'></div>";
         html += "<img src='" + data.url + "' path='" + data.path + "' width='" + this.settings.thumb_width + "' height='" + this.settings.thumb_height + "'/>";
         //显示alt文本框
         if (this.settings.showalt) {
              _value=data.name || '';
-            html += "<div class='upl  oad_title'>" +
+            html += "<div class='upload_title'>" +
                 "<input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+_value+"' onblur=\"if(this.value=='')this.value='"+_value+"'\" onfocus=\"this.value=''\"/>" +
                 "</div>";
         }

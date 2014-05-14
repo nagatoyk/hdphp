@@ -290,9 +290,9 @@ function control($control, $method = NULl, $args = array())
 function session($name = '', $value = '')
 {
    if (is_array($name)) {
-        ini_set('session.auto_start', 0);  
-        if (isset($_REQUEST[C('SESSION_NAME')]))session_id($_REQUEST[C('SESSION_NAME')]);
+        ini_set('session.auto_start', 0); 
 		if (isset($name['name'])) 	 			session_name($name['name']);
+		if(isset($_REQUEST[session_name()])) 				session_id($_REQUEST[session_name()]);
         if (isset($name['path'])) 					session_save_path($name['path']);
 		if (isset($name['domain'])) 			ini_set('session.cookie_domain', $name['domain']);
         if (isset($name['expire'])) 				ini_set('session.gc_maxlifetime', $name['expire']);

@@ -30,7 +30,7 @@ if ($_POST['upload_img_max_width'] || $_POST['upload_img_max_height']) {
     C('upload_img_max_height', $_POST['upload_img_max_height']);
 }
 C("UPLOAD_THUMB_ON", false); //关闭生成缩略图
-$upload_dir = isset($_POST['upload_dir']) ? $_POST['upload_dir'] : "";
+$upload_dir = isset($_POST['upload_dir']) ? $_POST['upload_dir'] : '';
 $uploadSize = intval($_POST['fileSizeLimit']);
 $data = array();
 $upload = new upload($upload_dir,array(),$uploadSize);
