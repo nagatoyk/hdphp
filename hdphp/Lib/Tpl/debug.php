@@ -163,8 +163,7 @@
                 <tr>
                     <td>框架版本</td>
                     <td><?php echo HDPHP_VERSION ?>
-                        <a href='http://www.hdphp.com/version.php?ver=<?php echo str_replace(".", "", HDPHP_VERSION) ?>'
-                           target='_blank'>查看新版</a>
+                        <a href='http://www.hdphp.com' target='_blank'>查看新版</a>
                     </td>
                 </tr>
             </table>
