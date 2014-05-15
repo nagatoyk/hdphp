@@ -23,7 +23,7 @@ final class Route
     {
         //请求内容
         $query = C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]) ? $_GET[C("PATHINFO_VAR")] :
-            (C('URL_TYPE') == 1 && isset($_SERVER['PATH_INFO'])? $_SERVER['PATH_INFO'] : $_SERVER['QUERY_STRING']);
+            (C('URL_TYPE') == 1 || isset($_SERVER['PATH_INFO'])? $_SERVER['PATH_INFO'] : $_SERVER['QUERY_STRING']);
         //分析路由 && 清除伪静态后缀
         $url = self::parseRoute(str_ireplace(C('PATHINFO_HTML'), '', trim($query, '/')));
         //拆分后的GET变量

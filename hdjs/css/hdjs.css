@@ -960,7 +960,7 @@ div.hd-modal-message strong.error {
 
 /**********弹出对话框**************/
 div.dialog {
-    width: 300px;
+    width: 330px;
     height: 110px;
     overflow: hidden;
     background: #fff;
@@ -996,7 +996,7 @@ div.dialog h2#dialog_title {
     text-indent: 20px;
     top: 0px;
     position: absolute;
-    width: 300px;
+    width: 330px;
     border-bottom: solid 1px #999;
 }
 

@@ -38,7 +38,6 @@ final class ViewHd extends View
      */
     public function display($tplFile = null, $cacheTime = null, $cachePath = null, $contentType = "text/html", $charset = "", $show = true)
     {
-
         //缓存文件名
         $cacheName = md5($_SERVER['REQUEST_URI']);
         //内容
@@ -59,7 +58,7 @@ final class ViewHd extends View
                 Debug::$tpl[] = array(basename($this->tplFile), $this->compileFile);
             }
             //缓存时间
-            $cacheTime = is_int($cacheTime) ? $cacheTime : intval(C("CACHE_TPL_TIME"));
+            $cacheTime = is_numeric($cacheTime) ? $cacheTime : intval(C("CACHE_TPL_TIME"));
             //缓存路径
             $cachePath = $cachePath ? $cachePath : CACHE_PATH;
             //编译文件失效（不存在或过期）
@@ -111,7 +110,8 @@ final class ViewHd extends View
     public function isCache($cachePath = null)
     {
         $cachePath = $cachePath ? $cachePath : CACHE_PATH;
-        return S($_SERVER['REQUEST_URI'], false, null, array("dir" => $cachePath, "Driver" => "File")) ? true : false;
+		$cacheName = md5($_SERVER['REQUEST_URI']);
+        return S($cacheName, false, null, array("dir" => $cachePath, "Driver" => "File")) ? true : false;
     }
 
     /**

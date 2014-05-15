@@ -33,7 +33,7 @@ class CacheFile extends Cache
         $this->options['expire'] = isset($options['expire']) ? intval($options['expire']) : C("CACHE_TIME"); //缓存时间
         $this->options['prefix'] = isset($options['prefix']) ? $options['prefix'] : ''; //缓存前缀
         $this->options['length'] = isset($options['length']) ? $options['length'] : 0; //队列长度
-        $this->options['zip'] = isset($options['zip']) ? $options['zip'] : TRUE; //队列长度
+        $this->options['zip'] = isset($options['zip']) ? $options['zip'] : false; //队列长度
         $this->options['save'] = isset($options['save']) ? $options['save'] : true; //记录缓存命中率
         $this->isConnect = is_dir($this->options['dir']) && is_writeable($this->options['dir']);
         if (!$this->isConnect) {

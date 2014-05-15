@@ -72,6 +72,13 @@ final class HDPHP
         set_exception_handler(array(__CLASS__,          'exception'));
         register_shutdown_function(array(__CLASS__,     'fatalError'));
         HDPHP::_appAutoLoad();
+		 //COOKIE安全处理
+        if(!empty($_COOKIE)){
+            foreach($_COOKIE as $name=>$v){
+                $name = preg_replace('@[^0-9a-z]@', '', $name);
+                $_COOKIE[$name]=$v;
+            }
+        }
     }
 
     /**

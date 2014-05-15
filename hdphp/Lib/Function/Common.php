@@ -120,7 +120,7 @@ function U($pathinfo, $args = array())
             break;
     }
     $pathinfo_html = $urlType == 1 ? C("PATHINFO_HTML") : ''; //伪表态后缀如.html
-    if (C("URL_REWRITE") && C('URL_TYPE')==1) {
+    if (C("URL_REWRITE")) {
         $root = preg_replace('/\w+?\.php(\/|\?)?/i', '', $root);
     }
     return $root . Route::toUrl($url) . $pathinfo_html;
