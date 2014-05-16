@@ -172,7 +172,7 @@ return array(
     'EMAIL_HOST'                    => '',          //smtp地址如smtp.gmail.com或smtp.126.com建议使用126服务器
     'EMAIL_PORT'                    => 25,          //smtp端口 126为25，gmail为465
     'EMAIL_SSL'                     => 0,           //是否采用SSL,126为false,google必须为true
-    'EMAIL_CHARSET'                 => '',          //字符集设置,中文乱码就是这个没有设置好 如utf8
+    'EMAIL_CHARSET'                 => 'utf8',          //字符集设置,中文乱码就是这个没有设置好 如utf8
     'EMAIL_FORMMAIL'                => '',          //发送人发件箱显示的邮箱址址
     'EMAIL_FROMNAME'                => '后盾网'      //发送人发件箱显示的用户名
 );
