@@ -893,18 +893,14 @@ $.fn.extend({
 				if (options[name]['rule']['confirm']) {
 					$(fieldObj).attr("validate", 0);
 				}
-				//如果有Ajax，移除焦点时将validate设为0,否则设置为1
-				if (options[name].rule.ajax) {
-					fieldObj.attr('ajax_validate', 0);
-				}else{
-					fieldObj.attr('ajax_validate', 1);
-				}
-//				fieldObj.live('change', function(event, send) {
-//					if (fieldObj.attr("ajax_validate"))
-//						fieldObj.attr('ajax_validate', 0);
-//				})
 				//获取表单斛发的事件(blur 或 change)
 				fieldObj.live('blur', function(event, send) {
+					//如果有Ajax，移除焦点时将validate设为0,否则设置为1
+					if (options[name].rule.ajax) {
+						fieldObj.attr('ajax_validate', 0);
+					}else{
+						fieldObj.attr('ajax_validate', 1);
+					}
 					var required = options[name].rule.required;
 					//没有设置required并且内容为空时，验证通过
 					if (!required && $(this).val() == '' && !options[name]['rule']['confirm']) {
