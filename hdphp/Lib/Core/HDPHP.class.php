@@ -148,6 +148,11 @@ final class HDPHP
                 COMMON_TAG_PATH . $class
             ))
             ) return;
+        } elseif (substr($className, -7) == 'Storage') {
+            if (require_array(array(
+                HDPHP_DRIVER_PATH . 'Storage/' . $class
+            ))
+            ) return;
         } elseif (alias_import($className)) {
             return;
         } elseif (require_array(array(

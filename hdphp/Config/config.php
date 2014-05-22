@@ -6,12 +6,12 @@ return array(
     'CHARSET'                       => 'utf8',      //字符集
     'DEFAULT_TIME_ZONE'             => 'PRC',       //时区
     'HTML_PATH'                     => 'h',         //静态HTML保存目录
-    'DEBUG_SHOW'                    => TRUE,        //为TRUE时显示DEBUG信息否则显示按钮
     'LANGUAGE'                      => '',          //语言包
     'AUTH_KEY'                      => 'HouDunWang',//加密Key(如果使用建议定期更换AUTH_KEY)
     'CHECK_FILE_CASE'               => FALSE,       //windows区分大小写
     'AUTO_LOAD_FILE'                => array(),     //自动加载应用Lib目录或应用组Common/Lib目录下的文件
     'FILTER_FUNCTION'               => array('htmlspecialchars','strip_tags'), //过滤函数会在Q(),date_format()等函数中使用
+    'HTML_PATH'						=>'html/',//静态html文件储存目录
     /********************************数据库********************************/
     'DB_DRIVER'                     => 'mysqli',    //数据库驱动
     'DB_CHARSET'                    => 'utf8',      //数据库字符集
@@ -23,6 +23,8 @@ return array(
     'DB_PREFIX'                     => '',          //表前缀
     'DB_BACKUP'                     => 'backup/',   //数据库备份目录
     'DB_PCONNECT'                     => false,   //数据库持久链接
+    /********************************储存********************************/
+    'STORAGE_DRIVER'		=>'File',//储存驱动 支持File与Memcache储存
     /********************************表单TOKEN令牌********************************/
     'TOKEN_ON'                      => FALSE,       //令牌状态
     'TOKEN_NAME'                    => '__TOKEN__', //令牌的表单name

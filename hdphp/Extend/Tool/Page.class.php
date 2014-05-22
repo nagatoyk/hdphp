@@ -50,7 +50,7 @@ class Page
         $this->arcRow = empty($row) ? C("PAGE_SHOW_ROW") : $row; //每页显示条数
         $this->pageRow = (empty($pageRow) ? C('PAGE_ROW') : $pageRow) - 1; //显示页码数量
         $this->totalPage = ceil($this->totalRow / $this->arcRow); //总页数
-        self::$staticTotalPage = $this->totalPage; //总页数
+        self::$staticTotalPage =$GLOBALS['totalPage']= $this->totalPage; //总页数
         self::$pageNumLabel = empty($pageNumLabel) ? self::$pageNumLabel : $pageNumLabel; //替换标签
         $this->selfPage = min($this->totalPage, empty($setSelfPage) ? empty($_GET[C("PAGE_VAR")]) ? 1 : max(1, (int)$_GET[C("PAGE_VAR")]) : max(1, (int)$setSelfPage)); //当前页
         $this->url = $this->setUrl($customUrl); //配置url地址

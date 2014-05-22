@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
