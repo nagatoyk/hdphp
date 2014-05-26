@@ -668,11 +668,12 @@ class ViewTag
     //设置js常量
     public function _jsconst($attr, $content)
     {
-        $const = get_defined_constants(true);
+    	$const = get_defined_constants(true);
         $arr = preg_grep("/http/", $const['user']);
         $str = "<script type='text/javascript'>\n";
         foreach ($arr as $k => $v) {
-            $str .= "\t\t" . str_replace("_", '', $k) . " = '" . $v . "';\n";
+        	$k=str_replace('_', '', $k) ;
+            $str .= $k. " = '<?php echo \$GLOBALS['user']['$k'];?>';\n";
         }
         $str .= "</script>";
         return $str;

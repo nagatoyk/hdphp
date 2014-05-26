@@ -49,10 +49,12 @@ final class ViewHd extends View
         if (!$content) {
             //获得模板文件
             $this->tplFile = $this->getTemplateFile($tplFile);
+			//定义全局变量
+			$this->setGlobalsVars();
             //模板文件不存在
             if (!$this->tplFile) return;
             //编译文件
-            $this->compileFile = COMPILE_PATH . basename($this->tplFile, C("TPL_FIX")) . '_' . substr(md5(APP . CONTROL . METHOD), 0, 5) . '.php';
+            $this->compileFile = COMPILE_PATH .  substr(md5(APP . CONTROL . METHOD.$this->tplFile), 0, 20) . '.php';
             //记录模板编译文件
             if (DEBUG) {
                 Debug::$tpl[] = array(basename($this->tplFile), $this->compileFile);
@@ -93,7 +95,7 @@ final class ViewHd extends View
             return $content;
         }
     }
-
+	
     /**
      * 获得视图内容
      */
@@ -163,7 +165,14 @@ final class ViewHd extends View
             $this->vars[$var] = $value;
         }
     }
-
+	//定义常量
+	public function setGlobalsVars(){
+		$constData = get_defined_constants(true);
+        foreach($constData['user'] as $name=>$value){
+        	$name= str_replace('_', '', $name);
+			$GLOBALS['user'][$name]=$value;
+        }
+	}
     /**
      * 设置ASSIGN分配的变量
      * @param string $name 变量名
