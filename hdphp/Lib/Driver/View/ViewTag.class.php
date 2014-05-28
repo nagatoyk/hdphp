@@ -169,7 +169,7 @@ class ViewTag
         $id = "hd_uploadify_" . $name;
         //是否加水印
         $_water = isset($attr['water']) ? $attr['water'] : false;
-        $water = $_water == false || $_water == 0 ? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
+        $water = $_water === false? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
         $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印

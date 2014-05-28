@@ -25,7 +25,7 @@ final class Backup {
 	//错误记录
 	public static $error;
 
-	function __construct() {
+	public function __construct() {
 
 	}
 
