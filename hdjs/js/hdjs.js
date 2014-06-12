@@ -829,6 +829,10 @@ $.fn.extend({
 				var obj = data.obj;
 				//表单对象
 				$(data.spanObj).removeClass("validate-error validate-success validate-message").html('');
+				//验证回调函数
+				if(data.handler){
+					stat = data.handler();
+				}
 				if (stat) {//验证通过
 					//添加表单属性validate
 					obj.attr("validate", 1);
@@ -903,7 +907,7 @@ $.fn.extend({
 					}
 					var required = options[name].rule.required;
 					//没有设置required并且内容为空时，验证通过
-					if (!required && $(this).val() == '' && !options[name]['rule']['confirm']) {
+					if (!required && $(this).val() == '' && !options[name]['rule']['confirm'] ) {
 						$(this).attr('validate', 1).attr('ajax_validate', 1);
 						var msg = options[name].message || '';
 						if (msg) {
@@ -914,7 +918,13 @@ $.fn.extend({
 					} else {
 						for (var rule in options[name].rule) {
 							//验证方法存在
-							if (method[rule]) {
+							if (method[rule]) {					
+								//验证回调函数
+								if(options[name].handler&& options[name].handler[rule]){
+									handler = options[name].handler[rule];
+								}else{
+									handler=undefined;
+								}
 								/**
 								 * 验证失败 终止验证
 								 * 参数说明：
@@ -922,6 +932,7 @@ $.fn.extend({
 								 * obj 表单对象
 								 * rule 规则的具体值
 								 * send 是否为submit激活的
+								 * handler 处理函数
 								 */
 								method[rule]({
 									event : event,
@@ -930,7 +941,8 @@ $.fn.extend({
 									rule : rule,
 									spanObj : spanObj,
 									send : send,
-									required : required
+									required : required,
+									handler:handler
 								});
 								if (fieldObj.attr('validate') == 0)
 									break;
