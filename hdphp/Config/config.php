@@ -53,19 +53,16 @@ return array(
     'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
     'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
-    'PATHINFO_HTML'                 => '',          //伪静态扩展名
+    'HTML_SUFFIX'                   => '.html',     //伪静态扩展名
     /********************************url变量********************************/
-    'VAR_GROUP'                     => 'g',         //应用组变量
-    'VAR_APP'                       => 'a',         //应用变量名，应用组模式有效
-    'VAR_CONTROL'                   => 'c',         //模块变量
-    'VAR_METHOD'                    => 'm',         //动作变量
+    'VAR_MODULE'                    => 'm',         //模块URL变量
+    'VAR_CONTROLLER'                => 'c',         //控制器URL变量
+    'VAR_ACTION'                    => 'a',         //动作URL变量
     /********************************项目参数********************************/
-    'DEFAULT_NAME'                  => '@',         //应用名称
-    'DEFAULT_GROUP'                 => 'App',        //默认应用组
-    'DEFAULT_APP'                   => 'index',     //默认项目
-    'DEFAULT_CONTROL'               => 'Index',     //默认模块
-    'DEFAULT_METHOD'                => 'index',     //默认方法
-    'CONTROL_FIX'                   => 'Control',   //控制器文件后缀
+    'DEFAULT_MODULE'                => 'Index',     //默认模块
+    'DEFAULT_CONTROLLER'            => 'Index',     //默认控制器
+    'DEFAULT_ACTION'                => 'index',     //默认方法
+    'CONTROL_FIX'                   => 'Controller',//控制器文件后缀
     'MODEL_FIX'                     => 'Model',     //模型文件名后缀
     /********************************URL路由********************************/
     'route' => array(),                             //路由规则

@@ -58,36 +58,31 @@ final class App
     static private function start()
     {
         //控制器实例
-        $control = control(CONTROL);
+        $controller = control(CONTROLLER);
         //控制器不存在
-        if (!$control) {
-            //应用组检测
-            if(IS_GROUP and !is_dir(GROUP_PATH.GROUP_NAME)){
-                _404('应用组' . GROUP_PATH.GROUP_NAME . '不存在');
-            }
-            //应用检测
-            if(!is_dir(APP_PATH)){
-                _404('应用' . APP . '不存在');
+        if (!$controller) {
+            //模块检测
+            if(!is_dir(MODULE_PATH)){
+                _404('模块' .MODULE  . '不存在');
             }
             //空控制器
-            $control = Control("Empty");
-            if (!$control) {
-                _404('模块' . CONTROL .C("CONTROL_FIX") .'不存在');
+            $controller = Control("Empty");
+            if (!$controller) {
+                _404('控制器' . CONTROLLER .C("CONTROLLER_FIX") .'不存在');
             }
         }
         //执行动作
         try {
-            $method = new ReflectionMethod($control, METHOD);
-            if ($method->isPublic()) {
-                $method->invoke($control);
+            $action = new ReflectionMethod($controller, ACTION);
+            if ($action->isPublic()) {
+                $action->invoke($controller);
             } else {
                 throw new ReflectionException;
             }
         } catch (ReflectionException $e) {
-            $method = new ReflectionMethod($control, '__call');
-            $method->invokeArgs($control, array(METHOD, ''));
+            $action = new ReflectionMethod($controller, '__call');
+            $action->invokeArgs($controller, array(ACTION, ''));
         }
     }
 }
-
 ?>

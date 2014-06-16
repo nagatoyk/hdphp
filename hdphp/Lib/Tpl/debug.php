@@ -118,13 +118,7 @@
             <li id="_cookie">COOKIE</li>
             <li id="_const">常量</li>
             <li>
-                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?m=delcache&temp=<?php echo TEMP_PATH;?>'>删除缓存</a>
-            </li>
-            <li>
-                <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=rbac' target='_blank'>RBAC</a>
-            </li>
-            <li>
-                <a href="http://bbs.houdunwang.com" target="_blank">论坛交流</a>
+                <a href="http://www.hdphp.com" target="_blank">官网</a>
             </li>
         </ul>
     </div>

@@ -51,9 +51,9 @@ class Log
     {
         if (empty(self::$log)) return;
         if (is_null($destination)) {
-            $destination = LOG_PATH . date("Y_m_d") . ".log";
+            $destination = APP_LOG_PATH . date("Y_m_d") . ".log";
         }
-        if (is_dir(LOG_PATH)) error_log(implode("", self::$log) . "\r\n", $type, $destination, $extraHeaders);
+        if (is_dir(APP_LOG_PATH)) error_log(implode("", self::$log) . "\r\n", $type, $destination, $extraHeaders);
         self::$log = array();
     }
 
@@ -70,9 +70,9 @@ class Log
     static public function write($message, $level = self::ERROR, $type = 3, $destination = NULL, $extraHeaders = NULL)
     {
         if (is_null($destination)) {
-            $destination = LOG_PATH . date("Y_m_d") . ".log";
+            $destination = APP_LOG_PATH . date("Y_m_d") . ".log";
         }
-        if (is_dir(LOG_PATH)) error_log(date("[ c ]") . "{$level}: {$message}\r\n", $type, $destination, $extraHeaders);
+        if (is_dir(APP_LOG_PATH)) error_log(date("[ c ]") . "{$level}: {$message}\r\n", $type, $destination, $extraHeaders);
     }
 
 }

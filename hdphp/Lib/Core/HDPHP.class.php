@@ -16,63 +16,58 @@ final class HDPHP
      */
     static public function init()
     {
-        //加载应用组配置
-        if(IS_GROUP){
-            is_file(COMMON_CONFIG_PATH . 'config.php')              and C(require(COMMON_CONFIG_PATH . 'config.php'));
-            is_file(COMMON_CONFIG_PATH . 'event.php')               and C('GROUP_EVENT', require COMMON_CONFIG_PATH . 'event.php');
-            is_file(COMMON_CONFIG_PATH . 'alias.php')               and alias_import(COMMON_CONFIG_PATH . 'alias.php');
-            is_file(COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require COMMON_LANGUAGE_PATH . C('LANGUAGE') . '.php');
-        }
-        IS_GROUP                                        and Route::group();
-        defined('GROUP_NAME')                           or define('GROUP_NAME', isset($_GET[C('VAR_GROUP')]) &&!empty($_GET[C('VAR_GROUP')]) ? $_GET[C('VAR_GROUP')] : C('DEFAULT_GROUP'));
-        defined('APP')                                  or define('APP',ucfirst(IS_GROUP ? $_GET[C('VAR_APP')] : basename(substr(APP_PATH, 0, -1))));
-        IS_GROUP                                        and define('APP_PATH', GROUP_PATH . GROUP_NAME . '/' . APP . '/');
-        //常量
-        defined('CONTROL_PATH')                         or define('CONTROL_PATH', APP_PATH . 'Control/');
-        defined('MODEL_PATH')                           or define('MODEL_PATH', APP_PATH . 'Model/');
-        defined('CONFIG_PATH')                          or define('CONFIG_PATH', APP_PATH . 'Config/');
-        defined('EVENT_PATH')                           or define('EVENT_PATH', APP_PATH . 'Event/');
-        defined('LANGUAGE_PATH')                        or define('LANGUAGE_PATH', APP_PATH . 'Language/');
-        defined('TAG_PATH')                             or define('TAG_PATH', APP_PATH . 'Tag/');
-        defined('LIB_PATH')                             or define('LIB_PATH', APP_PATH . 'Lib/');
-        defined('COMPILE_PATH')                         or define('COMPILE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Compile/' : 'Compile/'));
-        defined('CACHE_PATH')                           or define('CACHE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Cache/' : 'Cache/'));
-        defined('TABLE_PATH')                           or define('TABLE_PATH', TEMP_PATH . (IS_GROUP ? GROUP_NAME . '/' . APP . '/Table/' : 'Table/'));
-        defined('LOG_PATH')                             or define('LOG_PATH', TEMP_PATH . 'Log/');
+        //加载应用配置
+        is_file(APP_CONFIG_PATH . 'config.php')                 and C(require(APP_CONFIG_PATH . 'config.php'));
+        is_file(APP_CONFIG_PATH . 'event.php')                  and C('APP_EVENT', require APP_CONFIG_PATH . 'event.php');
+        is_file(APP_CONFIG_PATH . 'alias.php')                  and alias_import(APP_CONFIG_PATH . 'alias.php');
+        is_file(APP_LANGUAGE_PATH . C('LANGUAGE') . '.php')     and L(require APP_LANGUAGE_PATH . C('LANGUAGE') . '.php');
+        //解析路由
+        Route::parseUrl();
+        defined('MODULE_PATH')                                  or define('MODULE_PATH', APP_PATH.MODULE.'/');
+        defined('MODULE_CONTROLLER_PATH')                       or define('MODULE_CONTROLLER_PATH', MODULE_PATH . 'Controller/');
+        defined('MODULE_MODEL_PATH')                            or define('MODULE_MODEL_PATH', MODULE_PATH . 'Model/');
+        defined('MODULE_CONFIG_PATH')                           or define('MODULE_CONFIG_PATH', MODULE_PATH . 'Config/');
+        defined('MODULE_EVENT_PATH')                            or define('MODULE_EVENT_PATH', MODULE_PATH . 'Event/');
+        defined('MODULE_LANGUAGE_PATH')                         or define('MODULE_LANGUAGE_PATH', MODULE_PATH . 'Language/');
+        defined('MODULE_TAG_PATH')                              or define('MODULE_TAG_PATH', MODULE_PATH . 'Tag/');
+        defined('MODULE_LIB_PATH')                              or define('MODULE_LIB_PATH', MODULE_PATH . 'Lib/');
         //应用配置
-        is_file(CONFIG_PATH . 'config.php')             and C(require(CONFIG_PATH . 'config.php'));
-        is_file(CONFIG_PATH . 'event.php')              and C('APP_EVENT', require CONFIG_PATH . 'event.php');
-        is_file(CONFIG_PATH . 'alias.php')              and alias_import(CONFIG_PATH . 'alias.php');
-        is_file(LANGUAGE_PATH . C('LANGUAGE') . '.php') and L(require LANGUAGE_PATH . C('LANGUAGE') . '.php');
-        //模板目录
-        $tpl_style = C('TPL_STYLE');
-        if($tpl_style and substr($tpl_style,-1)!='/')
-            $tpl_style.='/';
-        defined('TPL_PATH')                             or define('TPL_PATH', (C('TPL_PATH') ?C('TPL_PATH') : APP_PATH.'Tpl/').$tpl_style);
-        defined('PUBLIC_PATH')                          or define('PUBLIC_PATH', TPL_PATH . 'Public/');
-        //应用url解析并创建常量
-        Route::app();
+        is_file(MODULE_CONFIG_PATH . 'config.php')              and C(require(MODULE_CONFIG_PATH . 'config.php'));
+        is_file(MODULE_CONFIG_PATH . 'event.php')               and C('APP_EVENT', require MODULE_CONFIG_PATH . 'event.php');
+        is_file(MODULE_CONFIG_PATH . 'alias.php')               and alias_import(MODULE_CONFIG_PATH . 'alias.php');
+        is_file(MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php');
+        //模板目录常量
+        defined('MODULE_TPL_PATH')                              or define('MODULE_TPL_PATH',C('TPL_PATH')?C('TPL_PATH').C('TPL_STYLE'):MODULE_PATH.'Tpl/'.C('TPL_STYLE'));
+        defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_TPL_PATH .'Public/');
+        defined('CONTROLLER_TPL_PATH')                          or define('CONTROLLER_TPL_PATH',MODULE_TPL_PATH.CONTROLLER.'/');
+        //网站根-Static目录
+        defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static');
+        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(CONTROLLER_TPL_PATH,'/'));
+        defined("__CONTROL_TPL__")                              or define("__CONTROL_TPL__", __TPL__  .'/'. CONTROLLER);
+        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . '/Public');
+        //来源URL
+        define("__HISTORY__",                                   isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null);
         //=========================环境配置
         date_default_timezone_set(C('DEFAULT_TIME_ZONE'));
-        @ini_set('memory_limit',                        '128M');
-        @ini_set('register_globals',                    'off');
-        @ini_set('magic_quotes_runtime',                0);
-        define('NOW',                                   $_SERVER['REQUEST_TIME']);
-        define('NOW_MICROTIME',                         microtime(true));
-        define('REQUEST_METHOD',                        $_SERVER['REQUEST_METHOD']);
-        define('IS_GET',                                REQUEST_METHOD == 'GET' ? true : false);
-        define('IS_POST',                               REQUEST_METHOD == 'POST' ? true : false);
-        define('IS_PUT',                                REQUEST_METHOD == 'PUT' ? true : false);
-        define('IS_AJAX',                               ajax_request());
-        define('IS_DELETE',                             REQUEST_METHOD == 'DELETE' ? true : false);
-        define('HTTP_REFERER',                          isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null);
+        @ini_set('memory_limit',                                '128M');
+        @ini_set('register_globals',                            'off');
+        @ini_set('magic_quotes_runtime',                        0);
+        define('NOW',                                           $_SERVER['REQUEST_TIME']);
+        define('NOW_MICROTIME',                                 microtime(true));
+        define('REQUEST_METHOD',                                $_SERVER['REQUEST_METHOD']);
+        define('IS_GET',                                        REQUEST_METHOD == 'GET' ? true : false);
+        define('IS_POST',                                       REQUEST_METHOD == 'POST' ? true : false);
+        define('IS_PUT',                                        REQUEST_METHOD == 'PUT' ? true : false);
+        define('IS_AJAX',                                       ajax_request());
+        define('IS_DELETE',                                     REQUEST_METHOD == 'DELETE' ? true : false);
+        define('HTTP_REFERER',                                  isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null);
         //注册自动载入函数
-        spl_autoload_register(array(__CLASS__,          'autoload'));
-        set_error_handler(array(__CLASS__,              'error'), E_ALL);
-        set_exception_handler(array(__CLASS__,          'exception'));
-        register_shutdown_function(array(__CLASS__,     'fatalError'));
+        spl_autoload_register(array(__CLASS__,                  'autoload'));
+        set_error_handler(array(__CLASS__,                      'error'), E_ALL);
+        set_exception_handler(array(__CLASS__,                  'exception'));
+        register_shutdown_function(array(__CLASS__,             'fatalError'));
         HDPHP::_appAutoLoad();
-		 //COOKIE安全处理
+        //COOKIE安全处理
         if(!empty($_COOKIE)){
             foreach($_COOKIE as $name=>$v){
                 $name = preg_replace('@[^0-9a-z]@', '', $name);
@@ -80,9 +75,8 @@ final class HDPHP
             }
         }
     }
-
     /**
-     * 自动加载应用文件
+     * 自动加载Lib文件
      */
     static private function _appAutoLoad()
     {
@@ -91,8 +85,8 @@ final class HDPHP
         if (is_array($files) && !empty($files)) {
             foreach ($files as $file) {
                 require_array(array(
-                    LIB_PATH . $file,
-                    COMMON_LIB_PATH . $file
+                    APP_LIB_PATH . $file,
+                    MODULE_LIB_PATH . $file
                 )) || require_cache($file);
             }
         }
@@ -110,15 +104,15 @@ final class HDPHP
         if (substr($className, -5) == 'Model') {
             if (require_array(array(
                 HDPHP_DRIVER_PATH . 'Model/' . $class,
-                MODEL_PATH . $class,
-                COMMON_MODEL_PATH . $class
+                MODULE_MODEL_PATH . $class,
+                APP_MODEL_PATH . $class
             ))
             ) return;
         } elseif (substr($className, -7) == 'Control') {
             if (require_array(array(
                 HDPHP_CORE_PATH . $class,
-                CONTROL_PATH . $class,
-                COMMON_CONTROL_PATH . $class
+                MODULE_CONTROLLER_PATH . $class,
+                APP_CONTROLLER_PATH . $class
             ))
             ) return;
         } elseif (substr($className, 0, 2) == 'Db') {
@@ -138,14 +132,14 @@ final class HDPHP
             ) return;
         } elseif (substr($className, -5) == 'Event') {
             if (require_array(array(
-                EVENT_PATH . $class,
-                COMMON_EVENT_PATH . $class
+                MODULE_EVENT_PATH . $class,
+                APP_EVENT_PATH . $class
             ))
             ) return;
         } elseif (substr($className, -3) == 'Tag') {
             if (require_array(array(
-                TAG_PATH . $class,
-                COMMON_TAG_PATH . $class
+                APP_TAG_PATH . $class,
+                MODULE_TAG_PATH . $class
             ))
             ) return;
         } elseif (substr($className, -7) == 'Storage') {
@@ -156,8 +150,8 @@ final class HDPHP
         } elseif (alias_import($className)) {
             return;
         } elseif (require_array(array(
-            LIB_PATH . $class,
-            COMMON_LIB_PATH . $class,
+            MODULE_LIB_PATH . $class,
+            APP_LIB_PATH . $class,
             HDPHP_CORE_PATH . $class,
             HDPHP_EXTEND_PATH . $class,
             HDPHP_EXTEND_PATH . '/Tool/' . $class
@@ -214,5 +208,4 @@ final class HDPHP
         }
     }
 }
-
 ?>

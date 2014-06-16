@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-	exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -45,7 +43,7 @@ final class ViewHd extends View {
 		//缓存时间
 		$cacheTime = is_numeric($cacheTime) ? $cacheTime : intval(C("CACHE_TPL_TIME"));
 		//缓存路径
-		$cachePath = $cachePath ? $cachePath : CACHE_PATH;
+		$cachePath = $cachePath ? $cachePath : APP_CACHE_PATH;
 		//内容
 		$content = null;
 		if ($cacheTime >= 0) {
@@ -61,7 +59,7 @@ final class ViewHd extends View {
 			if (!$this -> tplFile)
 				return;
 			//编译文件
-			$this -> compileFile = COMPILE_PATH . substr(md5(APP . CONTROL . METHOD . $this -> tplFile), 0, 20) . '.php';
+			$this -> compileFile = APP_COMPILE_PATH . substr(md5(MODULE . CONTROLLER . ACTION . $this -> tplFile), 0, 20) . '.php';
 			//记录模板编译文件
 			if (DEBUG) {
 				Debug::$tpl[] = array(basename($this -> tplFile), $this -> compileFile);
@@ -110,7 +108,7 @@ final class ViewHd extends View {
 	 * @return bool
 	 */
 	public function isCache($cachePath = null) {
-		$cachePath = $cachePath ? $cachePath : CACHE_PATH;
+		$cachePath = $cachePath ? $cachePath : APP_CACHE_PATH;
 		$cacheName = md5($_SERVER['REQUEST_URI']);
 		return S($cacheName, false, null, array("dir" => $cachePath, "Driver" => "File")) ? true : false;
 	}

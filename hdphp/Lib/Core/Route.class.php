@@ -10,7 +10,7 @@
 // |   License: http://www.apache.org/licenses/LICENSE-2.0
 // '-----------------------------------------------------------------------------------
 /**
- * URL处理类
+ * URL路由处理类
  * @package     Core
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
@@ -19,7 +19,7 @@ final class Route
     /**
      * 根据不同url处理方式，得到Url参数
      */
-    static private function formatUrl()
+    static public function parseUrl()
     {
         //请求内容
         if(C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")])){
@@ -31,106 +31,81 @@ final class Route
         }else{
         	$query = $_SERVER['QUERY_STRING'];
         }
-		
-//      $query = C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]) ? $_GET[C("PATHINFO_VAR")] :
-//          			(C('URL_TYPE') == 1 && isset($_SERVER['PATH_INFO'])? $_SERVER['PATH_INFO'] :
-//          			(isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:$_SERVER['QUERY_STRING']));
         //分析路由 && 清除伪静态后缀
-        $url = self::parseRoute(str_ireplace(C('PATHINFO_HTML'), '', trim($query, '/')));
+        $url = self::parseRoute($query);
         //拆分后的GET变量
         $gets = '';
         if (C('URL_TYPE') == 1 || (C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]))) {
             $url = str_replace(array('&', '='), C("PATHINFO_DLI"), $url);
+            $args = explode(C("PATHINFO_DLI"), $url);
+            //模块
+            if (!empty($args) && !empty($args[0])) {
+                if ($args[0] == C("VAR_MODULE")) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C("VAR_MODULE")] = $args[0];
+                    array_shift($args);
+                }
+            }else{
+                $_GET[C("VAR_MODULE")] = C("DEFAULT_MODULE");
+            }
+            //控制器
+            if (!empty($args) && !empty($args[0])) {
+                if ($args[0] == C('VAR_CONTROLLER')) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C('VAR_CONTROLLER')] = $args[0];
+                    array_shift($args);
+                }
+            }else{
+                $_GET[C('VAR_CONTROLLER')] = C('DEFAULT_CONTROLLER');
+            }
+            //动作
+            if (!empty($args) && !empty($args[0])) {
+                if ($args[0] == C('VAR_ACTION')) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C('VAR_ACTION')] = $args[0];
+                    array_shift($args);
+                }
+            }else{
+                $_GET[C('VAR_ACTION')] = C('DEFAULT_ACTION');
+            }
+            //获得$_GET数据
+            if (!empty($args) && !empty($args[0])) {
+                $count = count($args);
+                for ($i = 0; $i < $count;) {
+                    $_GET[$args [$i]] = isset($args [$i + 1]) ? $args [$i + 1] : '';
+                    $i += 2;
+                }
+            }
         } else {
             //解析URL
             parse_str($url, $gets);
             $_GET = array_merge($_GET, $gets);
-        }
-        //pathinfo形式
-        return $gets || empty($url) ? array() : explode(C("PATHINFO_DLI"), $url);
-    }
-
-    /**
-     * 解析应用组获得应用
-     * @access public
-     */
-    static public function group()
-    {
-        $args = self::formatUrl();
-        //应用组
-        $g = C('VAR_GROUP');
-        if(isset($_GET[$g])){
-        }else if($index = array_search($g,$args)){
-            $_GET[$g]=$args[$index+1];
-        }
-        //应用名
-        $a = C("VAR_APP");
-        if (isset($_GET[$a])) {
-        } elseif (isset($args[0])) {
-            if ($args[0] == $a) {
-                $_GET[$a] = $args[1];
-            } else {
-                $_GET[$a] = $args[0];
+            //模块
+            if (!isset($_GET[C("VAR_MODULE")])) {
+                $_GET[C("VAR_MODULE")] = C("DEFAULT_MODULE");
             }
-        } else {
-            $_GET[$a] = C("DEFAULT_APP");
-        }
-    }
-
-
-    /**
-     * 解析应用
-     */
-    static public function app()
-    {
-        $args = self::formatUrl();
-        //应用组模式时删除应用名变量
-        if (IS_GROUP && !empty($args)) {
-            if ($args[0] == C("VAR_APP")) {
-                array_shift($args);
-                array_shift($args);
-            } else {
-                array_shift($args);
+            //控制器
+             if (!isset($_GET[C("VAR_CONTROLLER")])){
+                $_GET[C('VAR_CONTROLLER')] = C('DEFAULT_CONTROLLER');
+             }
+             //动作方法
+            if (!isset($_GET[C("VAR_ACTION")])) {
+                $_GET[C('VAR_ACTION')] = C('DEFAULT_ACTION');
             }
         }
-        //控制器
-        if (isset($_GET[C("VAR_CONTROL")])) {
-        } elseif (isset($args[0]) && !empty($args[0])) {
-            if ($args[0] == C("VAR_CONTROL")) {
-                $_GET[C("VAR_CONTROL")] = $args[1];
-                array_shift($args);
-                array_shift($args);
-            } else {
-                $_GET[C("VAR_CONTROL")] = $args[0];
-                array_shift($args);
-            }
-        } else {
-            $_GET[C('VAR_CONTROL')] = C('DEFAULT_CONTROL');
-        }
-        //方法
-        if (isset($_GET[C("VAR_METHOD")])) {
-        } elseif (isset($args[0]) && !empty($args[0])) {
-            if ($args[0] == C("VAR_METHOD")) {
-                $_GET[C("VAR_METHOD")] = $args[1];
-                array_shift($args);
-                array_shift($args);
-            } else {
-                $_GET[C("VAR_METHOD")] = $args[0];
-                array_shift($args);
-            }
-        } else {
-            $_GET[C('VAR_METHOD')] = C('DEFAULT_METHOD');
-        }
+        //转模块名大小写
+        $_GET[C('VAR_MODULE')]=ucwords($_GET[C('VAR_MODULE')]);
         //以下划线分隔的模块名称改为pascal命名如hdphp_user=>HDPhpUser
-        $_GET[C('VAR_CONTROL')] = ucwords(preg_replace('@_([a-z]?)@ei', 'strtoupper("\1")', $_GET[C('VAR_CONTROL')]));
-        //获得$_GET数据
-        if (!empty($args)) {
-            $count = count($args);
-            for ($i = 0; $i < $count;) {
-                $_GET[$args [$i]] = isset($args [$i + 1]) ? $args [$i + 1] : '';
-                $i += 2;
-            }
-        }
+        $_GET[C('VAR_CONTROLLER')] = ucwords(preg_replace('@_([a-z]?)@ei', 'strtoupper("\1")', $_GET[C('VAR_CONTROLLER')]));
         //兼容模式删除其变量
         if (C('URL_TYPE') == 2) {
             unset($_GET[C('PATHINFO_VAR')]);
@@ -147,56 +122,57 @@ final class Route
     {
         //域名
         $host = $_SERVER['HTTP_HOST'] ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
-        defined('__HOST__') or define("__HOST__", C("HTTPS") ? "https://" : "http://" .$host);
+        defined('__HOST__')         or define("__HOST__", C("HTTPS") ? "https://" : "http://" .$host);
         //网站根-不含入口文件
         $script_file = rtrim($_SERVER['SCRIPT_NAME'],'/');
         $root = rtrim(dirname($script_file),'/');
-        defined('__ROOT__') or define("__ROOT__", __HOST__ . ($root=='/' || $root=='\\'?'':$root));
-        //网站根-含入口文件
-        defined('__WEB__') or define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
+        defined('__ROOT__')         or define("__ROOT__", __HOST__ . ($root=='/' || $root=='\\'?'':$root));P($_SERVER);
+        //网站根-含入口文件 开启伪静态时去除入口文件
+        if(C('URL_REWRITE') && substr($_SERVER['SCRIPT_NAME'],-3)=='php'){
+            defined('__WEB__')          or define("__WEB__", __HOST__ . dirname($_SERVER['SCRIPT_NAME']));
+        }else{
+            defined('__WEB__')          or define("__WEB__", __HOST__ . $_SERVER['SCRIPT_NAME']);
+        }
         //完整URL地址
-        defined('__URL__') or define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
+        defined('__URL__')          or define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
+        //应用URL地址
+        defined('__APP__')          or define("__APP__", __ROOT__ .'/' .basename(APP_PATH));
         //框架目录相关URL
-        defined('__HDPHP__') or define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
-        defined('__HDPHP_DATA__') or define("__HDPHP_DATA__", __HDPHP__ . '/Data');
-        defined('__HDPHP_TPL__') or define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
+        defined('__HDPHP__')        or define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
+        defined('__HDPHP_DATA__')   or define("__HDPHP_DATA__", __HDPHP__ . '/Data');
+        defined('__HDPHP_TPL__')    or define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
         defined('__HDPHP_EXTEND__') or define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
+        //应用
+        defined('APP')              or define('APP',dirname(APP_PATH));
+        //模块
+        defined('MODULE')           or define("MODULE",   $_GET[C('VAR_MODULE')]);
         //控制器
-        defined('CONTROL') or define("CONTROL", ucwords($_GET[C('VAR_CONTROL')]));
+        defined('CONTROLLER')       or define("CONTROLLER", $_GET[C('VAR_CONTROLLER')]);
         //方法
-        defined('METHOD') or define("METHOD", $_GET[C('VAR_METHOD')]);
+        defined('ACTION')           or define("ACTION",   $_GET[C('VAR_ACTION')]);
         // URL类型    1:pathinfo  2:普通模式  3:兼容模式
         switch (C("URL_TYPE")) {
             //普通模式
             case 2:
-                defined('__APP__') or define("__APP__", __WEB__ . (IS_GROUP ? '?' . C('VAR_APP') . '=' . APP : ''));
-                defined('__CONTROL__') or define("__CONTROL__", __APP__ . (IS_GROUP ? '&' . C('VAR_CONTROL') . '=' . CONTROL : '?c=' . CONTROL));
-                defined('__METH__') or define("__METH__", __CONTROL__ . '&' . C('VAR_METHOD') . '=' . METHOD);
+                defined('__MODULE__')   or define("__MODULE__", __WEB__ .'?' . C('VAR_MODULE') . '=' .MODULE);
+                defined('__CONTROLLER__')  or define("__CONTROLLER__", __MODULE__ . '&' . C('VAR_CONTROL') . '=' . CONTROLLER);
+                defined('__ACTION__')   or define("__ACTION__", __CONTROLLER__ . '&' . C('VAR_ACTION') . '=' . ACTION);
                 break;
             //兼容模式
             case 3:
-                defined('__APP__') or define("__APP__", __WEB__ . '?' . C("PATHINFO_VAR") . '=' . (IS_GROUP ? '/' . APP : ''));
-                defined('__CONTROL__') or define("__CONTROL__", __APP__ . '/' . CONTROL);
-                defined('__METH__') or define("__METH__", __CONTROL__ . '/' . METHOD);
+                defined('__MODULE__')   or define("__MODULE__", __WEB__ . '?' . C("PATHINFO_VAR") . '=/' . MODULE);
+                defined('__CONTROLLER__')  or define("__CONTROLLER__", __MODULE__ . '/' . CONTROLLER);
+                defined('__ACTION__')   or define("__ACTION__", __CONTROLLER__ . '/' . ACTION);
                 break;
             //pathinfo|rewrite
             case 1:
             default:
-                defined('__APP__') or define("__APP__", __WEB__ . (IS_GROUP ? '/' . APP : ''));
-                defined('__CONTROL__') or define("__CONTROL__", __APP__ . '/' . CONTROL);
-                defined('__METH__') or define("__METH__", __CONTROL__ . '/' . METHOD);
+                defined('__MODULE__')   or define("__MODULE__", __WEB__ .  '/' . MODULE);
+                defined('__CONTROLLER__')  or define("__CONTROLLER__", __MODULE__ . '/' . CONTROLLER);
+                defined('__ACTION__')   or define("__ACTION__", __CONTROLLER__ . '/' . ACTION);
                 break;
         }
-        if (defined("GROUP_PATH"))
-            defined("__GROUP__") or define("__GROUP__", __ROOT__ . '/'.rtrim(GROUP_PATH,'/'));
-        //网站根-Static目录
-        defined("__TPL__") or define("__TPL__", __ROOT__  . '/'.rtrim(TPL_PATH,'/'));
-        defined("__CONTROL_TPL__") or define("__CONTROL_TPL__", __TPL__  .'/'. CONTROL);
-        defined("__STATIC__") or define("__STATIC__", __ROOT__ . '/Static');
-        defined("__PUBLIC__") or define("__PUBLIC__", __TPL__ . '/Public');
-        //历史页码
-        $history= isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null;
-        define("__HISTORY__",$history);
+
     }
 
     /**
@@ -206,6 +182,7 @@ final class Route
      */
     static private function parseRoute($query)
     {
+        $query = str_ireplace(C('HTML_SUFFIX'), '',trim($query,'/'));
         $route = C("ROUTE");
         if (!$route or !is_array($route)) return $query;
         foreach ($route as $k => $v) {

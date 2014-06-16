@@ -1,5 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH")) exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -54,9 +53,9 @@ class ViewCompile
         $this->parseTokey(); //解析POST令牌Token
         $this->replaceConst(); //将所有常量替换   如把__APP__进行替换
         $this->content = '<?php if(!defined("HDPHP_PATH"))exit;C("SHOW_NOTICE",FALSE);?>' . $this->content;
-        if (!is_dir(COMPILE_PATH)) {
-            Dir::create(COMPILE_PATH);
-            copy(HDPHP_TPL_PATH . 'index.html', COMPILE_PATH . 'index.html');
+        if (!is_dir(APP_COMPILE_PATH)) {
+            Dir::create(APP_COMPILE_PATH);
+            copy(HDPHP_TPL_PATH . 'index.html', APP_COMPILE_PATH . 'index.html');
         }
         file_put_contents($this->view->compileFile, $this->content);
         //创建安全文件
@@ -104,8 +103,8 @@ class ViewCompile
                 $class=array_pop($info);
                 if (class_exists($class, false)) {
                 } else if (require_array(array(
-                    TAG_PATH . $file . '.class.php',
-                    COMMON_TAG_PATH . $file . '.class.php'
+                    MODULE_TAG_PATH . $file . '.class.php',
+                    APP_TAG_PATH . $file . '.class.php'
                 ))) {}
                 else if (import($file)) {}
                 else {

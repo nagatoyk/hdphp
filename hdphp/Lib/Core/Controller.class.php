@@ -9,15 +9,13 @@
 // |-----------------------------------------------------------------------------------
 // |   License: http://www.apache.org/licenses/LICENSE-2.0
 // '-----------------------------------------------------------------------------------
-if (!defined("HDPHP_PATH"))
-	exit('No direct script access allowed');
 
 /**
  * 控制器基类
  * @package     core
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
-abstract class Control {
+abstract class Controller {
 
 	/**
 	 * 模板视图对象
@@ -50,18 +48,18 @@ abstract class Control {
 	 * @param mixed $args 方法参数
 	 * @return mixed
 	 */
-	public function __call($method, $args) {
+	public function __call($action, $args) {
 		//调用的方法不存在
-		if (strcasecmp($method, METHOD) == 0) {
+		if (strcasecmp($action, ACTION) == 0) {
 			//执行插件如uploadify|ueditor|keditor
-			if (alias_import($method)) {
-				require    alias_import($method);
+			if (alias_import($action)) {
+				require alias_import($action);
 			} elseif (method_exists($this, "__empty")) {
 				//执行空方法_empty
 				$this -> __empty($args);
 			} else {
 				//方法不存在时抛出404错误页
-				_404('模块中不存在方法' . $method);
+				_404('控制器中不存在动作' . $action);
 			}
 		}
 	}

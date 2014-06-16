@@ -1,11 +1,10 @@
 <?php
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
-// |   Version: 2013.12
 // |      Site: http://www.hdphp.com
 // |-----------------------------------------------------------------------------------
 // |    Author: 向军 <houdunwangxj@gmail.com>
-// | Copyright (c) 2012-2013, http://www.houdunwang.com. All Rights Reserved.
+// | Copyright (c) 2012-2014, http://www.houdunwang.com. All Rights Reserved.
 // |-----------------------------------------------------------------------------------
 // |   License: http://www.apache.org/licenses/LICENSE-2.0
 // '-----------------------------------------------------------------------------------
@@ -16,13 +15,11 @@
  * @supackage core
  * @author hdxj <houdunwangxj@gmail.com>
  */
-define('HDPHP_VERSION', '2014-05-26');
-defined("DEBUG")        or define("DEBUG", FALSE);
-if (!defined('GROUP_PATH'))
-    defined('APP_PATH') or define('APP_PATH', './');
-defined('TEMP_PATH')    or define('TEMP_PATH', (defined('APP_PATH') ? APP_PATH : GROUP_PATH) . 'Temp/');
-defined("TEMP_NAME")    or define("TEMP_NAME",'~boot.php');
-defined('TEMP_FILE')    or define('TEMP_FILE',TEMP_PATH.TEMP_NAME);
+define('HDPHP_VERSION', '2014-06-16');
+defined("DEBUG")        	or define("DEBUG", FALSE);//调试模式
+defined('APP_PATH') 		or define('APP_PATH', './Application/');//应用目录
+defined('TEMP_PATH')    	or define('TEMP_PATH', APP_PATH. 'Temp/');
+defined('TEMP_FILE')    	or define('TEMP_FILE',TEMP_PATH.'~Boot.php');//编译文件
 //加载核心编译文件
 if (!DEBUG and is_file(TEMP_FILE)) {
     require TEMP_FILE;
@@ -32,5 +29,4 @@ if (!DEBUG and is_file(TEMP_FILE)) {
     require HDPHP_PATH . 'Lib/Core/Boot.class.php';
     Boot::run();
 }
-
 ?>
