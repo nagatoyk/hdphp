@@ -58,7 +58,7 @@ final class App
     static private function start()
     {
         //控制器实例
-        $controller = control(CONTROLLER);
+        $controller = controller(CONTROLLER);
         //控制器不存在
         if (!$controller) {
             //模块检测
