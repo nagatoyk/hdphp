@@ -25,7 +25,7 @@ abstract class Db implements DbInterface
     public $lastQuery; //最后发送的查询结果集
     public $pri = null; //默认表主键
     public $opt = array(); //SQL 操作
-    public $opt_old = array();
+    public $opt_old = array();//上次操作参数
     public $lastSql; //最后发送的SQL
     public $error = NULL; //错误信息
     protected $cacheTime = NULL; //查询操作缓存时间单位秒
@@ -136,9 +136,10 @@ abstract class Db implements DbInterface
      */
     private function getCacheTable($tableName)
     {
+        $cacheName = C('DB_DATABASE').'.'.$tableName;
         //字段缓存
         if (!DEBUG) {
-            $cacheTableField = F($tableName, false, TABLE_PATH);
+            $cacheTableField = F($cacheName, false, APP_TABLE_PATH);
             if ($cacheTableField)
                 return $cacheTableField;
         }
@@ -147,7 +148,7 @@ abstract class Db implements DbInterface
         $fields = $tableinfo['fields'];
         //字段缓存
         if (!DEBUG) {
-            F($tableName, $fields, TABLE_PATH);
+            F($cacheName, $fields, APP_TABLE_PATH);
         }
         return $fields;
     }
@@ -274,12 +275,6 @@ abstract class Db implements DbInterface
         return $data;
     }
 
-    //转义数据
-//    private function addslashes_d($v)
-//    {
-//        return MAGIC_QUOTES_GPC ? $v : addslashes_d($v);
-//    }
-
     /**
      * 更新数据
      * @access      public
@@ -322,66 +317,6 @@ abstract class Db implements DbInterface
         }
         $sql = "DELETE FROM " . $this->opt['table'] . $this->opt['where'] . $this->opt['limit'];
         return $this->exe($sql);
-    }
-
-    /**
-     * count max min avg 共用方法
-     * @param string $type 类型如count|avg
-     * @param mixed $data 参数
-     * @return mixed
-     */
-    private function statistics($type, $data)
-    {
-        $type = strtoupper($type);
-        if (empty($data)) {
-            $field = " {$type}(" . $this->opt['pri'] . ") AS " . $this->opt['pri'];
-        } else if (is_string($data)) {
-            $s = explode("|", $data);
-            $field = " {$type}(" . $s[0] . ")";
-            $field .= isset($s[1]) ? ' AS ' . $s[1] : '';
-        }
-        $this->opt['field'] = $field;
-    }
-
-    //统计记录总数
-    public function count($data)
-    {
-        if(empty($data))$data=' * ';
-        $this->statistics(__FUNCTION__, $data);
-        $result = $this->select("");
-        return is_array($result) && !empty($result) ? intval(current($result[0])) : NULL;
-    }
-
-    //查找最大的值
-    public function max($data)
-    {
-        $this->statistics(__FUNCTION__, $data);
-        $result = $this->select("");
-        return is_array($result) && !empty($result) ? current($result[0]) : NULL;
-    }
-
-    //查找最小的值
-    public function min($data)
-    {
-        $this->statistics(__FUNCTION__, $data);
-        $result = $this->select("");
-        return is_array($result) && !empty($result) ? current($result[0]) : NULL;
-    }
-
-    //查找平均值
-    public function avg($data)
-    {
-        $this->statistics(__FUNCTION__, $data);
-        $result = $this->select("");
-        return is_array($result) && !empty($result) ? current($result[0]) : NULL;
-    }
-
-    //SQL求合SUM计算
-    public function sum($data)
-    {
-        $this->statistics(__FUNCTION__, $data);
-        $result = $this->select("");
-        return is_array($result) && !empty($result) ? current($result[0]) : NULL;
     }
 
     /**
@@ -525,18 +460,32 @@ abstract class Db implements DbInterface
 
     /**
      * 字段集
-     * @param type $data
+     * @param mixed $data
+     * @param boolean $exclude 排除字段
      */
-    public function field($data)
+    public function field($data,$exclude=false)
     {
+        //字符串时转为数组
         if (is_string($data)) {
             $data = explode(",", $data);
         }
+        //排除字段
+        if($exclude){
+            $_data=$data;
+            $data = $this->fieldArr;
+            foreach($_data as $name=>$field){
+                if(in_array($field,$this->fieldArr)){
+                    unset($data[$name]);
+                }
+            }
+        }
         $field = trim($this->opt['field']) == '*' ? '' : $this->opt['field'] . ',';
-        foreach ($data as $d) {
-            $a = explode("|", $d);
-            $field .= trim($a[0]);
-            $field .= isset($a[1]) ? ' AS ' . $a[1] . ',' : ',';
+        foreach ($data as $name=>$d) {
+            if(is_string($name)){
+                $field .= $name. ' AS ' . $d.",";
+            }else{
+                $field .= $d.',';
+            }
         }
         $this->opt['field'] = substr($field, 0, -1);
     }

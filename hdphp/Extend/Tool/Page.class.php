@@ -143,7 +143,7 @@ class Page
                     break;
                 case 2:
                 default:
-                    $url = __METH__ . '&';
+                    $url = __ACTION__ . '&';
                     foreach ($get as $k => $v) {
                         $url .= $k . "=" . $v . '&';
                     }

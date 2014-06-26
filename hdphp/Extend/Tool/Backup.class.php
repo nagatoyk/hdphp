@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-	exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -29,95 +27,58 @@ final class Backup {
 
 	}
 
-	//清除旧的备份痕迹
-	static public function clear() {
-		session('backup_dir', null);
-		session('backup_fid', null);
-		session('backup_history_url', null);
-		session('backup_step_time', null);
-		return true;
-	}
-
 	//还原数据
 	static public function recovery($option) {
 		//备份目录
-		$dir = session("backup_dir") ? session("backup_dir") : $option['dir'];
+		$dir = Q("get.backup_dir") ? Q("get.backup_dir") : $option['backup_dir'];
 		//检测目录是否存在
 		if (!$dir || !is_dir($dir)) {
-			self::$error = '数据目录不存在,尝试刷新后重试';
+			self::$error = '数据目录不存在';
 			if (DEBUG) {
-				halt('数据目录不存在,请执行session("backup_dir",null)后重试');
+				halt(self::$error);
 			}
-			//删除session中记录的目录
-			session('backup_dir', null);
 			return false;
 		}
-		session("backup_dir", $dir);
+		$_GET['backup_dir']=$dir;
 		self::$config =
 		require ($dir . '/config.php');
 		//文件id
-		$fid = Q("session.backup_fid", NULL, "intval");
+		$fid = Q("get.backup_fid", NULL, "intval");
 		//表前缀
 		$db = M();
 		$db_prefix = C("DB_PREFIX");
 		//首次执行还原操作
 		if (is_null($fid)) {
-			$url = isset($option['url']) ? $option['url'] : '';
-			$step_time = (isset($option['step_time']) ? $option['step_time'] : 0.5) * 1000;
 			//还原表结构
 			if (is_file($dir . '/structure.php')) {
 				require $dir . '/structure.php';
 			}
-			session('backup_fid', 1);
-//			$html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
-//			$html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'></div>";
-//			$html .= '</body></html>';
-			//还原成功后跳转的url地址
-			session('backup_history_url', $url);
-			//每次还原间隔时间，默认1秒
-			session('backup_step_time', $step_time);
-			return array('state'=>'run','message'=>'还原数据初始化...','url'=>__METH__);
+            $_GET['backup_fid']=1;
+            $url = U(ACTION,array('backup_dir'=>$_GET['backup_dir'],'backup_fid'=>$_GET['backup_fid']));
+			return array('state'=>'run','message'=>'还原数据初始化...','url'=>$url);
 		}
-		//每次还原间隔时间，默认1秒
-		$step_time = session('backup_step_time');
 		foreach (glob($dir . '/*') as $d) {
 			if (preg_match("@_bk_{$fid}.php$@i", $d)) {
 				require $d;
-				$_SESSION['backup_fid'] += 1;
-//				$html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
-//				$html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>分卷{$fid}还原完毕!</div>";
-//				$html .= "</body></html>";
-				return array('state'=>'run','message'=>"分卷{$fid}还原完毕!",'url'=>__METH__);
+                $_GET['backup_fid'] += 1;
+                $url = U(ACTION,array('backup_dir'=>$_GET['backup_dir'],'backup_fid'=>$_GET['backup_fid']));
+				return array('state'=>'run','message'=>"分卷{$fid}还原完毕!",'url'=>$url);
 			}
 		}
-//		$html = "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>所有分卷还原完毕!";
-		
-		//还原成功后跳转地址
-		$url = session('backup_history_url');
-		//清空SESSION数据
-		unset($_SESSION['backup_history_url']);
-		unset($_SESSION['backup_step_time']);
-		unset($_SESSION['backup_fid']);
-//		if (!empty($url))
-//			$html .= "<a href='javascript:parent.location.href=\"" . $url . "\"' class='btn'>返回</a>";
-//		$html .= '</div></body></html>';
-		return array('state'=>'success','message'=>"所有分卷还原完毕...",'url'=>$url);
-//		self::success($html);
+		return array('state'=>'success','message'=>"所有分卷还原完毕...");
 	}
 
 	//备份数据表
 	static public function backup($config = array()) {
-		//还原目录（每次还原后,将$_SESSION['backup_dir']删除)
-		$dir = Q("session.backup_dir");
+		$dir = Q("get.backup_dir",null,'urldecode');
 		//2+备份时
 		if ($dir && is_dir($dir)) {
 			self::$dir = $dir;
 			if (is_file(self::$dir . '/config.php')) {
-				self::$config =
-				require (self::$dir . '/config.php');
+				self::$config = require (self::$dir . '/config.php');
 			} else {
 				if (DEBUG) {
-					halt('数据库备份配置文件不存在,请执行session("backup_dir",null)后重试');
+					halt('数据库备份配置文件不存在');
 				} else {
 					return false;
 				}
@@ -132,11 +93,9 @@ final class Backup {
 				self::backup_structure();
 			}
 			//记录备份目录
-			session('backup_dir', self::$dir);
-			//          $html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},500);</script>";
-			//          $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>正在进行备份初始化...</div></body></html>";
-			//          echo $html;
-			return array('state' => 'run', 'message' => '正在进行备份初始化...', 'url' => __METH__);
+            $_GET['backup_dir']=urlencode(self::$dir);
+            $url = U(ACTION,array('backup_dir'=>$_GET['backup_dir']));
+			return array('state' => 'run', 'message' => '正在进行备份初始化...', 'url' => $url);
 		}
 		//执行备份
 		return self::backup_data();
@@ -178,7 +137,8 @@ final class Backup {
 				} else {
 					foreach ($data as $d) {
 						$table_name = "\".\$db_prefix.\"" . str_ireplace(C("DB_PREFIX"), "", $table);
-						$backup_str .= "\$db->exe(\"REPLACE INTO $table_name (`" . implode("`,`", array_keys($d)) . "`) VALUES('" . implode("','", array_values(addslashes_d($d))) . "')\");\n";
+						$backup_str .= "\$db->exe(\"REPLACE INTO $table_name (`" . implode("`,`", array_keys($d)) . "`)
+						VALUES('" . implode("','", array_values(addslashes_d($d))) . "')\");\n";
 					}
 				}
 				//检测本次备份是否超出分卷大小
@@ -187,57 +147,30 @@ final class Backup {
 				}
 			} while (true);
 		}
-		//更新配置文件
-		//      $html = "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>完成所有数据备份!";
-		session('backup_dir', NULL);
-		session('backup_fid', NULL);
-		//      if (!empty($config['url']))
-		//          $html .= "<a href='javascript:parent.location.href=\"" . $config['url'] . "\"' class='btn'>返回备份列表</a>";
-		//      $html .= '</div></body></html>';
-		//      self::success($html);
 		return array('state' => "success", 'message' => '完成所有数据备份...');
 	}
 
 	//写入备份数据
 	static private function write_backup_data($table, $data, $current_row) {
 		//当前备份分卷id
-		$fid = Q("session.backup_fid", 1, 'intval');
+		$fid = Q("get.backup_fid", 1, 'intval');
 		file_put_contents(self::$dir . "/{$table}_bk_{$fid}.php", "<?php if(!defined('HDPHP_PATH'))EXIT;\n{$data}");
 		return self::next_backup($current_row, $table);
 	}
 
 	/**
 	 * 返回备份信息
-	 * @param $current_row 当前备份到的行
-	 * @param $table 当前备份的表
+	 * @param string  $table 当前备份的表
+     * @return array
 	 */
-	static private function next_backup($current_row, $table) {
+	static private function next_backup($table) {
 		self::update_config_file();
-		//      if (!headers_sent()) {
-		//          header("Content-type:text/html;charset=utf-8");
-		//      }
-		//还原时间
-		$c = current(self::$config);
-		$step_time = $c['step_time'];
-
-		//      $html = "<script>setTimeout(function(){location.href='" . __METH__ . "';},{$step_time});</script>";
-		//      $html .= "<html><head><meta charset='utf-8'/></head><body><div style='text-align:center;font-size:14px;margin-top: 50px;'>
-		//      分卷{$_SESSION['backup_fid']}备份完成，继续备份{$table}表</div></body></html>";
-		//      echo $html;
 		//增加下一次分卷数
-		$_SESSION['backup_fid'] += 1;
-		return array('state' => 'run', 'message' => "分卷{$_SESSION['backup_fid']}备份完成，继续备份{$table}表", 'url' => __METH__);
+		$_GET['backup_fid'] += 1;
+        $_GET['backup_dir']=urlencode($_GET['backup_dir']);
+        $url = U(ACTION,array('backup_dir'=>$_GET['backup_dir'],'backup_fid'=>$_GET['backup_fid']));
+		return array('state' => 'run', 'message' => "分卷{$_GET['backup_fid']}备份完成，继续备份{$table}表", 'url' => $url);
 	}
-
-	//备份或还原完毕
-	//  static private function success($msg)
-	//  {
-	//      if (!headers_sent()) {
-	//          header("Content-type:text/html;charset=utf-8");
-	//      }
-	//      echo $msg;
-	//      exit;
-	//  }
 
 	//初始化
 	static private function init($config) {
@@ -293,5 +226,4 @@ final class Backup {
 		$s = "<?php if(!defined('HDPHP_PATH'))exit;\nreturn " . var_export(self::$config, true) . ";\n?>";
 		file_put_contents(self::$dir . '/config.php', $s);
 	}
-
 }

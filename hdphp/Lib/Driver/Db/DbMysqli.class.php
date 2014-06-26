@@ -100,9 +100,9 @@ class DbMysqli extends Db
     public function query($sql)
     {
         $cache_time = $this->cacheTime ? $this->cacheTime : intval(C("CACHE_SELECT_TIME"));
-        $cacheName = md5($sql . APP . CONTROL . METHOD);
+        $cacheName = md5($sql . MODULE . CONTROLLER . ACTION);
         if ($cache_time >= 0) {
-            $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
+            $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => APP_CACHE_PATH, "zip" => false));
             if ($result) {
                 //查询参数初始化
                 $this->optInit();
@@ -117,7 +117,7 @@ class DbMysqli extends Db
             $list [] = $res;
         }
         if ($cache_time >= 0 && count($list) <= C("CACHE_SELECT_LENGTH")) {
-            S($cacheName, $list, $cache_time, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
+            S($cacheName, $list, $cache_time, array("Driver" => "file", "dir" => APP_CACHE_PATH, "zip" => false));
         }
         return empty($list) ? NULL : $list;
     }

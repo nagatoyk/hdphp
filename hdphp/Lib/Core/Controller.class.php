@@ -174,7 +174,7 @@ abstract class Controller {
 	 */
 	protected function error($msg = '出错了', $url = NULL, $time = 2, $tpl = null) {
 		$url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
-		$tpl = $tpl ? $tpl : strstr(C("TPL_ERROR"), '/') ? C("TPL_ERROR") : PUBLIC_PATH . C("TPL_ERROR");
+		$tpl = $tpl ? $tpl : strstr(C("TPL_ERROR"), '/') ? C("TPL_ERROR") : MODULE_PUBLIC_PATH . C("TPL_ERROR");
 		$this -> assign(array("msg" => $msg, 'url' => $url, 'time' => $time));
 		$this -> display($tpl);
 		exit ;
@@ -189,7 +189,7 @@ abstract class Controller {
 	 */
 	protected function success($msg = '操作成功', $url = NULL, $time = 2, $tpl = null) {
 		$url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
-		$tpl = $tpl ? $tpl : strstr(C("TPL_SUCCESS"), '/') ? C("TPL_SUCCESS") : PUBLIC_PATH . C("TPL_SUCCESS");
+		$tpl = $tpl ? $tpl : strstr(C("TPL_SUCCESS"), '/') ? C("TPL_SUCCESS") : MODULE_PUBLIC_PATH . C("TPL_SUCCESS");
 		$this -> assign(array("msg" => $msg, 'url' => $url, 'time' => $time));
 		$this -> display($tpl);
 		exit ;

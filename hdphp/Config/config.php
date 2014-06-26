@@ -8,7 +8,7 @@ return array(
     'HTML_PATH'                     => 'h',         //静态HTML保存目录
     'LANGUAGE'                      => '',          //语言包
     'AUTH_KEY'                      => 'HouDunWang',//加密Key(如果使用建议定期更换AUTH_KEY)
-    'CHECK_FILE_CASE'               => FALSE,       //windows区分大小写
+    'CHECK_FILE_CASE'               => TRUE,        //windows区分大小写
     'AUTO_LOAD_FILE'                => array(),     //自动加载应用Lib目录或应用组Common/Lib目录下的文件
     'FILTER_FUNCTION'               => array('htmlspecialchars','strip_tags'), //过滤函数会在Q(),date_format()等函数中使用
     'HTML_PATH'						=>'html/',//静态html文件储存目录
@@ -50,10 +50,10 @@ return array(
     /********************************URL设置********************************/
     'HTTPS'                         => FALSE,       //基于https协议
     'URL_REWRITE'                   => FALSE,       //url重写模式
-    'URL_TYPE'                      => 1,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
+    'URL_TYPE'                      => 2,           //类型 1:PATHINFO模式 2:普通模式 3:兼容模式
     'PATHINFO_DLI'                  => '/',         //URL分隔符 URL_TYPE为1、3时起效
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
-    'HTML_SUFFIX'                   => '.html',     //伪静态扩展名
+    'HTML_SUFFIX'                   => '',          //伪静态扩展名
     /********************************url变量********************************/
     'VAR_MODULE'                    => 'm',         //模块URL变量
     'VAR_CONTROLLER'                => 'c',         //控制器URL变量
@@ -62,7 +62,7 @@ return array(
     'DEFAULT_MODULE'                => 'Index',     //默认模块
     'DEFAULT_CONTROLLER'            => 'Index',     //默认控制器
     'DEFAULT_ACTION'                => 'index',     //默认方法
-    'CONTROL_FIX'                   => 'Controller',//控制器文件后缀
+    'CONTROLLER_FIX'                => 'Controller',//控制器文件后缀
     'MODEL_FIX'                     => 'Model',     //模型文件名后缀
     /********************************URL路由********************************/
     'route' => array(),                             //路由规则
@@ -80,7 +80,7 @@ return array(
         'host'      => '127.0.0.1',     //主机
         'port'      => 6379,            //端口
         'password'  => '',              //密码
-        'timeout'   => 1,               //超时时间
+        'timeout'   => 1,               //超时时间(单位为秒)
         'Db'        => 0,               //数据库
         'pconnect'  => 0,               //持久连接
     ),
@@ -137,8 +137,8 @@ return array(
     'TPL_STYLE'                     => '',          //风格
     'TPL_FIX'                       => '.html',     //模版文件扩展名
     'TPL_TAGS'                      => array(),     //扩展标签,多个标签用逗号分隔
-    'TPL_ERROR'                     => 'error.html',     //错误信息模板
-    'TPL_SUCCESS'                   => 'success.html',   //正确信息模板
+    'TPL_ERROR'                     => 'error',     //错误信息模板
+    'TPL_SUCCESS'                   => 'success',   //正确信息模板
     'TPL_ENGINE'                    => 'HD',        //模板引擎 HD,Smarty
     'TPL_TAG_LEFT'                  => '<',         //左标签
     'TPL_TAG_RIGHT'                 => '>',         //右标签

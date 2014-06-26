@@ -258,7 +258,7 @@ final class Boot
         }
         $files = array(
             HDPHP_CORE_PATH . 'App.class.php', //HDPHP顶级类
-            HDPHP_CORE_PATH . 'Control.class.php', //控制器基类
+            HDPHP_CORE_PATH . 'Controller.class.php', //控制器基类
             HDPHP_CORE_PATH . 'Debug.class.php', //Debug处理类
             HDPHP_CORE_PATH . 'Event.class.php', //事件处理类
             HDPHP_CORE_PATH . 'HDPHP.class.php', //HDPHP顶级类

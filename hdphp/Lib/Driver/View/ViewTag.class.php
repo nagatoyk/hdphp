@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -696,19 +694,10 @@ class ViewTag
                 <![endif]-->';
         return $str;
     }
-
-    //less
-    public function _less($attr, $content)
-    {
-        return "<script src='__HDPHP_EXTEND__/Org/Less/es5-shim/es5-sham.min.js'></script>\n
-                <script src='__HDPHP_EXTEND__/Org/Less/es5-shim/es5-shim.min.js'></script>\n
-                <script src='__HDPHP_EXTEND__/Org/Less/less-1.5.0.min.js'></script>\n";
-    }
-
     //js轮换版
     public function _slide($attr, $content)
     {
-        return "<script src='__HDPHP__/../hdjs/js/slide.js'></script>\n";
+        return "<script src='__HDPHP__/hdjs/js/slide.js'></script>\n";
     }
 
     //jquery
@@ -720,7 +709,7 @@ class ViewTag
     //日历
     public function _cal($attr, $content)
     {
-        return "<script src='__HDPHP__/../hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+        return "<script src='__HDPHP__/hdjs/org/cal/lhgcalendar.min.js'></script>\n";
     }
 
     //hdjs
@@ -728,8 +717,8 @@ class ViewTag
     {
         $php = '';
         $php .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
-        $php .= "<link href='__HDPHP__/../hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<script src='__HDPHP__/../hdjs/js/hdjs.js'></script>\n";
+        $php .= "<link href='__HDPHP__/hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP__/hdjs/js/hdjs.js'></script>\n";
         $php .= $this->_slide(null, null);
         $php .= $this->_cal(null, null);
         $php .= $this->_jsconst(null, null);

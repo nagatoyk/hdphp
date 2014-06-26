@@ -155,7 +155,7 @@ final class Route
             //普通模式
             case 2:
                 defined('__MODULE__')   or define("__MODULE__", __WEB__ .'?' . C('VAR_MODULE') . '=' .MODULE);
-                defined('__CONTROLLER__')  or define("__CONTROLLER__", __MODULE__ . '&' . C('VAR_CONTROL') . '=' . CONTROLLER);
+                defined('__CONTROLLER__')  or define("__CONTROLLER__", __MODULE__ . '&' . C('VAR_CONTROLLER') . '=' . CONTROLLER);
                 defined('__ACTION__')   or define("__ACTION__", __CONTROLLER__ . '&' . C('VAR_ACTION') . '=' . ACTION);
                 break;
             //兼容模式
@@ -300,7 +300,6 @@ final class Route
                         $v = preg_replace('@([\*\$\(\)\+\?\[\]\{\}\\\])@', '\\\$1', $v);
                         $routeUrl = preg_replace('@' . $v . '@', $urlArgs[0][$k + 1], $routeUrl, $count = 1);
                     }
-
                     return trim($routeUrl, '/');
                 }
             } else {
@@ -339,7 +338,6 @@ final class Route
         }
         return $url;
     }
-
 
     /**
      * 移除URL中的指定GET变量
@@ -388,11 +386,9 @@ final class Route
         $url_rtrim = trim(trim($url, $pathinfo_dli), '&');
         $url_str = empty($url_rtrim) ? "" : $pathinfo_dli . $url_rtrim;
         if ($url_type == 1) {
-            return __METH__ . $url_str;
+            return __ACTION__ . $url_str;
         } else {
-            return __METH__ . "&" . trim($url_str, "&");
+            return __ACTION__ . "&" . trim($url_str, "&");
         }
     }
 }
-
-?>

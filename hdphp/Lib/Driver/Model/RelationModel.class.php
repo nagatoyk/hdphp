@@ -17,17 +17,26 @@
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
 //关联常量定义
-defined("HAS_ONE")      or define("HAS_ONE", "HAS_ONE");
+defined("HAS_ONE") or define("HAS_ONE", "HAS_ONE");
 //一对多 主表 VS 从表  用户表（主表）  VS  用户信息表
-defined("HAS_MANY")     or define("HAS_MANY", "HAS_MANY");
+defined("HAS_MANY") or define("HAS_MANY", "HAS_MANY");
 //一对多  从表 VS 主表 用户信息表（主表） VS  用户表
-defined("BELONGS_TO")   or define("BELONGS_TO", "BELONGS_TO");
+defined("BELONGS_TO") or define("BELONGS_TO", "BELONGS_TO");
 //多对多
 defined("MANY_TO_MANY") or define("MANY_TO_MANY", "MANY_TO_MANY");
+
 class RelationModel extends Model
 {
     //关联模型定义
     public $join = array();
+    public $joinTable = array();
+    //设置关联表
+    public function relation($joinTable = array())
+    {
+        if (is_string($joinTable)) {
+            $this->joinTable = explode(',', $joinTable);
+        }
+    }
 
     //本次需要关联的表
     private function check_join($table)
@@ -40,17 +49,7 @@ class RelationModel extends Model
         }
 
     }
-    //初始化
-    protected function init()
-    {
-        $opt = array(
-            'trigger' => true,
-            'joinTable' => array(),
-        );
-        foreach ($opt as $n => $v) {
-            $this->$n = $v;
-        }
-    }
+
     //验证关联定义
     private function checkJoinSet($set)
     {
@@ -73,16 +72,13 @@ class RelationModel extends Model
     //关联查询
     public function select($data = array())
     {
-        $trigger=$this->trigger;
-        $this->trigger=true;
         //主表主键
         $pri = $this->db->pri;
         $result = call_user_func(array($this->db, __FUNCTION__), $data);
         //插入失败或者没有定义关联join属性
-        if (!$result || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
+        if (!$result || $this->joinTable === false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $trigger and $this->__after_select($result);
-            $this->init();
+            $this->joinTable = array();
             return $result;
         }
         //关联操作
@@ -143,9 +139,8 @@ class RelationModel extends Model
             }
         }
         $this->error = $this->db->error;
-        $trigger and $this->__after_select($result);
         $data = empty($result) ? null : $result;
-        $this->init();
+        $this->joinTable = array();
         return $data;
     }
 
@@ -154,23 +149,18 @@ class RelationModel extends Model
     {
         $this->data($data);
         $data = $this->data;
-        $trigger=$this->trigger;
-        $trigger and $this->__before_insert($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于INSERT！";
-            $this->init();
-            $this->data=array();
-            $this->trigger=true;
+            $this->joinTable = array();
+            $this->data = array();
             return false;
         }
         $id = call_user_func(array($this->db, __FUNCTION__), $data, $type);
         //插入失败或者没有定义关联join属性
-        if (!$id || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
+        if (!$id || $this->joinTable === false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $trigger and $this->__after_insert($id);
-            $this->init();
-            $this->data=array();
-            $this->trigger=true;
+            $this->joinTable = array();
+            $this->data = array();
             return $id;
         }
         $result_id = array();
@@ -219,10 +209,8 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $trigger and $this->__after_insert($result);
-        $this->init();
-        $this->data=array();
-        $this->trigger=true;
+        $this->joinTable = array();
+        $this->data = array();
         return $result;
     }
 
@@ -231,24 +219,18 @@ class RelationModel extends Model
     {
         $this->data($data);
         $data = $this->data;
-        $trigger=$this->trigger;
-        $trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
-            $trigger and $this->__after_update(NULL);
-            $this->init();
-            $this->data=array();
-            $this->trigger=true;
+            $this->joinTable = array();
+            $this->data = array();
             return false;
         }
         $stat = call_user_func(array($this->db, __FUNCTION__), $data);
         //插入失败或者没有定义关联join属性
-        if (!$stat || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
+        if (!$stat || $this->joinTable === false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $trigger and $this->__after_update($stat);
-            $this->init();
-            $this->data=array();
-            $this->trigger=true;
+            $this->joinTable = array();
+            $this->data = array();
             return $stat;
         }
         $pri = $this->db->pri;
@@ -298,32 +280,26 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $trigger and $this->__after_update($result);
-        $this->init();
-        $this->data=array();
-        $this->trigger=true;
+        $this->joinTable = array();
+        $this->data = array();
         return $result;
     }
 
     //关联删除
     public function delete($data = array())
     {
-        $trigger=$this->trigger;
-        $this->trigger=true;
-        $trigger and $this->__before_delete($data);
         //查找将删除的主表数据，用于副表删除时使用
         $id = M($this->table)->where($data)->select();
         if (!$id) {
-            $this->init();
+            $this->joinTable = array();
             return true;
         }
         $this->db->opt = $this->db->opt_old;
         $stat = call_user_func(array($this->db, __FUNCTION__));
         //插入失败或者没有定义关联join属性
-        if (!$stat || $this->joinTable===false || empty($this->join) || !is_array($this->join)) {
+        if (!$stat || $this->joinTable === false || empty($this->join) || !is_array($this->join)) {
             $this->error = $this->db->error;
-            $trigger and $this->__after_delete($stat);
-            $this->init();
+            $this->joinTable = array();
             return $stat;
         }
         $result_id = array();
@@ -357,40 +333,7 @@ class RelationModel extends Model
         }
         $this->error = $this->db->error;
         $result = empty($result_id) ? null : $result_id;
-        $trigger and $this->__after_delete($result);
-        $this->init();
+        $this->joinTable = array();
         return $result;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

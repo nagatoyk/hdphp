@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-	exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -31,13 +29,13 @@ function M($table = null, $full = null) {
 
 /**
  * 生成扩展模型
- * @param $class 扩展类名
+ * @param $name 模型名
  * @param array $param __init()方法参数
  * @return mixed
  */
-function K($class, $param = array()) {
-	$class .= "Model";
-	return new $class(null, null, null, $param);
+function K($name, $param = array()) {
+	$class = $name."Model";
+	return new $class($name, null, null, $param);
 }
 
 /**
@@ -66,7 +64,7 @@ function V($tableName = null, $full = null) {
  * @param string $path 缓存目录
  * @return bool
  */
-function F($name, $value = false, $path = CACHE_PATH) {
+function F($name, $value = false, $path = APP_CACHE_PATH) {
 	$_cache = array();
 	$cacheFile = rtrim($path, '/') . '/' . $name . '.php';
 	if (is_null($value)) {
@@ -124,34 +122,34 @@ function S($name, $value = false, $expire = null, $options = array()) {
 }
 
 /**
- * 执行控制器中的方法（支持分组）
- * @param $arg 应用/控制器/方法
+ * 执行控制器中的方法
+ * @param $arg 模块/控制器/方法
  * @param array $args 参数
  * @return mixed
  */
 function A($arg, $args = array()) {
-	$arg = trim($arg, '/');
-	$pathArr = explode('/', trim($arg, '/'));
+    $arg = str_replace('.','/',$arg);
+	$pathArr = explode('/', $arg);
 	switch (count($pathArr)) {
 		case 1 :
 			//当前应用
-			$base = CONTROL_PATH . CONTROL;
+			$base = APP_CONTROLLER_PATH . CONTROLLER;
 			$method = $pathArr[0];
 			break;
 		case 2 :
 			//当前应用其他控制器
-			$base = CONTROL_PATH . $pathArr[0];
+			$base = APP_CONTROLLER_PATH . $pathArr[0];
 			$method = $pathArr[1];
 			break;
 		case 3 :
-			//其它应用控制器与方法
-			$base = APP_PATH . '../' . $pathArr[0] . '/Control/' . $pathArr[1];
+			//其它模块控制器与方法
+			$base = MODULE_PATH . '../' . $pathArr[0] . '/Controller/' . $pathArr[1];
 			$method = $pathArr[2];
 			break;
 	}
 	//控制器名
-	$class = basename($base) . C('CONTROL_FIX');
-	if (require_cache($base . C('CONTROL_FIX') . '.class.php')) {
+	$class = basename($base) . C('CONTROLLER_FIX');
+	if (require_cache($base . C('CONTROLLER_FIX') . '.class.php')) {
 		if (class_exists($class)) {
 			$obj = new $class();
 			if (method_exists($class, $method)) {
@@ -225,14 +223,13 @@ function require_cache($path = null)
 }
 
 /**
- * 生成对象 || 执行方法
+ * 生成对象或执行对象方法
  * @param $class 类名
  * @param string $method 方法
  * @param array $args 参数
  * @return mixed
  */
 function O($class, $method = null, $args = array()) {
-	$path = $class;
 	$tmp = explode(".", $class);
 	$class = array_pop($tmp);
 	if (!class_exists($class)) {
@@ -246,8 +243,6 @@ function O($class, $method = null, $args = array()) {
 		if ($method && method_exists($obj, $method)) {
 			if (empty($args)) {
 				$args = array();
-			} else if (!is_array($args)) {
-				error("O()函数第3个参数必须为数组，你也可以不传");
 			}
 			return call_user_func_array(array($obj, $method), $args);
 		} else {
@@ -265,15 +260,15 @@ function getControl($Control) {
 
 /**
  * 实例化控制器并执行方法
- * @param $control 控制器
+ * @param $class 控制器
  * @param null $method 方法
  * @param array $args 参数
  * @return bool|mixed
  */
-function control($class, $method = NULl, $args = array()) {
-	$class = $class.C('CONTROL_FIX');
-	$classfile =$class.'.class.php';
-	if (require_array(array(HDPHP_CORE_PATH . $classfile, MODULE_CONTROLLER_PATH . $classfile, APP_CONTROLLER_PATH . $classfile))) {
+function controller($class, $method = NULl, $args = array()) {
+	$class = $class.C('CONTROLLER_FIX');
+	$classFile =$class.'.class.php';
+	if (require_array(array(HDPHP_CORE_PATH . $classFile, MODULE_CONTROLLER_PATH . $classFile, APP_CONTROLLER_PATH . $classFile))) {
 		if (class_exists($class)) {
 			$obj = new $class();
 			if ($method && method_exists($obj, $method)) {
@@ -1116,12 +1111,16 @@ function U($path, $args = array())
     $data = array();
     switch (count($vars)) {
         case 2: //应用
+            $data[] = C("VAR_MODULE");
+            $data[] = MODULE;
             $data[] = C("VAR_CONTROLLER");
             $data[] = array_shift($vars);
             $data[] = C("VAR_ACTION");
             $data[] = array_shift($vars);
             break;
         case 1: //方法
+            $data[] = C("VAR_MODULE");
+            $data[] = MODULE;
             $data[] = C("VAR_CONTROLLER");
             $data[] = CONTROLLER;
             $data[] = C("VAR_ACTION");
@@ -1148,7 +1147,7 @@ function U($path, $args = array())
             foreach ($varsAll as $value) {
                 $url .= C('PATHINFO_Dli') . $value;
             }
-            $url = str_replace(array("/" . C("VAR_MODULE") . "/", "/" . C("VAR_CONTROL") . "/", "/" . C("VAR_ACTION") . "/"), "/", $url);
+            $url = str_replace(array("/" . C("VAR_MODULE") . "/", "/" . C("VAR_CONTROLLER") . "/", "/" . C("VAR_ACTION") . "/"), "/", $url);
             $url = substr($url, 1);
             break;
         case 2:
@@ -1163,7 +1162,7 @@ function U($path, $args = array())
             $url = substr($url, 1);
             break;
     }
-    return $root . Route::toUrl($url);
+    return $root . Route::toUrl($url).C('HTML_SUFFIX');
 }
 
 /**

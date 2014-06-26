@@ -12,19 +12,19 @@
         padding: 0px;
         margin: 0px;
         overflow: hidden;
-        display: none;
         background: #ffffff;
         padding-top:3px;
         _position: absolute;
         _bottom:0px;
     }
     div#hd_debug a {
-        color: #333;
+        color: #005e15;
         text-decoration: none;
     }
     div#hd_debug div#debug_menu {
         height: 25px;
-        border-bottom: solid 2px #009CAE;
+        border-bottom: solid 5px #009944;
+        margin-bottom: 5px;
     }
 
     div#hd_debug div#debug_menu ul {
@@ -34,6 +34,7 @@
     }
 
     div#hd_debug div#debug_menu ul li {
+        color:#005e15;
         float: left;
         cursor: pointer;
         height: 24px;
@@ -41,13 +42,13 @@
         text-align: center;
         line-height: 28px;
         overflow: hidden;
-        border: solid 1px #DCE3ED;
+        border: solid 1px #32b16c;
         border-bottom: none;
         margin-right: 6px;
     }
 
     div#hd_debug div#debug_menu ul li.active {
-        background: #009CAE;
+        background: #009944;
         color: #fff;
         height: 25px;
         border: none;
@@ -89,12 +90,12 @@
         text-align: left;
     }
     #hd_debug_bt {
-        background: url("<?php echo __HDPHP_DATA__;?>/Image/debug.png") no-repeat;
+        background: url("<?php echo __HDPHP_TPL__;?>/static/debug.png") no-repeat;
         border-radius: 0px;
         cursor: pointer;
         z-index: 2000;
-        width: 25px;
-        height:25px;
+        width: 30px;
+        height:30px;
         text-indent: -9999px;
         position: fixed;
         bottom: 5px;
@@ -102,11 +103,13 @@
         top:50%;
         right:10px;
         display:block;
+        border-radius: 2px;
         _position: absolute;
     }
 </style>
+
 <!--DEBUG-->
-<div id="hd_debug">
+<div id="hd_debug" style="display: <?php echo DEBUG_TOOL?'block':'none';?>;">
     <div id="debug_menu">
         <ul>
             <li id="_server" class="active">运行环境</li>
@@ -127,6 +130,10 @@
         <div id="server" class="active">
             <table>
                 <tr>
+                    <td width="80">运行时间</td>
+                    <td><?php echo Debug::runtime('APP_START')?>s</td>
+                </tr>
+                <tr>
                     <td width="80">服务器信息</td>
                     <td><?php echo $_SERVER['SERVER_SOFTWARE']; ?></td>
                 </tr>
@@ -143,12 +150,8 @@
                     <td><?php echo $_SERVER['REQUEST_METHOD']; ?></td>
                 </tr>
                 <tr>
-                    <td>通信协议</td>
-                    <td><?php echo $_SERVER['SERVER_PROTOCOL']; ?></td>
-                </tr>
-                <tr>
                     <td>当前模块</td>
-                    <td><?php echo CONTROL_PATH . CONTROL . C("CONTROL_FIX") . ".class.php"; ?></td>
+                    <td><?php echo MODULE_PATH .'Controller/'. CONTROLLER . C("CONTROLLER_FIX") . ".class.php"; ?></td>
                 </tr>
                 <tr>
                     <td>会话ID</td>
@@ -243,8 +246,6 @@
                     <td width="100">name</td>
                     <td>
                         value
-                        <a href='<?php echo dirname(__HDPHP__).'/setup/index.php'?>?c=session&path_root=%2Fwww%2Fhdphp%2Fexample%2FApp%2F&app=http%3A%2F%2Flocalhost%2Fhdphp%2Fexample%2FApp%2Findex.php%2F1%2FIndex%2Findex'
-                            target='_blank'> 配置SESSION </a>
                     </td>
                 </tr>
                 </thead>
@@ -314,14 +315,15 @@
 </script>
 
 <!--开启debug按钮-->
-<div id="hd_debug_bt">HDPHP</div>
+<div id="hd_debug_bt">HDPHP </div>
 <script>
     var _hd_debug_bt = document.getElementById("hd_debug_bt");
     var _hd_debug = document.getElementById("hd_debug");
     document.getElementById("hd_debug_bt").onclick = function () {
-        if (_hd_debug.style.display) {
-            _hd_debug.style.display = "";
-        } else {
+        var _display =_hd_debug.style.display;
+        if(_display=='block'){
+            _hd_debug.style.display = "none";
+        }else{
             _hd_debug.style.display = "block";
         }
     }

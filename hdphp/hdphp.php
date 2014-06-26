@@ -17,6 +17,7 @@
  */
 define('HDPHP_VERSION', '2014-06-16');
 defined("DEBUG")        	or define("DEBUG", FALSE);//调试模式
+defined("DEBUG_TOOL")       or define("DEBUG_TOOL", FALSE);//调试工具
 defined('APP_PATH') 		or define('APP_PATH', './Application/');//应用目录
 defined('TEMP_PATH')    	or define('TEMP_PATH', APP_PATH. 'Temp/');
 defined('TEMP_FILE')    	or define('TEMP_FILE',TEMP_PATH.'~Boot.php');//编译文件

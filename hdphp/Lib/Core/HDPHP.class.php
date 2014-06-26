@@ -41,10 +41,10 @@ final class HDPHP
         defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_TPL_PATH .'Public/');
         defined('CONTROLLER_TPL_PATH')                          or define('CONTROLLER_TPL_PATH',MODULE_TPL_PATH.CONTROLLER.'/');
         //网站根-Static目录
-        defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static');
-        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(CONTROLLER_TPL_PATH,'/'));
-        defined("__CONTROL_TPL__")                              or define("__CONTROL_TPL__", __TPL__  .'/'. CONTROLLER);
-        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . '/Public');
+        defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static/');
+        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.MODULE_TPL_PATH);
+        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . 'Public/');
+        defined("__CONTROLLER_TPL__")                           or define("__CONTROLLER_TPL__", __TPL__  . CONTROLLER.'/');
         //来源URL
         define("__HISTORY__",                                   isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null);
         //=========================环境配置
@@ -70,8 +70,9 @@ final class HDPHP
         //COOKIE安全处理
         if(!empty($_COOKIE)){
             foreach($_COOKIE as $name=>$v){
-                $name = preg_replace('@[^0-9a-z]@', '', $name);
-                $_COOKIE[$name]=$v;
+                $_name = preg_replace('@[^0-9a-z]@i', '', $name);
+                unset($_COOKIE[$name]);
+                $_COOKIE[$_name]=$v;
             }
         }
     }
