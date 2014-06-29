@@ -669,11 +669,14 @@ class Model {
 	/**
 	 * 删除表
 	 * @param string $tableName 表名
+     * @return mixed
 	 */
 	public function dropTable($tableName) {
 		if ($this -> tableExists($tableName)) {
 			return $this -> exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . $tableName . "`");
-		}
+		}else{
+            return false;
+        }
 	}
 
 	/**

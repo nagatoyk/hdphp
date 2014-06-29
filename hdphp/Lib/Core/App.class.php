@@ -66,7 +66,7 @@ final class App
                 _404('模块' .MODULE  . '不存在');
             }
             //空控制器
-            $controller = Control("Empty");
+            $controller = Controller("Empty");
             if (!$controller) {
                 _404('控制器' . CONTROLLER .C("CONTROLLER_FIX") .'不存在');
             }

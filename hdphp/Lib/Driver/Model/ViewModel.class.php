@@ -44,6 +44,6 @@ class ViewModel extends Model
         }
         $this->db->opt['table'] = $from;
         $this->joinTable = array();
-        parent::select($data);
+        return parent::select($data);
     }
 }

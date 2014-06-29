@@ -29,7 +29,7 @@ class CacheFile extends Cache
      */
     public function __construct($options = array())
     {
-        $this->options['dir'] = isset($options['dir']) ? rtrim($options['dir'], '/') : CACHE_PATH; //缓存目录
+        $this->options['dir'] = isset($options['dir']) ? rtrim($options['dir'], '/') : APP_CACHE_PATH; //缓存目录
         $this->options['expire'] = isset($options['expire']) ? intval($options['expire']) : C("CACHE_TIME"); //缓存时间
         $this->options['prefix'] = isset($options['prefix']) ? $options['prefix'] : ''; //缓存前缀
         $this->options['length'] = isset($options['length']) ? $options['length'] : 0; //队列长度

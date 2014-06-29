@@ -36,6 +36,7 @@ class RelationModel extends Model
         if (is_string($joinTable)) {
             $this->joinTable = explode(',', $joinTable);
         }
+        return $this;
     }
 
     //本次需要关联的表

@@ -37,7 +37,8 @@ final class HDPHP
         is_file(MODULE_CONFIG_PATH . 'alias.php')               and alias_import(MODULE_CONFIG_PATH . 'alias.php');
         is_file(MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //模板目录常量
-        defined('MODULE_TPL_PATH')                              or define('MODULE_TPL_PATH',C('TPL_PATH')?C('TPL_PATH').C('TPL_STYLE'):MODULE_PATH.'Tpl/'.C('TPL_STYLE'));
+        defined('MODULE_TPL_PATH')                              or define('MODULE_TPL_PATH',strstr(C('TPL_PATH'),'/')?C('TPL_PATH').C('TPL_STYLE'):
+                                                                                            MODULE_PATH.C('TPL_PATH').'/'.C('TPL_STYLE'));
         defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_TPL_PATH .'Public/');
         defined('CONTROLLER_TPL_PATH')                          or define('CONTROLLER_TPL_PATH',MODULE_TPL_PATH.CONTROLLER.'/');
         //网站根-Static目录

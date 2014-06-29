@@ -135,7 +135,7 @@ class Page
             $url_type = C("URL_TYPE");
             switch ($url_type) {
                 case 1:
-                    $url = __METH__ . '/';
+                    $url = __ACTION__ . '/';
                     foreach ($get as $k => $v) {
                         $url .= $k . '/' . $v . '/';
                     }
