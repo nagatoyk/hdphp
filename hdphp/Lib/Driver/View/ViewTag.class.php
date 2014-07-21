@@ -331,12 +331,13 @@ class ViewTag
         $height = '"' . $height . '"';
         $maxImageWidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : C('UPLOAD_IMG_MAX_WIDTH'); //最大图片宽度
         $maxImageHeight = isset($attr['maximageheight']) ? $attr['maximageheight'] : C('UPLOAD_IMG_MAX_HEIGHT'); //最大图片高度
+        $water = isset($attr['water']) ? $attr['water'] : C('EDITOR_IMAGE_WATER');
         $get = $_GET;
         unset($get['a']);
         $phpScript = isset($attr['php']) ? $attr['php'] : __WEB__ . '?' . http_build_query($get) . '&a=ueditor_upload'; //PHP处理文件
         //图片按钮
         if ($style == 2) {
-            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','simpleupload','insertcode','preview']]";
+            $toolbars = "[['FullScreen', 'Bold','simpleupload','insertcode']]";
         } else {
             $toolbars = "[
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
@@ -361,7 +362,7 @@ class ViewTag
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                serverUrl:'" . $phpScript . "&maximagewidth={$maxImageWidth}&maximageheight={$maxImageHeight}'//图片上传脚本
+                serverUrl:'" . $phpScript . "&UPLOAD_IMG_MAX_WIDTH={$maxImageWidth}&UPLOAD_IMG_MAX_HEIGHT={$maxImageHeight}&water={$water}'//图片上传脚本
                 ,zIndex : 0
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000
@@ -441,13 +442,13 @@ class ViewTag
     public function _highlight()
     {
         return '<link type="text/css" rel="stylesheet" href="__HDPHP_EXTEND__/Org/Editor/Keditor/plugins/code/prettify.css"/>
-        <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.js"></script>
-    <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.css"/>
-    <script>
-  var editor = CodeMirror.fromTextArea(myTextarea, {
-    mode: "text/html"
-  });
-</script>';
+                <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.js"></script>
+                <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.css"/>
+                <script>
+                    var editor = CodeMirror.fromTextArea(myTextarea, {
+                        mode: "text/html"
+                    });
+                </script>';
     }
 
     //加载CSS文件

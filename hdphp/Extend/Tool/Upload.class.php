@@ -54,7 +54,7 @@ class Upload
         }
         $this->size = $size ? $size : array_change_key_case_d(C("UPLOAD_EXT_SIZE"), 1);
         $this->waterMarkOn = is_null($waterMarkOn) ? C("WATER_ON") : $waterMarkOn;
-        $this->thumbOn = is_null($thumbOn) ? C("UPLOAD_THUMB_ON") : $thumbOn;
+        $this->thumbOn = $thumbOn;
         $this->thumb = $thumb;
     }
 
@@ -161,12 +161,13 @@ class Upload
         $info = pathinfo($filePath);
         $arr['fieldname'] = $file['fieldname'];
         $arr['basename'] = $info['basename'];
-        $arr['filename'] = $info['filename'];//新文件名
-        $arr['name'] = $file['filename'];//旧文件名
+        $arr['filename'] = $info['filename']; //新文件名
+        $arr['name'] = $file['filename']; //旧文件名
         $arr['size'] = $file['size'];
         $arr['ext'] = $file['ext'];
-        $dir= str_ireplace("\\", "/", dirname($arr['path']));
-        $arr['dir']=substr($dir, "-1") == "/" ? $dir : $dir . "/";
+        $dir = str_ireplace("\\", "/", dirname($arr['path']));
+        $arr['dir'] = substr($dir, "-1") == "/" ? $dir : $dir . "/";
+        $arr['url'] = __ROOT__ . '/' . str_ireplace(ROOT_PATH, '', $arr['dir']).$arr['basename'];
         return $arr;
     }
 

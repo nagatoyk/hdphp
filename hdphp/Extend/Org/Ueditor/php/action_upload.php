@@ -1,5 +1,6 @@
 <?php
-require HDPHP_ORG_PATH . "Ueditor/php/Uploader.class.php";
+//require HDPHP_ORG_PATH . "Ueditor/php/Uploader.class.php";
+require "/www/hdphp/hdphp/Extend/Org/Ueditor/php/Uploader.class.php";
 /* 上传配置 */
 $base64 = "upload";
 switch (htmlspecialchars($_GET['action'])) {

@@ -148,11 +148,10 @@ return array(
     /********************************文本编辑器********************************/
     'EDITOR_TYPE'                   => 2,           //复文本编辑器  1 baidu  2 kindeditor
     'EDITOR_STYLE'                  => 1,           //1 完全模式  2 精简模式
-    'EDITOR_MAX_STR'                => 2000,        //编辑器最大字数
     'EDITOR_WIDTH'                  => '100%',      //编辑器高度
     'EDITOR_HEIGHT'                 => 300,         //编辑器高度
-    'EDITOR_FILE_SIZE'              => 2000000,     //上传图片文件大小
     'EDITOR_SAVE_PATH'              => 'upload/editor/', //文件储存目录
+    'EDITOR_IMAGE_WATER'            => false,        //图片水印控制
 
     /********************************RBAC权限控制********************************/
     'RBAC_TYPE'                     => 1,           //1时时认证｜2登录认证

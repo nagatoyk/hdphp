@@ -36,8 +36,6 @@ class Image
     public $waterTextColor;
     //水印的文字的字体
     public $waterTextFont;
-    //是否开启缩略图功能
-//    private $thumbOn;
     //生成缩略图的方式
     public $thumbType;
     //缩略图的宽度

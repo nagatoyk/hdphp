@@ -4,22 +4,34 @@
 date_default_timezone_set("Asia/chongqing");
 error_reporting(E_ERROR);
 header("Content-Type: text/html; charset=utf-8");
-$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents(HDPHP_ORG_PATH."Ueditor/php/config.json")), true);
+
+$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("config.json")), true);
 $action = $_GET['action'];
+
 switch ($action) {
     case 'config':
         $result =  json_encode($CONFIG);
         break;
+
     /* 上传图片 */
     case 'uploadimage':
-    /* 上传涂鸦 */
+        /* 上传涂鸦 */
     case 'uploadscrawl':
-    /* 上传视频 */
+        /* 上传视频 */
     case 'uploadvideo':
-    /* 上传文件 */
+        /* 上传文件 */
     case 'uploadfile':
-        $result = include("action_upload.php");
+    $result = json_encode(array(
+        "state" => "SUCCESS", //上传状态，上传成功时必须返回"SUCCESS"
+        "url" => "http://ba.jpg", //返回的地址
+        "title" => "asdfsdf", //新文件名
+        "original" => "sdfsdf", //原始文件名
+        "type" => ".jpg", //文件类型
+        "size" => "20000", //文件大小
+    ));
+//        $result = include("action_upload.php");
         break;
+
     /* 列出图片 */
     case 'listimage':
         $result = include("action_list.php");
