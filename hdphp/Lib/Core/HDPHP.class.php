@@ -23,6 +23,9 @@ final class HDPHP
         is_file(APP_LANGUAGE_PATH . C('LANGUAGE') . '.php')     and L(require APP_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //解析路由
         Route::parseUrl();
+        //禁止使用模块检测
+        in_array(MODULE,C('DENY_MODULE')) && halt(MODULE.'模块禁止使用');
+        //常量定义
         defined('MODULE_PATH')                                  or define('MODULE_PATH', APP_PATH.MODULE.'/');
         defined('MODULE_CONTROLLER_PATH')                       or define('MODULE_CONTROLLER_PATH', MODULE_PATH . 'Controller/');
         defined('MODULE_MODEL_PATH')                            or define('MODULE_MODEL_PATH', MODULE_PATH . 'Model/');
@@ -42,10 +45,10 @@ final class HDPHP
         defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_TPL_PATH .'Public/');
         defined('CONTROLLER_TPL_PATH')                          or define('CONTROLLER_TPL_PATH',MODULE_TPL_PATH.CONTROLLER.'/');
         //网站根-Static目录
-        defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static/');
-        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.MODULE_TPL_PATH);
-        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . 'Public/');
-        defined("__CONTROLLER_TPL__")                           or define("__CONTROLLER_TPL__", __TPL__  . CONTROLLER.'/');
+        defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static');
+        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(MODULE_TPL_PATH,'/'));
+        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . '/Public');
+        defined("__CONTROLLER_TPL__")                           or define("__CONTROLLER_TPL__", __TPL__  .'/'. CONTROLLER);
         //来源URL
         define("__HISTORY__",                                   isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null);
         //=========================环境配置
@@ -103,52 +106,36 @@ final class HDPHP
     static public function autoload($className)
     {
         $class = ucfirst($className) . '.class.php'; //类文件
-        if (substr($className, -5) == 'Model') {
-            if (require_array(array(
+        if (substr($className, -5) == 'Model' && require_array(array(
                 HDPHP_DRIVER_PATH . 'Model/' . $class,
                 MODULE_MODEL_PATH . $class,
                 APP_MODEL_PATH . $class
-            ))
-            ) return;
-        } elseif (substr($className, -7) == 'Control') {
-            if (require_array(array(
+            ))) {return;
+        } elseif (substr($className, -10) == 'Controller' && require_array(array(
                 HDPHP_CORE_PATH . $class,
                 MODULE_CONTROLLER_PATH . $class,
                 APP_CONTROLLER_PATH . $class
-            ))
-            ) return;
-        } elseif (substr($className, 0, 2) == 'Db') {
-            if (require_array(array(
+            ))) {return;
+        } elseif (substr($className, 0, 2) == 'Db' && require_array(array(
                 HDPHP_DRIVER_PATH . 'Db/' . $class
-            ))
-            ) return;
-        } elseif (substr($className, 0, 5) == 'Cache') {
-            if (require_array(array(
-                HDPHP_DRIVER_PATH . 'Cache/' . $class,
-            ))
-            ) return;
-        } elseif (substr($className, 0, 4) == 'View') {
-            if (require_array(array(
+            ))) { return;
+        } elseif (substr($className, 0, 5) == 'Cache' && require_array(array(
+                HDPHP_DRIVER_PATH . 'Cache/' . $class
+            ))) {return;
+        } elseif (substr($className, 0, 4) == 'View' && require_array(array(
                 HDPHP_DRIVER_PATH . 'View/' . $class,
-            ))
-            ) return;
-        } elseif (substr($className, -5) == 'Event') {
-            if (require_array(array(
+            ))) {return;
+        } elseif (substr($className, -5) == 'Event' && require_array(array(
                 MODULE_EVENT_PATH . $class,
                 APP_EVENT_PATH . $class
-            ))
-            ) return;
-        } elseif (substr($className, -3) == 'Tag') {
-            if (require_array(array(
+            ))) {return;
+        } elseif (substr($className, -3) == 'Tag' && require_array(array(
                 APP_TAG_PATH . $class,
                 MODULE_TAG_PATH . $class
-            ))
-            ) return;
-        } elseif (substr($className, -7) == 'Storage') {
-            if (require_array(array(
+            ))) { return;
+        } elseif (substr($className, -7) == 'Storage' && require_array(array(
                 HDPHP_DRIVER_PATH . 'Storage/' . $class
-            ))
-            ) return;
+            ))) {return;
         } elseif (alias_import($className)) {
             return;
         } elseif (require_array(array(
@@ -189,12 +176,9 @@ final class HDPHP
                 if(C('LOG_RECORD')) Log::write("[$errno] " . $msg, Log::ERROR);
                 function_exists('halt') ? halt($msg) : exit('ERROR:' . $msg);
                 break;
-            case E_STRICT:
-            case E_USER_WARNING:
-            case E_USER_NOTICE:
             default:
                 $errorStr = "[$errno] $error " . $file . " 第 $line 行.";
-                trace($errorStr, 'NOTICE');
+                trace($errorStr, 'NOTICE', true);
                 //SHUT_NOTICE关闭提示信息
                 if (DEBUG && C('SHOW_NOTICE'))
                     require HDPHP_TPL_PATH . 'notice.html';
@@ -210,4 +194,3 @@ final class HDPHP
         }
     }
 }
-?>

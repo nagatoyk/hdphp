@@ -16,8 +16,6 @@
  * @author      后盾向军 <houdunwangxj@gmail.com>
  */
 class Model {
-    //数据库
-    public $database=null;
     //全表名
 	public $tableFull = NULL;
     //不带前缀表名
@@ -45,7 +43,6 @@ class Model {
 	 * @param null $driver 驱动
 	 */
 	public function __construct($table = null, $full = false, $driver = null, $param = array()) {
-        $this->database=C('DB_DATABASE');
 		if (method_exists($this, "__init")) {
 			$this -> __init($param);
 		}

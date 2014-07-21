@@ -15,7 +15,7 @@
  * @supackage core
  * @author hdxj <houdunwangxj@gmail.com>
  */
-define('HDPHP_VERSION', '2014-06-16');
+define('HDPHP_VERSION', '2014-07-07');
 defined("DEBUG")        	or define("DEBUG", FALSE);//调试模式
 defined("DEBUG_TOOL")       or define("DEBUG_TOOL", FALSE);//调试工具
 defined('APP_PATH') 		or define('APP_PATH', './Application/');//应用目录
@@ -30,4 +30,3 @@ if (!DEBUG and is_file(TEMP_FILE)) {
     require HDPHP_PATH . 'Lib/Core/Boot.class.php';
     Boot::run();
 }
-?>

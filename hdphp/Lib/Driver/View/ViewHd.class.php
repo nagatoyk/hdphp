@@ -59,7 +59,7 @@ final class ViewHd extends View {
 			if (!$this -> tplFile)
 				return;
 			//编译文件
-			$this -> compileFile = APP_COMPILE_PATH . substr(md5(MODULE . CONTROLLER . ACTION . $this -> tplFile), 0, 20) . '.php';
+			$this -> compileFile = APP_COMPILE_PATH . MODULE.'/'.CONTROLLER.'/'.ACTION.'_'.substr(md5($this -> tplFile), 0, 8) . '.php';
 			//记录模板编译文件
 			if (DEBUG) {
 				Debug::$tpl[] = array(basename($this -> tplFile), $this -> compileFile);
@@ -182,4 +182,3 @@ final class ViewHd extends View {
 	}
 
 }
-?>

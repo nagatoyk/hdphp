@@ -57,6 +57,8 @@ class ViewCompile
             Dir::create(APP_COMPILE_PATH);
             copy(HDPHP_TPL_PATH . 'index.html', APP_COMPILE_PATH . 'index.html');
         }
+        //创建编译目录
+        is_dir(dirname($this->view->compileFile)) or Dir::create(dirname($this->view->compileFile));
         file_put_contents($this->view->compileFile, $this->content);
         //创建安全文件
         $safeFile = dirname($this->view->compileFile) . "/index.html";
@@ -416,5 +418,3 @@ class ViewCompile
     }
 
 }
-
-?>

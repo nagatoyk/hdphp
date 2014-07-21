@@ -165,5 +165,3 @@ class CacheRedis extends Cache {
     }
 
 }
-
-?>

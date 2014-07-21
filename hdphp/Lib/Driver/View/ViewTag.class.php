@@ -167,7 +167,7 @@ class ViewTag
         $id = "hd_uploadify_" . $name;
         //是否加水印
         $_water = isset($attr['water']) ? $attr['water'] : false;
-        $water = $_water === false? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
+        $water = $_water === false ? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
         $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
@@ -195,7 +195,7 @@ class ViewTag
         //是上传文件大小等提示信息true是false不显示
         $_message = isset($attr['message']) ? $attr['message'] : 'true';
         $message = $_message == 'true' || $_message == '1' ? "block" : 'none';
-        $limit = isset($attr['limit']) ? $attr['limit'] : "6"; //上传文件数量
+        $limit = isset($attr['limit']) ? $attr['limit'] : "100"; //上传文件数量
         $thumb = isset($attr['thumb']) ? $attr['thumb'] : ''; //生成缩略图尺寸
         $data = isset($attr['data']) ? $attr['data'] : false; //编辑时的图片数据
         if (!empty($thumb) && count(explode(",", $thumb)) % 2 !== 0) {
@@ -257,15 +257,15 @@ class ViewTag
         ?>';
         }
         $get = $_GET;
-        unset($get['m']);
-        $phpScript =  __WEB__ . '?' . http_build_query($get) . '&m=keditor_upload'; //PHP处理文件
+        unset($get['a']);
+        $phpScript = __WEB__ . '?' . http_build_query($get) . '&a=keditor_upload'; //PHP处理文件
         $str = '';
         if (!$_hd_uploadify_js) {
             $_hd_uploadify_js = true; //只加载一次
             $str .= '<link rel="stylesheet" type="text/css" href="' . $uploadify_url . 'uploadify.css" />
             <script type="text/javascript" src="' . $uploadify_url . 'jquery.uploadify.min.js"></script>
             <script type="text/javascript">
-            var HDPHP_CONTROL         = "' . $phpScript . '&g=' . GROUP_NAME . '";
+            var HDPHP_CONTROL         = "' . $phpScript . '";
             var UPLOADIFY_URL    = "' . $uploadify_url . '";
             var HDPHP_UPLOAD_THUMB    ="' . $thumb . "\";\n";
             //已经成功上传的文件
@@ -293,7 +293,7 @@ class ViewTag
         hd_uploadify_options.upload_img_max_width    ="' . $upload_img_max_width . '";
         hd_uploadify_options.upload_img_max_    ="' . $upload_img_max_height . '";
         hd_uploadify_options.success_msg    ="正在上传...";//上传成功提示文字
-        hd_uploadify_options.formData ={' . $_post . 'water : "' . $water . '",upload_img_max_width:"' . $upload_img_max_width . '",upload_img_max_height:"' . $upload_img_max_height . '",fileSizeLimit:'.(intval($size)*1024*1024).', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
+        hd_uploadify_options.formData ={' . $_post . 'water : "' . $water . '",upload_img_max_width:"' . $upload_img_max_width . '",upload_img_max_height:"' . $upload_img_max_height . '",fileSizeLimit:' . (intval($size) * 1024 * 1024) . ', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
         hd_uploadify_options.thumb_width =' . $width . ';
         hd_uploadify_options.thumb_height          =' . $height . ';
         hd_uploadify_options.uploadsSuccessNums = ' . $uploadsSuccessful . ';
@@ -320,45 +320,33 @@ class ViewTag
     //百度编辑器
     public function _ueditor($attr, $content)
     {
-//        $ueditor_path = __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/'; //url路径
         $attr = array_change_key_case_d($attr, 0);
         $attr = $this->replaceAttrConstVar($attr);
         $style = isset($attr['style']) ? $attr['style'] : C("EDITOR_STYLE"); //1 完整  2精简
         $name = isset($attr['name']) ? $attr['name'] : "content";
-        $initContent = isset($attr['content']) ? $attr['content'] : ""; //初始化编辑器的内容
-        $width = isset($attr['width']) && intval($attr['width']) != 0 ? intval($attr['width']) : C("EDITOR_WIDTH"); //编辑器宽度
-        $height = isset($attr['height']) && intval($attr['height']) != 0 ? intval($attr['height']) : C("EDITOR_HEIGHT"); //编辑器高度
-        $width = '"' . str_ireplace("px", "", $width) . '"';
-        $height = '"' . str_ireplace(array("px", "%"), "", $height) . '"';
-        $water = isset($attr['water']) ? $attr['water'] : false; //是否加水印
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' ? 0 : 1); //是否加水印
-        $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
-        $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
-        $uploadsize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1000 : C("EDITOR_FILE_SIZE"); //上传文件大小
-        $autoClear = isset($attr['autoclear']) ? $attr['autoclear'] : "false"; //清除编辑器初始内容
-        $readonly = isset($attr['readonly']) ? $attr['readonly'] : "false"; //编辑区域是否是只读的
-        $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
-        $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
-        $imageupload = isset($attr['imageupload']) && $attr['imageupload'] == 'true' ? '"insertimage",' : ''; //图片上传按钮
+        $content = isset($attr['content']) ? $attr['content'] : ''; //初始化编辑器的内容
+        $width = isset($attr['width']) ? intval($attr['width']) : C("EDITOR_WIDTH"); //编辑器宽度
+        $width = '"' . $width . '"';
+        $height = isset($attr['height']) ? intval($attr['height']) : C("EDITOR_HEIGHT"); //编辑器高度
+        $height = '"' . $height . '"';
+        $maxImageWidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : C('UPLOAD_IMG_MAX_WIDTH'); //最大图片宽度
+        $maxImageHeight = isset($attr['maximageheight']) ? $attr['maximageheight'] : C('UPLOAD_IMG_MAX_HEIGHT'); //最大图片高度
         $get = $_GET;
-        unset($get['m']);
-        $phpScript = isset($attr['php']) ? $attr['php'] : __WEB__ . '?' . http_build_query($get) . '&m=ueditor_upload'; //PHP处理文件
+        unset($get['a']);
+        $phpScript = isset($attr['php']) ? $attr['php'] : __WEB__ . '?' . http_build_query($get) . '&a=ueditor_upload'; //PHP处理文件
         //图片按钮
         if ($style == 2) {
-            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
+            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','simpleupload','insertcode','preview']]";
         } else {
             $toolbars = "[
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'directionalityltr', 'directionalityrtl', 'indent', '|',
-                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'pagebreak', 'template', 'background', '|',
-                'horizontal', 'date', 'time', 'spechars',  'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-                'print', 'preview', 'searchreplace']
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset',
+            '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+            'lineheight', '|','paragraph', 'fontfamily', 'fontsize', '|',
+             'indent','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+            'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload',  'emotion',   'map',  'insertcode',  'pagebreak','horizontal', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow',  'insertcol',  'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols']
             ]";
         }
         $str = '';
@@ -368,25 +356,20 @@ class ViewTag
             $str .= '<script type="text/javascript">UEDITOR_HOME_URL="' . __HDPHP_EXTEND__ . '/Org/Ueditor/"</script>';
             define("HD_UEDITOR", true);
         }
-        $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $initContent . '</script>';
-        $app_group = GROUP_NAME;
+        $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $content . '</script>';
         $str .= "
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                imageUrl:'" . $phpScript . "&g={$app_group}&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
+                serverUrl:'" . $phpScript . "&maximagewidth={$maxImageWidth}&maximageheight={$maxImageHeight}'//图片上传脚本
                 ,zIndex : 0
-                ,autoClearinitialContent:{$autoClear}
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000
+                ,imagePath:''//图片修正地址
                 ,autoHeightEnabled:false //是否自动长高,默认true
                 ,autoFloatEnabled:false //是否保持toolbar的位置不动,默认true
-                ,maximumWords:{$maxword} //允许的最大字符数
-                ,readonly : {$readonly} //编辑器初始化结束后,编辑区域是否是只读的，默认是false
-                ,wordCount:{$wordCount} //是否开启字数统计
-                ,imagePath:''//图片修正地址
-                , toolbars:$toolbars//工具按钮
-                , initialStyle:'p{line-height:1em; font-size: 14px; }'
+                ,toolbars:$toolbars//工具按钮
+                ,initialStyle:'p{line-height:1em; font-size: 14px; }'
             });
         })
         </script>";
@@ -666,12 +649,12 @@ class ViewTag
     //设置js常量
     public function _jsconst($attr, $content)
     {
-    	$const = get_defined_constants(true);
+        $const = get_defined_constants(true);
         $arr = preg_grep("/http/", $const['user']);
         $str = "<script type='text/javascript'>\n";
         foreach ($arr as $k => $v) {
-        	$k=str_replace('_', '', $k) ;
-            $str .= $k. " = '<?php echo \$GLOBALS['user']['$k'];?>';\n";
+            $k = str_replace('_', '', $k);
+            $str .= $k . " = '<?php echo \$GLOBALS['user']['$k'];?>';\n";
         }
         $str .= "</script>";
         return $str;
@@ -694,6 +677,7 @@ class ViewTag
                 <![endif]-->';
         return $str;
     }
+
     //js轮换版
     public function _slide($attr, $content)
     {
@@ -724,6 +708,7 @@ class ViewTag
         $php .= $this->_jsconst(null, null);
         return $php;
     }
+
     //Jcrop图片裁切
     public function _jcrop($attr, $content)
     {
@@ -731,5 +716,3 @@ class ViewTag
         <script src='__HDPHP_EXTEND__/Org/jcrop/js/jquery.Jcrop.min.js'></script>\n";
     }
 }
-
-?>

@@ -7,7 +7,7 @@ var hd_uploadify_options = {
     // ,formData       : {'someKey' : 'someValue', 'someOtherKey' : 1}//POST提交的数据
     // ,uploadLimit   : 3//上传文件数量
     swf: UPLOADIFY_URL + 'uploadify.swf',
-    uploader: HDPHP_CONTROL + "&m=hd_uploadify"//上传处理php
+    uploader: HDPHP_CONTROL + "&a=hd_uploadify"//上传处理php
     ,
     buttonImage: UPLOADIFY_URL + 'upload2.png'//按钮图片
     ,
@@ -135,7 +135,7 @@ $(".delUploadFile").live("click", function () {
     $(delInputs).each(function (i) {
         delFiles += $(this).val() + "@@";
     })
-    $.post(HDPHP_CONTROL + "&m=hd_uploadify_del", {
+    $.post(HDPHP_CONTROL + "&a=hd_uploadify_del", {
         file: delFiles
     }, function (data) {
         if (data == 1) {

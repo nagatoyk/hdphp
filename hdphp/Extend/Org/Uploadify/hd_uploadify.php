@@ -13,7 +13,7 @@ if (!defined("HDPHP_PATH"))
 // '-----------------------------------------------------------------------------------
 header("Content-Type: text/html; charset=utf-8");
 //删除图片 
-if (METHOD == "hd_uploadify_del") {
+if (ACTION == "hd_uploadify_del") {
     $files = array_filter(explode("@@", $_POST['file']));
     foreach ($files as $f) {
        is_file($f) && @unlink($f);

@@ -214,5 +214,3 @@ final class Cart
     }
 
 }
-
-?>

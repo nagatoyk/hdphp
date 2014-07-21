@@ -82,5 +82,3 @@ final class HdException extends Exception
     }
 
 }
-
-?>

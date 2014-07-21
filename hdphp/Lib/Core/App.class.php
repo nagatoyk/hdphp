@@ -30,7 +30,7 @@ final class App
         //Debug End
         DEBUG and Debug::show("APP_START", "APP_END");
         //日志记录
-        Log::save();
+        !DEBUG and C('LOG_RECORD') and  Log::save();
         event("APP_END");
     }
 
@@ -85,4 +85,3 @@ final class App
         }
     }
 }
-?>

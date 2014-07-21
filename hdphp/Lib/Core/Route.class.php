@@ -105,7 +105,7 @@ final class Route
         //转模块名大小写
         $_GET[C('VAR_MODULE')]=ucwords($_GET[C('VAR_MODULE')]);
         //以下划线分隔的模块名称改为pascal命名如hdphp_user=>HDPhpUser
-        $_GET[C('VAR_CONTROLLER')] = ucwords(preg_replace('@_([a-z]?)@ei', 'strtoupper("\1")', $_GET[C('VAR_CONTROLLER')]));
+        $_GET[C('VAR_CONTROLLER')] = str_replace('!','',ucwords(str_replace('_', '!', $_GET[C('VAR_CONTROLLER')])));
         //兼容模式删除其变量
         if (C('URL_TYPE') == 2) {
             unset($_GET[C('PATHINFO_VAR')]);
@@ -143,7 +143,7 @@ final class Route
         defined('__HDPHP_TPL__')    or define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
         defined('__HDPHP_EXTEND__') or define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
         //应用
-        defined('APP')              or define('APP',dirname(APP_PATH));
+        defined('APP')              or define('APP',basename(APP_PATH));
         //模块
         defined('MODULE')           or define("MODULE",   $_GET[C('VAR_MODULE')]);
         //控制器

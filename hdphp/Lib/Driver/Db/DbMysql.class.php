@@ -106,9 +106,9 @@ class DbMysql extends Db
     public function query($sql)
     {
         $cache_time = $this->cacheTime ? $this->cacheTime : intval(C("CACHE_SELECT_TIME"));
-        $cacheName = $sql . APP . CONTROL . METHOD;
+        $cacheName = $sql . APP . CONTROLLER . ACTION;
         if ($cache_time >= 0) {
-            $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
+            $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => APP_CACHE_PATH, "zip" => false));
             if ($result) {
                 //查询参数初始化
                 $this->optInit();
@@ -123,7 +123,7 @@ class DbMysql extends Db
             $list [] = $res;
         }
         if ($cache_time >= 0 && count($list) <= C("CACHE_SELECT_LENGTH")) {
-            S($cacheName, $list, $cache_time, array("Driver" => "file", "dir" => CACHE_PATH, "zip" => false));
+            S($cacheName, $list, $cache_time, array("Driver" => "file", "dir" => APP_CACHE_PATH, "zip" => false));
         }
         return is_array($list) && !empty($list) ? $list : NULL;
     }

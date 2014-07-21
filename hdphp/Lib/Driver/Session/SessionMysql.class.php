@@ -36,14 +36,13 @@ class SessionMysql
     public function run()
     {
         $options = C("SESSION_OPTIONS");
-        $this->table = $options['table']; //表
-        $this->expire = $options['expire']; //过期时间
+        $this->table = C('DB_PREFIX').$options['table']; //表
+        $this->expire = isset($options['expire'])?$options['expire']:2440; //过期时间
         $host = isset($options['host']) ? $options['host'] : C("DB_HOST");
         $port = isset($options['port']) ? $options['port'] : C("DB_PORT");
         $user = isset($options['user']) ? $options['user'] : C("DB_USER");
         $password = isset($options['password']) ? $options['password'] : C("DB_PASSWORD");
         $database = isset($options['database']) ? $options['database'] : C("DB_DATABASE");
-
         $this->link = mysql_connect($host . ':' . $port, $user, $password); //连接Mysql
         $db = mysql_select_db($database, $this->link); //选择数据库
         if (!$this->link || !$db) return false;

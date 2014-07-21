@@ -19,12 +19,21 @@
 class ViewModel extends Model
 {
     public $view = array();
+    public $joinTable = array();
+    //设置关联表
+    public function relation($joinTable = array())
+    {
+        if (is_string($joinTable)) {
+            $this->joinTable = explode(',', $joinTable);
+        }
+        return $this;
+    }
     //查询
     public function select($data = array())
     {
         $from = '';
         foreach ($this->view as $table => $set) {
-
+            if(!empty($this->joinTable) && !in_array($table,$this->joinTable))continue;
             $from .= C('DB_PREFIX') . $table . ' ' . $table;
             //字段
             foreach ($set as $name => $f) {

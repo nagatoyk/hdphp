@@ -70,5 +70,3 @@ final class Html
         return true;
     }
 }
-
-?>

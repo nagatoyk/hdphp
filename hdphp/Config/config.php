@@ -35,7 +35,7 @@ return array(
     'SHOW_NOTICE'                   => TRUE,        //显示Warning与Notice错误显示
     /********************************LOG日志处理********************************/
     'LOG_SIZE'                      => 2000000,     //日志文件大小
-    'LOG_RECORD'                    => FALSE,       //记录日志
+    'LOG_RECORD'                    => TRUE,       //记录日志
     'LOG_LEVEL'                     => array('FATAL','ERROR','WARNING','SQL'),//写入日志的错误级别
     'LOG_EXCEPTION_RECORD'          => TRUE,        // 记录异常
     /********************************SESSION********************************/
@@ -59,6 +59,7 @@ return array(
     'VAR_CONTROLLER'                => 'c',         //控制器URL变量
     'VAR_ACTION'                    => 'a',         //动作URL变量
     /********************************项目参数********************************/
+    'DENY_MODULE'                   => array('Common','Addon'),     //禁止使用的模块
     'DEFAULT_MODULE'                => 'Index',     //默认模块
     'DEFAULT_CONTROLLER'            => 'Index',     //默认控制器
     'DEFAULT_ACTION'                => 'index',     //默认方法

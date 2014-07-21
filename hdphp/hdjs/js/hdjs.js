@@ -333,7 +333,7 @@ function hd_submit(obj, url, func,timeout) {
 				$(obj).removeAttr('disabled');
 				if ( typeof data == 'object' || data.substr(0, 1) == '{') {
 					data = jQuery.parseJSON(data);
-					if (data.state == 1) {
+					if (data.status == 1) {
 						$.dialog({
 							message : data.message,
 							timeout : timeout || 1,
@@ -461,7 +461,7 @@ function hd_ajax(requestUrl, postData, url) {
 		success : function(data) {
 			if (data.substr(0, 1) == '{') {
 				data = jQuery.parseJSON(data);
-				if (data.state == 1) {
+				if (data.status == 1) {
 					$.dialog({
 						message : data.message,
 						timeout : data.timeout || 1,
@@ -509,7 +509,7 @@ function hd_submit_confirm(obj, url) {
 			success : function(data) {
 				if (data.substr(0, 1) == '{') {
 					data = jQuery.parseJSON(data);
-					if (data.state == 1) {
+					if (data.status == 1) {
 						$.modal({
 							width : 250,
 							height : 180,
@@ -562,7 +562,7 @@ function AddFavorite(sURL, sTitle) {
 		}
 	}
 }
-
+//设置首页
 function SetHome(obj, vrl) {
 	try {
 		obj.style.behavior = 'url(#default#homepage)';
@@ -805,10 +805,10 @@ $.fn.extend({
 					async : true,
 					type : 'POST',
 					data : param,
-					success : function(state) {
+					success : function(status) {
 						$(data.obj).removeAttr('ajax_run');
 						//成功时，如果是提交暂停状态则再次提交
-						if (state == 1) {
+						if (status == 1) {
 							//记录验证结果
 							data.obj.attr('ajax_validate', 1);
 							//验证结果处理，提示信息等

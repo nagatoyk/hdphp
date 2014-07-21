@@ -657,6 +657,4 @@ abstract class Db implements DbInterface
         }
         return get_size($size);
     }
-
-
 }

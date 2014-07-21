@@ -25,4 +25,3 @@ return array(
     "HD_UPLOADIFY_DEL" => HDPHP_EXTEND_PATH . 'Org/Uploadify/hd_uploadify.php', //uploadify删除
     "editorCatcherUrl" => HDPHP_EXTEND_PATH . 'Org/Editor/Ueditor/php/ueditorCatcherUrl.php', //ueditor,
 );
-?>

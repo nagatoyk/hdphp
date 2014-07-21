@@ -120,9 +120,10 @@
             <li id="_session">SESSION</li>
             <li id="_cookie">COOKIE</li>
             <li id="_const">常量</li>
-            <li>
-                <a href="http://www.hdphp.com" target="_blank">官网</a>
-            </li>
+            <li id="_request">REQUEST</li>
+            <li id="_post">POST</li>
+            <li id="_get">GET</li>
+            <li><a href="http://www.hdphp.com" target="_blank">官网</a></li>
         </ul>
     </div>
     <div id="debug_con">
@@ -284,6 +285,54 @@
                 </tr>
                 </thead>
                 <?php $const = get_defined_constants(true);foreach ($const['user'] as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo $value;?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <div id="request">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="150">name</td>
+                    <td>value</td>
+                </tr>
+                </thead>
+                <?php foreach ($_REQUEST as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo $value;?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <div id="post">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="150">name</td>
+                    <td>value</td>
+                </tr>
+                </thead>
+                <?php foreach ($_POST as $name => $value): ?>
+                    <tr>
+                        <td><?php echo $name;?></td>
+                        <td><?php echo $value;?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <div id="get">
+            <table width=100%>
+                <thead>
+                <tr>
+                    <td width="150">name</td>
+                    <td>value</td>
+                </tr>
+                </thead>
+                <?php foreach ($_GET as $name => $value): ?>
                     <tr>
                         <td><?php echo $name;?></td>
                         <td><?php echo $value;?></td>

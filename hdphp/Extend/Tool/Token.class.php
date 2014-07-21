@@ -40,5 +40,3 @@ final class Token
     }
 
 }
-
-?>
