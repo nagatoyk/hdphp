@@ -101,11 +101,6 @@ class Image
         //初始化原图尺寸
         $cuthumbWidth = $imgWidth;
         $cuthumbHeight = $imgHeight;
-
-//        if ($imgWidth <= $thumbWidth && $imgHeight <= $thumbHeight) {
-//            $w = $imgWidth;
-//            $h = $imgHeight;
-//        } else {
         switch ($thumbType) {
             case 1 :
                 //固定宽度  高度自增
@@ -222,7 +217,7 @@ class Image
     /**
      * 水印处理
      * @param $img 操作的图像
-     * @param string $outImg 另存的图像
+     * @param string $outImg 另存的图像 不设置时操作原图
      * @param string $pos v
      * @param string $waterImg 水印图片
      * @param string $pct 透明度

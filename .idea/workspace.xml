@@ -2,267 +2,248 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/anchor/anchor.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/attachment.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/attachment.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/callbacks.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_chm.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_default.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_doc.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_exe.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_mp3.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_mv.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_pdf.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_ppt.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_psd.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_rar.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_txt.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeImages/icon_xls.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/attachment/fileTypeMaps.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/background/background.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/background/background.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/background/background.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/chart.config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/charts.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/charts.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/charts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/charts/images/charts5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/emotion.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/emotion.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/emotion.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/0.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/bface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/cface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/fface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/jxface2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/neweditor-tab-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/tface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/wface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/emotion/images/yface.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/gmap/gmap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/help/help.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/help/help.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/help/help.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/image.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/image.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/image.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/imageUploader.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/images/center_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/images/left_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/images/none_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/image/images/right_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/insertframe/insertframe.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/internal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/link/link.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/map/map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/map/show.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/music/music.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/music/music.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/music/music.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/preview/preview.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/addimg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/brush.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/delimg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/delimgH.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/empty.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/emptyH.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/eraser.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/redo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/redoH.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/scale.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/scaleH.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/size.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/undo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/images/undoH.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/scrawl.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/scrawl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/scrawl/scrawl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/searchreplace/searchreplace.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/searchreplace/searchreplace.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/snapscreen/snapscreen.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/spechars/spechars.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/spechars/spechars.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/dragicon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/edittable.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/edittable.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/edittable.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/edittd.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/table/edittip.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/tangram.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/bg.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/pre0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/pre1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/pre2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/pre3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/images/pre4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/template.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/template.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/template/template.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/callbacks.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/images/center_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/images/left_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/images/none_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/images/right_focus.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/video.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/video.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/video/video.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/webapp/webapp.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/wordimage/fClipboard_ueditor.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/wordimage/imageUploader.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/wordimage/wordimage.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/dialogs/wordimage/wordimage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/en.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/addimage.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/alldeletebtnhoverskin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/alldeletebtnupskin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/button.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/copy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/deletedisable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/deleteenable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/imglabel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/listbackground.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/localimage.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/music.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/rotateleftdisable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/rotateleftenable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/rotaterightdisable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/rotaterightenable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/en/images/upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/images/copy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/images/imglabel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/images/localimage.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/images/music.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/images/upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/lang/zh-cn/zh-cn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/Uploader.class.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/config.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/fileUp.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/getContent.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/getMovie.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/getRemoteImage.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/imageManager.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/imageUp.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/scrawlUp.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/php/ueditor_upload.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/css/ueditor.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/css/ueditor.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/dialogbase.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/anchor.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/arrow_down.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/arrow_up.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/button-bg.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/cancelbutton.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/charts.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/cursor_h.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/cursor_h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/cursor_v.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/cursor_v.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/dialog-title-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/filescan.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/highlighted.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/icons-all.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/icons.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/icons.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/lock.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/neweditor-tab-bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/pagebreak.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/scale.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/sortable.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/spacer.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/sparator_v.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/table-cell-align.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/tangram-colorpicker.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/toolbar_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/unhighlighted.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/upload.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/videologo.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/word.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/default/images/wordpaste.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/themes/iframe.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/SyntaxHighlighter/shCore.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/SyntaxHighlighter/shCoreDefault.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/codemirror/codemirror.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/codemirror/codemirror.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/mootools-adapter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/mootools-adapter.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/prototype-adapter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/prototype-adapter.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/standalone-framework.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/adapters/standalone-framework.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/highcharts-more.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/highcharts-more.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/highcharts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/highcharts.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/annotations.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/annotations.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/canvas-tools.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/canvas-tools.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/data.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/drilldown.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/drilldown.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/exporting.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/exporting.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/funnel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/funnel.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/heatmap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/heatmap.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/map.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/map.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/no-data-to-display.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/modules/no-data-to-display.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/themes/dark-blue.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/themes/dark-green.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/themes/gray.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/themes/grid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/highcharts/themes/skies.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/jquery-1.10.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/snapscreen/UEditorSnapscreen.exe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/fileprogress.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.cookies.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.proxy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.queue.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.speed.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/swfupload/swfupload_fp9.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/font/vjs.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/font/vjs.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/font/vjs.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/font/vjs.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/video-js.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/video-js.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/video-js.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/video.dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/third-party/video-js/video.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/ueditor.all.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/ueditor.config.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/ueditor.parse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor 2/ueditor.parse.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907910485615.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907923126474.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907923316227.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907923334877.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907923346820.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907923999479.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/upload/image/20140721/1405907965579459.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/kindeditor-all-min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/kindeditor-min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/lang/ar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/lang/en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/lang/ko.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/lang/zh_CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/lang/zh_TW.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/license.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/php/JSON.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/php/demo.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/php/file_manager_json.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/php/upload_json.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/anchor/anchor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/autoheight/autoheight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/baidumap/baidumap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/baidumap/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/baidumap/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/clearhtml/clearhtml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/code/code.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/code/prettify.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/code/prettify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/emoticons.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/0.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/10.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/100.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/101.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/102.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/103.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/104.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/105.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/106.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/107.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/108.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/109.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/11.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/110.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/111.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/112.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/113.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/114.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/115.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/116.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/117.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/118.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/119.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/12.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/120.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/121.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/122.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/123.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/124.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/125.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/126.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/127.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/128.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/129.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/13.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/130.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/131.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/132.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/133.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/134.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/14.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/15.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/16.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/17.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/18.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/19.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/2.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/20.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/21.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/22.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/23.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/24.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/25.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/26.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/27.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/28.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/29.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/3.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/30.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/31.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/33.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/34.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/35.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/36.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/37.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/38.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/39.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/4.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/40.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/41.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/42.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/43.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/44.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/45.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/46.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/47.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/48.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/49.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/5.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/50.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/51.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/52.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/53.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/54.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/55.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/56.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/57.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/58.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/59.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/6.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/60.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/61.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/62.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/63.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/64.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/65.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/66.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/67.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/68.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/69.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/7.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/70.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/71.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/72.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/73.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/74.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/75.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/76.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/77.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/78.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/79.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/8.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/80.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/81.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/82.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/83.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/84.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/85.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/86.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/87.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/88.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/89.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/9.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/90.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/91.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/92.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/93.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/94.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/95.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/96.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/97.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/98.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/99.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/emoticons/images/static.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/filemanager.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/images/file-16.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/images/file-64.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/images/folder-16.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/images/folder-64.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/filemanager/images/go-up.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/flash/flash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/image/image.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/image/images/align_left.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/image/images/align_right.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/image/images/align_top.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/image/images/refresh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/insertfile/insertfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/lineheight/lineheight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/link/link.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/map/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/map/map.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/media/media.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/multiimage/images/image.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/multiimage/images/select-files-en.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/multiimage/images/select-files-zh_CN.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/multiimage/images/swfupload.swf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/multiimage/multiimage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/pagebreak/pagebreak.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/plainpaste/plainpaste.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/preview/preview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/quickformat/quickformat.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/table/table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/template/html/1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/template/html/2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/template/html/3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/template/template.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/plugins/wordpaste/wordpaste.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/anchor.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/flash.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/media.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/common/rm.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/default/background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/default/default.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/default/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/qq/editor.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/qq/qq.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Keditor/themes/simple/simple.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/CHANGES" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/CONTRIBUTORS.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/component.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-sham.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-sham.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-sham.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-shim.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-shim.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/es5-shim.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/shims.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/helpers/h-kill.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/helpers/h-matchers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/helpers/h.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/index.min.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/lib/jasmine-html.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/lib/jasmine.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/lib/jasmine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/lib/jasmine_favicon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/lib/json2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/helpers-jasmine.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-array.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-date.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-function.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-global.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-number.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/es5-shim/tests/spec/s-string.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Less/less-1.5.0.min.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/Uploader.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/Uploader.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Config/config.php" afterPath="$PROJECT_DIR$/hdphp/Config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/controller.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/index.html" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/ueditor_upload.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/ueditor_upload.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -286,84 +267,7 @@
     <favorites_list name="hdphp" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ViewTag.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="331" column="107" selection-start="14705" selection-end="14730" vertical-scroll-proportion="-2.74" vertical-offset="4693" max-vertical-offset="10725">
-              <folding>
-                <marker date="1405963334000" expanded="true" signature="4147:4539" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="4170:4520" placeholder="{...}" />
-                <marker date="1405963334000" expanded="true" signature="4273:4508" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-                <marker date="1405963334000" expanded="true" signature="5020:5255" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="16816:17041" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="16816:17493" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="21584:21747" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="21655:21720" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-                <marker date="1405963334000" expanded="true" signature="29146:29306" placeholder="..." />
-                <marker date="1405963334000" expanded="true" signature="29350:29569" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ueditor_upload.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/ueditor_upload.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="22" selection-start="674" selection-end="674" vertical-scroll-proportion="0.1904" vertical-offset="204" max-vertical-offset="1394">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Upload.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="39" selection-start="4387" selection-end="4407" vertical-scroll-proportion="-7.173913" vertical-offset="1543" max-vertical-offset="3836">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Image.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="21" selection-start="2065" selection-end="2065" vertical-scroll-proportion="49.083332" vertical-offset="2153" max-vertical-offset="5355">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="20" selection-start="5648" selection-end="5663" vertical-scroll-proportion="-8.208333" vertical-offset="1168" max-vertical-offset="2745">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ueditor.config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/ueditor.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="10" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="6285">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="action_upload.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="10" selection-start="77" selection-end="77" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="990">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -376,8 +280,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/b.less" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/HdException.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/App.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Cache/Cache.class.php" />
@@ -422,11 +324,13 @@
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/controller.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/Uploader.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Config/config.php" />
-        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" />
+        <option value="$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Config/config.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/ueditor_upload.php" />
+        <option value="$PROJECT_DIR$/Application/Index/View/Index/index.html" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
       </list>
     </option>
   </component>
@@ -462,7 +366,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -509,29 +412,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Core" />
+              <option name="myItemId" value="Extend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -550,6 +431,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Extend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -585,19 +470,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Extend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ueditor" />
+              <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -611,34 +484,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Index" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hdphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="hdphp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Extend" />
+              <option name="myItemId" value="Application" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Ueditor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
+              <option name="myItemId" value="Index" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="config.php&#10;debug&#10;Controller.c&#10;hdphp&#10;config&#10;tag&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;model.&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;controller&#10;HDPHP&#10;ROUTE&#10;viewta&#10;function&#10;dir&#10;relationm&#10;viewmod&#10;SessionMysql&#10;functions&#10;tag.&#10;dbm&#10;ViewCompile&#10;hdphp.clas&#10;hdphp.cl&#10;route.&#10;upload.class&#10;dump&#10;app&#10;log.c&#10;func&#10;dir.cl&#10;boot.cl&#10;hdphp.class&#10;cachefi&#10;viewhd&#10;controller.cla&#10;page&#10;page.cl&#10;db.class" />
+    <property name="SearchEverywhereHistory" value="viewta&#10;relationm&#10;viewmo&#10;config.php&#10;tag&#10;debug&#10;Controller.c&#10;hdphp&#10;config&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;model.&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;controller&#10;HDPHP&#10;ROUTE&#10;function&#10;dir&#10;viewmod&#10;SessionMysql&#10;functions&#10;tag.&#10;dbm&#10;ViewCompile&#10;hdphp.clas&#10;hdphp.cl&#10;route.&#10;upload.class&#10;dump&#10;app&#10;log.c&#10;func&#10;dir.cl&#10;boot.cl&#10;hdphp.class&#10;cachefi&#10;viewhd&#10;controller.cla&#10;page&#10;page.cl" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -721,7 +605,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18515626" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23828125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21640626" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -729,11 +613,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -753,31 +637,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Dir.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="17" selection-start="2847" selection-end="2847" vertical-scroll-proportion="-1.848392" vertical-offset="2407" max-vertical-offset="3060" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Encry.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="1" selection-start="2932" selection-end="2932" vertical-scroll-proportion="0.8621746" vertical-offset="727" max-vertical-offset="1380" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/FirePHP.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-39.992188" vertical-offset="25595" max-vertical-offset="26235" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Html.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="1" selection-start="2224" selection-end="2224" vertical-scroll-proportion="0.8621746" vertical-offset="367" max-vertical-offset="1020" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Json.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-13.3951" vertical-offset="8747" max-vertical-offset="9400" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.6375" vertical-offset="3608" max-vertical-offset="4248" />
@@ -835,9 +694,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="578" column="19" selection-start="16298" selection-end="16298" vertical-scroll-proportion="0.0" vertical-offset="8670" max-vertical-offset="27315">
-          <folding />
-        </state>
+        <state line="578" column="19" selection-start="16298" selection-end="16298" vertical-scroll-proportion="0.0" vertical-offset="8670" max-vertical-offset="27315" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Cache/Cache.class.php">
@@ -847,9 +704,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="680" column="1" selection-start="12653" selection-end="12653" vertical-scroll-proportion="0.34416544" vertical-offset="9967" max-vertical-offset="16935">
-          <folding />
-        </state>
+        <state line="680" column="1" selection-start="12653" selection-end="12653" vertical-scroll-proportion="0.34416544" vertical-offset="9967" max-vertical-offset="16935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/App.class.php">
@@ -859,9 +714,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="17" selection-start="6013" selection-end="6013" vertical-scroll-proportion="0.0" vertical-offset="2205" max-vertical-offset="5985">
-          <folding />
-        </state>
+        <state line="147" column="17" selection-start="6013" selection-end="6013" vertical-scroll-proportion="0.0" vertical-offset="2205" max-vertical-offset="5985" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
@@ -876,9 +729,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="581" column="0" selection-start="14760" selection-end="14760" vertical-scroll-proportion="0.62870514" vertical-offset="8117" max-vertical-offset="15135">
-          <folding />
-        </state>
+        <state line="581" column="0" selection-start="14760" selection-end="14760" vertical-scroll-proportion="0.62870514" vertical-offset="8117" max-vertical-offset="15135" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
@@ -898,181 +749,163 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/ueditor.all.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="33" selection-start="7785" selection-end="7785" vertical-scroll-proportion="0.35101405" vertical-offset="0" max-vertical-offset="10725">
-          <folding />
-        </state>
+        <state line="15" column="33" selection-start="7785" selection-end="7785" vertical-scroll-proportion="0.35101405" vertical-offset="0" max-vertical-offset="10725" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/dialogs/template/template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/dialogs/emotion/emotion.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.43435982" vertical-offset="268" max-vertical-offset="885">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.43435982" vertical-offset="268" max-vertical-offset="885" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/dialogs/charts/charts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.2852513" vertical-offset="793" max-vertical-offset="1410">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.2852513" vertical-offset="793" max-vertical-offset="1410" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/dialogs/insertframe/insertframe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.63492066" vertical-offset="400" max-vertical-offset="1030">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.63492066" vertical-offset="400" max-vertical-offset="1030" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="12" selection-start="2625" selection-end="2625" vertical-scroll-proportion="0.07617504" vertical-offset="1603" max-vertical-offset="5775">
-          <folding />
-        </state>
+        <state line="110" column="12" selection-start="2625" selection-end="2625" vertical-scroll-proportion="0.07617504" vertical-offset="1603" max-vertical-offset="5775" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Alias.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="2" selection-start="1411" selection-end="1411" vertical-scroll-proportion="0.61904764" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="26" column="2" selection-start="1411" selection-end="1411" vertical-scroll-proportion="0.61904764" vertical-offset="0" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="22" selection-start="3389" selection-end="3389" vertical-scroll-proportion="0.63209075" vertical-offset="165" max-vertical-offset="2880">
-          <folding />
-        </state>
+        <state line="46" column="22" selection-start="3389" selection-end="3389" vertical-scroll-proportion="0.63209075" vertical-offset="165" max-vertical-offset="2880" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="9" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.12155592" vertical-offset="360" max-vertical-offset="3885">
-          <folding />
-        </state>
+        <state line="38" column="9" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.12155592" vertical-offset="360" max-vertical-offset="3885" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="115" selection-end="115" vertical-scroll-proportion="0.16666667" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="7" column="7" selection-start="115" selection-end="115" vertical-scroll-proportion="0.16666667" vertical-offset="0" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="15" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.3452188" vertical-offset="312" max-vertical-offset="4500">
-          <folding />
-        </state>
+        <state line="44" column="15" selection-start="1989" selection-end="1989" vertical-scroll-proportion="0.3452188" vertical-offset="312" max-vertical-offset="4500" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="7" selection-start="0" selection-end="1769" vertical-scroll-proportion="-0.0" vertical-offset="450" max-vertical-offset="1080">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/ueditor.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="10" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="6285">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="10" selection-start="77" selection-end="77" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="990">
-          <folding />
-        </state>
+        <state line="30" column="7" selection-start="0" selection-end="1769" vertical-scroll-proportion="-0.0" vertical-offset="450" max-vertical-offset="1080" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/Uploader.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="302" column="21" selection-start="9560" selection-end="9560" vertical-scroll-proportion="0.54761904" vertical-offset="4185" max-vertical-offset="5310">
-          <folding />
-        </state>
+        <state line="302" column="21" selection-start="9560" selection-end="9560" vertical-scroll-proportion="0.54761904" vertical-offset="4185" max-vertical-offset="5310" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="143" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="143" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="20" selection-start="481" selection-end="496" vertical-scroll-proportion="0.25267994" vertical-offset="0" max-vertical-offset="1470">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="107" selection-start="14705" selection-end="14730" vertical-scroll-proportion="-2.74" vertical-offset="4693" max-vertical-offset="10725">
-          <folding>
-            <marker date="1405963334000" expanded="true" signature="4147:4539" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="4170:4520" placeholder="{...}" />
-            <marker date="1405963334000" expanded="true" signature="4273:4508" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-            <marker date="1405963334000" expanded="true" signature="5020:5255" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="16816:17041" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="16816:17493" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="21584:21747" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="21655:21720" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-            <marker date="1405963334000" expanded="true" signature="29146:29306" placeholder="..." />
-            <marker date="1405963334000" expanded="true" signature="29350:29569" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="20" selection-start="5648" selection-end="5663" vertical-scroll-proportion="-8.208333" vertical-offset="1168" max-vertical-offset="2745">
-          <folding />
-        </state>
+        <state line="11" column="20" selection-start="481" selection-end="496" vertical-scroll-proportion="0.25267994" vertical-offset="0" max-vertical-offset="1470" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_0.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="667" column="9" selection-start="19149" selection-end="19149" vertical-scroll-proportion="0.3453125" vertical-offset="9784" max-vertical-offset="20880">
-          <folding />
-        </state>
+        <state line="667" column="9" selection-start="19149" selection-end="19149" vertical-scroll-proportion="0.3453125" vertical-offset="9784" max-vertical-offset="20880" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php">
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/ueditor.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="21" selection-start="2065" selection-end="2065" vertical-scroll-proportion="49.083332" vertical-offset="2153" max-vertical-offset="5355">
-          <folding />
-        </state>
+        <state line="47" column="10" selection-start="2490" selection-end="2490" vertical-scroll-proportion="0.2936747" vertical-offset="465" max-vertical-offset="6240" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Index/View/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="195" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="39" selection-start="4387" selection-end="4407" vertical-scroll-proportion="-7.173913" vertical-offset="1543" max-vertical-offset="3836">
+        <state line="66" column="20" selection-start="2024" selection-end="2024" vertical-scroll-proportion="-0.5825397" vertical-offset="1222" max-vertical-offset="3255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Index/View/Index/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="33" selection-end="40" vertical-scroll-proportion="0.045941807" vertical-offset="0" max-vertical-offset="653">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/ueditor_upload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="22" selection-start="674" selection-end="674" vertical-scroll-proportion="0.1904" vertical-offset="204" max-vertical-offset="1394">
+        <state line="33" column="63" selection-start="1202" selection-end="1202" vertical-scroll-proportion="0.26190478" vertical-offset="330" max-vertical-offset="1290">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/RelationModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="6" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-2.3333333" vertical-offset="1740" max-vertical-offset="5040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="6" selection-start="747" selection-end="747" vertical-scroll-proportion="-0.071428575" vertical-offset="180" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="43" selection-start="7404" selection-end="7404" vertical-scroll-proportion="0.0" vertical-offset="3285" max-vertical-offset="5415">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="24" selection-start="121" selection-end="121" vertical-scroll-proportion="0.114854515" vertical-offset="0" max-vertical-offset="653">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="58" selection-start="6060" selection-end="6060" vertical-scroll-proportion="0.33690658" vertical-offset="1205" max-vertical-offset="2685">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/action_upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="10" selection-start="77" selection-end="77" vertical-scroll-proportion="-0.47013783" vertical-offset="337" max-vertical-offset="990">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="333" column="23" selection-start="14800" selection-end="14800" vertical-scroll-proportion="-0.109375" vertical-offset="4930" max-vertical-offset="9720">
           <folding />
         </state>
       </provider>

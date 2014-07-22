@@ -40,8 +40,6 @@ class ViewTag
         'js' => array('block' => 0),
         'css' => array('block' => 0),
         'noempty' => array('block' => 0),
-        'editor' => array('block' => 0),
-        'keditor' => array('block' => 0),
         'ueditor' => array('block' => 0),
         'highlight' => array('block' => 0),
         'jquery' => array('block' => 0),
@@ -51,7 +49,6 @@ class ViewTag
         'jsconst' => array("block" => 0), //定义JS常量
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
-        'less' => array('block' => 0),
         "hdjs" => array("block" => 0),
         "validate" => array("block" => 0),
         "slide" => array("block" => 0),
@@ -329,8 +326,6 @@ class ViewTag
         $width = '"' . $width . '"';
         $height = isset($attr['height']) ? intval($attr['height']) : C("EDITOR_HEIGHT"); //编辑器高度
         $height = '"' . $height . '"';
-        $maxImageWidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : C('UPLOAD_IMG_MAX_WIDTH'); //最大图片宽度
-        $maxImageHeight = isset($attr['maximageheight']) ? $attr['maximageheight'] : C('UPLOAD_IMG_MAX_HEIGHT'); //最大图片高度
         $water = isset($attr['water']) ? $attr['water'] : C('EDITOR_IMAGE_WATER');
         $get = $_GET;
         unset($get['a']);
@@ -362,7 +357,7 @@ class ViewTag
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                serverUrl:'" . $phpScript . "&UPLOAD_IMG_MAX_WIDTH={$maxImageWidth}&UPLOAD_IMG_MAX_HEIGHT={$maxImageHeight}&water={$water}'//图片上传脚本
+                serverUrl:'" . $phpScript . "water={$water}'//图片上传脚本
                 ,zIndex : 0
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000
@@ -376,68 +371,6 @@ class ViewTag
         </script>";
         return $str;
     }
-
-    //kindeditor
-    public function _keditor($attr, $content)
-    {
-        $attr = array_change_key_case_d($attr, 0);
-        $attr = $this->replaceAttrConstVar($attr);
-        $name = isset($attr['name']) ? $attr['name'] : "content"; //POST的namd名称
-        $style = isset($attr['style']) ? $attr['style'] : C("EDITOR_STYLE"); //1 完整  2精简
-        $content = isset($attr['content']) ? $attr['content'] : ""; //表单默认值
-        $width = isset($attr['width']) ? $attr['width'] : C("EDITOR_WIDTH"); //编辑器宽度
-        $width = strstr($width, "%") ? $width : str_replace("px", "", $width) . "px";
-        $height = isset($attr['height']) ? $attr['height'] : C("EDITOR_HEIGHT"); //编辑器高度
-        $height = str_replace("px", "", $height) . "px";
-        $water = isset($attr['Image']) ? $attr['Image'] : false; //编辑器宽度
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' ? 0 : 1);
-        $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
-        $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
-        $uploadSize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1024 : C("EDITOR_FILE_SIZE"); //上传文件大小
-        $filterMode = isset($attr['filter']) ? $attr['filter'] : "false"; //过滤HTML代码
-        $filterMode = $filterMode == "false" || $filterMode == "0" ? "false" : "true";
-        $filemanager = isset($attr['filemanager']) ? $attr['filemanager'] : "false"; //true时显示浏览远程服务器按钮
-        $imageupload = isset($attr['imageupload']) && $attr['imageupload'] == 'true' ? '"image",' : ''; //图片上传按钮
-        $get = $_GET;
-        unset($get['m']);
-        $phpScript = isset($attr['php']) ? $attr['php'] : __WEB__ . '?' . http_build_query($get) . '&m=keditor_upload'; //PHP处理文件
-        $str = '';
-        if (!defined("keditor_hd")) {
-            $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/kindeditor-all-min.js"></script>
-            <script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/lang/zh_CN.js"></script>';
-            define("keditor_hd", 1);
-        }
-        $session = session_name() . '=' . session_id();
-        $option_var = str_replace(array('[', ']'), '', $name);
-        $str .= '
-        <textarea id="hd_' . $option_var . '" name="' . $name . '">' . $content . '</textarea>
-        <script>
-        var options_' . $option_var . ' = {
-        filterMode : ' . $filterMode . '
-                ,id : "editor_id"
-        ,width : "' . $width . '"
-        ,height:"' . $height . '"
-                ,formatUploadUrl:false
-        ,allowFileManager:' . $filemanager . '
-        ,allowImageUpload:true
-        ,afterBlur: function(){this.sync();}
-        ,uploadJson : "' . $phpScript . '&g=' . GROUP_NAME . '&water=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"
-        };';
-        if ($style == 2) {
-            $str .= 'options_' . $option_var . '.items=[
-            "source","code","image","fullscreen","|","forecolor", "bold", "italic", "underline",
-            "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
-            "insertunorderedlist", "|", "emoticons", ' . $imageupload . ' "link"];';
-        }
-        $str .= 'var hd_' . $option_var . ';
-        KindEditor.ready(function(K) {
-                    hd_' . $option_var . ' = KindEditor.create("#hd_' . $option_var . '",options_' . $option_var . ');
-        });
-        </script>
-        ';
-        return $str;
-    }
-
     //代码高亮
     public function _highlight()
     {

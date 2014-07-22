@@ -94,10 +94,6 @@ return array(
                                     'png' => 5000000, 'bmg' => 5000000, 'zip' => 5000000,
                                     'txt' => 5000000, 'rar' => 5000000, 'doc' => 5000000), //上传类型与大小
     'UPLOAD_PATH'                   => 'upload/',   //上传路径
-    'UPLOAD_IMG_DIR'                => '',          //图片上传目录名
-    'UPLOAD_IMG_RESIZE_ON'          => FALSE,       //上传图片缩放处理,超过以下值系统进行缩放
-    'UPLOAD_IMG_MAX_WIDTH'          => 1000,        //上传图片宽度超过此值，进行缩放
-    'UPLOAD_IMG_MAX_HEIGHT'         => 1000,        //上传图片高度超过此值，进行缩放
     /********************************图像水印处理********************************/
     'WATER_ON'                      => TRUE,           //开关
     'WATER_FONT'                    => HDPHP_PATH . 'Data/Font/font.ttf',   //水印字体

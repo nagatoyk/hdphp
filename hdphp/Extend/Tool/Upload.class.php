@@ -26,12 +26,6 @@ class Upload
     public $path;
     //错误信息
     public $error;
-    //缩略图处理
-    public $thumbOn;
-    //缩略图参数
-    public $thumb = array();
-    //是否加水印
-    public $waterMarkOn;
     //上传成功文件信息
     public $uploadedFile = array();
 
@@ -40,22 +34,19 @@ class Upload
      * @param string $path 上传路径
      * @param array $ext 允许的文件类型,传入数组如array('jpg','jpeg','png','doc')
      * @param array $size 允许上传大小,如array('jpg'=>200000,'rar'=>'39999') 如果不设置系统会依据配置项C("UPLOAD_EXT_SIZE")值
-     * @param bool $waterMarkOn 是否加水印
-     * @param bool $thumbOn 是否生成缩略图
-     * @param array $thumb 缩略图处理参数  只接收3个参数 1缩略图宽度 2缩略图高度  3缩略图生成规则
      */
-    public function __construct($path = '', $ext = array(), $size = array(), $waterMarkOn = null, $thumbOn = null, $thumb = array())
+    public function __construct($path = null, $ext = array(), $size = array())
     {
-        $path = empty($path) ? C("UPLOAD_PATH") : $path; //上传路径
-        $this->path = rtrim(str_replace('\\', '/', $path), '/') . '/';
-        $_ext = empty($ext) ? array_keys(C("UPLOAD_EXT_SIZE")) : $ext; //上传类型
+        $path = $path ? $path : C("UPLOAD_PATH"); //上传路径
+        $path = rtrim(str_replace('\\', '/', $path), '/') . '/';
+        $this->path = str_replace(ROOT_PATH, '', $path);
+        //上传类型
+        $_ext = empty($ext) ? array_keys(C("UPLOAD_EXT_SIZE")) : $ext;
         foreach ($_ext as $v) {
             $this->ext[] = strtoupper($v);
         }
+        //允许大小
         $this->size = $size ? $size : array_change_key_case_d(C("UPLOAD_EXT_SIZE"), 1);
-        $this->waterMarkOn = is_null($waterMarkOn) ? C("WATER_ON") : $waterMarkOn;
-        $this->thumbOn = $thumbOn;
-        $this->thumb = $thumb;
     }
 
 
@@ -104,70 +95,23 @@ class Upload
      */
     private function save($file)
     {
-        $is_img = 0;
-        $uploadFileName = mt_rand(1, 9999) . time() . "." . $file['ext'];
-        $filePath = $this->path . $uploadFileName;
-        if (in_array(strtolower($file ['ext']), array("jpeg", "jpg", "bmp", "gif", "png")) && getimagesize($file ['tmp_name'])) {
-            $imgDir = C("UPLOAD_IMG_DIR") ? C("UPLOAD_IMG_DIR") . "/" : "";
-            $filePath = $this->path . $imgDir . $uploadFileName;
-            if (!$this->checkDir($this->path . $imgDir)) {
-                $this->error = '图片上传目录创建失败或不可写';
-                return false;
-            }
-            $is_img = 1;
-        }
-        if (!move_uploaded_file($file ['tmp_name'], $filePath)) {
+        $fileName = mt_rand(1, 9999) . time() . "." . $file['ext'];
+        $filePath = $this->path . $fileName;
+        if (!move_uploaded_file($file ['tmp_name'], $filePath) && is_file($filePath)) {
             $this->error('移动临时文件失败');
             return false;
         }
-
-        if (!$is_img) {
-            $filePath = ltrim(str_replace(ROOT_PATH, '', $filePath), '/');
-            $arr = array("path" => $filePath, 'fieldname' => $file['fieldname'], 'image' => 0);
-        } else {
-            //处理图像类型文件
-            $img = new image ();
-            $imgInfo = getimagesize($filePath);
-            //对原图进行缩放
-            if (C("UPLOAD_IMG_RESIZE_ON") && ($imgInfo[0] > C("UPLOAD_IMG_MAX_WIDTH") || $imgInfo[1] > C("UPLOAD_IMG_MAX_HEIGHT"))) {
-                $img->thumb($filePath, $uploadFileName, C("UPLOAD_IMG_MAX_WIDTH"), C("UPLOAD_IMG_MAX_HEIGHT"), 5, $this->path);
-            }
-            //生成缩略图
-            if ($this->thumbOn) {
-                $args = array();
-                if (empty($this->thumb)) {
-                    array_unshift($args, $filePath);
-                } else {
-                    array_unshift($args, $filePath, "", "");
-                    $args = array_merge($args, $this->thumb);
-                }
-                $thumbFile = call_user_func_array(array($img, "thumb"), $args);
-            }
-            //加水印
-            if ($this->waterMarkOn) {
-                $img->water($filePath);
-            }
-            $filePath = trim(str_replace(ROOT_PATH, '', $filePath), '/');
-            if ($this->thumbOn) {
-                $thumbFile = trim(str_replace(ROOT_PATH, '', $thumbFile), '/');
-                $arr = array("path" => $filePath, "thumb" => $thumbFile, 'fieldname' => $file['fieldname'], 'image' => 1);
-            } else {
-                $arr = array("path" => $filePath, 'fieldname' => $file['fieldname'], 'image' => 1);
-            }
-        }
-        $arr['path'] = preg_replace('@\./@', '', $arr['path']);
-        //上传时间
-        $arr['uptime'] = time();
-        $info = pathinfo($filePath);
-        $arr['fieldname'] = $file['fieldname'];
-        $arr['basename'] = $info['basename'];
-        $arr['filename'] = $info['filename']; //新文件名
-        $arr['name'] = $file['filename']; //旧文件名
-        $arr['size'] = $file['size'];
-        $arr['ext'] = $file['ext'];
-        $dir = str_ireplace("\\", "/", dirname($arr['path']));
-        $arr['dir'] = substr($dir, "-1") == "/" ? $dir : $dir . "/";
-        $arr['url'] = __ROOT__ . '/' . str_ireplace(ROOT_PATH, '', $arr['dir']).$arr['basename'];
+        $arr = array();
+        $arr['path']        = $filePath;
+        $arr['uptime']      = time();
+        $arr['fieldname']   = $file['fieldname'];
+        $arr['basename']    = $filePath;
+        $arr['filename']    = $fileName; //新文件名
+        $arr['name']        = $file['filename']; //旧文件名
+        $arr['size']        = $file['size'];
+        $arr['ext']         = $file['ext'];
+        $arr['dir']         = $this->path;
+        $arr['url']         = __ROOT__ . '/' . str_ireplace(ROOT_PATH, '',$filePath);
         return $arr;
     }
 
@@ -211,7 +155,7 @@ class Upload
      */
     private function checkDir($path)
     {
-        return Dir::create($path) && is_writeable($path) ? true : false;
+        return Dir::create($path) && is_dir($path) ? true : false;
     }
 
     private function checkFile($file)
@@ -274,5 +218,4 @@ class Upload
     {
         return $this->error;
     }
-
 }

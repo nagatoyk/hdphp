@@ -18,12 +18,17 @@ switch ($action) {
     case 'uploadvideo':
         /* 上传文件 */
     case 'uploadfile':
-        C("UPLOAD_THUMB_ON", False); //关闭生成缩略图
-        C('UPLOAD_IMG_RESIZE_ON', True); //开启上传图片自动缩放
         C('UPLOAD_IMG_MAX_WIDTH', $_GET['UPLOAD_IMG_MAX_WIDTH']);
         C('UPLOAD_IMG_MAX_HEIGHT', $_GET['UPLOAD_IMG_MAX_HEIGHT']);
-        $upload = new Upload($CONFIG['imagePathFormat'], array(), array(), $_GET['water']);
+
+        $upload = new Upload($CONFIG['imagePathFormat']);
+
         if ($info = $upload->upload()) {
+            //加水印
+            if ($_GET['water'] == 1) {
+                $image = new Image();
+                $image->water($info[0]['path']);
+            }
             $info = $info[0];
             $result = json_encode(array(
                 "state" => "SUCCESS", //上传状态，上传成功时必须返回"SUCCESS"
@@ -38,7 +43,6 @@ switch ($action) {
                 'state' => $upload->error
             ));
         }
-//        $result = include(HDPHP_ORG_PATH . "Ueditor/php/action_upload.php");
         break;
 
     /* 列出图片 */
