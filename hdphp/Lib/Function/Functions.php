@@ -651,38 +651,19 @@ function Q($var, $default = null, $filter = null)
 }
 
 /**
- * 打印输出数据
+ * 打印输出数据|show的别名
  * @param void $var
  */
-function show($var)
+function p($var)
 {
     if (is_bool($var)) {
         var_dump($var);
     } else if (is_null($var)) {
         var_dump(NULL);
     } else {
-        echo "<pre style='padding:10px;border-radius:5px;background:#F5F5F5;border:1px solid #aaa;font-size:14px;line-height:18px;'>" . print_r($var, true) . "</pre>";
+        echo "<pre style='position:relative;z-index:1000;padding:10px;border-radius:5px;background:#F5F5F5;border:1px solid #aaa;font-size:14px;line-height:18px;opacity:0.9;'>" . print_r($var, true) . "</pre>";
     }
 }
-
-/**
- * 打印输出数据|show的别名
- * @param void $var
- */
-function p($var)
-{
-    show($var);
-}
-
-/**
- * 打印输出数据|show的别名
- * @param void $var
- */
-function dump($var)
-{
-    show($var);
-}
-
 /**
  * 跳转网址
  * @param string $url 跳转urlg
