@@ -163,7 +163,7 @@ final class Data {
 	 * @return bool
 	 */
 	static function isChild($data, $sid, $pid, $fieldPri = 'cid', $fieldPid = 'pid') {
-		$_data = self::channelList($data, $pid, "", $fieldPri, $fieldPid);
+		$_data = self::channelList($data, $pid, '', $fieldPri, $fieldPid);
 		foreach ($_data as $c) {
 			//目标栏目为源栏目的子栏目
 			if ($c[$fieldPri] == $sid)
