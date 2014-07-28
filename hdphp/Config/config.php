@@ -89,10 +89,9 @@ return array(
     'CACHE_SELECT_LENGTH'           => 30,          //缓存最大条数
     'CACHE_TPL_TIME'                => -1,          //模板缓存时间 -1为不缓存 0为永久缓存
     /********************************文件上传********************************/
-    'UPLOAD_THUMB_ON'               => FALSE,           //上传图片缩略图处理
-    'UPLOAD_EXT_SIZE'               => array('jpg' => 5000000, 'jpeg' => 5000000, 'gif' => 5000000,
-                                    'png' => 5000000, 'bmg' => 5000000, 'zip' => 5000000,
-                                    'txt' => 5000000, 'rar' => 5000000, 'doc' => 5000000), //上传类型与大小
+    'UPLOAD_THUMB_ON'               => FALSE,       //上传图片缩略图处理
+    'UPLOAD_ALLOW_TYPE'             => array('jpg','jpeg','gif','png','zip','rar','doc','txt'),//允许上传类型
+    'UPLOAD_ALLOW_SIZE'             => 2097152,     //允许上传文件大小 单位B
     'UPLOAD_PATH'                   => 'upload/',   //上传路径
     /********************************图像水印处理********************************/
     'WATER_ON'                      => TRUE,           //开关

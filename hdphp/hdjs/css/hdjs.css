@@ -179,15 +179,12 @@ div.tab ul.tab_menu li a:hover {
 }
 
 div.wrap {
-    background: #f3f3f3;
     position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
-    bottom: 0px;
-    padding: 10px 10px 45px 10px;
-    height: auto;
-    overflow-x: hidden;
+    bottom: 0px !important;
+    padding: 10px;
     overflow-y: auto;
     z-index: 1;
 }

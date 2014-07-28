@@ -35,18 +35,16 @@ class Upload
      * @param array $ext 允许的文件类型,传入数组如array('jpg','jpeg','png','doc')
      * @param array $size 允许上传大小,如array('jpg'=>200000,'rar'=>'39999') 如果不设置系统会依据配置项C("UPLOAD_EXT_SIZE")值
      */
-    public function __construct($path = null, $ext = array(), $size = array())
+    public function __construct($path = null, $ext = array(), $size = null)
     {
         $path = $path ? $path : C("UPLOAD_PATH"); //上传路径
         $path = rtrim(str_replace('\\', '/', $path), '/') . '/';
         $this->path = str_replace(ROOT_PATH, '', $path);
         //上传类型
-        $_ext = empty($ext) ? array_keys(C("UPLOAD_EXT_SIZE")) : $ext;
-        foreach ($_ext as $v) {
-            $this->ext[] = strtoupper($v);
-        }
+        $ext = $ext ? $ext : C("UPLOAD_ALLOW_TYPE");
+        $this->ext = array_change_value_case($ext);
         //允许大小
-        $this->size = $size ? $size : array_change_key_case_d(C("UPLOAD_EXT_SIZE"), 1);
+        $this->size = $size ? $size : C("UPLOAD_ALLOW_SIZE");
     }
 
 
@@ -102,16 +100,17 @@ class Upload
             return false;
         }
         $arr = array();
-        $arr['path']        = $filePath;
-        $arr['uptime']      = time();
-        $arr['fieldname']   = $file['fieldname'];
-        $arr['basename']    = $filePath;
-        $arr['filename']    = $fileName; //新文件名
-        $arr['name']        = $file['filename']; //旧文件名
-        $arr['size']        = $file['size'];
-        $arr['ext']         = $file['ext'];
-        $arr['dir']         = $this->path;
-        $arr['url']         = __ROOT__ . '/' . str_ireplace(ROOT_PATH, '',$filePath);
+        $arr['path'] = $filePath;
+        $arr['uptime'] = time();
+        $arr['fieldname'] = $file['fieldname'];
+        $arr['basename'] = $filePath;
+        $arr['filename'] = $fileName; //新文件名
+        $arr['name'] = $file['filename']; //旧文件名
+        $arr['size'] = $file['size'];
+        $arr['ext'] = $file['ext'];
+        $arr['dir'] = $this->path;
+        $arr['url'] = __ROOT__ . '/' . str_ireplace(ROOT_PATH, '', $filePath);
+        $arr['image'] = getimagesize($filePath) ? 1 : 0;
         return $arr;
     }
 
@@ -164,8 +163,7 @@ class Upload
             $this->error($file ['error']);
             return false;
         }
-        $ext = strtoupper($file ['ext']);
-        $ext_size = is_array($this->size) && isset($this->size[$ext]) ? $this->size[$ext] : $this->size;
+        $ext = strtolower($file ['ext']);
         if (!in_array($ext, $this->ext)) {
             $this->error = '文件类型不允许';
             return false;
@@ -174,8 +172,8 @@ class Upload
             $this->error = '上传内容不是一个合法图片';
             return false;
         }
-        if ($file ['size'] > $ext_size) {
-            $this->error = '上传文件大于' . get_size($ext_size);
+        if ($file ['size'] > $this->size) {
+            $this->error = '上传文件大于' . get_size($this->size);
             return false;
         }
 

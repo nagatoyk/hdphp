@@ -37,7 +37,7 @@ class SessionMysql
     {
         $options = C("SESSION_OPTIONS");
         $this->table = C('DB_PREFIX').$options['table']; //表
-        $this->expire = isset($options['expire'])?$options['expire']:2440; //过期时间
+        $this->expire = isset($options['expire'])?$options['expire']:3600; //过期时间
         $host = isset($options['host']) ? $options['host'] : C("DB_HOST");
         $port = isset($options['port']) ? $options['port'] : C("DB_PORT");
         $user = isset($options['user']) ? $options['user'] : C("DB_USER");

@@ -153,24 +153,20 @@ class ViewTag
         static $_hd_uploadify_js = false; //后盾js文件只加载一次
         $attr = array_change_key_case_d($attr, 0);
         //表单类型 是点击input过来的，还是img图片（缩略图）过来的
-        $_input_type = isset($attr['input_type']) && !empty($attr['input_type']) ? $attr['input_type'] : "input";
+        $_input_type = isset($attr['input_type'])? $attr['input_type'] : "input";
         $_elem_id = isset($attr['elem_id']) && !empty($attr['elem_id']) ? $attr['elem_id'] : ""; //表单类型
         $_name = isset($attr['name']) ? $attr['name'] : false; //上传表单name
-        $_post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
+        $post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
         if ($_name === false) {
             throw_exception("upload上传标签必须设置name属性");
         }
         $name = str_replace("[]", "", $_name);
         $id = "hd_uploadify_" . $name;
         //是否加水印
-        $_water = isset($attr['water']) ? $attr['water'] : false;
-        $water = $_water === false ? intval(C("WATER_ON")) : ($_water == 'false' ? 0 : 1);
-        $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
+        $water = isset($attr['water']) && $attr['water'] == 1 ? $attr['water'] : C("WATER_ON");
+        $waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
-        $removeTimeout = isset($attr['removetimeout']) ? $attr['removetimeout'] : 0; //提示框消失时间
-        $upload_img_max_width = isset($attr['upload_img_max_width']) ? intval($attr['upload_img_max_width']) : intval(C('upload_img_max_width')); //图片最大宽度
-        $upload_img_max_height = isset($attr['upload_img_max_height']) ? intval($attr['upload_img_max_height']) : intval(C('upload_img_max_height')); //图片最大宽度
         $size = isset($attr['size']) ? str_ireplace("MB", "", $attr['size']) . "MB" : "2MB"; //文件上传大小单位KB、MB、GB
         //允许上传文件类型
         if (isset($attr['type']) && !empty($attr['type'])) {
@@ -183,21 +179,13 @@ class ViewTag
             $type = "*.gif;*.jpg;*.png;*.jpeg";
         }
         $upload_dir = isset($attr['dir']) ? $attr['dir'] : ""; //上传文件存放目录
-        //是否关闭上传进度条
-        $_queueclose = isset($attr['type']) ? $attr['type'] : "false";
-        $queueclose = $_queueclose == 'true' || $_queueclose == '1' ? "true" : $id . "_queue";
         //是否显示描述
-        $_alt = isset($attr['alt']) ? $attr['alt'] : 'true';
-        $alt = $_alt == 'true' || $_alt == '1' ? "true" : 'false';
+        $alt = isset($attr['alt']) && $attr['alt'] == 1 ? 1 : 0;
         //是上传文件大小等提示信息true是false不显示
-        $_message = isset($attr['message']) ? $attr['message'] : 'true';
-        $message = $_message == 'true' || $_message == '1' ? "block" : 'none';
+        $message = isset($attr['message'])? intval($attr['message']) : 1;
         $limit = isset($attr['limit']) ? $attr['limit'] : "100"; //上传文件数量
         $thumb = isset($attr['thumb']) ? $attr['thumb'] : ''; //生成缩略图尺寸
         $data = isset($attr['data']) ? $attr['data'] : false; //编辑时的图片数据
-        if (!empty($thumb) && count(explode(",", $thumb)) % 2 !== 0) {
-            DEBUG && halt("upload标签的thumb属性必须是数值并且成对设置如200,200,300,300");
-        }
         //过滤非法数据，用于编辑显示使用
         if ($data) {
             $varName = preg_replace('/[\{\}\$]/', '', $attr['data']);
@@ -255,7 +243,7 @@ class ViewTag
         }
         $get = $_GET;
         unset($get['a']);
-        $phpScript = __WEB__ . '?' . http_build_query($get) . '&a=keditor_upload'; //PHP处理文件
+        $phpScript = __WEB__ . '?' . http_build_query($get) . '&a=hd_uploadify'; //PHP处理文件
         $str = '';
         if (!$_hd_uploadify_js) {
             $_hd_uploadify_js = true; //只加载一次
@@ -279,38 +267,37 @@ class ViewTag
         $str .= '
 <script type="text/javascript">
     $(function() {
-        hd_uploadify_options.removeTimeout  =' . $removeTimeout . ';
+        hd_uploadify_options.removeTimeout  =0;//提示框消息时间
         hd_uploadify_options.fileSizeLimit  ="' . $size . '";
         hd_uploadify_options.fileTypeExts   ="' . $type . '";
-        hd_uploadify_options.queueID        ="' . $queueclose . '";
         hd_uploadify_options.showalt        =' . $alt . ';
         hd_uploadify_options.uploadLimit    =' . $limit . ';
         hd_uploadify_options.input_type    ="' . $_input_type . '";
         hd_uploadify_options.elem_id    ="' . $_elem_id . '";
-        hd_uploadify_options.upload_img_max_width    ="' . $upload_img_max_width . '";
-        hd_uploadify_options.upload_img_max_    ="' . $upload_img_max_height . '";
         hd_uploadify_options.success_msg    ="正在上传...";//上传成功提示文字
-        hd_uploadify_options.formData ={' . $_post . 'water : "' . $water . '",upload_img_max_width:"' . $upload_img_max_width . '",upload_img_max_height:"' . $upload_img_max_height . '",fileSizeLimit:' . (intval($size) * 1024 * 1024) . ', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
+        hd_uploadify_options.formData ={' . $post . 'water : "' . $water . '",fileSizeLimit:' . (intval($size) * 1024 * 1024) . ', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
         hd_uploadify_options.thumb_width =' . $width . ';
         hd_uploadify_options.thumb_height          =' . $height . ';
         hd_uploadify_options.uploadsSuccessNums = ' . $uploadsSuccessful . ';
         $("#' . $id . '").uploadify(hd_uploadify_options);
         });
 </script>
-<input type="file" name="up" id="' . $id . '"/>
-<div class="' . $id . '_msg num_upload_msg" style="display:' . $message . '">
-';
-        if ($_waterbtn) {
-            $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
-        }
-        $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
-</div>
-
-<div id="' . $id . '_queue"></div>
-<div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
-    <ul>' . $uploadFileStr . '</ul>
-    <div style="clear:both;"></div>
-</div>';
+<input type="file" name="up" id="' . $id . '"/>';
+//显示上传提示信息
+    if($message){
+        $str.='<div class="' . $id . '_msg num_upload_msg">
+        ';
+                if ($waterbtn) {
+                    $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
+                }
+                $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
+        </div>';
+    }
+        $str.='<div id="' . $id . '_queue"></div>
+        <div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
+            <ul>' . $uploadFileStr . '</ul>
+            <div style="clear:both;"></div>
+        </div>';
         return $str;
     }
 
@@ -371,6 +358,7 @@ class ViewTag
         </script>";
         return $str;
     }
+
     //代码高亮
     public function _highlight()
     {

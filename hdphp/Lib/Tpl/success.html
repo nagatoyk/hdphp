@@ -14,7 +14,7 @@
 				<div class="icon"></div>
 				<div class="message">
 					<div style="margin-top:10px;margin-bottom:15px;">
-						{$msg}
+						{$message}
 					</div>
 					<a href="javascript:{$url}" class="hd-cancel">
 						返回

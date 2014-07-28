@@ -137,6 +137,8 @@ final class Route
         defined('__URL__')          or define("__URL__", __HOST__ . '/' . trim($_SERVER['REQUEST_URI'],'/'));
         //应用URL地址
         defined('__APP__')          or define("__APP__", __ROOT__ .'/' .basename(APP_PATH));
+        //公共目录
+        defined('__COMMON__')       or define("__COMMON__", __APP__ .'/Common');
         //框架目录相关URL
         defined('__HDPHP__')        or define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
         defined('__HDPHP_DATA__')   or define("__HDPHP_DATA__", __HDPHP__ . '/Data');

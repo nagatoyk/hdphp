@@ -145,49 +145,15 @@ div.num_upload_msg {
 }
 
 .upload_title {
-    display: inline-block;
+    /*display: inline-block;*/
+    overflow: hidden;
 }
 
 .upload_title input {
-    width: 92%;
+    width: 100%;
     padding: 3px 5px;
     color: #333;
     border-right: none;
     border-left: none;
     border-bottom: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -54,7 +54,7 @@ var hd_uploadify_options = {
         eval("data=" + data);
         var upload_file_id = this.settings.id;//表单id
         //上传失败时 成功上传的文件数量减1
-        if (data.stat == 0) {
+        if (data.status == 0) {
             this.queueData.uploadsSuccessful--;
             alert(data.msg);
             return;
@@ -83,12 +83,6 @@ var hd_uploadify_options = {
             html +="<input type='hidden' name='table_id' value='"+data.table_id+"'/>";
         }
         html += "<input type='hidden' t='file'   name='" + upload_file_id.substr(13) + "[" + _index + "][path]' value='" + data.path + "'/>";
-        //缩略图表单
-        if (data.thumb.length > 0) {
-            for (var i = 0, total = data.thumb.length; i < total; i++) {
-                html += "<input type='hidden' t='file' name='" + upload_file_id.substr(13) + "[" + _index + "][thumb][]' value='" + data.thumb[i] + "'/>";
-            }
-        }
         html += "</li>";
         div.append(html);
         if (typeof(hd_upload) == 'function') {
@@ -139,13 +133,11 @@ $(".delUploadFile").live("click", function () {
         file: delFiles
     }, function (data) {
         if (data == 1) {
+            imgDiv.remove();
             upload.setStats({
                 successful_uploads: --upload.queueData.uploadsSuccessful
             });
             alter_upload_msg(upload);
-            imgDiv.fadeOut(500, function () {
-                $(this).remove();
-            });
         } else {
             alert("文件删除失败");
         }

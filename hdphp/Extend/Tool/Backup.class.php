@@ -191,9 +191,6 @@ final class Backup {
 			foreach ($info['table'] as $t => $v) {
 				$config['table'][] = $t;
 			}
-		} else if (is_string($config['table'])) {
-			//只备份一张表时,转为数组格式
-			$config['table'] = array($config['table']);
 		}
 		//分卷大小,单位kb
 		if (!isset($config['size'])) {

@@ -172,42 +172,40 @@ abstract class Controller
         $this->getViewObj();
         return $this->view->assign($name, $value);
     }
-
     /**
      * 错误输出
-     * @param string $msg 提示内容
-     * @param string $url 跳转URL
+     * @param string $message 提示内容
+     * @param null $url 跳转URL
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function error($msg = '出错了', $url = NULL, $time = 2, $tpl = null)
+    protected function error($message = '出错了', $url = NULL, $time = 2, $tpl = null)
     {
         if (IS_AJAX) {
-            $this->ajax(array('status' => 0, 'message' => $msg));
+            $this->ajax(array('status' => 0, 'message' => $message));
         } else {
             $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
             $tpl = $tpl ? $tpl : strstr(C("TPL_ERROR"), '/') ? C("TPL_ERROR") : MODULE_PUBLIC_PATH . C("TPL_ERROR");
-            $this->assign(array("msg" => $msg, 'url' => $url, 'time' => $time));
+            $this->assign(array("message" => $message, 'url' => $url, 'time' => $time));
             $this->display($tpl);
         }
         exit;
     }
-
     /**
      * 成功
-     * @param string $msg 提示内容
-     * @param string $url 跳转URL
+     * @param string $message 提示内容
+     * @param null $url 跳转URL
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function success($msg = '操作成功', $url = NULL, $time = 2, $tpl = null)
+    protected function success($message = '操作成功', $url = NULL, $time = 2, $tpl = null)
     {
         if (IS_AJAX) {
-            $this->ajax(array('status' => 1, 'message' => $msg));
+            $this->ajax(array('status' => 1, 'message' => $message));
         } else {
             $url = $url ? "window.location.href='" . U($url) . "'" : "window.history.back(-1);";
             $tpl = $tpl ? $tpl : strstr(C("TPL_SUCCESS"), '/') ? C("TPL_SUCCESS") : MODULE_PUBLIC_PATH . C("TPL_SUCCESS");
-            $this->assign(array("msg" => $msg, 'url' => $url, 'time' => $time));
+            $this->assign(array("message" => $message, 'url' => $url, 'time' => $time));
             $this->display($tpl);
         }
         exit;
