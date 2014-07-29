@@ -34,7 +34,6 @@ class ViewTag
         'case' => array('block' => 1),
         'break' => array('block' => 0),
         'default' => array('block' => 0),
-        'load' => array('block' => 0),
         'include' => array('block' => 0),
         'list' => array('block' => 1, 'level' => 5),
         'js' => array('block' => 0),
@@ -450,19 +449,13 @@ class ViewTag
         return $php;
     }
 
-    //load标签的别名，加载模板文件
-    public function _include($attr, $content)
-    {
-        return $this->_load($attr, $content);
-    }
-
     /**
      * 加载模板文件
      * @param $attr
      * @param $content
      * @return string
      */
-    public function _load($attr, $content)
+    public function _include($attr, $content)
     {
         if (!isset($attr['file'])) {
             halt('load 模板标签必须有value属性', false); //load标签必须有file属性

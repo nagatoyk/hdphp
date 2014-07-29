@@ -19,7 +19,7 @@
 class Page
 {
     static $staticTotalPage = null; //总页数
-    static $staticUrl = null; //当前url
+    static $staticUrl = null; //url地址
     static $fix = ''; //静态后缀如.html
     static $pageNumLabel = '{page}'; //替换标签
     public $totalRow; //总条数
@@ -43,14 +43,13 @@ class Page
      * @param string $pageNumLabel 页码变量,默认为{page}
      */
 
-    function __construct($total, $row = '', $pageRow = '', $desc = '',
-                         $setSelfPage = '', $customUrl = '', $pageNumLabel = '{page}')
+    function __construct($total, $row = '', $pageRow = '', $desc = '', $setSelfPage = '', $customUrl = '', $pageNumLabel = '{page}')
     {
         $this->totalRow = $total; //总条数
         $this->arcRow = empty($row) ? C("PAGE_SHOW_ROW") : $row; //每页显示条数
         $this->pageRow = (empty($pageRow) ? C('PAGE_ROW') : $pageRow) - 1; //显示页码数量
         $this->totalPage = ceil($this->totalRow / $this->arcRow); //总页数
-        self::$staticTotalPage =$GLOBALS['totalPage']= $this->totalPage; //总页数
+        self::$staticTotalPage = $GLOBALS['totalPage'] = $this->totalPage; //总页数
         self::$pageNumLabel = empty($pageNumLabel) ? self::$pageNumLabel : $pageNumLabel; //替换标签
         $this->selfPage = min($this->totalPage, empty($setSelfPage) ? empty($_GET[C("PAGE_VAR")]) ? 1 : max(1, (int)$_GET[C("PAGE_VAR")]) : max(1, (int)$setSelfPage)); //当前页
         $this->url = $this->setUrl($customUrl); //配置url地址
@@ -104,15 +103,15 @@ class Page
         } else {
             $returnUrl = str_replace(self::$pageNumLabel, $pageNum, $returnUrl);
         }
-        return self::$staticUrl?$returnUrl:U($returnUrl);
+        return self::$staticUrl ? $returnUrl : U($returnUrl);
     }
 
     //配置URL地址
     protected function setUrl($customUrl)
     {
-        if(!is_null(self::$staticUrl)){
+        if (!is_null(self::$staticUrl)) {
             $returnUrl = self::$staticUrl . self::$fix; //配置url地址
-        }else if (!empty($customUrl)) {
+        } else if (!empty($customUrl)) {
             if (strstr($customUrl, self::$pageNumLabel)) {
                 $returnUrl = $customUrl;
             } else {
@@ -126,11 +125,11 @@ class Page
                         break;
                 }
             }
-        } else{
+        } else {
             $get = $_GET;
-            unset($get["a"]);
-            unset($get['c']);
             unset($get["m"]);
+            unset($get['c']);
+            unset($get["a"]);
             unset($get[C("PAGE_VAR")]);
             $url_type = C("URL_TYPE");
             switch ($url_type) {

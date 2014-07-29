@@ -38,14 +38,11 @@ abstract class Controller
             $this->__init();
         }
     }
-
     /**
      * 执行不存在的函数时会自动执行的魔术方法
      * 编辑器上传时执行php脚本及ispost或_post等都会执行这个方法
-     * @access protected
-     * @param string $method 方法名
-     * @param mixed $args 方法参数
-     * @return mixed
+     * @param $action 方法名
+     * @param $args 方法参数
      */
     public function __call($action, $args)
     {
@@ -155,9 +152,8 @@ abstract class Controller
      */
     protected function isCache($cachePath = null)
     {
-        $args = func_get_args();
         $this->getViewObj();
-        return call_user_func_array(array($this->view, "isCache"), $args);
+        return call_user_func_array(array($this->view, "isCache"), func_get_args());
     }
 
     /**

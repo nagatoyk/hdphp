@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manual/HDPHP.pdf" afterPath="$PROJECT_DIR$/manual/HDPHP.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Config/config.php" afterPath="$PROJECT_DIR$/hdphp/Config/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/error.html" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/error.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css" afterPath="$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Tpl/success.html" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/success.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/uploadify.css" afterPath="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/uploadify.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
@@ -39,22 +29,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Backup.class.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php">
+      <file leaf-file-name="ViewTag.class.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="49" selection-start="2627" selection-end="2636" vertical-scroll-proportion="5.625" vertical-offset="1350" max-vertical-offset="3330">
+            <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="-2.7083333" vertical-offset="6655" max-vertical-offset="9435">
+              <folding>
+                <marker date="1406646222000" expanded="true" signature="3986:4378" placeholder="..." />
+                <marker date="1406646222000" expanded="true" signature="4009:4359" placeholder="{...}" />
+                <marker date="1406646222000" expanded="true" signature="4112:4347" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+                <marker date="1406646222000" expanded="true" signature="4859:5094" placeholder="..." />
+                <marker date="1406646222000" expanded="true" signature="16287:16450" placeholder="..." />
+                <marker date="1406646222000" expanded="true" signature="16358:16423" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+                <marker date="1406646222000" expanded="true" signature="23724:23884" placeholder="..." />
+                <marker date="1406646222000" expanded="true" signature="23928:24147" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Page.class.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="117.708336" vertical-offset="4655" max-vertical-offset="5295">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hd_uploadify.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js">
+      <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="31" selection-start="2341" selection-end="2348" vertical-scroll-proportion="0.66114455" vertical-offset="566" max-vertical-offset="2340">
-              <folding>
-                <marker date="1406258412000" expanded="false" signature="3021:3043" placeholder="..." />
-              </folding>
+            <state line="133" column="45" selection-start="8514" selection-end="8518" vertical-scroll-proportion="0.3598775" vertical-offset="1760" max-vertical-offset="2670">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,10 +78,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbInterface.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMemcache.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionRedis.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/View.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewCompile.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewHd.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewSmarty.class.php" />
@@ -83,7 +85,6 @@
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/BarcodeQR.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Cart.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/ContentPage.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Date.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Encry.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Html.class.php" />
@@ -99,7 +100,6 @@
         <option value="$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/config.json" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/index.html" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Alias.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/index.html" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/controller.php" />
@@ -110,19 +110,25 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js" />
-        <option value="$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/uploadify.css" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
         <option value="$PROJECT_DIR$/Application/Index/View/Index/index.html" />
         <option value="$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css" />
         <option value="$PROJECT_DIR$/hdphp/Config/config.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Upload.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/success.html" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/error.html" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
+        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
+        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Download.class.php" />
+        <option value="$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" />
       </list>
     </option>
   </component>
@@ -158,7 +164,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,76 +232,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Extend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Uploadify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hdphp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Tool" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="backup&#10;MODEL.CL&#10;ROUTE&#10;functions&#10;error&#10;success.ht&#10;controller&#10;upload.cl&#10;config.php&#10;hdjs.css&#10;tag&#10;session&#10;config&#10;hdjs.cs&#10;viewta&#10;relationm&#10;viewmo&#10;debug&#10;Controller.c&#10;hdphp&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;model.&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;HDPHP&#10;function&#10;dir&#10;viewmod&#10;SessionMysql&#10;tag.&#10;dbm&#10;ViewCompile&#10;hdphp.clas&#10;hdphp.cl&#10;route.&#10;upload.class&#10;dump&#10;app&#10;log.c&#10;func" />
+    <property name="SearchEverywhereHistory" value="config.php&#10;page.class&#10;tag&#10;viewhd&#10;config&#10;viewh&#10;controller&#10;viewmo&#10;downlo&#10;DEBUG.&#10;model.&#10;data&#10;functions&#10;code.clas&#10;data.cl&#10;functions.&#10;backup&#10;MODEL.CL&#10;ROUTE&#10;error&#10;success.ht&#10;upload.cl&#10;hdjs.css&#10;session&#10;hdjs.cs&#10;viewta&#10;relationm&#10;debug&#10;Controller.c&#10;hdphp&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;HDPHP&#10;function&#10;dir&#10;viewmod&#10;SessionMysql&#10;tag.&#10;dbm" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -379,7 +327,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18515626" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21015625" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21015625" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -411,46 +359,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Xml.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="1" selection-start="3709" selection-end="3709" vertical-scroll-proportion="0.859375" vertical-offset="1130" max-vertical-offset="1770" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysql.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="764" selection-end="764" vertical-scroll-proportion="0.26256078" vertical-offset="0" max-vertical-offset="3186" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="5" selection-start="3245" selection-end="3245" vertical-scroll-proportion="0.37059724" vertical-offset="1423" max-vertical-offset="2100" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Cache/Cache.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="3" selection-start="944" selection-end="986" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="2475" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/App.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="22" selection-start="1006" selection-end="1006" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="1380" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="9" selection-start="1054" selection-end="1054" vertical-scroll-proportion="0.048622366" vertical-offset="0" max-vertical-offset="617" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="581" column="0" selection-start="14760" selection-end="14760" vertical-scroll-proportion="0.62870514" vertical-offset="8117" max-vertical-offset="15135" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="52" selection-start="3883" selection-end="3914" vertical-scroll-proportion="-0.21428572" vertical-offset="2070" max-vertical-offset="9840" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/dialogs/emotion/images/fface.gif">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -489,11 +397,6 @@
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="12" selection-start="2625" selection-end="2625" vertical-scroll-proportion="0.07617504" vertical-offset="1603" max-vertical-offset="5775" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Alias.php">
@@ -561,11 +464,6 @@
         <state line="27" column="6" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-2.3333333" vertical-offset="1740" max-vertical-offset="5040" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="747" selection-end="747" vertical-scroll-proportion="-0.071428575" vertical-offset="180" max-vertical-offset="810" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Image.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="219" column="43" selection-start="7404" selection-end="7404" vertical-scroll-proportion="0.0" vertical-offset="3285" max-vertical-offset="5415" />
@@ -591,19 +489,9 @@
         <state line="9" column="46" selection-start="189" selection-end="189" vertical-scroll-proportion="0.21428572" vertical-offset="0" max-vertical-offset="630" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="39" selection-start="7184" selection-end="7191" vertical-scroll-proportion="0.5125" vertical-offset="2297" max-vertical-offset="9540" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/uploadify.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="21" selection-start="3178" selection-end="3178" vertical-scroll-proportion="0.2688331" vertical-offset="1783" max-vertical-offset="2460" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="40" selection-start="402" selection-end="402" vertical-scroll-proportion="0.39050537" vertical-offset="0" max-vertical-offset="653" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css">
@@ -626,11 +514,6 @@
         <state line="16" column="34" selection-start="434" selection-end="434" vertical-scroll-proportion="0.36753446" vertical-offset="0" max-vertical-offset="653" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="5" selection-start="5267" selection-end="5267" vertical-scroll-proportion="-0.6015625" vertical-offset="3130" max-vertical-offset="3855" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="140" column="78" selection-start="5537" selection-end="5537" vertical-scroll-proportion="0.1875" vertical-offset="1845" max-vertical-offset="5880">
@@ -638,41 +521,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="9" selection-start="947" selection-end="947" vertical-scroll-proportion="0.39356816" vertical-offset="58" max-vertical-offset="735" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="31" selection-start="2341" selection-end="2348" vertical-scroll-proportion="0.66114455" vertical-offset="566" max-vertical-offset="2340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="666" column="37" selection-start="16533" selection-end="16533" vertical-scroll-proportion="0.17771085" vertical-offset="9677" max-vertical-offset="15135" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="49" selection-start="2627" selection-end="2636" vertical-scroll-proportion="-0.20673813" vertical-offset="1350" max-vertical-offset="3330" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="625" column="41" selection-start="17572" selection-end="17572" vertical-scroll-proportion="9.8046875" vertical-offset="2965" max-vertical-offset="27180">
+        <state line="1259" column="16" selection-start="32911" selection-end="32915" vertical-scroll-proportion="0.33224756" vertical-offset="18546" max-vertical-offset="26895">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Code.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="6" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="2655" />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="236" column="9" selection-start="6688" selection-end="6688" vertical-scroll-proportion="0.34456354" vertical-offset="3315" max-vertical-offset="16890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Download.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="5" selection-start="774" selection-end="774" vertical-scroll-proportion="0.17749603" vertical-offset="98" max-vertical-offset="1330" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="15" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.4953125" vertical-offset="1603" max-vertical-offset="5805" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="629" vertical-scroll-proportion="0.022970904" vertical-offset="0" max-vertical-offset="13935">
+          <folding>
+            <element signature="e#6#93#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="46" selection-start="882" selection-end="882" vertical-scroll-proportion="0.24502297" vertical-offset="50" max-vertical-offset="2865" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Admin/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="7" selection-start="104" selection-end="104" vertical-scroll-proportion="0.114854515" vertical-offset="0" max-vertical-offset="653" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Index/Controller/IndexController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="8" selection-start="112" selection-end="236" vertical-scroll-proportion="0.18376723" vertical-offset="0" max-vertical-offset="653" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="0" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.37212864" vertical-offset="1932" max-vertical-offset="3795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="67" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.83920366" vertical-offset="142" max-vertical-offset="855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewHd.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="48" selection-start="3214" selection-end="3214" vertical-scroll-proportion="-0.34456354" vertical-offset="1725" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="-2.7083333" vertical-offset="6655" max-vertical-offset="9435">
+          <folding>
+            <marker date="1406646222000" expanded="true" signature="3986:4378" placeholder="..." />
+            <marker date="1406646222000" expanded="true" signature="4009:4359" placeholder="{...}" />
+            <marker date="1406646222000" expanded="true" signature="4112:4347" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
+            <marker date="1406646222000" expanded="true" signature="4859:5094" placeholder="..." />
+            <marker date="1406646222000" expanded="true" signature="16287:16450" placeholder="..." />
+            <marker date="1406646222000" expanded="true" signature="16358:16423" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
+            <marker date="1406646222000" expanded="true" signature="23724:23884" placeholder="..." />
+            <marker date="1406646222000" expanded="true" signature="23928:24147" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="117.708336" vertical-offset="4655" max-vertical-offset="5295">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="72" selection-start="715" selection-end="715" vertical-scroll-proportion="0.27565083" vertical-offset="0" max-vertical-offset="2670" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="9" selection-start="947" selection-end="947" vertical-scroll-proportion="0.39356816" vertical-offset="58" max-vertical-offset="735" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="14" selection-start="3480" selection-end="3480" vertical-scroll-proportion="2.618683" vertical-offset="315" max-vertical-offset="13800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="49" selection-start="2627" selection-end="2636" vertical-scroll-proportion="5.625" vertical-offset="1350" max-vertical-offset="3330">
+        <state line="133" column="45" selection-start="8514" selection-end="8518" vertical-scroll-proportion="0.3598775" vertical-offset="1760" max-vertical-offset="2670">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/Uploadify/hd_uploadify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="31" selection-start="2341" selection-end="2348" vertical-scroll-proportion="0.66114455" vertical-offset="566" max-vertical-offset="2340">
-          <folding>
-            <marker date="1406258412000" expanded="false" signature="3021:3043" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>

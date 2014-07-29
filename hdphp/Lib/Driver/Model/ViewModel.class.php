@@ -48,9 +48,12 @@ class ViewModel extends Model
             }
             //_TYPE关联方式
             if (isset($set['_type'])) {
-                $from .= " {$set['_type']} JOIN ";
+                $from .= ' '.strtoupper($set['_type']).' JOIN ';
             }
         }
+        if(substr($from,-11)=='INNER JOIN ')$from=substr($from,0,-11);
+        if(substr($from,-11)=='RIGHT JOIN ')$from=substr($from,0,-11);
+        if(substr($from,-10)=='LEFT JOIN ')$from=substr($from,0,-10);
         $this->db->opt['table'] = $from;
         $this->joinTable = array();
         return parent::select($data);
