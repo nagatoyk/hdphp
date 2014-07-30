@@ -622,7 +622,7 @@ function Q($var, $default = null, $filter = null)
     if (empty($var[1])) {
         return $data;
         //如果存在数据如$this->_get("page")，$_GET中存在page数据
-    } else if (isset($data[$var[1]])) {
+    } else if (isset($data[$var[1]]) && !empty($data[$var[1]])) {
         //要获得参数如$this->_get("page")中的page
         $value = $data[$var[1]];
         //对参数进行过滤的函数
@@ -664,6 +664,7 @@ function p($var)
         echo "<pre style='position:relative;z-index:1000;padding:10px;border-radius:5px;background:#F5F5F5;border:1px solid #aaa;font-size:14px;line-height:18px;opacity:0.9;'>" . print_r($var, true) . "</pre>";
     }
 }
+
 /**
  * 跳转网址
  * @param string $url 跳转urlg

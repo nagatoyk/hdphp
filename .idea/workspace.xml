@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js" afterPath="$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
@@ -32,17 +30,8 @@
       <file leaf-file-name="ViewTag.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="-2.7083333" vertical-offset="6655" max-vertical-offset="9435">
-              <folding>
-                <marker date="1406646222000" expanded="true" signature="3986:4378" placeholder="..." />
-                <marker date="1406646222000" expanded="true" signature="4009:4359" placeholder="{...}" />
-                <marker date="1406646222000" expanded="true" signature="4112:4347" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-                <marker date="1406646222000" expanded="true" signature="4859:5094" placeholder="..." />
-                <marker date="1406646222000" expanded="true" signature="16287:16450" placeholder="..." />
-                <marker date="1406646222000" expanded="true" signature="16358:16423" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-                <marker date="1406646222000" expanded="true" signature="23724:23884" placeholder="..." />
-                <marker date="1406646222000" expanded="true" signature="23928:24147" placeholder="..." />
-              </folding>
+            <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="0.0" vertical-offset="6855" max-vertical-offset="9570">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -50,17 +39,38 @@
       <file leaf-file-name="Page.class.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="117.708336" vertical-offset="4655" max-vertical-offset="5295">
+            <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="5430">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="45" selection-start="8514" selection-end="8518" vertical-scroll-proportion="0.3598775" vertical-offset="1760" max-vertical-offset="2670">
+            <state line="127" column="58" selection-start="8103" selection-end="8103" vertical-scroll-proportion="-6.0416665" vertical-offset="1760" max-vertical-offset="2670">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="624" column="59" selection-start="17550" selection-end="17550" vertical-scroll-proportion="-6.4583335" vertical-offset="9070" max-vertical-offset="26910">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hdjs.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1019" column="10" selection-start="25986" selection-end="25992" vertical-scroll-proportion="0.5256024" vertical-offset="14741" max-vertical-offset="15480">
+              <folding>
+                <marker date="1406688598000" expanded="true" signature="5886:5932" placeholder="..." />
+                <marker date="1406688598000" expanded="true" signature="6498:6505" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,7 +107,6 @@
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Validate.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/Model.class.php" />
         <option value="$PROJECT_DIR$/test.php" />
-        <option value="$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/php/config.json" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Org/Ueditor/index.html" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Alias.php" />
@@ -119,7 +128,6 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/error.html" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php" />
-        <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Data.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Tpl/debug.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Download.class.php" />
@@ -129,6 +137,8 @@
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php" />
         <option value="$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php" />
+        <option value="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
+        <option value="$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js" />
       </list>
     </option>
   </component>
@@ -164,6 +174,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,13 +249,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="config.php&#10;page.class&#10;tag&#10;viewhd&#10;config&#10;viewh&#10;controller&#10;viewmo&#10;downlo&#10;DEBUG.&#10;model.&#10;data&#10;functions&#10;code.clas&#10;data.cl&#10;functions.&#10;backup&#10;MODEL.CL&#10;ROUTE&#10;error&#10;success.ht&#10;upload.cl&#10;hdjs.css&#10;session&#10;hdjs.cs&#10;viewta&#10;relationm&#10;debug&#10;Controller.c&#10;hdphp&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;HDPHP&#10;function&#10;dir&#10;viewmod&#10;SessionMysql&#10;tag.&#10;dbm" />
+    <property name="SearchEverywhereHistory" value="hdjs&#10;FUNCTIONS&#10;config.php&#10;page.class&#10;tag&#10;viewhd&#10;config&#10;viewh&#10;controller&#10;viewmo&#10;downlo&#10;DEBUG.&#10;model.&#10;data&#10;functions&#10;code.clas&#10;data.cl&#10;functions.&#10;backup&#10;MODEL.CL&#10;ROUTE&#10;error&#10;success.ht&#10;upload.cl&#10;hdjs.css&#10;session&#10;hdjs.cs&#10;viewta&#10;relationm&#10;debug&#10;Controller.c&#10;hdphp&#10;db.&#10;model&#10;route&#10;app.class.php&#10;app.cl&#10;db.cl&#10;validat&#10;db&#10;route.cl&#10;VIEWTAG&#10;VIEW&#10;model.cl&#10;module.cl&#10;HDPHP&#10;function&#10;dir&#10;viewmod&#10;SessionMysql" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -335,11 +345,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -531,21 +541,9 @@
         <state line="67" column="31" selection-start="2341" selection-end="2348" vertical-scroll-proportion="0.66114455" vertical-offset="566" max-vertical-offset="2340" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="666" column="37" selection-start="16533" selection-end="16533" vertical-scroll-proportion="0.17771085" vertical-offset="9677" max-vertical-offset="15135" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Backup.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="90" column="49" selection-start="2627" selection-end="2636" vertical-scroll-proportion="-0.20673813" vertical-offset="1350" max-vertical-offset="3330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1259" column="16" selection-start="32911" selection-end="32915" vertical-scroll-proportion="0.33224756" vertical-offset="18546" max-vertical-offset="26895">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Code.class.php">
@@ -596,52 +594,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/Controller.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="0" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.37212864" vertical-offset="1932" max-vertical-offset="3795">
-          <folding />
-        </state>
+        <state line="154" column="0" selection-start="4067" selection-end="4067" vertical-scroll-proportion="0.37212864" vertical-offset="1932" max-vertical-offset="3795" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Model/ViewModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="67" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.83920366" vertical-offset="142" max-vertical-offset="855">
-          <folding />
-        </state>
+        <state line="55" column="67" selection-start="2117" selection-end="2117" vertical-scroll-proportion="0.83920366" vertical-offset="142" max-vertical-offset="855" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewHd.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="48" selection-start="3214" selection-end="3214" vertical-scroll-proportion="-0.34456354" vertical-offset="1725" max-vertical-offset="2700">
-          <folding />
-        </state>
+        <state line="109" column="48" selection-start="3214" selection-end="3214" vertical-scroll-proportion="-0.34456354" vertical-offset="1725" max-vertical-offset="2700" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/View/ViewTag.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="-2.7083333" vertical-offset="6655" max-vertical-offset="9435">
-          <folding>
-            <marker date="1406646222000" expanded="true" signature="3986:4378" placeholder="..." />
-            <marker date="1406646222000" expanded="true" signature="4009:4359" placeholder="{...}" />
-            <marker date="1406646222000" expanded="true" signature="4112:4347" placeholder="{&quot;zoomType&quot;: 'standard'...}" />
-            <marker date="1406646222000" expanded="true" signature="4859:5094" placeholder="..." />
-            <marker date="1406646222000" expanded="true" signature="16287:16450" placeholder="..." />
-            <marker date="1406646222000" expanded="true" signature="16358:16423" placeholder="{&quot;mode&quot;: &quot;text/html&quot;...}" />
-            <marker date="1406646222000" expanded="true" signature="23724:23884" placeholder="..." />
-            <marker date="1406646222000" expanded="true" signature="23928:24147" placeholder="..." />
-          </folding>
+        <state line="457" column="20" selection-start="20086" selection-end="20086" vertical-scroll-proportion="0.0" vertical-offset="6855" max-vertical-offset="9570">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Tool/Page.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="117.708336" vertical-offset="4655" max-vertical-offset="5295">
+        <state line="131" column="25" selection-start="4710" selection-end="4710" vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="5430">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="45" selection-start="8514" selection-end="8518" vertical-scroll-proportion="0.3598775" vertical-offset="1760" max-vertical-offset="2670">
+        <state line="127" column="58" selection-start="8103" selection-end="8103" vertical-scroll-proportion="-6.0416665" vertical-offset="1760" max-vertical-offset="2670">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="624" column="59" selection-start="17550" selection-end="17550" vertical-scroll-proportion="-6.4583335" vertical-offset="9070" max-vertical-offset="26910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/hdjs/js/hdjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1019" column="10" selection-start="25986" selection-end="25992" vertical-scroll-proportion="0.5256024" vertical-offset="14741" max-vertical-offset="15480">
+          <folding>
+            <marker date="1406688598000" expanded="true" signature="5886:5932" placeholder="..." />
+            <marker date="1406688598000" expanded="true" signature="6498:6505" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
