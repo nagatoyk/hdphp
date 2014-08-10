@@ -32,12 +32,13 @@ abstract class Controller
      */
     public function __construct()
     {
-        event("CONTROL_START", $this->options);
+        Hook::listen('CONTROLLER_START', $this->options);
         //子类如果存在auto方法，自动运行
         if (method_exists($this, "__init")) {
             $this->__init();
         }
     }
+
     /**
      * 执行不存在的函数时会自动执行的魔术方法
      * 编辑器上传时执行php脚本及ispost或_post等都会执行这个方法
@@ -123,9 +124,12 @@ abstract class Controller
      */
     protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
     {
+        Hook::listen("VIEW_START");
         $this->getViewObj();
         //执行视图对象中的display同名方法
-        return $this->view->display($tplFile, $cacheTime, $cachePath, $contentType, $charset, $show);
+        $status = $this->view->display($tplFile, $cacheTime, $cachePath, $contentType, $charset, $show);
+        Hook::listen("VIEW_END");
+        return $status;
     }
 
     /**
@@ -168,6 +172,7 @@ abstract class Controller
         $this->getViewObj();
         return $this->view->assign($name, $value);
     }
+
     /**
      * 错误输出
      * @param string $message 提示内容
@@ -187,6 +192,7 @@ abstract class Controller
         }
         exit;
     }
+
     /**
      * 成功
      * @param string $message 提示内容
@@ -242,7 +248,7 @@ abstract class Controller
     {
         $content = $this->fetch($template);
         $htmlpath = empty($htmlpath) ? C('HTML_PATH') : $htmlpath;
-        $file = $htmlpath . $htmlfile . '.html';
+        $file = $htmlpath . $htmlfile;
         $Storage = Storage::init();
         return $Storage->save($file, $content);
     }
@@ -250,7 +256,7 @@ abstract class Controller
     //析构函数
     public function __destruct()
     {
-        event("CONTROL_END", $this->options);
+        Hook::listen('CONTROLLER_END', $this->options);
     }
 
 }

@@ -17,36 +17,35 @@ final class HDPHP
     static public function init()
     {
         //加载应用配置
-        is_file(APP_CONFIG_PATH . 'config.php')                 and C(require(APP_CONFIG_PATH . 'config.php'));
-        is_file(APP_CONFIG_PATH . 'event.php')                  and C('APP_EVENT', require APP_CONFIG_PATH . 'event.php');
-        is_file(APP_CONFIG_PATH . 'alias.php')                  and alias_import(APP_CONFIG_PATH . 'alias.php');
+        is_file(APP_CONFIG_PATH . 'config.php')                 and C(require(APP_CONFIG_PATH . 'config.php'));;
         is_file(APP_LANGUAGE_PATH . C('LANGUAGE') . '.php')     and L(require APP_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //解析路由
         Route::parseUrl();
         //禁止使用模块检测
         in_array(MODULE,C('DENY_MODULE')) && halt(MODULE.'模块禁止使用');
+        //导入钓子
+        Hook::import(C('HOOK'));
         //常量定义
         defined('MODULE_PATH')                                  or define('MODULE_PATH', APP_PATH.MODULE.'/');
         defined('MODULE_CONTROLLER_PATH')                       or define('MODULE_CONTROLLER_PATH', MODULE_PATH . 'Controller/');
         defined('MODULE_MODEL_PATH')                            or define('MODULE_MODEL_PATH', MODULE_PATH . 'Model/');
         defined('MODULE_CONFIG_PATH')                           or define('MODULE_CONFIG_PATH', MODULE_PATH . 'Config/');
-        defined('MODULE_EVENT_PATH')                            or define('MODULE_EVENT_PATH', MODULE_PATH . 'Event/');
+        defined('MODULE_HOOK_PATH')                             or define('MODULE_HOOK_PATH', MODULE_PATH . 'Hook/');
         defined('MODULE_LANGUAGE_PATH')                         or define('MODULE_LANGUAGE_PATH', MODULE_PATH . 'Language/');
         defined('MODULE_TAG_PATH')                              or define('MODULE_TAG_PATH', MODULE_PATH . 'Tag/');
         defined('MODULE_LIB_PATH')                              or define('MODULE_LIB_PATH', MODULE_PATH . 'Lib/');
         //应用配置
         is_file(MODULE_CONFIG_PATH . 'config.php')              and C(require(MODULE_CONFIG_PATH . 'config.php'));
-        is_file(MODULE_CONFIG_PATH . 'event.php')               and C('APP_EVENT', require MODULE_CONFIG_PATH . 'event.php');
-        is_file(MODULE_CONFIG_PATH . 'alias.php')               and alias_import(MODULE_CONFIG_PATH . 'alias.php');
         is_file(MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php')  and L(require MODULE_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //模板目录常量
-        defined('MODULE_TPL_PATH')                              or define('MODULE_TPL_PATH',strstr(C('TPL_PATH'),'/')?C('TPL_PATH').C('TPL_STYLE'):
+        defined('MODULE_VIEW_PATH')                             or define('MODULE_VIEW_PATH',strstr(C('TPL_PATH'),'/')?C('TPL_PATH').C('TPL_STYLE'):
                                                                                             MODULE_PATH.C('TPL_PATH').'/'.C('TPL_STYLE'));
-        defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_TPL_PATH .'Public/');
-        defined('CONTROLLER_TPL_PATH')                          or define('CONTROLLER_TPL_PATH',MODULE_TPL_PATH.CONTROLLER.'/');
+        defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_VIEW_PATH .'Public/');
+        defined('CONTROLLER_VIEW_PATH')                         or define('CONTROLLER_VIEW_PATH',MODULE_VIEW_PATH.CONTROLLER.'/');
         //网站根-Static目录
         defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static');
-        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(MODULE_TPL_PATH,'/'));
+        defined('__HDPHP_TPL__')                                or define('__HDPHP_TPL__',__HDPHP__.'/Lib/Tpl');
+        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(MODULE_VIEW_PATH,'/'));
         defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . '/Public');
         defined("__CONTROLLER_TPL__")                           or define("__CONTROLLER_TPL__", __TPL__  .'/'. CONTROLLER);
         //来源URL
@@ -64,7 +63,6 @@ final class HDPHP
         define('IS_PUT',                                        REQUEST_METHOD == 'PUT' ? true : false);
         define('IS_AJAX',                                       ajax_request());
         define('IS_DELETE',                                     REQUEST_METHOD == 'DELETE' ? true : false);
-        define('HTTP_REFERER',                                  isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null);
         //注册自动载入函数
         spl_autoload_register(array(__CLASS__,                  'autoload'));
         set_error_handler(array(__CLASS__,                      'error'), E_ALL);
@@ -125,9 +123,12 @@ final class HDPHP
         } elseif (substr($className, 0, 4) == 'View' && require_array(array(
                 HDPHP_DRIVER_PATH . 'View/' . $class,
             ))) {return;
-        } elseif (substr($className, -5) == 'Event' && require_array(array(
-                MODULE_EVENT_PATH . $class,
-                APP_EVENT_PATH . $class
+        } elseif (substr($className, -4) == 'Hook' && require_array(array(
+                MODULE_HOOK_PATH  . $class,
+                APP_HOOK_PATH  . $class
+            ))) {return;
+        } elseif (substr($className, -5) == 'Addon' && require_array(array(
+                APP_ADDON_PATH  . $class
             ))) {return;
         } elseif (substr($className, -3) == 'Tag' && require_array(array(
                 APP_TAG_PATH . $class,
@@ -181,7 +182,7 @@ final class HDPHP
                 trace($errorStr, 'NOTICE', true);
                 //SHUT_NOTICE关闭提示信息
                 if (DEBUG && C('SHOW_NOTICE'))
-                    require HDPHP_TPL_PATH . 'notice.html';
+                    require HDPHP_PATH . 'Lib/Tpl/notice.html';
                 break;
         }
     }

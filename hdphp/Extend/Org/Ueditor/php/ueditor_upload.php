@@ -9,7 +9,6 @@ switch ($action) {
     case 'config':
         $result = json_encode($CONFIG);
         break;
-
     /* 上传图片 */
     case 'uploadimage':
         /* 上传涂鸦 */
@@ -18,11 +17,7 @@ switch ($action) {
     case 'uploadvideo':
         /* 上传文件 */
     case 'uploadfile':
-        C('UPLOAD_IMG_MAX_WIDTH', $_GET['UPLOAD_IMG_MAX_WIDTH']);
-        C('UPLOAD_IMG_MAX_HEIGHT', $_GET['UPLOAD_IMG_MAX_HEIGHT']);
-
         $upload = new Upload($CONFIG['imagePathFormat']);
-
         if ($info = $upload->upload()) {
             //加水印
             if ($_GET['water'] == 1) {

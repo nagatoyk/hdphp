@@ -24,12 +24,13 @@ abstract class View
     protected function getTemplateFile($file)
     {
         if (is_null($file)) {
-            $file = CONTROLLER_TPL_PATH  .  ACTION;
+            $file = CONTROLLER_VIEW_PATH . ACTION;
         } else if (!strstr($file, '/')) {
-            $file = CONTROLLER_TPL_PATH  .  $file;
+            $file = CONTROLLER_VIEW_PATH . $file;
         }
         //添加模板后缀
-        $file .= C('TPL_FIX');
+        if (!preg_match('/\.\w+$/', $file))
+            $file .= C('TPL_FIX');
         if (is_file($file)) {
             return $file;
         } else {

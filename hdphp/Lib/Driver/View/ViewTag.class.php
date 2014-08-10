@@ -343,7 +343,7 @@ class ViewTag
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                serverUrl:'" . $phpScript . "water={$water}'//图片上传脚本
+                serverUrl:'" . $phpScript . "&water={$water}'//图片上传脚本
                 ,zIndex : 0
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000

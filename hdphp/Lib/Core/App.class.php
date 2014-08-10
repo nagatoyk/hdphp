@@ -20,10 +20,8 @@ final class App
     {
         //session处理
         session(C("SESSION_OPTIONS"));
-        //加载应用与事件处理类
-        self::loadEventClass();
-        //执行应用开始事件
-        event("APP_START");
+        //执行应用开始钓子
+        Hook::listen("APP_START");
         //Debug Start
         DEBUG and Debug::start("APP_START");
         self::start();
@@ -31,18 +29,13 @@ final class App
         DEBUG and Debug::show("APP_START", "APP_END");
         //日志记录
         !DEBUG and C('LOG_RECORD') and  Log::save();
-        event("APP_END");
+        //应用结束钓子
+        Hook::listen("APP_END");
     }
 
     //加载应用与模块end事件类
     static private function loadEventClass()
     {
-        $app_end_event = C("app_event.app_end");
-        if ($app_end_event) {
-            foreach ($app_end_event as $c) {
-                HDPHP::autoload($c . 'Event');
-            }
-        }
         $content_end_event = C("app_event.control_end");
         if ($content_end_event) {
             foreach ($content_end_event as $c) {

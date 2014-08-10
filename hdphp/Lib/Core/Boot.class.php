@@ -43,19 +43,18 @@ final class Boot
         define("HDPHP_CORE_PATH",       HDPHP_LIB_PATH . 'Core/'); //核心目录
         define("HDPHP_EXTEND_PATH",     HDPHP_PATH . 'Extend/'); //扩展目录
         define("HDPHP_ORG_PATH",        HDPHP_EXTEND_PATH . 'Org/'); //org目录
+        define("HDPHP_TPL_PATH",        HDPHP_PATH . 'Lib/Tpl/'); //框架Tpl目录
         define("HDPHP_DRIVER_PATH",     HDPHP_LIB_PATH . 'Driver/'); //驱动目录
-        define("HDPHP_EVENT_PATH",      HDPHP_LIB_PATH . 'Event/'); //事件目录
         define("HDPHP_FUNCTION_PATH",   HDPHP_LIB_PATH . 'Function/'); //函数目录
         define("HDPHP_LANGUAGE_PATH",   HDPHP_LIB_PATH . 'Language/'); //语言目录
-        define("HDPHP_TPL_PATH",        HDPHP_LIB_PATH . 'Tpl/'); //框架模板目录
         defined("STATIC_PATH")          or define("STATIC_PATH",'Static/'); //网站静态文件目录
         defined("APP_COMMON_PATH")      or define("APP_COMMON_PATH", APP_PATH. 'Common/'); //应用公共目录
         defined("APP_CONFIG_PATH")      or define("APP_CONFIG_PATH", APP_COMMON_PATH . 'Config/' ); //应用公共目录
         defined("APP_MODEL_PATH")       or define("APP_MODEL_PATH",  APP_COMMON_PATH . 'Model/' ); //应用公共目录
-        defined("APP_CONTROLLER_PATH")     or define("APP_CONTROLLER_PATH",  APP_COMMON_PATH . 'Controller/'); //应用公共目录
+        defined("APP_CONTROLLER_PATH")  or define("APP_CONTROLLER_PATH",  APP_COMMON_PATH . 'Controller/'); //应用公共目录
         defined("APP_LANGUAGE_PATH")    or define("APP_LANGUAGE_PATH", APP_COMMON_PATH . 'Language/'); //应用语言包目录
-        defined("APP_EXTEND_PATH")      or define("APP_EXTEND_PATH",  APP_COMMON_PATH . 'Extend/' ); //应用扩展目录
-        defined("APP_EVENT_PATH")       or define("APP_EVENT_PATH", APP_COMMON_PATH . 'Event/' ); //应用事件目录
+        defined("APP_ADDON_PATH")       or define("APP_ADDON_PATH", APP_PATH . 'Addon/' ); //插件目录
+        defined("APP_HOOK_PATH")        or define("APP_HOOK_PATH", APP_COMMON_PATH . 'Hook/' ); //应用钓子目录
         defined("APP_TAG_PATH")         or define("APP_TAG_PATH",  APP_COMMON_PATH . 'Tag/'); //应用标签目录
         defined("APP_LIB_PATH")         or define("APP_LIB_PATH", APP_COMMON_PATH . 'Lib/' ); //应用扩展包目录
         defined("APP_COMPILE_PATH")     or define("APP_COMPILE_PATH", TEMP_PATH . 'Compile/' ); //应用编译包目录
@@ -89,7 +88,7 @@ final class Boot
             HDPHP_CORE_PATH . 'HdException.class.php', //异常处理类
             HDPHP_CORE_PATH . 'App.class.php', //HDPHP顶级类
             HDPHP_CORE_PATH . 'Route.class.php', //URL处理类
-            HDPHP_CORE_PATH . 'Event.class.php', //事件处理类
+            HDPHP_CORE_PATH . 'Hook.class.php', //钓子处理类
             HDPHP_CORE_PATH . 'Log.class.php', //公共函数
             HDPHP_FUNCTION_PATH . 'Functions.php', //应用函数
             HDPHP_CORE_PATH . 'Debug.class.php', //Debug处理类
@@ -107,12 +106,10 @@ final class Boot
     {
         //系统配置
         C(require(HDPHP_CONFIG_PATH . 'config.php'));
-        //系统事件
-        C("CORE_EVENT", require(HDPHP_CONFIG_PATH . 'event.php'));
         //系统语言
         L(require(HDPHP_LANGUAGE_PATH . 'zh.php'));
         //别名
-        alias_import(require(HDPHP_CORE_PATH . 'Alias.php'));
+        alias_import(C('ALIAS'));
     }
     /**
      * 创建项目运行目录
@@ -130,10 +127,11 @@ final class Boot
             //应用组目录
             APP_COMMON_PATH,
             APP_CONFIG_PATH,
+            APP_ADDON_PATH,
             APP_MODEL_PATH,
             APP_CONTROLLER_PATH,
             APP_LANGUAGE_PATH,
-            APP_EVENT_PATH,
+            APP_HOOK_PATH,
             APP_TAG_PATH,
             APP_LIB_PATH,
             APP_COMPILE_PATH,
@@ -145,12 +143,12 @@ final class Boot
             MODULE_CONFIG_PATH,
             MODULE_LANGUAGE_PATH,
             MODULE_MODEL_PATH,
-            MODULE_EVENT_PATH,
+            MODULE_HOOK_PATH,
             MODULE_TAG_PATH,
             MODULE_LIB_PATH,
-            MODULE_TPL_PATH,
+            MODULE_VIEW_PATH,
             //控制器目录
-            CONTROLLER_TPL_PATH,
+            CONTROLLER_VIEW_PATH,
             MODULE_PUBLIC_PATH,
             //公共目录
             STATIC_PATH
@@ -162,21 +160,17 @@ final class Boot
             endif;
         }
         //复制视图
-        is_file(CONTROLLER_TPL_PATH . "index.html")   or copy(HDPHP_TPL_PATH . "view.html", CONTROLLER_TPL_PATH . "index.html");
+        is_file(CONTROLLER_VIEW_PATH . "index.html")   or copy(HDPHP_PATH . 'Lib/Tpl/view.html', CONTROLLER_VIEW_PATH . "index.html");
         //复制公共模板文件
-        is_file(MODULE_PUBLIC_PATH . "success.html")    or copy(HDPHP_TPL_PATH . "success.html", MODULE_PUBLIC_PATH . "success.html");
-        is_file(MODULE_PUBLIC_PATH . "error.html")      or copy(HDPHP_TPL_PATH . "error.html", MODULE_PUBLIC_PATH . "error.html");
+        is_file(MODULE_PUBLIC_PATH . "success.html")    or copy(HDPHP_PATH . 'Lib/Tpl/success.html', MODULE_PUBLIC_PATH . "success.html");
+        is_file(MODULE_PUBLIC_PATH . "error.html")      or copy(HDPHP_PATH . 'Lib/Tpl/error.html', MODULE_PUBLIC_PATH . "error.html");
         //复制模块配置文件
-        is_file(MODULE_CONFIG_PATH . "config.php")      or copy(HDPHP_TPL_PATH . "config.php", MODULE_CONFIG_PATH . "config.php");
-        is_file(MODULE_CONFIG_PATH . "event.php")       or copy(HDPHP_TPL_PATH . "event.php", MODULE_CONFIG_PATH . "event.php");
-        is_file(MODULE_CONFIG_PATH . "alias.php")       or copy(HDPHP_TPL_PATH . "alias.php", MODULE_CONFIG_PATH . "alias.php");
-        //复制应用组模式
-        is_file(APP_CONFIG_PATH . "config.php")         or copy(HDPHP_TPL_PATH . "config.php", APP_CONFIG_PATH . "config.php");
-        is_file(APP_CONFIG_PATH . "event.php")          or copy(HDPHP_TPL_PATH . "event.php", APP_CONFIG_PATH . "event.php");
-        is_file(APP_CONFIG_PATH . "alias.php")          or copy(HDPHP_TPL_PATH . "alias.php", APP_CONFIG_PATH . "alias.php");
-        is_file(APP_LANGUAGE_PATH . "alias.php")        or copy(HDPHP_TPL_PATH . "alias.php", APP_LANGUAGE_PATH . "alias.php");
+        is_file(MODULE_CONFIG_PATH . "config.php")      or copy(HDPHP_PATH . 'Lib/Tpl/config.php', MODULE_CONFIG_PATH . "config.php");
+        is_file(MODULE_CONFIG_PATH . "alias.php")       or copy(HDPHP_PATH . 'Lib/Tpl/alias.php', MODULE_CONFIG_PATH . "alias.php");
+        is_file(APP_CONFIG_PATH . "config.php")         or copy(HDPHP_PATH . 'Lib/Tpl/config.php', APP_CONFIG_PATH . "config.php");
+        is_file(APP_CONFIG_PATH . "alias.php")          or copy(HDPHP_PATH . 'Lib/Tpl/alias.php', APP_CONFIG_PATH . "alias.php");
         //创建测试控制器
-        is_file(MODULE_CONTROLLER_PATH . 'IndexController.class.php') or file_put_contents(MODULE_CONTROLLER_PATH . 'IndexController.class.php', file_get_contents(HDPHP_TPL_PATH . 'controller.php'));
+        is_file(MODULE_CONTROLLER_PATH . 'IndexController.class.php') or file_put_contents(MODULE_CONTROLLER_PATH . 'IndexController.class.php', file_get_contents(HDPHP_PATH . 'Lib/Tpl/controller.php'));
         //创建安全文件
         self::safeFile();
         //批量创建模块
@@ -207,10 +201,11 @@ final class Boot
             //应用组目录
             APP_COMMON_PATH,
             APP_CONFIG_PATH,
+            APP_ADDON_PATH,
             APP_MODEL_PATH,
             APP_CONTROLLER_PATH,
             APP_LANGUAGE_PATH,
-            APP_EVENT_PATH,
+            APP_HOOK_PATH,
             APP_TAG_PATH,
             APP_LIB_PATH,
             APP_COMPILE_PATH,
@@ -222,17 +217,17 @@ final class Boot
             MODULE_CONFIG_PATH,
             MODULE_LANGUAGE_PATH,
             MODULE_MODEL_PATH,
-            MODULE_EVENT_PATH,
+            MODULE_HOOK_PATH,
             MODULE_TAG_PATH,
             MODULE_LIB_PATH,
-            MODULE_TPL_PATH,
+            MODULE_VIEW_PATH,
             //控制器目录
-            CONTROLLER_TPL_PATH,
+            CONTROLLER_VIEW_PATH,
             MODULE_PUBLIC_PATH,
             //公共目录
             STATIC_PATH
         );
-        $file = HDPHP_TPL_PATH . '/index.html';
+        $file = HDPHP_PATH . 'Lib/Tpl/index.html';
         foreach ($dirs as $d) {
             is_file($d . '/index.html') || copy($file, $d . '/index.html');
         }
@@ -260,7 +255,7 @@ final class Boot
             HDPHP_CORE_PATH . 'App.class.php', //HDPHP顶级类
             HDPHP_CORE_PATH . 'Controller.class.php', //控制器基类
             HDPHP_CORE_PATH . 'Debug.class.php', //Debug处理类
-            HDPHP_CORE_PATH . 'Event.class.php', //事件处理类
+            HDPHP_CORE_PATH . 'Hook.class.php', //事件处理类
             HDPHP_CORE_PATH . 'HDPHP.class.php', //HDPHP顶级类
             HDPHP_CORE_PATH . 'HdException.class.php', //异常处理类
             HDPHP_CORE_PATH . 'Log.class.php', //Log日志类

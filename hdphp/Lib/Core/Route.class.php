@@ -142,7 +142,6 @@ final class Route
         //框架目录相关URL
         defined('__HDPHP__')        or define("__HDPHP__", __HOST__ . '/' . trim(str_ireplace(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), "", HDPHP_PATH), '/'));
         defined('__HDPHP_DATA__')   or define("__HDPHP_DATA__", __HDPHP__ . '/Data');
-        defined('__HDPHP_TPL__')    or define("__HDPHP_TPL__", __HDPHP__ . '/Lib/Tpl');
         defined('__HDPHP_EXTEND__') or define("__HDPHP_EXTEND__", __HDPHP__ . '/Extend');
         //应用
         defined('APP')              or define('APP',basename(APP_PATH));

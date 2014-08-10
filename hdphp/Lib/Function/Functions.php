@@ -460,41 +460,27 @@ function C($name = null, $value = null)
     static $config = array();
     if (is_null($name)) {
         return $config;
-    }
-    if (is_array($value)) {
-        $value = array_change_key_case_d($value);
-    }
-    if (is_string($name)) {
+    }else if (is_string($name)) {
         $name = strtolower($name);
+        $data=array_change_key_case($config);
         if (!strstr($name, '.')) {
             //获得配置
             if (is_null($value)) {
-                if (isset($config[$name]) && !is_array($config[$name])) {
-                    $config[$name] = trim($config[$name]);
-                }
-                return isset($config[$name]) ? $config[$name] : null;
+                return isset($data[$name]) ? $data[$name] : null;
+            } else {
+                return $config[$name] = isset($data[$name]) && is_array($data[$name]) && is_array($value) ? array_merge($config[$name], $value) : $value;
             }
-            //加载语言包
-            if ($name == 'language') {
-                is_file(COMMON_LANGUAGE_PATH . $value . '.php') and L(
-                    require COMMON_LANGUAGE_PATH . $value . '.php');
-                //加载应用语言包
-                is_file(LANGUAGE_PATH . $value . '.php') and L(
-                    require LANGUAGE_PATH . $value . '.php');
+        } else {
+            //二维数组
+            $name = array_change_key_case(explode(".", $name));
+            if (is_null($value)) {
+                return isset($data[$name[0]][$name[1]]) ? $data[$name[0]][$name[1]] : null;
+            } else {
+                return $config[$name[0]][$name[1]] = $value;
             }
-            $config[$name] = isset($config[$name]) && is_array($config[$name]) && is_array($value) ? array_merge($config[$name], $value) : $value;
-            return $config[$name];
         }
-        //二维数组
-        $name = array_change_key_case_d(explode(".", $name), 0);
-        if (is_null($value)) {
-            return isset($config[$name[0]][$name[1]]) ? $config[$name[0]][$name[1]] : null;
-        }
-        $config[$name[0]][$name[1]] = $value;
-    }
-    if (is_array($name)) {
-        $config = array_merge($config, array_change_key_case_d($name, 0));
-        return true;
+    }else if (is_array($name)) {
+        return $config = array_merge($config, $name);
     }
 }
 
@@ -524,54 +510,6 @@ function L($name = null, $value = null)
         $languge = array_merge($languge, array_change_key_case_d($name));
         return true;
     }
-}
-
-/**
- * 执行事件中的所有处理程序
- * @param $name 事件名称
- * @param array $param 参数
- * return void
- */
-function event($name, &$param = array())
-{
-    //框架核心事件
-    $core = C("CORE_EVENT." . $name);
-    //应用组事件
-    $group = C("GROUP_EVENT." . $name);
-    //应用事件
-    $event = C("APP_EVENT." . $name);
-    if (is_array($group)) {
-        if ($core) {
-            $group = array_merge($core, $group);
-        }
-    } else {
-        $group = $core;
-    }
-    if (is_array($group)) {
-        if ($event) {
-            $event = array_merge($group, $event);
-        } else {
-            $event = $group;
-        }
-    }
-    if (is_array($event) && !empty($event)) {
-        foreach ($event as $e) {
-            E($e, $param);
-        }
-    }
-
-}
-
-/**
- * 执行单一事件处理程序
- * @param string $name 事件名称
- * @param null $params 事件参数
- */
-function E($name, &$params = null)
-{
-    $class = $name . "Event";
-    $event = new $class;
-    $event->run($params);
 }
 
 /**
@@ -1619,7 +1557,7 @@ function halt($error)
         }
     }
     //显示DEBUG模板，开启DEBUG显示trace
-    require HDPHP_TPL_PATH . 'halt.html';
+    require HDPHP_PATH . 'Lib/Tpl/halt.html';
     exit;
 }
 

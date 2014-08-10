@@ -168,6 +168,16 @@ return array(
     'EMAIL_SSL'                     => 0,           //是否采用SSL,126为false,google必须为true
     'EMAIL_CHARSET'                 => 'utf8',          //字符集设置,中文乱码就是这个没有设置好 如utf8
     'EMAIL_FORMMAIL'                => '',          //发送人发件箱显示的邮箱址址
-    'EMAIL_FROMNAME'                => '后盾网'      //发送人发件箱显示的用户名
+    'EMAIL_FROMNAME'                => '后盾网',      //发送人发件箱显示的用户名
+    /********************************钓子********************************/
+    'HOOK'                          => array(),
+    /********************************插件********************************/
+    'ADDON'                         => array(),
+    /********************************别名导入********************************/
+    'ALIAS'                         =>array(
+        "UEDITOR_UPLOAD"    => HDPHP_EXTEND_PATH . 'Org/Ueditor/php/ueditor_upload.php', //ueditor
+        "HD_UPLOADIFY"      => HDPHP_EXTEND_PATH . 'Org/Uploadify/hd_uploadify.php', //uploadify上传
+        "HD_UPLOADIFY_DEL"  => HDPHP_EXTEND_PATH . 'Org/Uploadify/hd_uploadify.php', //uploadify删除
+    )
 );
 ?>

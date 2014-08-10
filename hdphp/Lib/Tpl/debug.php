@@ -90,7 +90,7 @@
         text-align: left;
     }
     #hd_debug_bt {
-        background: url("<?php echo __HDPHP_TPL__;?>/static/debug.png") no-repeat;
+        background: url("<?php echo __HDPHP__;?>/Lib/Tpl/static/debug.png") no-repeat;
         border-radius: 0px;
         cursor: pointer;
         z-index: 2000;
