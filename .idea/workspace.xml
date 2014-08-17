@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/AddonController.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hdphp/Lib/Tpl/configAddon.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Boot.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Extend/Tool/Dir.class.php" afterPath="$PROJECT_DIR$/hdphp/Extend/Tool/Dir.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Function/Functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Core/Route.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Session/SessionMysql.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css" afterPath="$PROJECT_DIR$/hdphp/hdjs/css/hdjs.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +28,7 @@
       <file leaf-file-name="Functions.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1738" column="13" selection-start="44032" selection-end="44042" vertical-scroll-proportion="0.53125" vertical-offset="25595" max-vertical-offset="26235">
+            <state line="1748" column="24" selection-start="44362" selection-end="44362" vertical-scroll-proportion="0.765625" vertical-offset="25595" max-vertical-offset="26235">
               <folding />
             </state>
           </provider>
@@ -645,7 +636,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1738" column="13" selection-start="44032" selection-end="44042" vertical-scroll-proportion="0.53125" vertical-offset="25595" max-vertical-offset="26235">
+        <state line="1748" column="24" selection-start="44362" selection-end="44362" vertical-scroll-proportion="0.765625" vertical-offset="25595" max-vertical-offset="26235">
           <folding />
         </state>
       </provider>

@@ -1743,10 +1743,10 @@ function safeFile($dirs)
 function int_to_string(&$data, array $map = array('status' => array('0' => '禁止', '1' => '启用')))
 {
     $map = (array)$map;
-    foreach ($data as $d) {
+    foreach ($data as $n=>$d) {
         foreach ($map as $name => $m) {
             if (isset($d[$name]) && isset($m[$d[$name]])) {
-                $data[$d][$name . '_text'] = $m[$d[$name]];
+                $data[$n][$name . '_text'] = $m[$d[$name]];
             }
         }
     }
