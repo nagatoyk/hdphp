@@ -460,9 +460,9 @@ function C($name = null, $value = null)
     static $config = array();
     if (is_null($name)) {
         return $config;
-    }else if (is_string($name)) {
+    } else if (is_string($name)) {
         $name = strtolower($name);
-        $data=array_change_key_case($config);
+        $data = array_change_key_case($config);
         if (!strstr($name, '.')) {
             //获得配置
             if (is_null($value)) {
@@ -479,7 +479,7 @@ function C($name = null, $value = null)
                 return $config[$name[0]][$name[1]] = $value;
             }
         }
-    }else if (is_array($name)) {
+    } else if (is_array($name)) {
         return $config = array_merge($config, $name);
     }
 }
@@ -1732,5 +1732,22 @@ function safeFile($dirs)
     $file = HDPHP_TPL . '/index.html';
     foreach ($dirs as $d) {
         is_file($d . '/index.html') || copy($file, $d . '/index.html');
+    }
+}
+
+/**
+ * 数组进行整数映射转换
+ * @param $data
+ * @param array $map
+ */
+function int_to_string(&$data, array $map = array('status' => array('0' => '禁止', '1' => '启用')))
+{
+    $map = (array)$map;
+    foreach ($data as $d) {
+        foreach ($map as $name => $m) {
+            if (isset($d[$name]) && isset($m[$d[$name]])) {
+                $data[$d][$name . '_text'] = $m[$d[$name]];
+            }
+        }
     }
 }

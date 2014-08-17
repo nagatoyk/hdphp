@@ -35,7 +35,7 @@ final class Route
         $url = self::parseRoute($query);
         //拆分后的GET变量
         $gets = '';
-        if (C('URL_TYPE') == 1 || (C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]))) {
+        if ((C('URL_TYPE') == 1 && isset($_SERVER['PATH_INFO']))|| (C('URL_TYPE') == 3 && isset($_GET[C("PATHINFO_VAR")]))) {
             $url = str_replace(array('&', '='), C("PATHINFO_DLI"), $url);
             $args = explode(C("PATHINFO_DLI"), $url);
             //模块

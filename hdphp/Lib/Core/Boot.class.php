@@ -53,7 +53,7 @@ final class Boot
         defined("APP_MODEL_PATH")       or define("APP_MODEL_PATH",  APP_COMMON_PATH . 'Model/' ); //应用公共目录
         defined("APP_CONTROLLER_PATH")  or define("APP_CONTROLLER_PATH",  APP_COMMON_PATH . 'Controller/'); //应用公共目录
         defined("APP_LANGUAGE_PATH")    or define("APP_LANGUAGE_PATH", APP_COMMON_PATH . 'Language/'); //应用语言包目录
-        defined("APP_ADDON_PATH")       or define("APP_ADDON_PATH", APP_PATH . 'Addon/' ); //插件目录
+        defined("APP_ADDON_PATH")       or define("APP_ADDON_PATH", APP_PATH . 'Addons/' ); //插件目录
         defined("APP_HOOK_PATH")        or define("APP_HOOK_PATH", APP_COMMON_PATH . 'Hook/' ); //应用钓子目录
         defined("APP_TAG_PATH")         or define("APP_TAG_PATH",  APP_COMMON_PATH . 'Tag/'); //应用标签目录
         defined("APP_LIB_PATH")         or define("APP_LIB_PATH", APP_COMMON_PATH . 'Lib/' ); //应用扩展包目录

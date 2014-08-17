@@ -101,7 +101,7 @@ div.line {
     color: #555555;
     display: inline-block;
     font-size: 12px;
-    line-height: 30px;
+    line-height: 28px;
     margin: 0px;
     padding: 0px 6px;
     vertical-align: middle;
@@ -127,7 +127,7 @@ div.line {
 }
 
 .hd-form input[type="file"], .hd-form input[type="text"], .hd-form input[type="password"] {
-    height: 28px;
+    height: 25px;
 }
 
 .hd-form select {
@@ -341,7 +341,8 @@ table.table2 thead th, table.table2 thead td {
 table.table2 tr, table.table2 th, table.table2 td {
     background: url("../img/tr_border.png") repeat-x scroll 0 bottom rgba(0, 0, 0, 0);
     height: 20px;
-    padding: 5px 8px;
+    padding: 8px 8px;
+    overflow: hidden;
 }
 
 /***************************table3表格************************/

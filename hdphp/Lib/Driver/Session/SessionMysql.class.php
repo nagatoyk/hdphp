@@ -116,7 +116,7 @@ class SessionMysql
      */
     public function gc()
     {
-        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->expire);
+        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->expire)." AND sessid<>'".session_id()."'";
         mysql_query($sql, $this->link);
     }
 
