@@ -143,7 +143,6 @@ final class HDPHP
             MODULE_LIB_PATH . $class,
             APP_LIB_PATH . $class,
             HDPHP_CORE_PATH . $class,
-            HDPHP_EXTEND_PATH . $class,
             HDPHP_EXTEND_PATH . '/Tool/' . $class
         ))
         ) {

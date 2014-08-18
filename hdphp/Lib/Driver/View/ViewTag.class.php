@@ -430,22 +430,14 @@ class ViewTag
         if (empty($attr['from'])) {
             halt('foreach 模板标签必须有from属性', false); //foreach 模板标签必须有from属性
         }
-        if (empty($attr['value'])) {
-            halt('foreach 模板标签必须有value属性', false); //foreach 模板标签必须有value属性
-        }
         $php = ''; //组合成PHP
         $from = $attr['from'];
-        $key = isset($attr['key']) ? $attr['key'] : false;
-        $value = $attr['value'];
-        $php .= "<?php if(is_array($from)):?>";
-        if ($key) {
-            $php .= '<?php ' . " foreach($from as $key=>$value){ ?>";
-        } else {
-            $php .= '<?php ' . " foreach($from as $value){ ?>";
-        }
+        $key = isset($attr['key']) ? $attr['key'] : '$key';
+        $value =isset($attr['value']) ? $attr['value'] : '$value';
+        $php .= "<?php if(is_array($from)){?>";
+        $php .= '<?php ' . " foreach($from as $key=>$value){ ?>";
         $php .= $content;
-        $php .= '<?php }?>';
-        $php .= "<?php endif;?>";
+        $php .= '<?php }}?>';
         return $php;
     }
 

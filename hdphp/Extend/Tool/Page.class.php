@@ -154,16 +154,11 @@ class Page
 
     /**
      * SQL的limit语句
-     * @param bool $stat true 返回字符串  false 返回数组
-     * @return array|string
+     * @return string
      */
-    public function limit($stat = false)
+    public function limit()
     {
-        if ($stat) {
-            return max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow;
-        } else {
-            return array("limit" => max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow);
-        }
+        return max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow;
     }
 
     //上一页

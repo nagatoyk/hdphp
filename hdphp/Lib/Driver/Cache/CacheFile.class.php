@@ -129,11 +129,6 @@ class CacheFile extends Cache
         //文件修改时间
         $mtime = filemtime($cacheFile);
         //缓存失效处理
-//        if ($ctime>0 && $mtime + $ctime < time()) {
-//            @unlink($cacheFile);
-//            $this->record(2,0);
-//            return false;
-//        }
         if ($expire > 0 && $mtime + $expire < time()) {
             @unlink($cacheFile);
             $this->record(2,0);

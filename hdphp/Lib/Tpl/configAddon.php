@@ -57,9 +57,9 @@ return array(
         'value' => '2',
         'style' => "width:200px;",
     ),
-    'file' => array(
-        'title' => '文件上传:',
-        'type' => 'file',
+    'image' => array(
+        'title' => '图片上传:',
+        'type' => 'image',
         'alowexts' => 'zip,jpg',
         'value' => '',
     ),

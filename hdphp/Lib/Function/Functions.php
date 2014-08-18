@@ -37,7 +37,7 @@ function M($table = null, $full = null)
 function K($name, $param = array())
 {
     $class = $name . "Model";
-    return new $class($name, null, null, $param);
+    return new $class(strtolower($name), null, null, $param);
 }
 
 /**

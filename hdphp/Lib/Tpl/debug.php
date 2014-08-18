@@ -124,9 +124,9 @@
             <li id="_post">POST</li>
             <li id="_get">GET</li>
             <li><a href="http://www.hdphp.com" target="_blank">官网</a></li>
-            <li style="width:100px;"><a href="http://www.houdunwang.com" target="_blank">PHP实战培训</a></li>
-            <li><a href="http://www.kuaipinwang.com" target="_blank">快聘网</a></li>
-            <li><a href="http://www.kuaixuewang.com" target="_blank">快学网</a></li>
+            <li style="width:80px;"><a href="http://www.houdunwang.com" target="_blank">PHP实训</a></li>
+<!--            <li><a href="http://www.kuaipinwang.com" target="_blank">快聘网</a></li>-->
+<!--            <li><a href="http://www.kuaixuewang.com" target="_blank">快学网</a></li>-->
         </ul>
     </div>
     <div id="debug_con">
