@@ -72,8 +72,7 @@ abstract class Db implements DbInterface
      */
     public function table($tableName)
     {
-        if (is_null($tableName))
-            return;
+        if (is_null($tableName))return;
         $this->optInit();
         $field = $this->getFields($tableName); //获得表结构信息设置字段及主键属性
         $this->opt['table'] = $tableName;
