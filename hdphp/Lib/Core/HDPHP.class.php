@@ -45,9 +45,9 @@ final class HDPHP
         //网站根-Static目录
         defined("__STATIC__")                                   or define("__STATIC__", __ROOT__ . '/Static');
         defined('__HDPHP_TPL__')                                or define('__HDPHP_TPL__',__HDPHP__.'/Lib/Tpl');
-        defined("__TPL__")                                      or define("__TPL__", __ROOT__  . '/'.rtrim(MODULE_VIEW_PATH,'/'));
-        defined("__PUBLIC__")                                   or define("__PUBLIC__", __TPL__ . '/Public');
-        defined("__CONTROLLER_TPL__")                           or define("__CONTROLLER_TPL__", __TPL__  .'/'. CONTROLLER);
+        defined("__VIEW__")                                     or define("__VIEW__", __ROOT__  . '/'.rtrim(MODULE_VIEW_PATH,'/'));
+        defined("__PUBLIC__")                                   or define("__PUBLIC__", __VIEW__ . '/Public');
+        defined("__CONTROLLER_VIEW__")                           or define("__CONTROLLER_VIEW__", __VIEW__  .'/'. CONTROLLER);
         //来源URL
         define("__HISTORY__",                                   isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null);
         //=========================环境配置
