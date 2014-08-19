@@ -61,7 +61,7 @@ final class Debug
     static public function runtime($start, $end = '', $decimals = 4)
     {
         if (!isset(self::$runtime[$start])) {
-            throw new exceptionHD('没有设置调试开始点：' . $start);
+            throw new HdException('没有设置调试开始点：' . $start);
         }
         if (empty(self::$runtime[$end])) {
             self::$runtime[$end] = microtime(true);

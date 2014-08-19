@@ -1067,8 +1067,10 @@ function U($path, $args = array())
             $root = __WEB__ . '/'; //入口位置
             break;
         case 2:
-        default:
             $root = __WEB__ . '?';
+            break;
+        case 3:
+            $root = __WEB__ . '?' . C('PATHINFO_VAR') . '=';
             break;
     }
     //组合出__WEB__后内容
@@ -1103,11 +1105,16 @@ function U($path, $args = array())
                 }
             }
     }
+    if (Q('get.app')) {
+        $data[] = 'app';
+        $data[] = Q('get.app');
+    }
     //合并GET参数
     $varsAll = array_merge($data, $gets);
     $url = '';
     switch (C("URL_TYPE")) {
         case 1:
+        case 3:
             foreach ($varsAll as $value) {
                 $url .= C('PATHINFO_Dli') . $value;
             }
@@ -1115,7 +1122,6 @@ function U($path, $args = array())
             $url = substr($url, 1);
             break;
         case 2:
-        default:
             foreach ($varsAll as $k => $value) {
                 if ($k % 2) {
                     $url .= '=' . $value;
@@ -1743,7 +1749,7 @@ function safeFile($dirs)
 function int_to_string(&$data, array $map = array('status' => array('0' => '禁止', '1' => '启用')))
 {
     $map = (array)$map;
-    foreach ($data as $n=>$d) {
+    foreach ($data as $n => $d) {
         foreach ($map as $name => $m) {
             if (isset($d[$name]) && isset($m[$d[$name]])) {
                 $data[$n][$name . '_text'] = $m[$d[$name]];

@@ -59,7 +59,7 @@ return array(
     'VAR_CONTROLLER'                => 'c',         //控制器URL变量
     'VAR_ACTION'                    => 'a',         //动作URL变量
     /********************************项目参数********************************/
-    'DENY_MODULE'                   => array('Common','Addon'),     //禁止使用的模块
+    'DENY_MODULE'                   => array('Common','Temp'),     //禁止使用的模块
     'DEFAULT_MODULE'                => 'Index',     //默认模块
     'DEFAULT_CONTROLLER'            => 'Index',     //默认控制器
     'DEFAULT_ACTION'                => 'index',     //默认方法
@@ -69,7 +69,7 @@ return array(
     'route' => array(),                             //路由规则
     /********************************缓存********************************/
     'CACHE_TYPE'                    => 'file',      //类型:file memcache redis
-    'CACHE_TIME'                    => 3600,        //全局默认缓存时间 0为永久缓存
+    'CACHE_TIME'                    => 0,        //全局默认缓存时间 0为永久缓存
     'CACHE_MEMCACHE'                => array(       //多个服务器设置二维数组
         'host'      => '127.0.0.1',     //主机
         'port'      => 11211,           //端口
@@ -171,8 +171,6 @@ return array(
     'EMAIL_FROMNAME'                => '后盾网',      //发送人发件箱显示的用户名
     /********************************钓子********************************/
     'HOOK'                          => array(),
-    /********************************插件********************************/
-    'ADDON'                         => array(),
     /********************************别名导入********************************/
     'ALIAS'                         =>array(
         "UEDITOR_UPLOAD"    => HDPHP_EXTEND_PATH . 'Org/Ueditor/php/ueditor_upload.php', //ueditor

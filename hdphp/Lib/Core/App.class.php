@@ -21,12 +21,14 @@ final class App
         //session处理
         session(C("SESSION_OPTIONS"));
         //执行应用开始钓子
-        Hook::listen("APP_START");
+        Hook::listen("APP_INIT");
+        //执行应用开始钓子
+        Hook::listen("APP_BEGIN");
         //Debug Start
-        DEBUG and Debug::start("APP_START");
+        DEBUG and Debug::start("APP_BEGIN");
         self::start();
         //Debug End
-        DEBUG and Debug::show("APP_START", "APP_END");
+        DEBUG and Debug::show("APP_BEGIN", "APP_END");
         //日志记录
         !DEBUG and C('LOG_RECORD') and  Log::save();
         //应用结束钓子

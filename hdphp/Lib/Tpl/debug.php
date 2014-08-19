@@ -135,7 +135,7 @@
             <table>
                 <tr>
                     <td width="80">运行时间</td>
-                    <td><?php echo Debug::runtime('APP_START')?>s</td>
+                    <td><?php echo Debug::runtime('APP_BEGIN')?>s</td>
                 </tr>
                 <tr>
                     <td width="80">服务器信息</td>

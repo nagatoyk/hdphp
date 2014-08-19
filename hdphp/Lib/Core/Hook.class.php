@@ -99,6 +99,10 @@ abstract class Hook
     {
         if (substr($name, -4) == 'Hook') { //插件钓子
             $action = 'run';
+        } else {
+            require_cache(APP_ADDON_PATH . $name . '/' . $name . 'Addon.class.php');
+            $name = $name . 'Addon';
+            if(!class_exists($name,false))return;
         }
         $obj = new $name;
         $obj->$action($param);
