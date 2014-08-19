@@ -180,7 +180,7 @@ abstract class Controller
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function error($message = '出错了', $url = NULL, $time = 2, $tpl = null)
+    protected function error($message = '出错了', $url = NULL, $time = 1, $tpl = null)
     {
         if (IS_AJAX) {
             $this->ajax(array('status' => 0, 'message' => $message));
@@ -200,7 +200,7 @@ abstract class Controller
      * @param int $time 跳转时间
      * @param null $tpl 模板文件
      */
-    protected function success($message = '操作成功', $url = NULL, $time = 2, $tpl = null)
+    protected function success($message = '操作成功', $url = NULL, $time = 1, $tpl = null)
     {
         if (IS_AJAX) {
             $this->ajax(array('status' => 1, 'message' => $message));

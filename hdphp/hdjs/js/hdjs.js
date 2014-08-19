@@ -104,7 +104,7 @@ $.extend({
 			,
 			"message" : "message属性配置错误"//提示信息
 			,
-			"timeout" : 3//自动关闭时间
+			"timeout" : 1//自动关闭时间
 			,
 			"close_handler" : function() {
 			}//关闭时的回调函数
@@ -151,7 +151,7 @@ $.extend({
 			opt.close_handler();
 			$("div.dialog_bg").remove();
 			$("div.dialog").remove();
-		}, opt.timeout * 200);
+		}, opt.timeout * 1000);
 	}
 })
 //简单提示框
@@ -477,7 +477,7 @@ function hd_ajax(requestUrl, postData, url) {
 				} else {
 					$.dialog({
 						message : data.message || "操作失败",
-						timeout : data.timeout || 3,
+						timeout : data.timeout || 1,
 						type : "error"
 					});
 				}
