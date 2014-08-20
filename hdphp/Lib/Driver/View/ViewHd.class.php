@@ -37,7 +37,7 @@ final class ViewHd extends View {
 	 * @param bool $show 是否显示
 	 * @return bool|string
 	 */
-	public function display($tplFile = null, $cacheTime = null, $cachePath = null, $contentType = "text/html", $charset = "", $show = true) {
+	public function display($tplFile = null, $cacheTime = -1, $cachePath = null, $contentType = "text/html", $charset = "", $show = true) {
 		//缓存文件名
 		$cacheName = md5($_SERVER['REQUEST_URI']);
 		//缓存时间

@@ -353,12 +353,12 @@ abstract class Db implements DbInterface
         if (empty($opt)) return;
         if (is_numeric($opt)) {
             $where .= ' ' . $this->opt['pri'] . "=$opt ";
-            if (!preg_match('/(OR|AND)\s*/i', $where)) {
+            if (!preg_match('/(OR|AND)\s*$/i', $where)) {
                 $where .= ' AND ';
             }
         } else if (is_string($opt)) {
             $where .= " $opt ";
-            if (!preg_match('/(OR|AND)\s*/i', $where)) {
+            if (!preg_match('/(OR|AND)\s*$/i', $where)) {
                 $where .= ' AND ';
             }
         } else if (is_array($opt)) {
@@ -366,7 +366,7 @@ abstract class Db implements DbInterface
                 //过滤字段
                 if ($this->isField($field)) {
                     $field = " $field ";
-                    if (is_string($set)) {
+                    if (!is_array($set)) {
                         $logic = isset($opt['_logic']) ? " {$opt['_logic']} " : ' AND '; //连接方式
                         $where .= $field . "='$set' " . $logic;
                     } else if(is_array($set)){
@@ -437,7 +437,7 @@ abstract class Db implements DbInterface
                     }
                 } else if (is_numeric($field) && is_string($set)) {
                     $where .= $set;
-                    if(!preg_match('/(OR|AND)\s*/i',$where)){
+                    if(!preg_match('/(OR|AND)\s*$/i',$where)){
                         $where.=' AND ';
                     }
                 }

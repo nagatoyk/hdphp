@@ -122,7 +122,7 @@ abstract class Controller
      * @param bool $show 是否显示
      * @return mixed
      */
-    protected function display($tplFile = null, $cacheTime = null, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
+    protected function display($tplFile = null, $cacheTime = -1, $cachePath = null, $stat = false, $contentType = "text/html", $charset = "", $show = true)
     {
         Hook::listen("VIEW_START");
         $this->getViewObj();
