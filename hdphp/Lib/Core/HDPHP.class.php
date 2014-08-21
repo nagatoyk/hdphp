@@ -21,15 +21,12 @@ final class HDPHP
         is_file(APP_LANGUAGE_PATH . C('LANGUAGE') . '.php')     and L(require APP_LANGUAGE_PATH . C('LANGUAGE') . '.php');
         //解析路由
         Route::parseUrl();
-        //禁止使用模块检测
-        in_array(MODULE,C('DENY_MODULE')) && halt(MODULE.'模块禁止使用');
-        if(Q('get.app')=='Addon'){
-            define('MODULE_PATH',APP_ADDON_PATH.Q('get.m').'/');
-        }
         //导入钓子
         Hook::import(C('HOOK'));
+        //禁止使用模块检测
+        in_array(MODULE,C('DENY_MODULE')) && halt(MODULE.'模块禁止使用');
         //常量定义
-        defined('MODULE_PATH')                                  or define('MODULE_PATH', APP_PATH.MODULE.'/');
+        defined('MODULE_PATH')                                  or define('MODULE_PATH',empty($_GET[C('VAR_GROUP')])?APP_PATH.MODULE.'/':APP_PATH.$_GET[C('VAR_GROUP')].'/'.MODULE.'/');
         defined('MODULE_CONTROLLER_PATH')                       or define('MODULE_CONTROLLER_PATH', MODULE_PATH . 'Controller/');
         defined('MODULE_MODEL_PATH')                            or define('MODULE_MODEL_PATH', MODULE_PATH . 'Model/');
         defined('MODULE_CONFIG_PATH')                           or define('MODULE_CONFIG_PATH', MODULE_PATH . 'Config/');

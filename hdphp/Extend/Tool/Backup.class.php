@@ -32,21 +32,21 @@ final class Backup
     //还原数据
     static public function recovery($option)
     {
-        //备份目录
-        $dir = Q("get.backup_dir") ? Q("get.backup_dir") : $option['backup_dir'];
+        if (!F('backupDir')) {
+            F('backupDir', $option['dir']);
+        }
+        $dir = F('backupDir');
         //检测目录是否存在
-        if (!$dir || !is_dir($dir)) {
+        if (!is_dir($dir)) {
             self::$error = '数据目录不存在';
             if (DEBUG) {
                 halt(self::$error);
             }
             return false;
         }
-        $_GET['backup_dir'] = $dir;
-        self::$config =
-            require($dir . '/config.php');
+        self::$config = require($dir . '/config.php');
         //文件id
-        $fid = Q("get.backup_fid", NULL, "intval");
+        $fid = Q("get.bid", null, "intval");
         //表前缀
         $db = M();
         $db_prefix = C("DB_PREFIX");
@@ -56,15 +56,14 @@ final class Backup
             if (is_file($dir . '/structure.php')) {
                 require $dir . '/structure.php';
             }
-            $_GET['backup_fid'] = 1;
-            $url = U(ACTION, array('backup_dir' => $_GET['backup_dir'], 'backup_fid' => $_GET['backup_fid']));
+            $url = U(ACTION, array('bid' => 1));
             return array('status' => 'run', 'message' => '还原数据初始化...', 'url' => $url);
         }
         foreach (glob($dir . '/*') as $d) {
             if (preg_match("@_bk_{$fid}.php$@i", $d)) {
                 require $d;
-                $_GET['backup_fid'] += 1;
-                $url = U(ACTION, array('backup_dir' => $_GET['backup_dir'], 'backup_fid' => $_GET['backup_fid']));
+                $_GET['bid'] += 1;
+                $url = U(ACTION, array('bid' => $_GET['bid']));
                 return array('status' => 'run', 'message' => "分卷{$fid}还原完毕!", 'url' => $url);
             }
         }
@@ -74,22 +73,17 @@ final class Backup
     //备份数据表
     static public function backup($config = array())
     {
-        $dir = Q("get.backup_dir", null, 'urldecode');
+        $status = Q("get.status", null);
+        $backupDir = F('backupDir');
         //2+备份时
-        if ($dir && is_dir($dir)) {
-            self::$dir = $dir;
-            if (is_file(self::$dir . '/config.php')) {
-                self::$config = require(self::$dir . '/config.php');
-            } else {
-                if (DEBUG) {
-                    halt('数据库备份配置文件不存在');
-                } else {
-                    return false;
-                }
-            }
+        if ($status && is_dir($backupDir)) {
+            self::$dir = $backupDir;
+            self::$config = require(self::$dir . '/config.php');
+            return self::backup_data();
         } else {
             //首次执行时创建配置文件
             self::$dir = isset($config['dir']) ? $config['dir'] : C('DB_BACKUP');
+            F('backupDir', self::$dir);
             self::init($config);
             //是否备份表结构
             $structure = isset($config['structure']) ? $config['structure'] : TRUE;
@@ -97,12 +91,9 @@ final class Backup
                 self::backup_structure();
             }
             //记录备份目录
-            $_GET['backup_dir'] = urlencode(self::$dir);
-            $url = U(ACTION, array('backup_dir' => $_GET['backup_dir']));
+            $url = U(ACTION, array('status' => 1));
             return array('status' => 'run', 'message' => '正在进行备份初始化...', 'url' => $url);
         }
-        //执行备份
-        return self::backup_data();
     }
 
     //备份表结构
@@ -153,6 +144,7 @@ final class Backup
                 }
             } while (true);
         }
+        F('backupDir', null);
         return array('status' => "success", 'message' => '完成所有数据备份...');
     }
 
@@ -160,7 +152,7 @@ final class Backup
     static private function write_backup_data($table, $data, $current_row)
     {
         //当前备份分卷id
-        $fid = Q("get.backup_fid", 1, 'intval');
+        $fid = Q("get.bid", 1, 'intval');
         file_put_contents(self::$dir . "/{$table}_bk_{$fid}.php", "<?php if(!defined('HDPHP_PATH'))EXIT;\n{$data}");
         return self::next_backup($table);
     }
@@ -174,10 +166,9 @@ final class Backup
     {
         self::update_config_file();
         //增加下一次分卷数
-        $_GET['backup_fid'] += 1;
-        $_GET['backup_dir'] = urlencode($_GET['backup_dir']);
-        $url = U(ACTION, array('backup_dir' => $_GET['backup_dir'], 'backup_fid' => $_GET['backup_fid']));
-        return array('status' => 'run', 'message' => "分卷{$_GET['backup_fid']}备份完成，继续备份{$table}表", 'url' => $url);
+        $_GET['bid'] += 1;
+        $url = U(ACTION, array('status' => 1, 'bid' => $_GET['bid']));
+        return array('status' => 'run', 'message' => "分卷{$_GET['bid']}备份完成，继续备份{$table}表", 'url' => $url);
     }
 
     //初始化

@@ -55,6 +55,7 @@ return array(
     'PATHINFO_VAR'                  => 'q',         //兼容模式get变量
     'HTML_SUFFIX'                   => '',          //伪静态扩展名
     /********************************url变量********************************/
+    'VAR_GROUP'                     => 'g',         //模块组URL变量
     'VAR_MODULE'                    => 'm',         //模块URL变量
     'VAR_CONTROLLER'                => 'c',         //控制器URL变量
     'VAR_ACTION'                    => 'a',         //动作URL变量

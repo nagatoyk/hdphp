@@ -1075,6 +1075,11 @@ function U($path, $args = array())
     }
     //组合出__WEB__后内容
     $data = array();
+    //模块组
+    if (isset($_GET[C('VAR_GROUP')])) {
+        $data[] = C('VAR_GROUP');
+        $data[] =$_GET[C('VAR_GROUP')];
+    }
     switch (count($vars)) {
         case 2: //应用
             $data[] = C("VAR_MODULE");
@@ -1104,10 +1109,6 @@ function U($path, $args = array())
                     $data[] = $v;
                 }
             }
-    }
-    if (Q('get.app')) {
-        $data[] = 'app';
-        $data[] = Q('get.app');
     }
     //合并GET参数
     $varsAll = array_merge($data, $gets);
