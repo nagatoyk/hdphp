@@ -42,22 +42,40 @@ final class Route
             if (empty($args[0])) {
                 $_GET[C("VAR_MODULE")] = C("DEFAULT_MODULE");
             } else {
-                $_GET[C("VAR_MODULE")] = $args[0];
-                array_shift($args);
+                if ($args[0] == C("VAR_MODULE")) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C("VAR_MODULE")] = $args[0];
+                    array_shift($args);
+                }
             }
             //控制器
             if (empty($args[0])) {
                 $_GET[C('VAR_CONTROLLER')] = C('DEFAULT_CONTROLLER');
             } else {
-                $_GET[C('VAR_CONTROLLER')] = $args[0];
-                array_shift($args);
+                if ($args[0] == C('VAR_CONTROLLER')) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C('VAR_CONTROLLER')] = $args[0];
+                    array_shift($args);
+                }
             }
             //动作
             if (empty($args[0])) {
                 $_GET[C('VAR_ACTION')] = C('DEFAULT_ACTION');
             } else {
-                $_GET[C('VAR_ACTION')] = $args[0];
-                array_shift($args);
+                if ($args[0] == C('VAR_ACTION')) {
+                    $_GET[$args[0]] = $args[1];
+                    array_shift($args);
+                    array_shift($args);
+                } else {
+                    $_GET[C('VAR_ACTION')] = $args[0];
+                    array_shift($args);
+                }
             }
             //其他$_GET数据
             if (!empty($args[0]) && count($args) % 2 == 0) {
