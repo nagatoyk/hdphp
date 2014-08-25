@@ -32,12 +32,14 @@ final class Backup
     //还原数据
     static public function recovery($option)
     {
+        if(!Q('status')) F('backupDir',null);
         if (!F('backupDir')) {
             F('backupDir', $option['dir']);
         }
         $dir = F('backupDir');
         //检测目录是否存在
         if (!is_dir($dir)) {
+            F('backupDir', null);
             self::$error = '数据目录不存在';
             if (DEBUG) {
                 halt(self::$error);
@@ -56,14 +58,14 @@ final class Backup
             if (is_file($dir . '/structure.php')) {
                 require $dir . '/structure.php';
             }
-            $url = U(ACTION, array('bid' => 1));
+            $url = U(ACTION, array('bid' => 1,'status'=>'run'));
             return array('status' => 'run', 'message' => '还原数据初始化...', 'url' => $url);
         }
         foreach (glob($dir . '/*') as $d) {
             if (preg_match("@_bk_{$fid}.php$@i", $d)) {
                 require $d;
                 $_GET['bid'] += 1;
-                $url = U(ACTION, array('bid' => $_GET['bid']));
+                $url = U(ACTION, array('bid' => $_GET['bid'],'status'=>'run'));
                 return array('status' => 'run', 'message' => "分卷{$fid}还原完毕!", 'url' => $url);
             }
         }
@@ -73,10 +75,10 @@ final class Backup
     //备份数据表
     static public function backup($config = array())
     {
-        $status = Q("get.status", null);
+        if(!Q("get.status"))F('backupDir',null);
         $backupDir = F('backupDir');
         //2+备份时
-        if ($status && is_dir($backupDir)) {
+        if (Q("get.status") && is_dir($backupDir)) {
             self::$dir = $backupDir;
             self::$config = require(self::$dir . '/config.php');
             return self::backup_data();
@@ -122,6 +124,8 @@ final class Backup
             $current_row = $config['current_row'];
             C('DB_DATABASE', $config['database']);
             $db = M($table, TRUE);
+            //字段缓存
+            $fieldCache = F(C('DB_DATABASE').'.'.$table, false, APP_TABLE_PATH);
             $backup_str = "";
             do {
                 $data = $db->limit("$current_row,20")->select();
@@ -133,9 +137,16 @@ final class Backup
                     return self::write_backup_data($table, $backup_str, $current_row);
                 } else {
                     foreach ($data as $d) {
+                        $field = $value = array();
+                        foreach ($d as $f => $v) {
+                            $field[] = $f;
+                            $v=addslashes($v);
+                            $value[] = empty($v) && is_null($fieldCache[$f]['default']) && $fieldCache[$f]['type'] != 'text' ? "null" : (is_numeric($v)?$v:"'$v'");
+                        }
+                        //表名
                         $table_name = "\".\$db_prefix.\"" . str_ireplace(C("DB_PREFIX"), "", $table);
-                        $backup_str .= "\$db->exe(\"REPLACE INTO $table_name (`" . implode("`,`", array_keys($d)) . "`)
-						VALUES('" . implode("','", array_values(addslashes_d($d))) . "')\");\n";
+                        $backup_str .= "\$db->exe(\"REPLACE INTO $table_name (`" . implode("`,`", $field) . "`)
+						VALUES(" . implode(",", array_values($value)) . ")\");\n";
                     }
                 }
                 //检测本次备份是否超出分卷大小

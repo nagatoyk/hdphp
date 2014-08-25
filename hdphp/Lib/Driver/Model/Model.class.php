@@ -772,17 +772,6 @@ class Model
         return $this->exe($sql);
     }
 
-    /**
-     * 过滤字段
-     */
-    public function fieldFilter($data = array())
-    {
-        $this->data($data);
-        $data = $this->data;
-        $data = $data ? $data : $_GET;
-        return $this->db->fieldFilter($data);
-    }
-
     //减少字段值
     public function dec($field, $where, $step = 1)
     {

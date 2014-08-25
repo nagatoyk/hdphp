@@ -70,17 +70,19 @@ class Upload
         }
         $files = $this->format($fieldName);
         //验证文件
-        foreach ($files as $v) {
-            $info = pathinfo($v ['name']);
-            $v ["ext"] = isset($info ["extension"]) ? $info['extension'] : '';
-            $v['filename'] = isset($info['filename']) ? $info['filename'] : '';
+        if (!empty($files)) {
+            foreach ($files as $v) {
+                $info = pathinfo($v ['name']);
+                $v ["ext"] = isset($info ["extension"]) ? $info['extension'] : '';
+                $v['filename'] = isset($info['filename']) ? $info['filename'] : '';
 
-            if (!$this->checkFile($v)) {
-                continue;
-            }
-            $uploadedFile = $this->save($v);
-            if ($uploadedFile) {
-                $this->uploadedFile [] = $uploadedFile;
+                if (!$this->checkFile($v)) {
+                    continue;
+                }
+                $uploadedFile = $this->save($v);
+                if ($uploadedFile) {
+                    $this->uploadedFile [] = $uploadedFile;
+                }
             }
         }
         return $this->uploadedFile;
