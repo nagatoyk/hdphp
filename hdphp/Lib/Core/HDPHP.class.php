@@ -43,7 +43,7 @@ final class HDPHP
         defined('MODULE_PUBLIC_PATH')                           or define('MODULE_PUBLIC_PATH', MODULE_VIEW_PATH .'Public/');
         defined('CONTROLLER_VIEW_PATH')                         or define('CONTROLLER_VIEW_PATH',MODULE_VIEW_PATH.CONTROLLER.'/');
         //网站根-Static目录
-        defined("__STATIC__")                                   or define('__STATIC__', __ROOT__ . 'Static');
+        defined("__STATIC__")                                   or define('__STATIC__', __ROOT__ . '/Static');
         defined('__HDPHP_TPL__')                                or define('__HDPHP_TPL__',__HDPHP__.'/Lib/Tpl');
         defined("__VIEW__")                                     or define('__VIEW__', __ROOT__  . '/'.rtrim(MODULE_VIEW_PATH,'/'));
         defined("__PUBLIC__")                                   or define('__PUBLIC__', __VIEW__ . '/Public');
