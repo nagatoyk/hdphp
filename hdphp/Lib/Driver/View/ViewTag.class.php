@@ -48,6 +48,7 @@ class ViewTag
         'jsconst' => array("block" => 0), //定义JS常量
         'define' => array("block" => 0),
         'bootstrap' => array('block' => 0),
+        "hdvalidate" => array("block" => 0),
         "hdjs" => array("block" => 0),
         "validate" => array("block" => 0),
         "slide" => array("block" => 0),
@@ -152,7 +153,7 @@ class ViewTag
         static $_hd_uploadify_js = false; //后盾js文件只加载一次
         $attr = array_change_key_case_d($attr, 0);
         //表单类型 是点击input过来的，还是img图片（缩略图）过来的
-        $_input_type = isset($attr['input_type'])? $attr['input_type'] : "input";
+        $_input_type = isset($attr['input_type']) ? $attr['input_type'] : "input";
         $_elem_id = isset($attr['elem_id']) && !empty($attr['elem_id']) ? $attr['elem_id'] : ""; //表单类型
         $_name = isset($attr['name']) ? $attr['name'] : false; //上传表单name
         $post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
@@ -162,7 +163,7 @@ class ViewTag
         $name = str_replace("[]", "", $_name);
         $id = "hd_uploadify_" . $name;
         //是否加水印
-        $water = isset($attr['water']) ? ($attr['water'] == 1 ?1:0) : C("WATER_ON");
+        $water = isset($attr['water']) ? ($attr['water'] == 1 ? 1 : 0) : C("WATER_ON");
         $waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
@@ -181,7 +182,7 @@ class ViewTag
         //是否显示描述
         $alt = isset($attr['alt']) && $attr['alt'] == 1 ? 1 : 0;
         //是上传文件大小等提示信息true是false不显示
-        $message = isset($attr['message'])? intval($attr['message']) : 1;
+        $message = isset($attr['message']) ? intval($attr['message']) : 1;
         $limit = isset($attr['limit']) ? $attr['limit'] : "100"; //上传文件数量
         $thumb = isset($attr['thumb']) ? $attr['thumb'] : ''; //生成缩略图尺寸
         $data = isset($attr['data']) ? $attr['data'] : false; //编辑时的图片数据
@@ -283,16 +284,16 @@ class ViewTag
 </script>
 <input type="file" name="up" id="' . $id . '"/>';
 //显示上传提示信息
-    if($message){
-        $str.='<div class="' . $id . '_msg num_upload_msg">
+        if ($message) {
+            $str .= '<div class="' . $id . '_msg num_upload_msg">
         ';
-                if ($waterbtn) {
-                    $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
-                }
-                $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
+            if ($waterbtn) {
+                $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
+            }
+            $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
         </div>';
-    }
-        $str.='<div id="' . $id . '_queue"></div>
+        }
+        $str .= '<div id="' . $id . '_queue"></div>
         <div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
             <ul>' . $uploadFileStr . '</ul>
             <div style="clear:both;"></div>
@@ -433,7 +434,7 @@ class ViewTag
         $php = ''; //组合成PHP
         $from = $attr['from'];
         $key = isset($attr['key']) ? $attr['key'] : '$key';
-        $value =isset($attr['value']) ? $attr['value'] : '$value';
+        $value = isset($attr['value']) ? $attr['value'] : '$value';
         $php .= "<?php if(is_array($from)){?>";
         $php .= '<?php ' . " foreach($from as $key=>$value){ ?>";
         $php .= $content;
@@ -602,6 +603,14 @@ class ViewTag
     {
         return "<script src='__HDPHP__/hdjs/org/cal/lhgcalendar.min.js'></script>\n";
     }
+    //自动验证
+    public function _hdvalidate($attr, $content)
+    {
+        $php = '';
+        $php .= "<link href='__HDPHP__/hdjs/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP__/hdjs/js/hdvalidate.js'></script>\n";
+        return $php;
+    }
 
     //hdjs
     public function _hdjs($attr, $content)
@@ -609,7 +618,9 @@ class ViewTag
         $php = '';
         $php .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
         $php .= "<link href='__HDPHP__/hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<link href='__HDPHP__/hdjs/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
         $php .= "<script src='__HDPHP__/hdjs/js/hdjs.js'></script>\n";
+        $php .= "<script src='__HDPHP__/hdjs/js/hdvalidate.js'></script>\n";
         $php .= $this->_slide(null, null);
         $php .= $this->_cal(null, null);
         $php .= $this->_jsconst(null, null);

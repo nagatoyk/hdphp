@@ -149,7 +149,6 @@ class Image
      * 图片裁切处理
      * @param $img 原图
      * @param string $outFile 另存文件名
-     * @param string $path 文件存放路径
      * @param string $thumbWidth 缩略图宽度
      * @param string $thumbHeight 缩略图高度
      * @param string $thumbType 裁切图片的方式
@@ -157,7 +156,7 @@ class Image
      * 4 固定高度 宽度裁切 5缩放最大边 原图不裁切 6缩略图尺寸不变，自动裁切最大边
      * @return bool|string
      */
-    public function thumb($img, $outFile = '', $thumbWidth = '', $thumbHeight = '', $thumbType = '', $path = '')
+    public function thumb($img, $outFile = '', $thumbWidth = '', $thumbHeight = '', $thumbType = '')
     {
         if (!$this->check($img)) {
             return false;
@@ -166,7 +165,6 @@ class Image
         $thumbType = $thumbType ? $thumbType : $this->thumbType;
         $thumbWidth = $thumbWidth ? $thumbWidth : $this->thumbWidth;
         $thumbHeight = $thumbHeight ? $thumbHeight : $this->thumbHeight;
-        $path = $path ? $path : C("THUMB_PATH");
         //获得图像信息
         $imgInfo = getimagesize($img);
         $imgWidth = $imgInfo [0];
@@ -198,13 +196,9 @@ class Image
         }
         //配置输出文件名
         $imgInfo = pathinfo($img);
-        $outFile = $outFile ? $outFile : $this->thumbPreFix . $imgInfo['filename'] . $this->thumbEndFix . "." . $imgInfo['extension'];
-        $upload_dir = $path ? rtrim($path, '/') . '/' : (strstr($outFile, '/') ? dirname($outFile) : dirname($img) . '/');
+        $outFile = $outFile ? $outFile :dirname($img).'/'. $this->thumbPreFix . $imgInfo['filename'] . $this->thumbEndFix . "." . $imgInfo['extension'];
 
-        Dir::create($upload_dir);
-        if (!strstr($outFile, '/')) {
-            $outFile = $upload_dir . $outFile;
-        }
+        Dir::create(dirname($outFile));
         $func = "image" . substr($imgType, 1);
         $func($res_thumb, $outFile);
         if (isset($resImg))

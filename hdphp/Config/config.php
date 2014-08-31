@@ -112,7 +112,6 @@ return array(
                                             //4:固定高度,宽度裁切 5:缩放最大边       6:自动裁切图片
     'THUMB_WIDTH'                   => 300,         //缩略图宽度
     'THUMB_HEIGHT'                  => 300,         //缩略图高度
-    'THUMB_PATH'                    => '',          //缩略图路径
     /********************************验证码********************************/
     'CODE_FONT'                     => HDPHP_PATH . 'Data/Font/font.ttf',       //字体
     'CODE_STR'                      => '23456789abcdefghjkmnpqrstuvwsyz', //验证码种子

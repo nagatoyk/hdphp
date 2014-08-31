@@ -560,7 +560,7 @@ function Q($var, $default = null, $filter = null)
     if (empty($var[1])) {
         return $data;
         //如果存在数据如$this->_get("page")，$_GET中存在page数据
-    } else if (isset($data[$var[1]]) && !empty($data[$var[1]])) {
+    } else if (isset($data[$var[1]])) {
         //要获得参数如$this->_get("page")中的page
         $value = $data[$var[1]];
         //对参数进行过滤的函数

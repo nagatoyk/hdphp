@@ -588,7 +588,6 @@ class Model
                 default:
                     $data = array();
                     foreach ($result as $v) {
-                        unset($v[$field[0]]);
                         $data[$v[$field[0]]] = $v;
                     }
                     return $data;

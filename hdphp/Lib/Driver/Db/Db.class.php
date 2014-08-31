@@ -233,6 +233,7 @@ abstract class Db implements DbInterface
     {
         //格式化的数据
         $data = array();
+//        p($vars);
         foreach ($vars as $k => $v) {
             //校验字段与数据
             if ($this->isField($k)) {
@@ -240,9 +241,11 @@ abstract class Db implements DbInterface
                 $v = $this->escapeString($v);
                 $default = $this->opt['fieldData'][$k]['default'];
                 $type = $this->opt['fieldData'][$k]['type'];
-                $data['values'][] = empty($v) && is_null($default) && $type != 'text' ? "null" : "\"$v\"";
+//                echo $k.'==>#'.$v.'#==>'."$type==>"."==>default:".var_dump(is_numeric($default))."==>$default==>".(is_numeric($default) ? intval($default) : "\"$default\"")."<br/>";
+                $data['values'][] = preg_match('@int@i',$type)?intval($v): "\"$v\"";
             }
         }
+//        p($data);
         return $data;
     }
 

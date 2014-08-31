@@ -706,37 +706,37 @@ div.page1 span.count {
 }
 
 /*****************文字导航*******************/
-div.menu {
-    border-bottom: solid 1px #eee;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
+/*div.menu {*/
+    /*border-bottom: solid 1px #eee;*/
+    /*padding-bottom: 10px;*/
+    /*margin-bottom: 10px;*/
+/*}*/
 
-div.menu a {
-    color: #666;
-    font-size: 12px;
-    display: inline-block;
-    padding: 3px 5px;
-}
+/*div.menu a {*/
+    /*color: #666;*/
+    /*font-size: 12px;*/
+    /*display: inline-block;*/
+    /*padding: 3px 5px;*/
+/*}*/
 
-div.menu a:hover {
-    background: #a0a0a0;
-    color: #fff;
-}
+/*div.menu a:hover {*/
+    /*background: #a0a0a0;*/
+    /*color: #fff;*/
+/*}*/
 
-div.menu a.action {
-    background: #a0a0a0;
-    color: #fff;
-}
+/*div.menu a.action {*/
+    /*background: #a0a0a0;*/
+    /*color: #fff;*/
+/*}*/
 
-div.menu span {
-    font-size: 12px;
-    color: #ccc;
-    position: relative;
-    display: inline-block;
-    padding: 0px 6px;
-    top: -1px;
-}
+/*div.menu span {*/
+    /*font-size: 12px;*/
+    /*color: #ccc;*/
+    /*position: relative;*/
+    /*display: inline-block;*/
+    /*padding: 0px 6px;*/
+    /*top: -1px;*/
+/*}*/
 
 /***********简单信息框******************/
 div#hd_dialog_message_bg {
@@ -1071,51 +1071,4 @@ div.dialog div.error {
 
 div.dialog div.error strong {
     background: url(../img/face.png) -65px 0px no-repeat;
-}
-
-/* ====================================================================================
-/* ===================================--|验证提示信息|--========================================
-/* ====================================================================================*/
-
-.validation {
-    font-size: 12px;
-    color: #999999;
-    display: inline-block;
-    text-indent: 5px;
-    line-height: 25px;
-}
-
-.validate-message {
-    background: url(../img/msg_bg.png) 3px -293px no-repeat;
-    font-size: 12px;
-    color: #999999;
-    display: inline-block;
-    text-indent: 25px;
-    line-height: 25px;
-    margin-left: 5px;
-}
-
-.validate-success {
-    font-size: 12px;
-    color: #999999;
-    display: inline-block;
-    background: url(../img/msg_bg.png) 3px -247px no-repeat;
-    text-indent: 28px;
-    line-height: 25px;
-    margin-left: 5px;
-}
-
-.input-error {
-    background-color: #FFE7E7;
-    box-shadow: none;
-}
-
-.validate-error {
-    font-size: 12px;
-    color: #999999;
-    display: inline-block;
-    background: url(../img/msg_bg.png) 3px -47px no-repeat;
-    text-indent: 28px;
-    margin-left: 5px;
-    line-height: 25px;
 }
