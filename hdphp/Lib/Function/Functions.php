@@ -371,7 +371,7 @@ function session($name = '', $value = '')
  * @param mixed $option 选项
  * @return mixed
  */
-function cookie($name, $value = "", $option = array())
+function cookie($name, $value = '', $option = array())
 {
     // 默认设置
     $config = array('prefix' => C('COOKIE_PREFIX'), // cookie 名称前缀
@@ -389,8 +389,7 @@ function cookie($name, $value = "", $option = array())
     }
     // 清除指定前缀的所有cookie
     if (is_null($name)) {
-        if (empty($_COOKIE))
-            return;
+        if (empty($_COOKIE))return;
         // 要删除的cookie前缀，不指定则删除config设置的指定前缀
         $prefix = empty($value) ? $config['prefix'] : $value;
         if (!empty($prefix)) { // 如果前缀为空字符串将不作处理直接返回
@@ -401,7 +400,7 @@ function cookie($name, $value = "", $option = array())
                 }
             }
         }
-        return;
+        return $_COOKIE;
     }
     $name = $config['prefix'] . $name;
     if ('' === $value) {

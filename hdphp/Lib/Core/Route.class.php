@@ -349,47 +349,18 @@ final class Route
      */
     static public function removeUrlParam($var, $url = null)
     {
-        $pathinfo_dli = C("PATHINFO_DLI");
+        if (is_null($url)) $url = __URL__;
+        $dli = C("PATHINFO_DLI");
         if (!is_null($url)) {
-            $url_format = strstr($url, "&") ? $url . '&' : $url . $pathinfo_dli;
-            $url = str_replace($pathinfo_dli, "###", $url_format);
-            $search = array(
-                "/$var" . "###" . ".*?" . "###" . "/",
-                "/$var=.*?&/i",
-                "/\?&/",
-                "/&&/"
-            );
-            $replace = array(
-                "",
-                "",
-                "?",
-                ""
-            );
-            $url_replace = preg_replace($search, $replace, $url);
-            $url_rtrim = rtrim(rtrim($url_replace, "&"), "###");
-            return str_replace("###", $pathinfo_dli, $url_rtrim);
-        }
-        $get = $_GET;
-        unset($get[C("VAR_APP")]);
-        unset($get[C("VAR_CONTROL")]);
-        unset($get[C("VAR_METHOD")]);
-        $url = '';
-        $url_type = C("URL_TYPE");
-        foreach ($get as $k => $v) {
-            if ($k === $var)
-                continue;
-            if ($url_type == 1) {
-                $url .= $pathinfo_dli . $k . $pathinfo_dli . $v;
-            } else {
-                $url .= "&" . $k . "=" . $v;
+            $url = C('URL_TYPE') == 2 ? $url . '&' : $url . $dli;
+            switch (C('URL_TYPE')) {
+                case 2: //普通模式
+                    $url = preg_replace(array("/$var=.*?&/", "/&&/"), '', $url);
+                    break;
+                default: //pathinfo与兼容模式
+                    $url = preg_replace(array("/{$var}{$dli}.*?{$dli}/"), '', $url);
             }
-        }
-        $url_rtrim = trim(trim($url, $pathinfo_dli), '&');
-        $url_str = empty($url_rtrim) ? "" : $pathinfo_dli . $url_rtrim;
-        if ($url_type == 1) {
-            return __ACTION__ . $url_str;
-        } else {
-            return __ACTION__ . "&" . trim($url_str, "&");
+            return rtrim($url, "&" . $dli);
         }
     }
 }

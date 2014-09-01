@@ -47,7 +47,7 @@ final class HDPHP
         defined('__HDPHP_TPL__')                                or define('__HDPHP_TPL__',__HDPHP__.'/Lib/Tpl');
         defined("__VIEW__")                                     or define('__VIEW__', __ROOT__  . '/'.rtrim(MODULE_VIEW_PATH,'/'));
         defined("__PUBLIC__")                                   or define('__PUBLIC__', __VIEW__ . '/Public');
-        defined("__CONTROLLER_VIEW__")                           or define('__CONTROLLER_VIEW__', __VIEW__  .'/'. CONTROLLER);
+        defined("__CONTROLLER_VIEW__")                          or define('__CONTROLLER_VIEW__', __VIEW__  .'/'. CONTROLLER);
         //来源URL
         define("__HISTORY__",                                   isset($_SERVER["HTTP_REFERER"])?$_SERVER["HTTP_REFERER"]:null);
         //=========================环境配置
@@ -69,14 +69,6 @@ final class HDPHP
         set_exception_handler(array(__CLASS__,                  'exception'));
         register_shutdown_function(array(__CLASS__,             'fatalError'));
         HDPHP::_appAutoLoad();
-        //COOKIE安全处理
-        if(!empty($_COOKIE)){
-            foreach($_COOKIE as $name=>$v){
-                $_name = preg_replace('@[^0-9a-z]@i', '', $name);
-                unset($_COOKIE[$name]);
-                $_COOKIE[$_name]=$v;
-            }
-        }
     }
     /**
      * 自动加载Lib文件
