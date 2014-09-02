@@ -159,7 +159,7 @@ abstract class Db implements DbInterface
         //设置条件
         $where && $this->where($where);
         //去除WHERE尾部AND OR
-        $this->removeWhereLogic();
+        $this->parseWhereLogic($this->opt['where']);
         $sql = 'SELECT ' . $this->opt['field'] . ' FROM ' . $this->opt['table'] .
             $this->opt['where'] . $this->opt['group'] . $this->opt['having'] .
             $this->opt['order'] . $this->opt['limit'];
@@ -204,7 +204,7 @@ abstract class Db implements DbInterface
             $sql .= $field . "=" . $data['values'][$n] . ',';
         }
         //移除WHERE AND OR
-        $this->removeWhereLogic();
+        $this->parseWhereLogic($this->opt['where']);
         $sql = trim($sql, ',') . $this->opt['where'] . $this->opt['limit'];
         return $this->exe($sql);
     }
@@ -219,7 +219,7 @@ abstract class Db implements DbInterface
         $data && $this->where($data);
         empty($this->opt['where']) && halt('DELETE删除语句必须输入条件');
         //移除WHERE AND OR
-        $this->removeWhereLogic();
+        $this->parseWhereLogic($this->opt['where']);
         $sql = "DELETE FROM " . $this->opt['table'] . $this->opt['where'] . $this->opt['limit'];
         return $this->exe($sql);
     }
@@ -233,7 +233,6 @@ abstract class Db implements DbInterface
     {
         //格式化的数据
         $data = array();
-//        p($vars);
         foreach ($vars as $k => $v) {
             //校验字段与数据
             if ($this->isField($k)) {
@@ -241,12 +240,20 @@ abstract class Db implements DbInterface
                 $v = $this->escapeString($v);
                 $default = $this->opt['fieldData'][$k]['default'];
                 $type = $this->opt['fieldData'][$k]['type'];
-//                echo $k.'==>#'.$v.'#==>'."$type==>"."==>default:".var_dump(is_numeric($default))."==>$default==>".(is_numeric($default) ? intval($default) : "\"$default\"")."<br/>";
-                $data['values'][] = preg_match('@int@i',$type)?intval($v): "\"$v\"";
+                $data['values'][] = preg_match('@int@i', $type) ? intval($v) : "\"$v\"";
             }
         }
-//        p($data);
         return $data;
+    }
+
+    //移除where结尾的OR AND
+    private function parseWhereLogic(&$where, $action = 'remove')
+    {
+        if ($action == 'remove') {
+            $where = preg_replace('/(XOR|OR|AND)\s*$/i', '', $where);
+        } else {
+            $where = preg_match('/(XOR|OR|AND)\s*$/i', $where) ? $where : $where . ' AND ';
+        }
     }
 
     /**
@@ -260,92 +267,104 @@ abstract class Db implements DbInterface
         if (empty($opt)) return;
         if (is_numeric($opt)) {
             $where .= ' ' . $this->opt['pri'] . "=$opt ";
-            if (!preg_match('/(OR|AND)\s*$/i', $where)) {
-                $where .= ' AND ';
-            }
+            $this->parseWhereLogic($where);
         } else if (is_string($opt)) {
             $where .= " $opt ";
-            if (!preg_match('/(OR|AND)\s*$/i', $where)) {
-                $where .= ' AND ';
-            }
+            $this->parseWhereLogic($where, 'add');
         } else if (is_array($opt)) {
-            foreach ($opt as $field => $set) {
-                //过滤字段
-                if ($this->isField($field)) {
-                    $field = " $field ";
+            foreach ($opt as $key => $set) {
+                if ($key[0] == '_') {
+                    switch (strtolower($key)) {
+                        case '_query':
+                            parse_str($set, $q);
+                            $this->where($q);
+                            break;
+                        case '_string':
+                            $where .= $set;
+                            $this->parseWhereLogic($where, 'add');
+                            break;
+                    }
+                } else if (is_numeric($key)) { //参数为字符串
+                    $where .= $set;
+                } else if ($this->isField($key)) { //参数为数组
                     if (!is_array($set)) {
                         $logic = isset($opt['_logic']) ? " {$opt['_logic']} " : ' AND '; //连接方式
-                        $where .= $field . "='$set' " . $logic;
-                    } else if (is_array($set)) {
-                        $type = str_replace(' ', '', $set[0]); //类型
-                        $option = is_string($set[1]) ? explode(',', $set[1]) : $set[1]; //选项
+                        $where .= " $key " . "='$set' " . $logic;
+                    } else {
+                        $logic = isset($opt['_logic']) ? " {$opt['_logic']} " : ' AND '; //连接方式
+                        $logic = isset($set['_logic']) ? " {$set['_logic']} " : $logic; //连接方式
                         //连接方式
-                        if (isset($opt['_logic'])) {
-                            $logic = " {$opt['_logic']} ";
+                        if (is_string(end($set)) && in_array(strtoupper(end($set)), array('AND', 'OR', 'XOR'))) {
+                            $logic = ' ' . current($set) . ' ';
+                        }
+                        reset($set); //数组指针回位
+                        //如: $map['username'] = array(array('gt', 3), array('lt', 5), 'AND');
+                        if (is_array(current($set))) {
+                            foreach ($set as $exp) {
+                                if (is_array($exp)) {
+                                    $exp['_logic'] = strtoupper($logic);
+                                    $t[$key] = $exp;
+                                    $this->where($t);
+                                }
+                            }
                         } else {
-                            $logic = isset($set[2]) ? " {$set[2]} " : ' AND ';
+                            $option = !is_array($set[1]) ? explode(',', $set[1]) : $set[1]; //参数
+                            switch (strtoupper($set[0])) {
+                                case 'IN':
+                                    $value = '';
+                                    foreach ($option as $v) {
+                                        $value .= is_numeric($v) ? $v . "," : "'" . $v . "',";
+                                    }
+                                    $value = trim($value, ',');
+                                    $where .= " $key " . " IN ($value) $logic";
+                                    break;
+                                case 'NOTIN':
+                                    $value = '';
+                                    foreach ($option as $v) {
+                                        $value .= is_numeric($v) ? $v . "," : "'" . $v . "',";
+                                    }
+                                    $value = trim($value, ',');
+                                    $where .= " $key " . " NOT IN ($value) $logic";
+                                    break;
+                                case 'BETWEEN':
+                                    $where .= " $key " . " BETWEEN " . $option[0] . ' AND ' . $option[1] . $logic;
+                                    break;
+                                case 'NOTBETWEEN':
+                                    $where .= " $key " . " NOT BETWEEN " . $option[0] . ' AND ' . $option[1] . $logic;
+                                    break;
+                                case 'LIKE':
+                                    foreach ($option as $v) {
+                                        $where .= " $key " . " LIKE '$v' " . $logic;
+                                    }
+                                    break;
+                                case 'NOLIKE':
+                                    foreach ($option as $v) {
+                                        $where .= " $key " . " NO LIKE '$v'" . $logic;
+                                    }
+                                    break;
+                                case 'EQ':
+                                    $where .= " $key " . '=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'NEQ':
+                                    $where .= " $key " . '<>' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'GT':
+                                    $where .= " $key " . '>' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'EGT':
+                                    $where .= " $key " . '>=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'LT':
+                                    $where .= " $key " . '<' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'ELT':
+                                    $where .= " $key " . '<=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
+                                    break;
+                                case 'EXP':
+                                    $where .= " $key " . $set[1] . $logic;
+                                    break;
+                            }
                         }
-                        switch (strtoupper($type)) {
-                            case 'IN':
-                                $value = '';
-                                foreach ($option as $v) {
-                                    $value .= is_numeric($v) ? $v . "," : "'" . $v . "',";
-                                }
-                                $value = trim($value, ',');
-                                $where .= $field . " IN ($value) $logic";
-                                break;
-                            case 'NOTIN':
-                                $value = '';
-                                foreach ($option as $v) {
-                                    $value .= is_numeric($v) ? $v . "," : "'" . $v . "',";
-                                }
-                                $value = trim($value, ',');
-                                $where .= $field . " NOT IN ($value) $logic";
-                                break;
-                            case 'BETWEEN':
-                                $where .= $field . " BETWEEN " . $option[0] . ' AND ' . $option[1] . $logic;
-                                break;
-                            case 'NOTBETWEEN':
-                                $where .= $field . " NOT BETWEEN " . $option[0] . ' AND ' . $option[1] . $logic;
-                                break;
-                            case 'LIKE':
-                                foreach ($option as $v) {
-                                    $where .= $field . " LIKE '$v' " . $logic;
-                                }
-                                break;
-                            case 'NOLIKE':
-                                foreach ($option as $v) {
-                                    $where .= $field . " NO LIKE '$v'" . $logic;
-                                }
-                                break;
-                            case 'EQ':
-                                $where .= $field . '=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'NEQ':
-                                $where .= $field . '<>' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'GT':
-                                $where .= $field . '>' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'EGT':
-                                $where .= $field . '>=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'LT':
-                                $where .= $field . '<' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'ELT':
-                                $where .= $field . '<=' . (is_numeric($set[1]) ? $set[1] : "'{$set[1]}'") . $logic;
-                                break;
-                            case 'EXP':
-                                $where .= $field . $set[1] . $logic;
-                                break;
-                        }
-
-                    }
-                } else if (is_numeric($field) && is_string($set)) {
-                    $where .= $set;
-                    if (!preg_match('/(OR|AND)\s*$/i', $where)) {
-                        $where .= ' AND ';
                     }
                 }
             }
@@ -354,12 +373,6 @@ abstract class Db implements DbInterface
             $this->opt['where'] = ' WHERE ';
         }
         $this->opt['where'] .= $where;
-    }
-
-    //移除where后的AND OR
-    private function removeWhereLogic()
-    {
-        $this->opt['where'] = preg_replace('/(AND|OR)\s*$/i', '', $this->opt['where']);
     }
 
     /**

@@ -63,6 +63,8 @@ final class HDPHP
         define('IS_PUT',                                        REQUEST_METHOD == 'PUT' ? true : false);
         define('IS_AJAX',                                       ajax_request());
         define('IS_DELETE',                                     REQUEST_METHOD == 'DELETE' ? true : false);
+        //模块导入
+        alias_import(C('ALIAS'));
         //注册自动载入函数
         spl_autoload_register(array(__CLASS__,                  'autoload'));
         set_error_handler(array(__CLASS__,                      'error'), E_ALL);

@@ -108,7 +108,7 @@ final class Boot
         C(require(HDPHP_CONFIG_PATH . 'config.php'));
         //系统语言
         L(require(HDPHP_LANGUAGE_PATH . 'zh.php'));
-        //别名
+        //应用别名导入
         alias_import(C('ALIAS'));
     }
     /**
@@ -165,10 +165,8 @@ final class Boot
         is_file(MODULE_PUBLIC_PATH . "success.html")    or copy(HDPHP_PATH . 'Lib/Tpl/success.html', MODULE_PUBLIC_PATH . "success.html");
         is_file(MODULE_PUBLIC_PATH . "error.html")      or copy(HDPHP_PATH . 'Lib/Tpl/error.html', MODULE_PUBLIC_PATH . "error.html");
         //复制模块配置文件
-        is_file(MODULE_CONFIG_PATH . "config.php")      or copy(HDPHP_PATH . 'Lib/Tpl/config.php', MODULE_CONFIG_PATH . "config.php");
-        is_file(MODULE_CONFIG_PATH . "alias.php")       or copy(HDPHP_PATH . 'Lib/Tpl/alias.php', MODULE_CONFIG_PATH . "alias.php");
-        is_file(APP_CONFIG_PATH . "config.php")         or copy(HDPHP_PATH . 'Lib/Tpl/config.php', APP_CONFIG_PATH . "config.php");
-        is_file(APP_CONFIG_PATH . "alias.php")          or copy(HDPHP_PATH . 'Lib/Tpl/alias.php', APP_CONFIG_PATH . "alias.php");
+        is_file(MODULE_CONFIG_PATH . "config.php")      or copy(HDPHP_PATH . 'Lib/Tpl/configModule.php', MODULE_CONFIG_PATH . "config.php");
+        is_file(APP_CONFIG_PATH . "config.php")         or copy(HDPHP_PATH . 'Lib/Tpl/configApp.php', APP_CONFIG_PATH . "config.php");
         //创建测试控制器
         is_file(MODULE_CONTROLLER_PATH . 'IndexController.class.php') or file_put_contents(MODULE_CONTROLLER_PATH . 'IndexController.class.php', file_get_contents(HDPHP_PATH . 'Lib/Tpl/controller.php'));
         //创建安全文件
