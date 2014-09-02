@@ -94,17 +94,18 @@ abstract class Hook
      * @param $name 钓子名
      * @param $action 钓子方法
      * @param null $param 参数
+     * @return boolean
      */
     static public function exe($name, $action, &$param = null)
     {
-        if (substr($name, -4) == 'Hook') { //插件钓子
+        if (substr($name, -4) == 'Hook') { //钓子
             $action = 'run';
-        } else {
+        } else { //插件
             require_cache(APP_ADDON_PATH . $name . '/' . $name . 'Addon.class.php');
             $name = $name . 'Addon';
-            if(!class_exists($name,false))return;
         }
         $obj = new $name;
         $obj->$action($param);
+        return true;
     }
 }

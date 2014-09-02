@@ -60,7 +60,7 @@ return array(
     'VAR_CONTROLLER'                => 'c',         //控制器URL变量
     'VAR_ACTION'                    => 'a',         //动作URL变量
     /********************************项目参数********************************/
-    'DENY_MODULE'                   => array('Common','Temp'),     //禁止使用的模块
+    'DENY_MODULE'                   => array('Common','Temp','Addons'),//禁止使用的模块
     'DEFAULT_MODULE'                => 'Index',     //默认模块
     'DEFAULT_CONTROLLER'            => 'Index',     //默认控制器
     'DEFAULT_ACTION'                => 'index',     //默认方法
