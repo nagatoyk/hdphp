@@ -286,6 +286,7 @@ abstract class Db implements DbInterface
                     }
                 } else if (is_numeric($key)) { //参数为字符串
                     $where .= $set;
+                    $this->parseWhereLogic($where, 'add');
                 } else if ($this->isField($key)) { //参数为数组
                     if (!is_array($set)) {
                         $logic = isset($opt['_logic']) ? " {$opt['_logic']} " : ' AND '; //连接方式

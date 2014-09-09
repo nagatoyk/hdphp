@@ -103,6 +103,7 @@ abstract class Hook
         } else { //插件
             require_cache(APP_ADDON_PATH . $name . '/' . $name . 'Addon.class.php');
             $name = $name . 'Addon';
+            if (!class_exists($name, false)) return false;
         }
         $obj = new $name;
         $obj->$action($param);

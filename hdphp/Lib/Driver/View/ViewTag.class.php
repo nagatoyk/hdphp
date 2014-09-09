@@ -451,7 +451,7 @@ class ViewTag
     public function _include($attr, $content)
     {
         if (!isset($attr['file'])) {
-            halt('load 模板标签必须有value属性', false); //load标签必须有file属性
+            halt('include 模板标签必须有file属性', false); //load标签必须有file属性
         }
         $const = print_const(false, true);
         foreach ($const as $k => $v) {

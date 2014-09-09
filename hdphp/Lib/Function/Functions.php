@@ -460,8 +460,8 @@ function C($name = null, $value = null)
     if (is_null($name)) {
         return $config;
     } else if (is_string($name)) {
-        $name = strtolower($name);
-        $data = array_change_key_case($config);
+        $name = strtoupper($name);
+        $data = array_change_key_case($config,CASE_UPPER);
         if (!strstr($name, '.')) {
             //获得配置
             if (is_null($value)) {
@@ -479,7 +479,7 @@ function C($name = null, $value = null)
             }
         }
     } else if (is_array($name)) {
-        return $config = array_merge($config, $name);
+        return $config = array_merge($config, array_change_key_case($name,CASE_UPPER));
     }
 }
 

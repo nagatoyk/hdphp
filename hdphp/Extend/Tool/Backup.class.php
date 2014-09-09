@@ -141,7 +141,7 @@ final class Backup
                         foreach ($d as $f => $v) {
                             $field[] = $f;
                             $v=addslashes($v);
-                            $value[] = empty($v) && is_null($fieldCache[$f]['default']) && $fieldCache[$f]['type'] != 'text' ? "null" : (is_numeric($v)?$v:"'$v'");
+                            $value[]= preg_match('@int@i', $fieldCache[$f]['type']) ? intval($v) : "'$v'";
                         }
                         //表名
                         $table_name = "\".\$db_prefix.\"" . str_ireplace(C("DB_PREFIX"), "", $table);

@@ -132,7 +132,7 @@ return array(
     'TPL_PATH'                      => 'View',      //模板目录
     'TPL_STYLE'                     => '',          //风格
     'TPL_FIX'                       => '.html',     //模版文件扩展名
-    'TPL_TAGS'                      => array(),     //扩展标签,多个标签用逗号分隔
+    'TPL_TAGS'                      => array(),     //模板标签
     'TPL_ERROR'                     => 'error',     //错误信息模板
     'TPL_SUCCESS'                   => 'success',   //正确信息模板
     'TPL_ENGINE'                    => 'HD',        //模板引擎 HD,Smarty
