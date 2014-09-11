@@ -291,7 +291,7 @@ final class Boot
         if (is_dir(TEMP_PATH) or dir_create(TEMP_PATH) and is_writable(TEMP_PATH))
             return file_put_contents(TEMP_FILE, compress($compile));
         header("Content-type:text/html;charset=utf-8");
-        exit("<div style='border:solid 1px #dcdcdc;padding:30px;'>目录创建失败，请修改" . realpath(dirname(TEMP_PATH)) . "目录权限</div>");
+        exit("<div style='border:solid 1px #dcdcdc;padding:30px;'>请修改" . realpath(dirname(TEMP_PATH)) . "目录权限</div>");
     }
 
 }

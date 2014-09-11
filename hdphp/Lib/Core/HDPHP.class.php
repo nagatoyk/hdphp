@@ -142,9 +142,9 @@ final class HDPHP
         ) {
             return;
         }
-        $msg = "Class {$className} not found";
-        Log::write($msg);
-        halt($msg);
+//        $msg = "Class {$className} not found";
+//        Log::write($msg);
+//        halt($msg);
     }
 
     /**
