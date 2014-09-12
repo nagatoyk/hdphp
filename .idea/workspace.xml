@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/hdphp.php" afterPath="$PROJECT_DIR$/hdphp/hdphp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +28,7 @@
       <file leaf-file-name="hdphp.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="35" selection-start="772" selection-end="772" vertical-scroll-proportion="0.20673813" vertical-offset="0" max-vertical-offset="653">
+            <state line="13" column="17" selection-start="672" selection-end="672" vertical-scroll-proportion="0.114854515" vertical-offset="0" max-vertical-offset="653">
               <folding />
             </state>
           </provider>
@@ -173,7 +173,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistory" value="hdphp&#10;xc&#10;functions&#10;hdphp.c&#10;boot&#10;tag&#10;db.&#10;backup&#10;hdph&#10;index_ad681a49.php&#10;hook&#10;view&#10;app.&#10;hdphp.cl&#10;compil&#10;config.p&#10;ViewTag&#10;db&#10;if&#10;st&#10;controll&#10;app.c&#10;hdphp.&#10;config&#10;addonC&#10;addonco&#10;mail&#10;:&#10;url&#10;HDPHP.&#10;cookie(&#10;hdjs.&#10;ContentUpload&#10;n&#10;viewt&#10;hdjs.cs&#10;db.cl&#10;config.&#10;Image.cl&#10;function&#10;ip.cl&#10;getClientIp&#10;model.cl&#10;rou&#10;va&#10;mysql&#10;back&#10;session&#10;sessionm&#10;uploadc" />
+    <property name="SearchEverywhereHistory" value="CategoryCon&#10;hdphp&#10;xc&#10;functions&#10;hdphp.c&#10;boot&#10;tag&#10;db.&#10;backup&#10;hdph&#10;index_ad681a49.php&#10;hook&#10;view&#10;app.&#10;hdphp.cl&#10;compil&#10;config.p&#10;ViewTag&#10;db&#10;if&#10;st&#10;controll&#10;app.c&#10;hdphp.&#10;config&#10;addonC&#10;addonco&#10;mail&#10;:&#10;url&#10;HDPHP.&#10;cookie(&#10;hdjs.&#10;ContentUpload&#10;n&#10;viewt&#10;hdjs.cs&#10;db.cl&#10;config.&#10;Image.cl&#10;function&#10;ip.cl&#10;getClientIp&#10;model.cl&#10;rou&#10;va&#10;mysql&#10;back&#10;session&#10;sessionm" />
     <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
     <property name="options.lastSelected" value="settings" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -263,7 +263,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.184375" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27890626" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27890626" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -297,6 +297,20 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="17" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="772" selection-end="772" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Cache/CacheFile.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="105" selection-start="1198" selection-end="1208" vertical-scroll-proportion="-0.5742726" vertical-offset="855" max-vertical-offset="2655" />
@@ -503,58 +517,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Function/Functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="25" selection-start="7760" selection-end="7760" vertical-scroll-proportion="0.36142626" vertical-offset="4187" max-vertical-offset="26325">
-          <folding />
-        </state>
+        <state line="303" column="25" selection-start="7760" selection-end="7760" vertical-scroll-proportion="0.36142626" vertical-offset="4187" max-vertical-offset="26325" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/PhpExcel/Classes/PHPExcel/Autoloader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="0" selection-start="2718" selection-end="2718" vertical-scroll-proportion="0.65555555" vertical-offset="712" max-vertical-offset="1365">
-          <folding>
-            <element signature="e#6#1056#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="75" column="0" selection-start="2718" selection-end="2718" vertical-scroll-proportion="0.65555555" vertical-offset="712" max-vertical-offset="1365" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/PhpExcel/Classes/PHPExcel/Cell/DataType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="22" selection-start="1365" selection-end="1377" vertical-scroll-proportion="0.35714287" vertical-offset="15" max-vertical-offset="1560">
-          <folding />
-        </state>
+        <state line="40" column="22" selection-start="1365" selection-end="1377" vertical-scroll-proportion="0.35714287" vertical-offset="15" max-vertical-offset="1560" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/PhpExcel/Classes/PHPExcel/IComparable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="10" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.26190478" vertical-offset="0" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="33" column="10" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.26190478" vertical-offset="0" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/PhpExcel/HdExcel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="7" selection-start="3862" selection-end="3862" vertical-scroll-proportion="0.38714734" vertical-offset="1164" max-vertical-offset="3043">
-          <folding />
-        </state>
+        <state line="83" column="7" selection-start="3862" selection-end="3862" vertical-scroll-proportion="0.38714734" vertical-offset="1164" max-vertical-offset="3043" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Core/HDPHP.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="45" selection-start="8823" selection-end="8839" vertical-scroll-proportion="0.5546875" vertical-offset="2150" max-vertical-offset="2790">
-          <folding />
-        </state>
+        <state line="176" column="45" selection-start="8823" selection-end="8839" vertical-scroll-proportion="0.5546875" vertical-offset="2150" max-vertical-offset="2790" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Extend/Org/PhpExcel/Classes/PHPExcel/Style/NumberFormat.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="21" selection-start="1407" selection-end="1418" vertical-scroll-proportion="0.34456354" vertical-offset="15" max-vertical-offset="10395">
-          <folding />
-        </state>
+        <state line="40" column="21" selection-start="1407" selection-end="1418" vertical-scroll-proportion="0.34456354" vertical-offset="15" max-vertical-offset="10395" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/hdphp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="35" selection-start="772" selection-end="772" vertical-scroll-proportion="0.20673813" vertical-offset="0" max-vertical-offset="653">
+        <state line="13" column="17" selection-start="672" selection-end="672" vertical-scroll-proportion="0.114854515" vertical-offset="0" max-vertical-offset="653">
           <folding />
         </state>
       </provider>
