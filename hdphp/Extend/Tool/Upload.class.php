@@ -101,12 +101,13 @@ class Upload
             $this->error('移动临时文件失败');
             return false;
         }
+        $_info =pathinfo($filePath);
         $arr = array();
         $arr['path'] = $filePath;
         $arr['uptime'] = time();
         $arr['fieldname'] = $file['fieldname'];
-        $arr['basename'] = $filePath;
-        $arr['filename'] = $fileName; //新文件名
+        $arr['basename'] = $_info['basename'];
+        $arr['filename'] = $_info['filename']; //新文件名
         $arr['name'] = $file['filename']; //旧文件名
         $arr['size'] = $file['size'];
         $arr['ext'] = $file['ext'];
