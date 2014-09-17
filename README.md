@@ -3,13 +3,14 @@
 
 * 后盾网HDPHP框架是一个为用PHP程序语言编写网络应用程序的人员提供的软件包。 提供强大的、完整的类库包,满足开发中的项目需求,可以将需要完成的任务代码量最小化，大大提高项目开发效率与质量。高效的核心编译处理机制让系统运行更快。
 * 做为优秀的框架产品,在系统性能上做的大量的优化处理,只为让程序员使用HDPHP框架强悍的功能同时,用最短的时间完成项目的开发。
+
 ----
 #技术支持：
->后盾网： [http://www.houdunwang.com](http://www.houdunwang.com "后盾网")
-> 
->HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
->
+* 后盾网： [http://www.houdunwang.com](http://www.houdunwang.com "后盾网")
+* HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
+
 ![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdphp/raw/master/hdphp/Data/Image/houdunwang.jpg)  
+
 ----
 # 全面的WEB开发特性支持
 * HDPHP是否完全免费的，你不用担心任何版权问题
