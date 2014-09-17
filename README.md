@@ -9,7 +9,7 @@
 > 
 >HDPHP官网： [http://www.hdphp.com ](http://www.hdphp.com "HDPHP官网")
 >
-![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdcms/raw/master/hdphp/Data/Image/houdunwang.jpg)  
+![后盾网  人人做后盾](https://git.oschina.net/houdunwang/hdphp/raw/master/hdphp/Data/Image/houdunwang.jpg)  
 
 ## 全面的WEB开发特性支持
 * HDPHP是否完全免费的，你不用担心任何版权问题
