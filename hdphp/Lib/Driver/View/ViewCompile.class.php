@@ -102,14 +102,15 @@ class ViewCompile
                 $file = str_replace(".", "/", $file);
                 $info = explode("/", $file);
                 //类名
-                $class=array_pop($info);
+                $class = array_pop($info);
                 if (class_exists($class, false)) {
                 } else if (require_array(array(
                     MODULE_TAG_PATH . $file . '.class.php',
                     APP_TAG_PATH . $file . '.class.php'
-                ))) {}
-                else if (import($file)) {}
-                else {
+                ))
+                ) {
+                } else if (import($file)) {
+                } else {
                     if (DEBUG) {
                         halt("标签类文件{$class}不存在");
                     } else {
@@ -267,9 +268,14 @@ class ViewCompile
      */
     private function parseGlobalConst($content)
     {
-        $preg = '/\$Hd.(get|post|request|cookie|session|server)\./ise';
-        $replace = '\'\$_\'.strtoupper("\1").".";';
-        return preg_replace($preg, $replace, $content);
+        $preg = '/\$hd.(get|post|request|cookie|session|server)\./is';
+        return preg_replace_callback($preg, array($this, '_parseGlobalConstPregCallback'), $content);
+    }
+
+    //parseGlobalConst正则回调函数
+    private function _parseGlobalConstPregCallback($v)
+    {
+        return '$_' . strtoupper($v[1]) . '.';
     }
 
     /**
@@ -366,9 +372,15 @@ class ViewCompile
      */
     public function compile()
     {
-//        $preg = '/{\s*(\$[^=!<>\)\(\+\;]+)}/ieU'; //以{$或$开头的进行解析处理
-        $preg = '/{(\$[^=!<>\)\(\+\;]+)}/ieU'; //以{$或$开头的进行解析处理
-        $this->content = preg_replace($preg, '\'<?php echo \'. $this->parseVar(\'\1\').\';?>\';', $this->content);
+        $preg = '/{(\$[^=!<>\)\(\+\;]+)}/iU'; //以{$或$开头的进行解析处理
+        $this->content = preg_replace_callback($preg, array($this, '_compilePregCallBack'), $this->content);
+
+    }
+
+    //compile类方法的正则替换回调函数
+    private function _compilePregCallBack($v)
+    {
+        return '<?php echo ' . $this->parseVar($v[1]) . ';?>';
     }
 
     /**

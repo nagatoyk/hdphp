@@ -45,14 +45,14 @@ class ViewTag
         'jcrop' => array('block' => 0),
         'upload' => array('block' => 0), //uploadif上传组件
         'zoom' => array('block' => 0), //图片放大镜
-        'jsconst' => array("block" => 0), //定义JS常量
-        'define' => array("block" => 0),
+        'jsconst' => array('block' => 0), //定义JS常量
+        'define' => array('block' => 0),
         'bootstrap' => array('block' => 0),
-        "hdvalidate" => array("block" => 0),
-        "hdjs" => array("block" => 0),
-        "validate" => array("block" => 0),
-        "slide" => array("block" => 0),
-        "cal" => array("block" => 0)
+        'hdjs' => array('block' => 0),//包括hdui、hdvalidate、hdslide等
+        'hdui' => array('block' => 0),//hdjs前台ui库
+        'hdvalidate'=>array('block'=>0),//hdvalidate前端验证
+        'hdslide' => array('block' => 0),//轮换版
+        'cal' => array('block' => 0)
     );
 
     //格式化参数 字符串加引号
@@ -150,7 +150,7 @@ class ViewTag
     public function _upload($attr, $content, $view = null)
     {
         $uploadify_url = __HDPHP_EXTEND__ . '/Org/Uploadify/'; //uploadify目录
-        static $_hd_uploadify_js = false; //后盾js文件只加载一次
+        static $_hd_uploadify_js = false; //js文件只加载一次
         $attr = array_change_key_case_d($attr, 0);
         //表单类型 是点击input过来的，还是img图片（缩略图）过来的
         $_input_type = isset($attr['input_type']) ? $attr['input_type'] : "input";
@@ -163,7 +163,7 @@ class ViewTag
         $name = str_replace("[]", "", $_name);
         $id = "hd_uploadify_" . $name;
         //是否加水印
-        $water = isset($attr['water']) ? ($attr['water'] == 1 ? 1 : 0) : C("WATER_ON");
+        $water = isset($attr['water']) && $attr['water']=='true'?1:C("WATER_ON");
         $waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
@@ -180,9 +180,9 @@ class ViewTag
         }
         $upload_dir = isset($attr['dir']) ? $attr['dir'] : ""; //上传文件存放目录
         //是否显示描述
-        $alt = isset($attr['alt']) && $attr['alt'] == 1 ? 1 : 0;
+        $alt = isset($attr['alt']) && $attr['alt'] == 'true' ? 1 : 0;
         //是上传文件大小等提示信息true是false不显示
-        $message = isset($attr['message']) ? intval($attr['message']) : 1;
+        $message = isset($attr['message']) && $attr['message']=='false'?0:1;
         $limit = isset($attr['limit']) ? $attr['limit'] : "100"; //上传文件数量
         $thumb = isset($attr['thumb']) ? $attr['thumb'] : ''; //生成缩略图尺寸
         $data = isset($attr['data']) ? $attr['data'] : false; //编辑时的图片数据
@@ -283,16 +283,16 @@ class ViewTag
         });
 </script>
 <input type="file" name="up" id="' . $id . '"/>';
-//显示上传提示信息
-        if ($message) {
-            $str .= '<div class="' . $id . '_msg num_upload_msg">
-        ';
-            if ($waterbtn) {
-                $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
-            }
-            $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
-        </div>';
+        $str .= '<div class="' . $id . '_msg num_upload_msg">';
+        //水印按钮
+        if ($waterbtn) {
+            $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong> ';
         }
+        //显示上传提示信息
+        if ($message) {
+            $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>';
+        }
+        $str.='</div>';
         $str .= '<div id="' . $id . '_queue"></div>
         <div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
             <ul>' . $uploadFileStr . '</ul>
@@ -586,12 +586,6 @@ class ViewTag
         return $str;
     }
 
-    //js轮换版
-    public function _slide($attr, $content)
-    {
-        return "<script src='__HDPHP__/hdjs/js/slide.js'></script>\n";
-    }
-
     //jquery
     public function _jquery($attr, $content)
     {
@@ -601,32 +595,42 @@ class ViewTag
     //日历
     public function _cal($attr, $content)
     {
-        return "<script src='__HDPHP__/hdjs/org/cal/lhgcalendar.min.js'></script>\n";
+        return "<script src='__HDPHP_EXTEND__/Org/cal/lhgcalendar.min.js'></script>\n";
     }
-    //自动验证
-    public function _hdvalidate($attr, $content)
-    {
-        $php = '';
-        $php .= "<link href='__HDPHP__/hdjs/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<script src='__HDPHP__/hdjs/js/hdvalidate.js'></script>\n";
-        return $php;
-    }
-
     //hdjs
     public function _hdjs($attr, $content)
     {
         $php = '';
-        $php .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
-        $php .= "<link href='__HDPHP__/hdjs/css/hdjs.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<link href='__HDPHP__/hdjs/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<script src='__HDPHP__/hdjs/js/hdjs.js'></script>\n";
-        $php .= "<script src='__HDPHP__/hdjs/js/hdvalidate.js'></script>\n";
-        $php .= $this->_slide(null, null);
-        $php .= $this->_cal(null, null);
-        $php .= $this->_jsconst(null, null);
+        $php.=$this->_jquery(null,null);
+        $php.=$this->_hdui(null,null);
+        $php.=$this->_hdvalidate(null,null);
+        $php.=$this->_cal(null,null);
+        $php.=$this->_hdslide(null,null);
+        $php.=$this->_jsconst(null,null);
         return $php;
     }
-
+    //hdui前端框架
+    public function _hdui($attr, $content)
+    {
+        $php = '';
+        $php .= "<link href='__HDPHP_EXTEND__/Org/hdjs/hdui/css/hdui.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdui/js/hdui.js'></script>\n";
+        return $php;
+    }
+    //hdvalidate
+    public function _hdvalidate($attr, $content)
+    {
+        $php = '';
+        $php .= "<link href='__HDPHP_EXTEND__/Org/hdvalidate/hdvalidate/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdvalidate/hdvalidate/js/hdvalidate.js'></script>\n";
+        return $php;
+    }
+    //js轮换版
+    public function _hdslide($attr,$content){
+        $php = '';
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdslide/hdslide/js/hdslide.js'></script>\n";
+        return $php;
+    }
     //Jcrop图片裁切
     public function _jcrop($attr, $content)
     {

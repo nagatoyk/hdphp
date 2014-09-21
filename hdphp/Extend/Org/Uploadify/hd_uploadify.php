@@ -1,6 +1,5 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
+if (!defined("HDPHP_PATH"))exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -31,7 +30,7 @@ if ($file) {
     $data['path'] = $file['path'];
     $data['name'] = $file['filename'];
     //加水印
-    if ($file['isimage'] && Q('water')) {
+    if ($file['image'] && Q('water')) {
         $img = new Image();
         $img->water($file['path']);
     }

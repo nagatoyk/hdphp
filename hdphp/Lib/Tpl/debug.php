@@ -2,6 +2,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
     div#hd_debug {
+        font-family: "微软雅黑";
         position: fixed;
         left: 0px;
         right: 0px;
@@ -23,8 +24,7 @@
     }
     div#hd_debug div#debug_menu {
         height: 25px;
-        border-bottom: solid 5px #009944;
-        margin-bottom: 5px;
+        border-bottom: solid 5px #027d39;
     }
 
     div#hd_debug div#debug_menu ul {
@@ -34,6 +34,8 @@
     }
 
     div#hd_debug div#debug_menu ul li {
+        font-weight: bold;
+        background: #eee;
         color:#005e15;
         float: left;
         cursor: pointer;
@@ -48,7 +50,7 @@
     }
 
     div#hd_debug div#debug_menu ul li.active {
-        background: #009944;
+        background: #027d39;
         color: #fff;
         height: 25px;
         border: none;
@@ -59,7 +61,7 @@
         height: 200px;
         overflow-x: hidden;
         overflow-y: auto;
-        background: #ffffff;
+        background: #f3f3f3;
     }
 
     div#hd_debug div#debug_con div.active {
@@ -79,7 +81,7 @@
         font-weight: normal;
     }
     div#hd_debug div#debug_con div table tr td {
-        border-bottom: solid 1px #efefef;
+        border-bottom: solid 1px #ddd;
         font-size: 12px;
         font-weight: normal;
         color: #666;
