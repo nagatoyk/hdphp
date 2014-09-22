@@ -345,13 +345,14 @@ class ViewTag
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
                 serverUrl:'" . $phpScript . "&water={$water}'//图片上传脚本
-                ,zIndex : 0
+                ,zIndex : 1000
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000
                 ,imagePath:''//图片修正地址
                 ,autoHeightEnabled:false //是否自动长高,默认true
                 ,autoFloatEnabled:false //是否保持toolbar的位置不动,默认true
                 ,toolbars:$toolbars//工具按钮
+//                ,enableAutoSave: false//关闭自动保存
                 ,initialStyle:'p{line-height:1em; font-size: 14px; }'
             });
         })
@@ -621,14 +622,14 @@ class ViewTag
     public function _hdvalidate($attr, $content)
     {
         $php = '';
-        $php .= "<link href='__HDPHP_EXTEND__/Org/hdvalidate/hdvalidate/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
-        $php .= "<script src='__HDPHP_EXTEND__/Org/hdvalidate/hdvalidate/js/hdvalidate.js'></script>\n";
+        $php .= "<link href='__HDPHP_EXTEND__/Org/hdjs/hdvalidate/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdvalidate/js/hdvalidate.js'></script>\n";
         return $php;
     }
     //js轮换版
     public function _hdslide($attr,$content){
         $php = '';
-        $php .= "<script src='__HDPHP_EXTEND__/Org/hdslide/hdslide/js/hdslide.js'></script>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdslide/js/hdslide.js'></script>\n";
         return $php;
     }
     //Jcrop图片裁切

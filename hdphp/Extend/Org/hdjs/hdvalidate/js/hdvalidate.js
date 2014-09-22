@@ -198,7 +198,7 @@ $.fn.extend({
                 //----------------------------------异步提交的参数值--------------------------
                 //发送异步
                 $.ajax({
-                    url : url,
+                    url : url+'&_'+Math.random(),
                     cache : false,
                     async : true,
                     type : 'POST',
@@ -389,15 +389,17 @@ $.fn.extend({
          * action
          */
         $(this).submit(function(event, action) {
-            //如果是通过hd_submit提交时，此方法失效
-            if ($(this).attr('hd_submit'))
-                return false;
+            //触发表单事件
             $('[validate=0]', this).trigger('blur', 'submit');
             $('[ajax_validate=0]', this).trigger('blur', 'submit');
+            //如果是通过hd_submit提交时，此方法失效
+            if ($(this).attr('disabled'))return false;
+            //表单都验证合法
             if ($(this).find("[validate='0']").length == 0 && $(this).find("[ajax_validate='0']").length == 0) {
                 return true;
+            }else{
+                return false;
             }
-            return false;
         })
     },
     //验证表单
@@ -406,7 +408,6 @@ $.fn.extend({
         $('[ajax_validate=0]', this).trigger('blur', 'submit');
         if ($(this).find("[validate='0']").length == 0 && $(this).find("[ajax_validate='0']").length == 0) {
             return true;
-
         }
         return false;
     }

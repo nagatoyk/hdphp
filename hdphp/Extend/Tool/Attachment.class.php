@@ -7,7 +7,7 @@
 class Attachment
 {
     //下载附件
-    public function download($value, $ext = array('jpg', 'gif', 'jpeg', 'png'), $mid = 0, $fileSavePath = null)
+    public function download($value, $ext = array('jpg', 'gif', 'jpeg', 'png'),$fileSavePath = null, $mid = 0, $uid=null)
     {
         if (!extension_exists('curl')) {
             return $value;
@@ -46,7 +46,11 @@ class Attachment
                 $state = $this->saveFile($newfile, $fileData);
                 if ($state) {
                     $isImage = preg_match('/jpeg|jpg|png|gif/i', $match);
-                    $TableData = array('name' => $fileInfo['filename'], 'filename' => $newFileName, 'basename' => $newFileName . $fileInfo['extension'], 'path' => $fileSavePath . '/' . $newFileName . '.' . $fileInfo['extension'], 'ext' => $fileInfo['extension'], 'image' => $isImage, 'size' => filesize($newfile), 'uptime' => time(), 'state' => 0, 'uid' => $_SESSION['uid'], 'mid' => $mid);
+                    $TableData = array('name' => $fileInfo['filename'], 'filename' => $newFileName,
+                        'basename' => $newFileName . $fileInfo['extension'],
+                        'path' => $fileSavePath . '/' . $newFileName . '.' . $fileInfo['extension'],
+                        'ext' => $fileInfo['extension'], 'image' => $isImage, 'size' => filesize($newfile), 'uptime' => time(),
+                        'state' => 0, 'uid' => $uid, 'mid' => $mid);
                     $uploadModel->add($TableData);
                     $value = str_replace($oldPath, $newPath, $value);
                 }
