@@ -64,14 +64,18 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 ----
 
 # 更新日志 #
+### 2014-09-23
+
+1. 增加Data::hasChild()方法，检测是否有子栏目
+2. 修复IE8下部分的HDJS错误
+3. 修改模型table()方法更换表后，字段不还原问题
+
 ### 2014-09-21
-#### 调整优化
+
 1. hdjs拆分为hdvalidate、hdslide、hdjs三部分
 2. upload标签将message与water等属性独立设置
-
-####bug修复
-1. 修复upload标签上传时报isimage键名不存在错误
-2. 修复在php5.4以上版本中报preg_replace函数e模式错误
+3. 修复upload标签上传时报isimage键名不存在错误
+4. 修复在php5.4以上版本中报preg_replace函数e模式错误
 
 ----------
 

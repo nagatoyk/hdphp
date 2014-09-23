@@ -136,7 +136,7 @@ abstract class Db implements DbInterface
             'table' => $this->table,
             'pri' => $this->pri,
             'field' => '*',
-            'filedData' => $this->fieldData,
+            'fieldData' => $this->fieldData,
             'where' => '',
             'like' => '',
             'group' => '',
