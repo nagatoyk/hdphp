@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ac5ef2b0-9519-4198-bd6d-43be6e41dbef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysql.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysql.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysqli.class.php" afterPath="$PROJECT_DIR$/hdphp/Lib/Driver/Db/DbMysqli.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hdphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,7 +55,7 @@
       <file leaf-file-name="Db.class.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="17" selection-start="4131" selection-end="4131" vertical-scroll-proportion="0.3803419" vertical-offset="2660" max-vertical-offset="12672">
+            <state line="243" column="9" selection-start="7400" selection-end="7400" vertical-scroll-proportion="0.52136755" vertical-offset="4904" max-vertical-offset="12650">
               <folding />
             </state>
           </provider>
@@ -709,7 +705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hdphp/Lib/Driver/Db/Db.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="17" selection-start="4131" selection-end="4131" vertical-scroll-proportion="0.3803419" vertical-offset="2660" max-vertical-offset="12672">
+        <state line="243" column="9" selection-start="7400" selection-end="7400" vertical-scroll-proportion="0.52136755" vertical-offset="4904" max-vertical-offset="12650">
           <folding />
         </state>
       </provider>
