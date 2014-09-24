@@ -105,13 +105,13 @@ class DbMysql extends Db
     //发送查询 返回数组
     public function query($sql)
     {
-        //查询参数初始化
-        $this->optInit();
         $cache_time = $this->cacheTime ? $this->cacheTime : intval(C("CACHE_SELECT_TIME"));
         $cacheName = $sql . APP . CONTROLLER . ACTION;
         if ($cache_time >= 0) {
             $result = S($cacheName, FALSE, null, array("Driver" => "file", "dir" => APP_CACHE_PATH, "zip" => false));
             if ($result) {
+                //查询参数初始化
+                $this->optInit();
                 return $result;
             }
         }

@@ -323,7 +323,8 @@ table.table1 tr:hover {
 table.table2 {
     border: none;
     color: #666;
-    width: 100%;
+    width:100%;
+    *width: 98%;
     border-collapse: collapse;
 }
 
@@ -696,7 +697,6 @@ div.page1 span.count {
     background: none repeat scroll 0 0 #F0F0F0;
     border-top: solid 1px #aaa;
     bottom: 0;
-
     left: 0;
     overflow: hidden;
     padding: 8px 30px 10px;
@@ -947,6 +947,7 @@ div.hd-modal-message strong.error {
     line-height: 20px;
     margin-bottom: 0;
     padding: 3px 6px;
+    *padding:3px;
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
