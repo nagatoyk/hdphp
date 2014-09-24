@@ -325,7 +325,7 @@ function hd_submit(obj, url, func, timeout) {
         var post = $(obj).serialize();
         $.ajax({
             type: "POST",
-            url: $(obj).attr("action") + '&_' + Math.random(),
+            url: $(obj).attr("action"),
             dataType : "JSON",
             cache: false,
             data: post,
