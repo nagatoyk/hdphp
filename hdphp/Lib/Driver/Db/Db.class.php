@@ -238,8 +238,7 @@ abstract class Db implements DbInterface
             if ($this->isField($k)) {
                 $data['fields'][] = "`" . $k . "`";
                 $v = $this->escapeString($v);
-                $type = $this->opt['fieldData'][$k]['type'];
-                $data['values'][] = preg_match('@int@i', $type) ? intval($v) :(is_numeric($v)?$v:"\"$v\"");
+                $data['values'][] =is_numeric($v)?$v:"\"$v\"";
             }
         }
         return $data;

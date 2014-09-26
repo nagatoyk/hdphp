@@ -67,6 +67,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 ### 2014-09-25
 1. 修复relation关联删除失败问题
+2. 修复hd_submit当不设置form表单action属性时无法提交的问题
 
 ### 2014-09-23
 
