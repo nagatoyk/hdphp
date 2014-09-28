@@ -560,9 +560,8 @@ class Model
      */
     public function getField($field, $return_all = false)
     {
-        //设置字段
-        $this->field($field);
-        $result = $this->select();
+        //按字段查询结果
+        $result = $this->field($field)->select();
         if ($result) {
             //字段数组
             $field = explode(',', preg_replace('@\s@', '', $field));
