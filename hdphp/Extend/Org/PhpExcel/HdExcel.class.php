@@ -161,7 +161,7 @@ class HdExcel
         /**从第二行开始输出，因为excel表中第一行为列名*/
         for ($currentRow = 2; $currentRow <= $allRow; $currentRow++) {
             /**从第A列开始输出*/
-            $tmp = [];
+            $tmp = array();
             for ($currentColumn = 'A'; $currentColumn <= $allColumn; $currentColumn++) {
                 $val = $currentSheet->getCellByColumnAndRow(ord($currentColumn) - 65, $currentRow)->getValue();
                 /**ord()将字符转为十进制数*/
