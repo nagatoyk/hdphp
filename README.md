@@ -64,6 +64,10 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 
 # 更新日志 #
 
+### 2014-09-29
+1. 修复入口文件不设置DEBUG是不创建模块目录错误
+2. 修复多对多关联时RelationModel错误的问题
+
 ### 2014-09-25
 1. 修复relation关联删除失败问题
 2. 修复hd_submit当不设置form表单action属性时无法提交的问题

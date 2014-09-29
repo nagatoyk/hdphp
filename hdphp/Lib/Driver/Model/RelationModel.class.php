@@ -133,7 +133,8 @@ class RelationModel extends Model
                             foreach ($s as $_s) {
                                 $_id[] = $_s[$fk];
                             }
-                            $result[$n][$table] = $db->table($table)->in($_id)->all();
+                            $map[$fk]=array('IN',$_id);
+                            $result[$n][$table] = $db->table($table)->where($map)->all();
                         }
                     }
                     break;

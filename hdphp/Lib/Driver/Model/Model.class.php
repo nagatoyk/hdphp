@@ -443,7 +443,7 @@ class Model
     {
         if (empty($arg))
             return $this;
-        $this->db->in($arg);
+        $this->db->where($arg);
         return $this;
     }
 

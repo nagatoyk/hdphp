@@ -1,8 +1,8 @@
 <?php
 //开启调试模型
- define('DEBUG',True);
+define('DEBUG',True);
 //显示DEBUG面板
-define('DEBUG_TOOL',true);
+//define('DEBUG_TOOL',true);
 //指量创建模块
 define('MODULE_LIST','Index,Admin');
 //应用目录

@@ -118,7 +118,7 @@ final class Boot
      */
     static public function mkDirs()
     {
-        if (is_dir(APP_PATH)) return;
+        if (is_dir(APP_COMMON_PATH)) return;
         //目录
         $dirs = array(
             APP_PATH,

@@ -98,7 +98,7 @@ abstract class Db implements DbInterface
         if (!DEBUG && F($name, false, APP_TABLE_PATH)) {
             $fieldData = F($name, false, APP_TABLE_PATH);
         } else {
-            $sql = "show columns from " . $table;
+            $sql = "show columns from `$table`";
             if (!$result = $this->query($sql)) {
                 halt("表{$table}不存在");
             }
