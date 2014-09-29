@@ -68,6 +68,7 @@ HDPHP遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源
 1. 修复入口文件不设置DEBUG是不创建模块目录错误
 2. 修复多对多关联时RelationModel错误的问题
 3. 修复PHPEXCEL一处变量定义在低版本PHP环境下造成的错误问题
+4. 修复在php5.3以下Controller类iscache方法报错问题
 
 ### 2014-09-25
 1. 修复relation关联删除失败问题

@@ -157,7 +157,8 @@ abstract class Controller
     protected function isCache($cachePath = null)
     {
         $this->getViewObj();
-        return call_user_func_array(array($this->view, "isCache"), func_get_args());
+        $args=func_get_args();
+        return call_user_func_array(array($this->view, "isCache"), $args);
     }
 
     /**
