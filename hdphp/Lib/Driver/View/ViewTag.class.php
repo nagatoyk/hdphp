@@ -563,7 +563,7 @@ class ViewTag
         $str = "<script type='text/javascript'>\n";
         foreach ($arr as $k => $v) {
             $k = str_replace('_', '', $k);
-            $str .= $k . " = '<?php echo \$GLOBALS['user']['$k'];?>';\n";
+            $str .= $k . " = '$v';\n";
         }
         $str .= "</script>";
         return $str;
