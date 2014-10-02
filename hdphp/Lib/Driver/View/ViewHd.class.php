@@ -53,8 +53,6 @@ final class ViewHd extends View {
 		if (!$content) {
 			//获得模板文件
 			$this -> tplFile = $this -> getTemplateFile($tplFile);
-			//定义全局变量
-			$this -> setGlobalsVars();
 			//模板文件不存在
 			if (!$this -> tplFile)
 				return;
@@ -158,15 +156,6 @@ final class ViewHd extends View {
 			}
 		} else {
 			$this -> vars[$var] = $value;
-		}
-	}
-
-	//定义常量
-	public function setGlobalsVars() {
-		$constData = get_defined_constants(true);
-		foreach ($constData['user'] as $name => $value) {
-			$name = str_replace('_', '', $name);
-			$GLOBALS['user'][$name] = $value;
 		}
 	}
 

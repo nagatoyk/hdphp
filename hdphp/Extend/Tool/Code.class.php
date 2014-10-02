@@ -54,7 +54,7 @@ class Code{
         $this->codeLen = empty($codeLen) ? C("CODE_LEN") : $codeLen;
         $this->fontSize = empty($fontSize) ? C("CODE_FONT_SIZE") : $fontSize;
         $this->fontColor = empty($fontColor) ? C("CODE_FONT_COLOR") : $fontColor;
-        $this->create();//生成验证码
+
     }
 
     /**
@@ -165,6 +165,7 @@ class Code{
      * 显示验证码
      */
     public function show() {
+        $this->create();//生成验证码
         header("Content-type:image/png");
         imagepng($this->img);
         imagedestroy($this->img);
