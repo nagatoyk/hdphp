@@ -100,7 +100,11 @@ class Ip{
         $ip = ''; //保存客户端IP地址
         if (isset($_SERVER)) {
             if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-                $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                // 部分主机这个字段会返回多个IP
+                $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+                $pos = array_search('unknown',$arr);
+                if(false !== $pos) unset($arr[$pos]);
+                $ip = trim($arr[0]);
             } else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
                 $ip = $_SERVER["HTTP_CLIENT_IP"];
             } else {
@@ -108,15 +112,20 @@ class Ip{
             }
         } else {
             if (getenv("HTTP_X_FORWARDED_FOR")) {
-                $ip = getenv("HTTP_X_FORWARDED_FOR");
+                // 部分主机这个字段会返回多个IP
+                $arr = explode(',', getenv("HTTP_X_FORWARDED_FOR"));
+                $pos = array_search('unknown',$arr);
+                if(false !== $pos) unset($arr[$pos]);
+                $ip = trim($arr[0]);
             } else if (getenv("HTTP_CLIENT_IP")) {
                 $ip = getenv("HTTP_CLIENT_IP");
             } else {
                 $ip = getenv("REMOTE_ADDR");
             }
         }
-        $long = ip2long($ip);
-        $clientIp = $long ? array($ip, $long) : array("0.0.0.0", 0);
+        // IP合法性验证
+        $long = sprintf("%u",ip2long($ip));
+        $clientIp = $long ? array($ip, $long) : array('0.0.0.0', 0);
         return $clientIp[$type];
     }
 

@@ -628,12 +628,16 @@ function go($url, $time = 0, $msg = '')
  */
 function ip_get_client($type = 0)
 {
-    $type = intval($type);
-    $ip = '';
-    //保存客户端IP地址
+    $type = $type ? 1 : 0;;
+    static $ip = NULL;
+    if ($ip !== NULL) return $ip[$type];
     if (isset($_SERVER)) {
         if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+            // 部分主机这个字段会返回多个IP
+            $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $pos = array_search('unknown',$arr);
+            if(false !== $pos) unset($arr[$pos]);
+            $ip = trim($arr[0]);
         } else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
             $ip = $_SERVER["HTTP_CLIENT_IP"];
         } else {
@@ -641,16 +645,21 @@ function ip_get_client($type = 0)
         }
     } else {
         if (getenv("HTTP_X_FORWARDED_FOR")) {
-            $ip = getenv("HTTP_X_FORWARDED_FOR");
+            // 部分主机这个字段会返回多个IP
+            $arr = explode(',', getenv("HTTP_X_FORWARDED_FOR"));
+            $pos = array_search('unknown',$arr);
+            if(false !== $pos) unset($arr[$pos]);
+            $ip = trim($arr[0]);
         } else if (getenv("HTTP_CLIENT_IP")) {
             $ip = getenv("HTTP_CLIENT_IP");
         } else {
             $ip = getenv("REMOTE_ADDR");
         }
     }
-    $long = ip2long($ip);
-    $clientIp = $long ? array($ip, $long) : array("0.0.0.0", 0);
-    return $clientIp[$type];
+    // IP地址合法验证
+    $long = sprintf("%u", ip2long($ip));
+    $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
+    return $ip[$type];
 }
 
 /**
