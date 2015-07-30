@@ -126,5 +126,3 @@ class CacheMemcache extends Cache {
     }
 
 }
-
-?>

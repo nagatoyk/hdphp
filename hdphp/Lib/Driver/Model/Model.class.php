@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -19,33 +17,42 @@ if (!defined("HDPHP_PATH"))
  */
 class Model
 {
-
-    public $tableFull = NULL; //全表名
-    public $table = NULL; //不带前缀表名
-    public $db = NULL; //数据库连接驱动
-    public $error = NULL; //验证不通过的错误信息
-    public $trigger = TRUE; //触发器,开启时执行__after_delete等方法
-    public $joinTable = array(); //要关联的表
-    public $data = array(); //增、改操作数据
-    public $validate = array(); //验证规则
-    public $auto = array(); //自动完成
-    public $map = array(); //字段映射
+    //全表名
+    public $tableFull = NULL;
+    //不带前缀表名
+    public $table = NULL;
+    //数据库连接驱动
+    public $db = NULL;
+    //验证不通过的错误信息
+    public $error = NULL;
+    //触发器,开启时执行__after_delete等方法
+    public $trigger = true;
+    //增、改操作数据
+    public $data = array();
+    //验证规则
+    public $validate = array();
+    //自动完成
+    public $auto = array();
+    //字段映射
+    public $map = array();
 
     /**
-     * @param string $table 表名
-     * @param bool $full 是否为全表名
-     * @param string $driver 连接驱动
+     * 构造函数
+     * @param null $table 表名
+     * @param bool $full 是否为全表
+     * @param array $param 参数
+     * @param null $driver 驱动
      */
-    public function __construct($table = null, $full = null, $driver = null)
+    public function __construct($table = null, $full = false, $driver = null, $param = array())
     {
         if (method_exists($this, "__init")) {
-            $this->__init();
+            $this->__init($param);
         }
         $this->run($table, $full, $driver);
     }
 
     //获得连接驱动
-    protected function run($table, $full = null, $driver = null)
+    protected function run($table, $full = false, $driver = null)
     {
         //初始化默认表
         $this->getTable($table, $full);
@@ -55,15 +62,24 @@ class Model
             $this->db = $db;
         } else { //连接异常
             if (DEBUG) {
-                error(mysqli_connect_error() . "数据库连接出错了请检查配置文件中的参数", false);
+                error("数据库连接错误", false);
             } else {
-                Log::write("数据库连接出错了请检查配置文件中的参数");
+                Log::write("数据库连接错误");
             }
         }
     }
 
+    /**
+     * 定义模型错误
+     * @param $error 错误信息
+     */
+    public function error($error)
+    {
+        $this->error = $error;
+    }
+
     //设置操作表
-    protected function getTable($table = null, $full = FALSE)
+    protected function getTable($table = null, $full = false)
     {
         if (!is_null($this->tableFull)) {
             $table = $this->tableFull;
@@ -72,13 +88,9 @@ class Model
         } else if (is_null($table)) {
             $table = null;
         } elseif (!is_null($table)) {
-            if ($full == true) {
-                $table = $table;
-            } else {
+            if ($full !== true) {
                 $table = C("DB_PREFIX") . $table;
             }
-        } else {
-            $table = C("DB_PREFIX") . CONTROL;
         }
         $this->tableFull = $table;
         $this->table = preg_replace('@^\s*' . C("DB_PREFIX") . '@', '', $table);
@@ -102,11 +114,10 @@ class Model
     }
 
     //获得$this->data值
-//    public function __get($name)
-//    {
-//        return isset($this->data[$name]) ? $this->data[$name] : null;
-//    }
-
+    public function __get($name)
+    {
+        return isset($this->data[$name]) ? $this->data[$name] : null;
+    }
 
     /**
      * 获得添加、插入数据
@@ -120,9 +131,9 @@ class Model
         } else if (empty($this->data)) {
             $this->data = $_POST;
         }
-        foreach ($data as $key => $val) {
+        foreach ($this->data as $key => $val) {
             if (MAGIC_QUOTES_GPC && is_string($val)) {
-                $data[$key] = stripslashes($val);
+                $this->data[$key] = stripslashes($val);
             }
         }
         return $this;
@@ -157,7 +168,8 @@ class Model
      */
     protected function map()
     {
-        if (empty($this->map)) return;
+        if (empty($this->map))
+            return;
         $this->data();
         foreach ($this->map as $k => $v) {
             //处理POST
@@ -175,23 +187,11 @@ class Model
         return isset($this->data[$this->db->pri]) ? 2 : 1;
     }
 
-    //设置关联模型
-    public function join($table = null)
+    //join多表关联
+    public function join($join)
     {
-        if (is_null($table)) {
-            $this->joinTable = NULL;
-        } else if (is_string($table)) {
-            $this->joinTable = explode(",", $table);
-        } else if (is_array($table)) {
-            $this->joinTable = $table;
-        }
-        return $this;
-    }
-
-    //触发器，是否执行__after_delete等魔术方法
-    public function trigger($stat = FALSE)
-    {
-        $this->trigger = $stat;
+        $join = preg_replace('@__(\w+)__@', C('DB_PREFIX') . '\1', $join);
+        $this->db->opt['table'] = $join;
         return $this;
     }
 
@@ -220,28 +220,32 @@ class Model
             $msg = $v[2];
             switch ($condition) {
                 //有post这个变量就验证
-                case 1:
+                case 1 :
                     if (!isset($_data[$name])) {
                         continue 2;
                     }
                     break;
                 // 必须验证
-                case 2:
+                case 2 :
                     if (!isset($_data[$name])) {
                         $this->error = $msg;
                         return false;
                     }
                     break;
                 //不为空验证
-                case 3:
+                case 3 :
                     if (!isset($_data[$name]) || empty($_data[$name])) {
                         continue 2;
                     }
                     break;
             }
-            $method = explode(":", $v[1]);
-            $func = $method[0];
-            $args = isset($method[1]) ? str_replace(" ", '', $method[1]) : '';
+            if ($_pos = strpos($v[1], ':')) {
+                $func = substr($v[1], 0, $_pos);
+                $args = substr($v[1], $_pos + 1);
+            } else {
+                $func = $v[1];
+                $args = '';
+            }
             if (method_exists($this, $func)) {
                 $res = call_user_func_array(array($this, $func), array($name, $_data[$name], $msg, $args));
                 if ($res === true) {
@@ -279,6 +283,12 @@ class Model
         $_data = & $this->data;
         $motion = $this->getCurrentMethod();
         foreach ($this->auto as $v) {
+            //1 插入时处理  2 更新时处理  3 插入与更新都处理
+            $type = isset($v[4]) ? $v[4] : 3;
+            //是否处理  更新或插入
+            if ($motion != $type && $type != 3) {
+                continue;
+            }
             //验证的表单名称
             $name = $v[0];
             //函数或方法
@@ -287,50 +297,43 @@ class Model
             $condition = isset($v[3]) ? $v[3] : 1;
             switch ($condition) {
                 //有post这个变量就处理
-                case 1:
+                case 1 :
                     if (!isset($_data[$name])) {
                         continue 2;
                     }
                     break;
                 // 必须处理
-                case 2:
+                case 2 :
                     if (!isset($_data[$name]))
                         $_data[$name] = '';
                     break;
                 //不为空验证
-                case 3:
+                case 3 :
                     if (empty($_data[$name])) {
                         continue 2;
                     }
                     break;
             }
-            //1 插入时处理  2 更新时处理  3 插入与更新都处理
-            $type = isset($v[4]) ? $v[4] : 3;
             //处理类型 function函数  method模型方法 string字符串
             $handle = isset($v[2]) ? $v[2] : "string";
-            //是否处理  更新或插入
-            if ($motion != $type && $type != 3) {
-                continue;
-            }
             $_data[$name] = isset($_data[$name]) ? $_data[$name] : NULL;
             switch (strtolower($handle)) {
-                case "function":
+                case "function" :
                     if (function_exists($action)) {
                         $_data[$name] = $action($_data[$name]);
                     }
                     break;
-                case "method":
+                case "method" :
                     if (method_exists($this, $action)) {
                         $_data[$name] = $this->$action($_data[$name]);
                     }
                     break;
-                case "string":
+                case "string" :
                     $_data[$name] = $action;
                     break;
             }
         }
     }
-
 
     /**
      * __call方法
@@ -341,9 +344,8 @@ class Model
     public function __call($func, $args)
     {
         //模型中不存在方法
-        error(L('模型中不存在方法') . $func, false);
+        halt('模型中不存方法' . $func);
     }
-
 
     /**
      * 临时更改操作表
@@ -357,21 +359,28 @@ class Model
             $table = C("DB_PREFIX") . $table;
         }
         $this->db->table($table);
-        $this->join(NULL);
         return $this;
+    }
+
+    //设置触发器状态
+    public function trigger($state)
+    {
+        $this->trigger = $state;
     }
 
     /**
      * 设置字段
-     * 示例：$Db->field("username,age")->limit(6)->all();
+     * @param array $field 字段
+     * @param bool $exclude 是否排除
+     * @return $this
      */
-    public function field($field = array(), $check = true)
+    public function field($field = array(), $exclude = false)
     {
-        if (empty($field)) return $this;
-        $this->db->field($field, $check);
+        if (empty($field))
+            return $this;
+        $this->db->field($field, $exclude);
         return $this;
     }
-
 
     /**
      * 执行查询操作结果不缓存
@@ -386,7 +395,8 @@ class Model
     //SQL中的LIKE规则
     public function like($arg = array())
     {
-        if (empty($arg)) return $this;
+        if (empty($arg))
+            return $this;
         $this->db->like($arg);
         return $this;
     }
@@ -396,7 +406,8 @@ class Model
      */
     public function group($arg = array())
     {
-        if (empty($arg)) return $this;
+        if (empty($arg))
+            return $this;
         $this->db->group($arg);
         return $this;
     }
@@ -406,7 +417,8 @@ class Model
      */
     public function having($arg = array())
     {
-        if (empty($arg)) return $this;
+        if (empty($arg))
+            return $this;
         $this->db->having($arg);
         return $this;
     }
@@ -417,11 +429,11 @@ class Model
      */
     public function order($arg = array())
     {
-        if (empty($arg)) return $this;
+        if (empty($arg))
+            return $this;
         $this->db->order($arg);
         return $this;
     }
-
 
     /**
      * IN 语句定义
@@ -429,8 +441,9 @@ class Model
      */
     public function in($arg = array())
     {
-        if (empty($arg)) return $this;
-        $this->db->in($arg);
+        if (empty($arg))
+            return $this;
+        $this->db->where($arg);
         return $this;
     }
 
@@ -459,10 +472,10 @@ class Model
      */
     public function delete($data = array())
     {
-        $this->__before_delete($data);
+        $this->trigger and $this->__before_delete($data);
         $result = $this->db->delete($data);
         $this->error = $this->db->error;
-        $this->__after_delete($result);
+        $this->trigger and $this->__after_delete($result);
         return $result;
     }
 
@@ -481,24 +494,19 @@ class Model
      */
     public function exe($sql)
     {
-        $stat = $this->db->exe($sql);
-        return $stat;
+        return $this->db->exe($sql);
     }
 
     /**
      * LIMIT 语句定义
      * 示例：$Db->limit(10)->all("sex=1");
      */
-    public function limit($start = null, $end = null)
+    public function limit($opt = null)
     {
-        if (is_null($start)) {
+        if (empty($opt)) {
             return $this;
-        } else if (!is_null($end)) {
-            $limit = $start . "," . $end;
-        } else {
-            $limit = $start;
         }
-        $this->db->limit($limit);
+        $this->db->limit($opt);
         return $this;
     }
 
@@ -508,26 +516,8 @@ class Model
      */
     public function find($data = array())
     {
-        $this->limit(1);
-        $result = $this->select($data);
+        $result = $this->limit(1)->select($data);
         return is_array($result) && isset($result[0]) ? $result[0] : $result;
-    }
-
-    /**
-     * 查找满足条件的一条记录
-     * 示例：$Db->one("id=188")
-     */
-    public function one($data = array())
-    {
-        return $this->find($data);
-    }
-
-    /**
-     * 查找满足条件的所有记录
-     */
-    public function findAll($args = array())
-    {
-        return $this->select($args);
     }
 
     /**
@@ -545,9 +535,9 @@ class Model
      */
     public function select($args = array())
     {
-        $this->__before_select($arg);
+        $this->trigger and $this->__before_select($arg);
         $result = $this->db->select($args);
-        $this->__after_select($result);
+        $this->trigger and $this->__after_select($result);
         $this->error = $this->db->error;
         return $result;
     }
@@ -565,23 +555,44 @@ class Model
     }
 
     /**
-     * 查找满足条件的所有记录
+     * 查找满足条件的所有记录(一维数组)
      * 示例：$Db->getField("username")
      */
     public function getField($field, $return_all = false)
     {
-        //设置字段
-        $this->field($field);
-        $result = $this->select();
-        if (is_array($result) && !empty($result) && $return_all === false) {
-            if (count($result[0]) == 1) {
-                return current($result[0]);
-            } else {
-                $k = key($result[0]);
-                return array($k => $result[0]);
+        //按字段查询结果
+        $result = $this->field($field)->select();
+        if ($result) {
+            //字段数组
+            $field = explode(',', preg_replace('@\s@', '', $field));
+            //如果有多个字段时，返回多维数组并且第一个字段值做为KEY使用
+            switch (count($field)) {
+                case 1:
+                    //只有一个字段，只返回一个字段值
+                    if ($return_all) {
+                        $data = array();
+                        foreach ($result as $v) {
+                            $data[] = current($v);
+                        }
+                        return $data;
+                    } else {
+                        return current($result[0]);
+                    }
+                case 2:
+                    $data = array();
+                    foreach ($result as $v) {
+                        $data[$v[$field[0]]] = $v[$field[1]];
+                    }
+                    return $data;
+                default:
+                    $data = array();
+                    foreach ($result as $v) {
+                        $data[$v[$field[0]]] = $v;
+                    }
+                    return $data;
             }
         } else {
-            return $result;
+            return NULL;
         }
     }
 
@@ -591,14 +602,14 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->__before_update($data);
+        $this->trigger and $this->__before_update($data);
         if (empty($data)) {
             $this->error = "没有任何数据用于UPDATE！";
             return false;
         }
         $this->error = $this->db->error;
         $result = $this->db->update($data);
-        $this->__after_update($result);
+        $this->trigger and $this->__after_update($result);
         return $result;
     }
 
@@ -614,11 +625,24 @@ class Model
         $this->data($data);
         $data = $this->data;
         $this->data = array();
-        $this->__before_insert($data);
+        $this->trigger and $this->__before_insert($data);
         $result = $this->db->insert($data, $type);
         $this->error = $this->db->error;
-        $this->__after_insert($result);
+        $this->trigger and $this->__after_insert($result);
         return $result;
+    }
+
+    //批量插入数据
+    public function addAll($data, $type = 'INSERT')
+    {
+        $id = array();
+        if (is_array($data) && !empty($data)) {
+            foreach ($data as $d) {
+                if (is_array($d))
+                    $id[] = $this->insert($d, $type);
+            }
+        }
+        return empty($id) ? NULL : $id;
     }
 
     //replace方式插入数据
@@ -628,11 +652,10 @@ class Model
     }
 
     //插入数据
-    public function add($data = array())
+    public function add($data = array(), $type = 'INSERT')
     {
-        return $this->insert($data);
+        return $this->insert($data, $type);
     }
-
 
     /**
      * 判断表中字段是否在存在
@@ -642,10 +665,31 @@ class Model
      */
     public function fieldExists($fieldName, $table)
     {
-        $sql = "DESC " . C("DB_PREFIX") . $table;
-        $field = $this->query($sql);
-        foreach ($field as $f) {
-            if ($f['Field'] == $fieldName) {
+        $Model = M();
+        if (!$Model->tableExists($table)) {
+            $this->error = '数据表不存在';
+        } else {
+            $field = $Model->query("DESC " . C("DB_PREFIX") . $table);
+            foreach ($field as $f) {
+                if (strtolower($f['Field']) == strtolower($fieldName)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    /* 判断表是否存在
+     * @param string $table 表名
+     * @return bool
+     */
+    public function tableExists($tableName)
+    {
+        $Model = M();
+        $tableArr = $Model->query("SHOW TABLES");
+        foreach ($tableArr as $k => $table) {
+            $tableTrue = $table['Tables_in_' . C('DB_DATABASE')];
+            if (strtolower($tableTrue) == strtolower(C('DB_PREFIX') . $tableName)) {
                 return true;
             }
         }
@@ -653,50 +697,63 @@ class Model
     }
 
     /**
+     * 删除表
+     * @param string $tableName 表名
+     * @return mixed
+     */
+    public function dropTable($tableName)
+    {
+        if ($this->tableExists($tableName)) {
+            return $this->exe("DROP TABLE IF EXISTS `" . C('DB_PREFIX') . $tableName . "`");
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 统计
      */
-    public function count($args = array())
+    public function count($field = '*')
     {
-        $result = $this->db->count($args);
-        return $result;
+        $data = $this->field(array("count($field)" => 'c'))->select();
+        return $data ? $data[0]['c'] : $data;
     }
 
     /**
      * 求最大值
      */
-    public function max($args = array())
+    public function max($field)
     {
-        $result = $this->db->max($args);
-        return $result;
+        $data = $this->field(array("max($field)" => 'c'))->select();
+        return $data ? $data[0]['c'] : $data;
     }
 
     /**
      * 求最小值
      */
-    public function min($args = array())
+    public function min($field)
     {
-        $result = $this->db->min($args);
-        return $result;
+        $data = $this->field(array("min($field)" => 'c'))->select();
+        return $data ? $data[0]['c'] : $data;
     }
 
     /**
      * 求平均值
      */
-    public function avg($args = array())
+    public function avg($field)
     {
-        $result = $this->db->avg($args);
-        return $result;
+        $data = $this->field(array("avg($field)" => 'c'))->select();
+        return $data ? $data[0]['c'] : $data;
     }
 
     /**
      * SQL中的SUM计算
      */
-    public function sum($args = array())
+    public function sum($field)
     {
-        $result = $this->db->sum($args);
-        return $result;
+        $data = $this->field(array("sum($field)" => 'c'))->select();
+        return $data ? $data[0]['c'] : $data;
     }
-
 
     /**
      * 字段值增加
@@ -711,17 +768,6 @@ class Model
     {
         $sql = "UPDATE " . $this->db->opt['table'] . " SET " . $field . '=' . $field . '+' . $step . " WHERE " . $where;
         return $this->exe($sql);
-    }
-
-    /**
-     * 过滤字段
-     */
-    public function fieldFilter($data = array())
-    {
-        $this->data($data);
-        $data = $this->data;
-        $data = $data ? $data : $_GET;
-        return $this->db->fieldFilter($data);
     }
 
     //减少字段值
@@ -743,6 +789,19 @@ class Model
             }
         }
         return true;
+    }
+
+    /**
+     * 获得表字段
+     * @param $table
+     * @return mixed
+     */
+    public function getTableFields($table)
+    {
+        $fields = $this->db->getTableFields(C("DB_PREFIX") . $table);
+        if (!empty($fields)) {
+            return implode(',', array_keys($fields['fields']));
+        }
     }
 
     /**
@@ -777,7 +836,7 @@ class Model
         return $this->db->getAllSql();
     }
 
-//获得MYSQL版本
+    //获得MYSQL版本
     public function getVersion()
     {
         return $this->db->getVersion();
@@ -792,7 +851,8 @@ class Model
     //获得数据库或表大小
     public function getSize($table = '')
     {
-        if (empty($table)) $table = array($this->tableFull);
+        if (empty($table))
+            $table = array($this->tableFull);
         if (is_string($table))
             $table = array($table);
         return $this->db->getSize($table);
@@ -841,18 +901,6 @@ class Model
         }
     }
 
-    //删除表
-    public function dropTable($table)
-    {
-        if (is_string($table)) $table = array($table);
-        if (is_array($table) && !empty($table)) {
-            foreach ($table as $t) {
-                $this->exe("DROP TABLE IF EXISTS `" . $t . "`");
-            }
-        }
-        return true;
-    }
-
     //修改表名
     public function rename($old, $new)
     {
@@ -869,30 +917,14 @@ class Model
         return $this->db->beginTrans($stat);
     }
 
-
     /**
      * 执行SQL语句
      * @param void 传入SQL字符串
      * @return type
      */
-    public function runSql($str)
+    public function runSql($sql)
     {
-        $str = str_replace("\r", "\n", $str);
-        $sqlArr = explode(";\n", trim($str));
-        $sql = array();
-        $num = 0;
-        foreach ($sqlArr as $s) {
-            $query = explode("\n", trim($s));
-            $sql[$num] = '';
-            foreach ($query as $q) {
-                $sql[$num] .= $q[0] == '#' || $q[0] . $q[1] == '--' ? '' : $q;
-            }
-            $num++;
-        }
-        foreach ($sql as $s) {
-            $this->exe($s);
-        }
-        return true;
+        return $this->exe($sql);
     }
 
     //提供一个事务
@@ -913,7 +945,7 @@ class Model
     }
 
     //添加数据后执行的方法
-    public function __after_insert($result)
+    public function __after_insert($data)
     {
     }
 
@@ -923,7 +955,7 @@ class Model
     }
 
     //删除数据后执行的方法
-    public function __after_delete($result)
+    public function __after_delete($data)
     {
     }
 
@@ -933,7 +965,7 @@ class Model
     }
 
     //更新数据后执行的方法
-    public function __after_update($result)
+    public function __after_update($data)
     {
     }
 
@@ -943,9 +975,7 @@ class Model
     }
 
     //查询数据后执行的方法
-    public function __after_select($result)
+    public function __after_select($data)
     {
     }
-
-
 }

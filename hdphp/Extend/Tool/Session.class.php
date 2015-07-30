@@ -88,5 +88,3 @@ final class Session
     }
 
 }
-
-?>

@@ -1,6 +1,6 @@
 <?php
 
-class contentpage {
+class contentPage {
 
     private $additems = array(); //定义需要补全的开头html代码
     private $bottonitems = array(); //定义需要补全的结尾HTML代码
@@ -185,4 +185,3 @@ class contentpage {
     }
 
 }
-?> 

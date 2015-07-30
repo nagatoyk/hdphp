@@ -83,10 +83,8 @@ class Xml
     static public function toArray($xml)
     {
         $arrData = self::compile($xml);
-        $arr = array();
         $k = 1;
         return $arrData ? self::getData($arrData, $k) : false;
-        return $arr;
     }
 
     /**
@@ -120,5 +118,3 @@ class Xml
     }
 
 }
-
-?>

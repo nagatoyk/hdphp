@@ -124,12 +124,12 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
     cursor: pointer;
     border: solid 1px #333;
 }
-
+div.uploadify-queue{margin-bottom: 0px !important;}
 /*剩余数量*/
 div.num_upload_msg {
     font-size: 12px;
     color: #666;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .uploadify_upload_msg {
@@ -145,49 +145,15 @@ div.num_upload_msg {
 }
 
 .upload_title {
-    display: inline-block;
+    /*display: inline-block;*/
+    overflow: hidden;
 }
 
 .upload_title input {
-    width: 92%;
+    width: 100%;
     padding: 3px 5px;
     color: #333;
     border-right: none;
     border-left: none;
     border-bottom: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

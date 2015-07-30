@@ -68,5 +68,3 @@ class ViewSmarty extends View {
     }
 
 }
-
-?>

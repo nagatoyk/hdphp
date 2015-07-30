@@ -19,7 +19,7 @@
 class Page
 {
     static $staticTotalPage = null; //总页数
-    static $staticUrl = null; //当前url
+    static $staticUrl = null; //url地址
     static $fix = ''; //静态后缀如.html
     static $pageNumLabel = '{page}'; //替换标签
     public $totalRow; //总条数
@@ -43,14 +43,13 @@ class Page
      * @param string $pageNumLabel 页码变量,默认为{page}
      */
 
-    function __construct($total, $row = '', $pageRow = '', $desc = '',
-                         $setSelfPage = '', $customUrl = '', $pageNumLabel = '{page}')
+    function __construct($total, $row = '', $pageRow = '', $desc = '', $setSelfPage = '', $customUrl = '', $pageNumLabel = '{page}')
     {
         $this->totalRow = $total; //总条数
         $this->arcRow = empty($row) ? C("PAGE_SHOW_ROW") : $row; //每页显示条数
-        $this->pageRow = empty($pageRow) ? C('PAGE_ROW') : $pageRow; //显示页码数量
+        $this->pageRow = (empty($pageRow) ? C('PAGE_ROW') : $pageRow) - 1; //显示页码数量
         $this->totalPage = ceil($this->totalRow / $this->arcRow); //总页数
-        self::$staticTotalPage = $this->totalPage; //总页数
+        self::$staticTotalPage = $GLOBALS['totalPage'] = $this->totalPage; //总页数
         self::$pageNumLabel = empty($pageNumLabel) ? self::$pageNumLabel : $pageNumLabel; //替换标签
         $this->selfPage = min($this->totalPage, empty($setSelfPage) ? empty($_GET[C("PAGE_VAR")]) ? 1 : max(1, (int)$_GET[C("PAGE_VAR")]) : max(1, (int)$setSelfPage)); //当前页
         $this->url = $this->setUrl($customUrl); //配置url地址
@@ -92,11 +91,11 @@ class Page
     protected function getUrl($pageNum)
     {
         $returnUrl = $this->url;
-        /*
-        数型返回url地址
-        b(before)返回url地址前部分
-        a(after)返回url地址后部分
-        */
+        /**
+         * 数型返回url地址
+         * b(before)返回url地址前部分
+         * a(after)返回url地址后部分
+         */
         if (strtolower($pageNum) == 'b') {
             $returnUrl = substr($returnUrl, 0, strpos($returnUrl, self::$pageNumLabel));
         } elseif (strtolower($pageNum) == 'a') {
@@ -104,54 +103,62 @@ class Page
         } else {
             $returnUrl = str_replace(self::$pageNumLabel, $pageNum, $returnUrl);
         }
-        return $returnUrl;
+        return self::$staticUrl ? $returnUrl : U($returnUrl);
     }
 
     //配置URL地址
     protected function setUrl($customUrl)
     {
-        if (!empty($customUrl)) {
-            $returnUrl = $customUrl;
-        } elseif (is_null(self::$staticUrl)) {
+        if (!is_null(self::$staticUrl)) {
+            $returnUrl = self::$staticUrl . self::$fix; //配置url地址
+        } else if (!empty($customUrl)) {
+            if (strstr($customUrl, self::$pageNumLabel)) {
+                $returnUrl = $customUrl;
+            } else {
+                switch (C("URL_TYPE")) {
+                    case 1:
+                        $returnUrl = $customUrl . '/' . C('PAGE_VAR') . '/' . self::$pageNumLabel . self::$fix;
+                        break;
+                    case 2:
+                    default:
+                        $returnUrl = $customUrl . '&' . C('PAGE_VAR') . '=' . self::$pageNumLabel . self::$fix;
+                        break;
+                }
+            }
+        } else {
             $get = $_GET;
-            unset($get["a"]);
-            unset($get['c']);
             unset($get["m"]);
+            unset($get['c']);
+            unset($get["a"]);
             unset($get[C("PAGE_VAR")]);
             $url_type = C("URL_TYPE");
             switch ($url_type) {
                 case 1:
-                    $url = __METH__ . '/';
+                    $url = __ACTION__ . '/';
                     foreach ($get as $k => $v) {
                         $url .= $k . '/' . $v . '/';
                     }
                     $returnUrl = rtrim($url, '/') . '/' . C("PAGE_VAR") . '/' . self::$pageNumLabel . self::$fix;
                     break;
                 case 2:
-                    $url = __METH__ . '&';
+                default:
+                    $url = __ACTION__ . '&';
                     foreach ($get as $k => $v) {
                         $url .= $k . "=" . $v . '&';
                     }
                     $returnUrl = $url . C("PAGE_VAR") . '=' . self::$pageNumLabel . self::$fix;
             }
-        } else {
-            $returnUrl = self::$staticUrl . self::$fix; //配置url地址
         }
         return $returnUrl;
     }
 
     /**
      * SQL的limit语句
-     * @param bool $stat true 返回字符串  false 返回数组
-     * @return array|string
+     * @return string
      */
-    public function limit($stat = false)
+    public function limit()
     {
-        if ($stat) {
-            return max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow;
-        } else {
-            return array("limit" => max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow);
-        }
+        return max(0, ($this->selfPage - 1) * $this->arcRow) . "," . $this->arcRow;
     }
 
     //上一页
@@ -198,7 +205,7 @@ class Page
     public function strList()
     {
         $arr = $this->pageList();
-        $str = "";
+        $str = '';
         if (empty($arr))
             return "<strong class='selfpage'>1</strong>";
         foreach ($arr as $v) {
@@ -313,13 +320,20 @@ class Page
         return $show;
     }
 
-    //页码风格
-    public function show($s = '')
+    /**
+     * 显示页码
+     * @param string $style 风格
+     * @param int $pageRow 页码显示行数
+     * @return string
+     */
+    public function show($style = '', $pageRow = null)
     {
-        if (empty($s)) {
-            $s = C('PAGE_STYLE');
+        if (empty($style)) {
+            $style = C('PAGE_STYLE');
         }
-        switch ($s) {
+        //页码显示行数
+        $this->pageRow = is_null($pageRow) ? $this->pageRow : $pageRow - 1;
+        switch ($style) {
             case 1 :
                 return "{$this->count()}{$this->first()}{$this->pre()}{$this->pres()}{$this->strList()}{$this->nexts()}{$this->next()}{$this->end()}
                 {$this->nowPage()}{$this->select()}{$this->input()}{$this->picList()}";

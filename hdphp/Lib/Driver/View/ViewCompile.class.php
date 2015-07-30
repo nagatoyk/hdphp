@@ -1,5 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH")) exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -54,10 +53,12 @@ class ViewCompile
         $this->parseTokey(); //解析POST令牌Token
         $this->replaceConst(); //将所有常量替换   如把__APP__进行替换
         $this->content = '<?php if(!defined("HDPHP_PATH"))exit;C("SHOW_NOTICE",FALSE);?>' . $this->content;
-        if (!is_dir(COMPILE_PATH)) {
-            Dir::create(COMPILE_PATH);
-            copy(HDPHP_TPL_PATH . 'index.html', COMPILE_PATH . 'index.html');
+        if (!is_dir(APP_COMPILE_PATH)) {
+            Dir::create(APP_COMPILE_PATH);
+            copy(HDPHP_TPL_PATH . 'index.html', APP_COMPILE_PATH . 'index.html');
         }
+        //创建编译目录
+        is_dir(dirname($this->view->compileFile)) or Dir::create(dirname($this->view->compileFile));
         file_put_contents($this->view->compileFile, $this->content);
         //创建安全文件
         $safeFile = dirname($this->view->compileFile) . "/index.html";
@@ -97,19 +98,26 @@ class ViewCompile
         //如果配置文件中存在标签定义
         if (!empty($tags) && is_array($tags)) {
             //加载其他模块或应用中的标签库
-            foreach ($tags as $class) {
-                $file = ucfirst($class) . '.class.php'; //类文件
+            foreach ($tags as $file) {
+                $file = str_replace(".", "/", $file);
+                $info = explode("/", $file);
+                //类名
+                $class = array_pop($info);
                 if (class_exists($class, false)) {
                 } else if (require_array(array(
-                    TAG_PATH . $file,
-                    COMMON_TAG_PATH . $file
+                    MODULE_TAG_PATH . $file . '.class.php',
+                    APP_TAG_PATH . $file . '.class.php'
                 ))
                 ) {
-                } else if (import($class)) {
+                } else if (import($file)) {
                 } else {
-                    error("标签类文件{$class}不存在");
+                    if (DEBUG) {
+                        halt("标签类文件{$class}不存在");
+                    } else {
+                        continue;
+                    }
                 }
-                $tmp=explode(".", $class);
+                $tmp = explode(".", $class);
                 $tagClass[] = array_pop($tmp);
             }
         }
@@ -260,9 +268,14 @@ class ViewCompile
      */
     private function parseGlobalConst($content)
     {
-        $preg = '/\$Hd.(get|post|request|cookie|session|server)\./ise';
-        $replace = '\'\$_\'.strtoupper("\1").".";';
-        return preg_replace($preg, $replace, $content);
+        $preg = '/\$hd.(get|post|request|cookie|session|server)\./is';
+        return preg_replace_callback($preg, array($this, '_parseGlobalConstPregCallback'), $content);
+    }
+
+    //parseGlobalConst正则回调函数
+    private function _parseGlobalConstPregCallback($v)
+    {
+        return '$_' . strtoupper($v[1]) . '.';
     }
 
     /**
@@ -359,9 +372,15 @@ class ViewCompile
      */
     public function compile()
     {
-//        $preg = '/{\s*(\$[^=!<>\)\(\+\;]+)}/ieU'; //以{$或$开头的进行解析处理
-        $preg = '/{(\$[^=!<>\)\(\+\;]+)}/ieU'; //以{$或$开头的进行解析处理
-        $this->content = preg_replace($preg, '\'<?php echo \'. $this->parseVar(\'\1\').\';?>\';', $this->content);
+        $preg = '/{(\$[^=!<>\)\(\+\;]+)}/iU'; //以{$或$开头的进行解析处理
+        $this->content = preg_replace_callback($preg, array($this, '_compilePregCallBack'), $this->content);
+
+    }
+
+    //compile类方法的正则替换回调函数
+    private function _compilePregCallBack($v)
+    {
+        return '<?php echo ' . $this->parseVar($v[1]) . ';?>';
     }
 
     /**
@@ -411,5 +430,3 @@ class ViewCompile
     }
 
 }
-
-?>

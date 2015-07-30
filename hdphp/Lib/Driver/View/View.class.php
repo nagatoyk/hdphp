@@ -1,6 +1,4 @@
 <?php
-if (!defined('HDPHP_PATH'))
-    exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -26,20 +24,22 @@ abstract class View
     protected function getTemplateFile($file)
     {
         if (is_null($file)) {
-            $file = TPL_PATH . CONTROL . '/' . METHOD;
+            $file = CONTROLLER_VIEW_PATH . ACTION;
         } else if (!strstr($file, '/')) {
-            $file = TPL_PATH . CONTROL.'/'.$file;
+            $file = CONTROLLER_VIEW_PATH . $file;
         }
         //添加模板后缀
-        if (!preg_match('@' . C('TPL_FIX') . '$@', $file))
+        if (!preg_match('/\.\w+$/', $file))
             $file .= C('TPL_FIX');
-        //将目录全部转为小写
-        if (!is_file($file)) {
-            halt("模板不存在:$file"); //模版文件不存在
+        if (is_file($file)) {
+            return $file;
+        } else {
+            //模版文件不存在
+            if (DEBUG)
+                halt("模板不存在:$file");
+            else
+                return null;
         }
-        return $file;
     }
 
 }
-
-?>

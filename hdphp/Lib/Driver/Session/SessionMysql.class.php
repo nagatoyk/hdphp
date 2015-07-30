@@ -36,14 +36,13 @@ class SessionMysql
     public function run()
     {
         $options = C("SESSION_OPTIONS");
-        $this->table = $options['table']; //表
-        $this->expire = $options['expire']; //过期时间
+        $this->table = C('DB_PREFIX') . $options['table']; //表
+        $this->expire = isset($options['expire']) ? $options['expire'] : 3600; //过期时间
         $host = isset($options['host']) ? $options['host'] : C("DB_HOST");
         $port = isset($options['port']) ? $options['port'] : C("DB_PORT");
         $user = isset($options['user']) ? $options['user'] : C("DB_USER");
         $password = isset($options['password']) ? $options['password'] : C("DB_PASSWORD");
         $database = isset($options['database']) ? $options['database'] : C("DB_DATABASE");
-
         $this->link = mysql_connect($host . ':' . $port, $user, $password); //连接Mysql
         $db = mysql_select_db($database, $this->link); //选择数据库
         if (!$this->link || !$db) return false;
@@ -117,7 +116,7 @@ class SessionMysql
      */
     public function gc()
     {
-        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->expire);
+        $sql = "DELETE FROM " . $this->table . " WHERE atime<" . (NOW - $this->expire) . " AND sessid<>'" . session_id() . "'";
         mysql_query($sql, $this->link);
     }
 
@@ -125,15 +124,15 @@ class SessionMysql
     //关闭SESSION
     public function close()
     {
-        //关闭SESSION
-        if (mt_rand(1, 100) == 1) {
+        if (mt_rand(1, 100) == 10)
             $this->gc();
-        }
         //关闭数据库连接
         mysql_close($this->link);
         return true;
     }
 
+    function __destruct()
+    {
+        // TODO: Implement __destruct() method.
+    }
 }
-
-?>

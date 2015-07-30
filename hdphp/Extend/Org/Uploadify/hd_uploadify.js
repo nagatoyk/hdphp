@@ -7,7 +7,7 @@ var hd_uploadify_options = {
     // ,formData       : {'someKey' : 'someValue', 'someOtherKey' : 1}//POST提交的数据
     // ,uploadLimit   : 3//上传文件数量
     swf: UPLOADIFY_URL + 'uploadify.swf',
-    uploader: HDPHP_CONTROL + "&m=hd_uploadify"//上传处理php
+    uploader: HDPHP_CONTROL + "&a=hd_uploadify"//上传处理php
     ,
     buttonImage: UPLOADIFY_URL + 'upload2.png'//按钮图片
     ,
@@ -19,8 +19,7 @@ var hd_uploadify_options = {
     ,
     success_msg: "正在上传..."//上传成功提示文字
     ,
-    overrideEvents: ['onUploadProgress', 'onDialogOpen', 'onUploadError', 'onSelectError', 'onDialogClose']//覆盖系统默认事件
-
+    overrideEvents: ['onDialogOpen', 'onUploadError', 'onSelectError', 'onDialogClose']//覆盖系统默认事件
     ,
     onInit: function () {
         uploadify_obj = this;
@@ -43,7 +42,7 @@ var hd_uploadify_options = {
         if (queueData.filesErrored > 0) {
             var file_upload_limit = this.settings.file_upload_limit;//允许上传的文件数量
             var allowUploadNums = file_upload_limit - this.queueData.uploadsSuccessful;//还可以上传的文件数
-            alert("还可以上传" + allowUploadNums + "文件");
+            alert("上传文件过大或者类型不允许");
         }
 
     },
@@ -55,32 +54,35 @@ var hd_uploadify_options = {
         eval("data=" + data);
         var upload_file_id = this.settings.id;//表单id
         //上传失败时 成功上传的文件数量减1
-        if (data.stat == 0) {
+        if (data.status == 0) {
             this.queueData.uploadsSuccessful--;
+            alert(data.msg);
             return;
         }
         //成功上传的文件数量
         this.setStats.successful_uploads = this.queueData.uploadsSuccessful;
         //第几个上传文件，会受全局变量HDPHP_UPLOAD_TOTAL的影响
         var _index = this.setStats.successful_uploads;
-        alter_upload_msg(this);//更改上传成功信息
+        //更改上传成功信息
+        alter_upload_msg(this);
         data.url = data.isimage == 1 ? data.url : UPLOADIFY_URL + "default.png";
         var div = $("." + upload_file_id + "_files ul");
         var html = "";
         var input_type = this.settings.input_type;
-        html += "<li input_type='"+input_type+"' class='upload_thumb'style='width:" + this.settings.thumb_width + "px;'><div class='delUploadFile'></div>";
-        html += "<img src='" + data.url + "' path='" + data.url + "' width='" + this.settings.thumb_width + "' height='" + this.settings.thumb_height + "'/>";
+        html += "<li input_type='"+input_type+"' class='upload_thumb' style='width:" + this.settings.thumb_width + "px;'><div class='delUploadFile'></div>";
+        html += "<img src='" + data.url + "' path='" + data.path + "' width='" + this.settings.thumb_width + "' height='" + this.settings.thumb_height + "'/>";
         //显示alt文本框
         if (this.settings.showalt) {
-            html += "<div class='upload_title'><input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+data.name+"' onblur=\"if(this.value=='')this.value='"+data.name+"'\" onfocus=\"this.value=''\"/></div>";
+             _value=data.name || '';
+            html += "<div class='upload_title'>" +
+                "<input style='padding:3px 0px;width:" + (this.settings.thumb_width) + "px' type='text' name='" + upload_file_id.substr(13) + "[" + _index + "][alt]' value='"+_value+"' onblur=\"if(this.value=='')this.value='"+_value+"'\" onfocus=\"this.value=''\"/>" +
+                "</div>";
+        }
+        //如果表表字段id
+        if(data.table_id){
+            html +="<input type='hidden' name='table_id' value='"+data.table_id+"'/>";
         }
         html += "<input type='hidden' t='file'   name='" + upload_file_id.substr(13) + "[" + _index + "][path]' value='" + data.path + "'/>";
-        //缩略图表单
-        if (data.thumb.length > 0) {
-            for (var i = 0, total = data.thumb.length; i < total; i++) {
-                html += "<input type='hidden' t='file' name='" + upload_file_id.substr(13) + "[" + _index + "][thumb][]' value='" + data.thumb[i] + "'/>";
-            }
-        }
         html += "</li>";
         div.append(html);
         if (typeof(hd_upload) == 'function') {
@@ -99,7 +101,8 @@ function alter_upload_msg(obj) {
     if (allowUploadNums > 0) {
         obj.setStats({
             buttonClass: "disableButton"
-        });//改变按钮类
+        });
+        //改变按钮类
         msg_obj.html("你已经上传" + uploadsSuccessful + "个文件,还可以上传" + allowUploadNums+"个文件");
         $("#" + upload_file_id).uploadify('disable', false);//使按钮生效
         $("#" + upload_file_id + "-button").css({
@@ -126,17 +129,15 @@ $(".delUploadFile").live("click", function () {
     $(delInputs).each(function (i) {
         delFiles += $(this).val() + "@@";
     })
-    $.post(HDPHP_CONTROL + "&m=hd_uploadify_del", {
+    $.post(HDPHP_CONTROL + "&a=hd_uploadify_del", {
         file: delFiles
     }, function (data) {
         if (data == 1) {
+            imgDiv.remove();
             upload.setStats({
                 successful_uploads: --upload.queueData.uploadsSuccessful
             });
             alter_upload_msg(upload);
-            imgDiv.fadeOut(500, function () {
-                $(this).remove();
-            });
         } else {
             alert("文件删除失败");
         }

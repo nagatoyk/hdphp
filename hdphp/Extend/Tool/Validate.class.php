@@ -44,7 +44,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的maxlen参数必须为数字');
         }
-        if(preg_match('/^([\x{2460}-\x{2468}a-z0-9]{0,'.$arg.'}$/ui',$value)){
+        if(mb_strlen($value,'utf-8')<=$arg){
             return true;
         }
         return $msg;
@@ -55,7 +55,7 @@ class Validate
         if (!is_numeric($arg)) {
             halt('验证规则的minlen参数必须为数字');
         }
-        if(preg_match('/^([\x{2460}-\x{2468}a-z0-9]{'.$arg.',}$/ui',$value)){
+        if(mb_strlen($value,'utf-8')>=$arg){
             return true;
         }
         return $msg;
@@ -135,12 +135,10 @@ class Validate
 
     public function _china($name, $value, $msg, $arg)
     {
-        if (preg_match('/^[\x{2460}-\x{2468}a-z0-9]+$/ui', $value)) {
+        if (preg_match('/^[\x{4e00}-\x{9fa5}a-z0-9]+$/ui', $value)) {
             return true;
         }
         return $msg;
     }
 
 }
-
-?>

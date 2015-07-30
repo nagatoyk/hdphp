@@ -43,5 +43,3 @@ interface DbInterface
 
     public function escapeString($str); //数据安全处理
 }
-
-?>

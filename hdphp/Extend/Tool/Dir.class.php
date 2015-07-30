@@ -56,9 +56,9 @@ final class Dir
         foreach (glob($dirPath . '*') as $v) {
             $id++;
             if (is_dir($v) || !$exts || preg_match("/\.($exts)/i", $v)) {
-                $list [$id] ['name'] = basename($v);
-                $list [$id] ['path'] = str_replace("\\", "/", realpath($v));
                 $list [$id] ['type'] = filetype($v);
+                $list [$id] ['filename'] = basename($v);
+                $list [$id] ['path'] = str_replace("\\", "/", realpath($v)).(is_dir($v)?'/':'');
                 $list [$id] ['filemtime'] = filemtime($v);
                 $list [$id] ['fileatime'] = fileatime($v);
                 $list [$id] ['size'] = is_file($v) ? filesize($v) : self::get_dir_size($v);
@@ -120,6 +120,7 @@ final class Dir
             return true;
         }
         $dirPath = self::dirPath($dirName);
+		if(!is_dir($dirPath))return true;
         foreach (glob($dirPath . "*") as $v) {
             is_dir($v) ? self::del($v) : unlink($v);
         }

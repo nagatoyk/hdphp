@@ -36,8 +36,6 @@ class Image
     public $waterTextColor;
     //水印的文字的字体
     public $waterTextFont;
-    //是否开启缩略图功能
-//    private $thumbOn;
     //生成缩略图的方式
     public $thumbType;
     //缩略图的宽度
@@ -103,11 +101,6 @@ class Image
         //初始化原图尺寸
         $cuthumbWidth = $imgWidth;
         $cuthumbHeight = $imgHeight;
-
-//        if ($imgWidth <= $thumbWidth && $imgHeight <= $thumbHeight) {
-//            $w = $imgWidth;
-//            $h = $imgHeight;
-//        } else {
         switch ($thumbType) {
             case 1 :
                 //固定宽度  高度自增
@@ -156,7 +149,6 @@ class Image
      * 图片裁切处理
      * @param $img 原图
      * @param string $outFile 另存文件名
-     * @param string $path 文件存放路径
      * @param string $thumbWidth 缩略图宽度
      * @param string $thumbHeight 缩略图高度
      * @param string $thumbType 裁切图片的方式
@@ -164,7 +156,7 @@ class Image
      * 4 固定高度 宽度裁切 5缩放最大边 原图不裁切 6缩略图尺寸不变，自动裁切最大边
      * @return bool|string
      */
-    public function thumb($img, $outFile = '', $thumbWidth = '', $thumbHeight = '', $thumbType = '', $path = '')
+    public function thumb($img, $outFile = '', $thumbWidth = '', $thumbHeight = '', $thumbType = '')
     {
         if (!$this->check($img)) {
             return false;
@@ -173,7 +165,6 @@ class Image
         $thumbType = $thumbType ? $thumbType : $this->thumbType;
         $thumbWidth = $thumbWidth ? $thumbWidth : $this->thumbWidth;
         $thumbHeight = $thumbHeight ? $thumbHeight : $this->thumbHeight;
-        $path = $path ? $path : C("THUMB_PATH");
         //获得图像信息
         $imgInfo = getimagesize($img);
         $imgWidth = $imgInfo [0];
@@ -205,13 +196,9 @@ class Image
         }
         //配置输出文件名
         $imgInfo = pathinfo($img);
-        $outFile = $outFile ? $outFile : $this->thumbPreFix . $imgInfo['filename'] . $this->thumbEndFix . "." . $imgInfo['extension'];
-        $upload_dir = $path ? rtrim($path, '/') . '/' : (strstr($outFile, '/') ? dirname($outFile) : dirname($img) . '/');
+        $outFile = $outFile ? $outFile :dirname($img).'/'. $this->thumbPreFix . $imgInfo['filename'] . $this->thumbEndFix . "." . $imgInfo['extension'];
 
-        Dir::create($upload_dir);
-        if (!strstr($outFile, '/')) {
-            $outFile = $upload_dir . $outFile;
-        }
+        Dir::create(dirname($outFile));
         $func = "image" . substr($imgType, 1);
         $func($res_thumb, $outFile);
         if (isset($resImg))
@@ -224,7 +211,7 @@ class Image
     /**
      * 水印处理
      * @param $img 操作的图像
-     * @param string $outImg 另存的图像
+     * @param string $outImg 另存的图像 不设置时操作原图
      * @param string $pos v
      * @param string $waterImg 水印图片
      * @param string $pct 透明度
@@ -234,7 +221,7 @@ class Image
     public function water($img, $outImg = '', $pos = '', $waterImg = '', $pct = '', $text = "")
     {
         //验证原图像
-        if (!$this->check($img) || !$this->waterOn)
+        if (!$this->check($img))
             return false;
         //验证水印图像
         $waterImg = $waterImg ? $waterImg : $this->waterImg;

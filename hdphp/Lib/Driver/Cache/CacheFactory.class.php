@@ -41,7 +41,7 @@ final class CacheFactory
         $options = is_array($options) ? $options : array();
         //只实例化一个对象
         if (is_null(self::$cacheFactory)) {
-            self::$cacheFactory = new cacheFactory();
+            self::$cacheFactory = new CacheFactory();
         }
         $driver = isset($options['driver']) ? $options['driver'] : C("CACHE_TYPE");
         //静态缓存实例名称

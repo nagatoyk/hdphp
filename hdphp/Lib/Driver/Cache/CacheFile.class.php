@@ -29,11 +29,11 @@ class CacheFile extends Cache
      */
     public function __construct($options = array())
     {
-        $this->options['dir'] = isset($options['dir']) ? rtrim($options['dir'], '/') : CACHE_PATH; //缓存目录
+        $this->options['dir'] = isset($options['dir']) ? rtrim($options['dir'], '/') : APP_CACHE_PATH; //缓存目录
         $this->options['expire'] = isset($options['expire']) ? intval($options['expire']) : C("CACHE_TIME"); //缓存时间
         $this->options['prefix'] = isset($options['prefix']) ? $options['prefix'] : ''; //缓存前缀
         $this->options['length'] = isset($options['length']) ? $options['length'] : 0; //队列长度
-        $this->options['zip'] = isset($options['zip']) ? $options['zip'] : TRUE; //队列长度
+        $this->options['zip'] = isset($options['zip']) ? $options['zip'] : false; //队列长度
         $this->options['save'] = isset($options['save']) ? $options['save'] : true; //记录缓存命中率
         $this->isConnect = is_dir($this->options['dir']) && is_writeable($this->options['dir']);
         if (!$this->isConnect) {
@@ -129,11 +129,6 @@ class CacheFile extends Cache
         //文件修改时间
         $mtime = filemtime($cacheFile);
         //缓存失效处理
-//        if ($ctime>0 && $mtime + $ctime < time()) {
-//            @unlink($cacheFile);
-//            $this->record(2,0);
-//            return false;
-//        }
         if ($expire > 0 && $mtime + $expire < time()) {
             @unlink($cacheFile);
             $this->record(2,0);

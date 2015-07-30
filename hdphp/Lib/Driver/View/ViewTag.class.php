@@ -1,6 +1,4 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
 // .-----------------------------------------------------------------------------------
 // |  Software: [HDPHP framework]
 // |   Version: 2013.01
@@ -29,32 +27,32 @@ class ViewTag
     public $tag = array(
         'foreach' => array('block' => 1, 'level' => 4),
         'while' => array('block' => 1, 'level' => 4),
-        'if' => array('block' => 1, 'level' => 3),
+        'if' => array('block' => 1, 'level' => 5),
         'elseif' => array('block' => 0),
         'else' => array('block' => 0),
         'switch' => array('block' => 1),
         'case' => array('block' => 1),
         'break' => array('block' => 0),
         'default' => array('block' => 0),
-        'load' => array('block' => 0),
         'include' => array('block' => 0),
-        'list' => array('block' => 1, 'level' => 3),
+        'list' => array('block' => 1, 'level' => 5),
         'js' => array('block' => 0),
         'css' => array('block' => 0),
         'noempty' => array('block' => 0),
-        'editor' => array('block' => 0),
-        'keditor' => array('block' => 0),
         'ueditor' => array('block' => 0),
         'highlight' => array('block' => 0),
         'jquery' => array('block' => 0),
-        'jqueryui' => array('block' => 0),
+        'jcrop' => array('block' => 0),
         'upload' => array('block' => 0), //uploadif上传组件
         'zoom' => array('block' => 0), //图片放大镜
-        'jsconst' => array("block" => 0), //定义JS常量
-        'define' => array("block" => 0),
+        'jsconst' => array('block' => 0), //定义JS常量
+        'define' => array('block' => 0),
         'bootstrap' => array('block' => 0),
-        "hdui" => array("block" => 0),
-        "slide" => array("block" => 0)
+        'hdjs' => array('block' => 0),//包括hdui、hdvalidate、hdslide等
+        'hdui' => array('block' => 0),//hdjs前台ui库
+        'hdvalidate'=>array('block'=>0),//hdvalidate前端验证
+        'hdslide' => array('block' => 0),//轮换版
+        'cal' => array('block' => 0)
     );
 
     //格式化参数 字符串加引号
@@ -152,25 +150,23 @@ class ViewTag
     public function _upload($attr, $content, $view = null)
     {
         $uploadify_url = __HDPHP_EXTEND__ . '/Org/Uploadify/'; //uploadify目录
-        static $_hd_uploadify_js = false; //后盾js文件只加载一次
+        static $_hd_uploadify_js = false; //js文件只加载一次
         $attr = array_change_key_case_d($attr, 0);
         //表单类型 是点击input过来的，还是img图片（缩略图）过来的
-        $_input_type = isset($attr['input_type']) && !empty($attr['input_type']) ? $attr['input_type'] : "input";
+        $_input_type = isset($attr['input_type']) ? $attr['input_type'] : "input";
         $_elem_id = isset($attr['elem_id']) && !empty($attr['elem_id']) ? $attr['elem_id'] : ""; //表单类型
         $_name = isset($attr['name']) ? $attr['name'] : false; //上传表单name
-        $_post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
+        $post = isset($attr['post']) ? $attr['post'] . ',' : ''; //POST数据
         if ($_name === false) {
             throw_exception("upload上传标签必须设置name属性");
         }
         $name = str_replace("[]", "", $_name);
         $id = "hd_uploadify_" . $name;
         //是否加水印
-        $_water = isset($attr['water']) ? $attr['water'] : false;
-        $water = $_water==false?intval(C("WATER_ON")):($_water == 'false'? 0 : 1);
-        $_waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
+        $water = isset($attr['water']) && $attr['water']=='true'?1:C("WATER_ON");
+        $waterbtn = isset($attr['waterbtn']) && $attr['waterbtn'] == 'false' ? 0 : 1;
         $width = isset($attr['width']) ? trim($attr['width'], "px") : "200"; //是否加水印
         $height = isset($attr['height']) ? trim($attr['height'], "px") : "150"; //是否加水印
-        $removeTimeout = isset($attr['removetimeout']) ? $attr['removetimeout'] : 0; //提示框消失时间
         $size = isset($attr['size']) ? str_ireplace("MB", "", $attr['size']) . "MB" : "2MB"; //文件上传大小单位KB、MB、GB
         //允许上传文件类型
         if (isset($attr['type']) && !empty($attr['type'])) {
@@ -183,31 +179,28 @@ class ViewTag
             $type = "*.gif;*.jpg;*.png;*.jpeg";
         }
         $upload_dir = isset($attr['dir']) ? $attr['dir'] : ""; //上传文件存放目录
-        //是否关闭上传进度条
-        $_queueclose = isset($attr['type']) ? $attr['type'] : "false";
-        $queueclose = $_queueclose == 'true' || $_queueclose == '1' ? "true" : $id . "_queue";
         //是否显示描述
-        $_alt = isset($attr['alt']) ? $attr['alt'] : 'true';
-        $alt = $_alt == 'true' || $_alt == '1' ? "true" : 'false';
-        $limit = isset($attr['limit']) ? $attr['limit'] : "6"; //上传文件数量
+        $alt = isset($attr['alt']) && $attr['alt'] == 'true' ? 1 : 0;
+        //是上传文件大小等提示信息true是false不显示
+        $message = isset($attr['message']) && $attr['message']=='false'?0:1;
+        $limit = isset($attr['limit']) ? $attr['limit'] : "100"; //上传文件数量
         $thumb = isset($attr['thumb']) ? $attr['thumb'] : ''; //生成缩略图尺寸
         $data = isset($attr['data']) ? $attr['data'] : false; //编辑时的图片数据
-        if (!empty($thumb) && count(explode(",", $thumb)) % 2 !== 0) {
-            throw_exception("upload标签的thumb属性必须是数值并且成对设置如200,200,300,300");
-        }
         //过滤非法数据，用于编辑显示使用
         if ($data) {
             $varName = preg_replace('/[\{\}\$]/', '', $attr['data']);
-            $imgData = $view->vars[$varName];
-            foreach ($imgData as $k => $_img) {
-                if (empty($_img['path'])) {
-                    //删除path为空的图片元素
-                    unset($view->vars[$varName][$k]);
+            if (isset($view->vars[$varName])) {
+                $imgData = $view->vars[$varName];
+                foreach ($imgData as $k => $_img) {
+                    if (empty($_img['path'])) {
+                        //删除path为空的图片元素
+                        unset($view->vars[$varName][$k]);
+                    }
                 }
             }
         }
         //设置上传成功的图片数，上传时0，编辑时统计图片数据
-        if ($data) {
+        if ($data && isset($view->vars[$data])) {
             //编辑时统计图片数量
             $uploadsSuccessful = count($view->vars[$varName]);
         } else {
@@ -220,6 +213,7 @@ class ViewTag
             $uploadFileStr .= '<?php
             $_uploadStr="";//编译文件需要的PHP字符串表示
             $upFileId=0;//第几张图片
+            if(!empty($this->vars["' . $varName . '"])){
             //读取图片数据
             foreach ($this->vars["' . $varName . '"] as $f) {
                 $upFileId++;
@@ -242,22 +236,26 @@ class ViewTag
                 }
                 $_uploadStr.="</li>";
             }
+            }
         echo $_uploadStr;
         ;
         ?>';
         }
+        $get = $_GET;
+        unset($get['a']);
+        $phpScript = __WEB__ . '?' . http_build_query($get) . '&a=hd_uploadify'; //PHP处理文件
         $str = '';
         if (!$_hd_uploadify_js) {
             $_hd_uploadify_js = true; //只加载一次
             $str .= '<link rel="stylesheet" type="text/css" href="' . $uploadify_url . 'uploadify.css" />
             <script type="text/javascript" src="' . $uploadify_url . 'jquery.uploadify.min.js"></script>
             <script type="text/javascript">
-            var HDPHP_CONTROL         = "' . __CONTROL__ . '";
+            var HDPHP_CONTROL         = "' . $phpScript . '";
             var UPLOADIFY_URL    = "' . $uploadify_url . '";
             var HDPHP_UPLOAD_THUMB    ="' . $thumb . "\";\n";
             //已经成功上传的文件
             $uploadTotal = 0;
-            if ($data) {
+            if ($data && isset($view->vars[$data])) {
                 $uploadTotal = count($view->vars[$varName]);
             }
             //定义上传成功文件数用于JS使用，主要是编辑时使用
@@ -269,78 +267,69 @@ class ViewTag
         $str .= '
 <script type="text/javascript">
     $(function() {
-        hd_uploadify_options.removeTimeout  =' . $removeTimeout . ';
+        hd_uploadify_options.removeTimeout  =0;//提示框消息时间
         hd_uploadify_options.fileSizeLimit  ="' . $size . '";
         hd_uploadify_options.fileTypeExts   ="' . $type . '";
-        hd_uploadify_options.queueID        ="' . $queueclose . '";
         hd_uploadify_options.showalt        =' . $alt . ';
         hd_uploadify_options.uploadLimit    =' . $limit . ';
         hd_uploadify_options.input_type    ="' . $_input_type . '";
         hd_uploadify_options.elem_id    ="' . $_elem_id . '";
         hd_uploadify_options.success_msg    ="正在上传...";//上传成功提示文字
-        hd_uploadify_options.formData       ={' . $_post . 'water : "' . $water . '", someOtherKey:1,' . C("SESSION_NAME") . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
-        hd_uploadify_options.thumb_width          =' . $width . ';
+        hd_uploadify_options.formData ={' . $post . 'water : "' . $water . '",fileSizeLimit:' . (intval($size) * 1024 * 1024) . ', someOtherKey:1,' . session_name() . ':"' . session_id() . '",upload_dir:"' . $upload_dir . '",hdphp_upload_thumb:"' . $thumb . '"};
+        hd_uploadify_options.thumb_width =' . $width . ';
         hd_uploadify_options.thumb_height          =' . $height . ';
         hd_uploadify_options.uploadsSuccessNums = ' . $uploadsSuccessful . ';
         $("#' . $id . '").uploadify(hd_uploadify_options);
         });
 </script>
-<input type="file" name="up" id="' . $id . '"/>
-<div class="' . $id . '_msg num_upload_msg">
-';
-        if ($_waterbtn) {
-            $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong>';
+<input type="file" name="up" id="' . $id . '"/>';
+        $str .= '<div class="' . $id . '_msg num_upload_msg">';
+        //水印按钮
+        if ($waterbtn) {
+            $str .= '<input type="checkbox" id="add_upload_water" uploadify_id="hd_uploadify_' . $_name . '" ' . ($water ? "checked='checked'" : "") . '/><strong style="color:#03565E">是否添加水印</strong> ';
         }
-        $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>
-</div>
-
-<div id="' . $id . '_queue"></div>
-<div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
-    <ul>' . $uploadFileStr . '</ul>
-    <div style="clear:both;"></div>
-</div>';
+        //显示上传提示信息
+        if ($message) {
+            $str .= '<span></span>单文件最大<strong>' . $size . '，允许上传类型' . $type . '</strong>';
+        }
+        $str.='</div>';
+        $str .= '<div id="' . $id . '_queue"></div>
+        <div class="' . $id . '_files uploadify_upload_files" input_file_id ="' . $id . '">
+            <ul>' . $uploadFileStr . '</ul>
+            <div style="clear:both;"></div>
+        </div>';
         return $str;
     }
 
     //百度编辑器
     public function _ueditor($attr, $content)
     {
-//        $ueditor_path = __HDPHP_EXTEND__ . '/Org/Editor/Ueditor/'; //url路径
         $attr = array_change_key_case_d($attr, 0);
         $attr = $this->replaceAttrConstVar($attr);
         $style = isset($attr['style']) ? $attr['style'] : C("EDITOR_STYLE"); //1 完整  2精简
         $name = isset($attr['name']) ? $attr['name'] : "content";
-        $initContent = isset($attr['content']) ? $attr['content'] : ""; //初始化编辑器的内容
-        $width = isset($attr['width']) && intval($attr['width']) != 0 ? intval($attr['width']) : C("EDITOR_WIDTH"); //编辑器宽度
-        $height = isset($attr['height']) && intval($attr['height']) != 0 ? intval($attr['height']) : C("EDITOR_HEIGHT"); //编辑器高度
-        $width = '"' . str_ireplace("px", "", $width) . '"';
-        $height = '"' . str_ireplace(array("px", "%"), "", $height) . '"';
-        $water = isset($attr['water']) ? $attr['water'] : false; //是否加水印
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false' ? 0 : 1); //是否加水印
-        $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
-        $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
-        $uploadsize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1000 : C("EDITOR_FILE_SIZE"); //上传文件大小
-        $autoClear = isset($attr['autoclear']) ? $attr['autoclear'] : "false"; //清除编辑器初始内容
-        $readonly = isset($attr['readonly']) ? $attr['readonly'] : "false"; //编辑区域是否是只读的
-        $wordCount = isset($attr['wordcount']) ? $attr['wordcount'] : "true"; //是否开启字数统计
-        $maxword = isset($attr['maxword']) ? $attr['maxword'] : C("EDITOR_MAX_STR"); //允许的最大字符数
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"insertimage",':''; //图片上传按钮
+        $content = isset($attr['content']) ? $attr['content'] : ''; //初始化编辑器的内容
+        $width = isset($attr['width']) ? intval($attr['width']) : C("EDITOR_WIDTH"); //编辑器宽度
+        $width = '"' . $width . '"';
+        $height = isset($attr['height']) ? intval($attr['height']) : C("EDITOR_HEIGHT"); //编辑器高度
+        $height = '"' . $height . '"';
+        $water = isset($attr['water']) ? $attr['water'] : C('EDITOR_IMAGE_WATER');
+        $get = $_GET;
+        unset($get['a']);
+        $phpScript = isset($attr['php']) ? $attr['php'] : __WEB__ . '?' . http_build_query($get) . '&a=ueditor_upload'; //PHP处理文件
         //图片按钮
         if ($style == 2) {
-            $toolbars = "[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test',{$imageupload}'insertcode','preview']]";
-        }else{
-            $toolbars ="[
+            $toolbars = "[['FullScreen', 'Bold','simpleupload','insertcode']]";
+        } else {
+            $toolbars = "[
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'directionalityltr', 'directionalityrtl', 'indent', '|',
-                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'pagebreak', 'template', 'background', '|',
-                'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
-                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
-                'print', 'preview', 'searchreplace', 'drafts']
+            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset',
+            '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
+            'lineheight', '|','paragraph', 'fontfamily', 'fontsize', '|',
+             'indent','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+            'link', 'unlink', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+            'simpleupload',  'emotion',   'map',  'insertcode',  'pagebreak','horizontal', '|',
+            'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow',  'insertcol',  'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols']
             ]";
         }
         $str = '';
@@ -350,82 +339,24 @@ class ViewTag
             $str .= '<script type="text/javascript">UEDITOR_HOME_URL="' . __HDPHP_EXTEND__ . '/Org/Ueditor/"</script>';
             define("HD_UEDITOR", true);
         }
-        $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $initContent . '</script>';
+        $str .= '<script id="hd_' . $name . '" name="' . $name . '" type="text/plain">' . $content . '</script>';
         $str .= "
         <script type='text/javascript'>
         $(function(){
                 var ue = UE.getEditor('hd_{$name}',{
-                imageUrl:'" . __CONTROL__ . "&m=ueditor_upload&water={$water}&uploadsize={$uploadsize}&maximagewidth={$maximagewidth}&maximageheight={$maximageheight}'//处理上传脚本
-                ,zIndex : 0
-                ,autoClearinitialContent:{$autoClear}
+                serverUrl:'" . $phpScript . "&water={$water}'//图片上传脚本
+                ,zIndex : 1000
                 ,initialFrameWidth:{$width} //宽度1000
                 ,initialFrameHeight:{$height} //宽度1000
+                ,imagePath:''//图片修正地址
                 ,autoHeightEnabled:false //是否自动长高,默认true
                 ,autoFloatEnabled:false //是否保持toolbar的位置不动,默认true
-                ,maximumWords:{$maxword} //允许的最大字符数
-                ,readonly : {$readonly} //编辑器初始化结束后,编辑区域是否是只读的，默认是false
-                ,wordCount:{$wordCount} //是否开启字数统计
-                ,imagePath:''//图片修正地址
-                , toolbars:$toolbars//工具按钮
+                ,toolbars:$toolbars//工具按钮
+//                ,enableAutoSave: false//关闭自动保存
+                ,initialStyle:'p{line-height:1em; font-size: 14px; }'
             });
         })
         </script>";
-        return $str;
-    }
-
-    //kindeditor
-    public function _keditor($attr, $content)
-    {
-        $attr = array_change_key_case_d($attr, 0);
-        $attr = $this->replaceAttrConstVar($attr);
-        $name = isset($attr['name']) ? $attr['name'] : "content"; //POST的namd名称
-        $style = isset($attr['style']) ? $attr['style'] : C("EDITOR_STYLE"); //1 完整  2精简
-        $content = isset($attr['content']) ? $attr['content'] : ""; //表单默认值
-        $width = isset($attr['width']) ? $attr['width'] : C("EDITOR_WIDTH"); //编辑器宽度
-        $width = strstr($width, "%") ? $width : str_replace("px", "", $width) . "px";
-        $height = isset($attr['height']) ? $attr['height'] : C("EDITOR_HEIGHT"); //编辑器高度
-        $height = str_replace("px", "", $height) . "px";
-        $water = isset($attr['Image']) ? $attr['Image'] : false; //编辑器宽度
-        $water = $water === false ? intval(C("WATER_ON")) : ($water == 'false'? 0 : 1);
-        $maximagewidth = isset($attr['maximagewidth']) ? $attr['maximagewidth'] : 'false'; //最大图片宽度
-        $maximageheight = isset($attr['maximageheight']) ? $attr['maximageheight'] : 'false'; //最大图片高度
-        $uploadSize = isset($attr['uploadsize']) ? intval($attr['uploadsize']) * 1024 : C("EDITOR_FILE_SIZE"); //上传文件大小
-        $filterMode = isset($attr['filter']) ? $attr['filter'] : "false"; //过滤HTML代码
-        $filterMode = $filterMode == "false" || $filterMode == "0" ? "false" : "true";
-        $filemanager = isset($attr['filemanager']) ? $attr['filemanager'] : "false"; //true时显示浏览远程服务器按钮
-        $imageupload = isset($attr['imageupload'])&&$attr['imageupload']=='true' ? '"image",':''; //图片上传按钮
-        $str = '';
-        if (!defined("keditor_hd")) {
-            $str .= '<script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/kindeditor-all-min.js"></script>
-            <script charset="utf-8" src="' . __HDPHP_EXTEND__ . '/Org/Keditor/lang/zh_CN.js"></script>';
-            define("keditor_hd", 1);
-        }
-        $session = session_name() . '=' . session_id();
-        $str .= '
-        <textarea id="hd_' . $name . '" name="' . $name . '">' . $content . '</textarea>
-    <script>
-        var options_' . $name . ' = {
-        filterMode : ' . $filterMode . '
-                ,id : "editor_id"
-        ,width : "' . $width . '"
-        ,height:"' . $height . '"
-                ,formatUploadUrl:false
-        ,allowFileManager:' . $filemanager . '
-        ,allowImageUpload:true
-        ,uploadJson : "' . __CONTROL__ . '&m=keditor_upload&editor_type=2&image=' . $water . '&uploadsize=' . $uploadSize . '&maximagewidth=' . $maximagewidth . '&maximageheight=' . $maximageheight . '&' . $session . '"//处理上传脚本
-        };';
-        if ($style == 2) {
-            $str .= 'options_' . $name . '.items=[
-            "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline",
-            "removeformat", "|", "justifyleft", "justifycenter", "justifyright", "insertorderedlist",
-            "insertunorderedlist", "|", "emoticons", ' . $imageupload . ' "link"];';
-        }
-        $str .= 'var hd_' . $name . ';
-        KindEditor.ready(function(K) {
-                    hd_' . $name . ' = KindEditor.create("#hd_' . $name . '",options_' . $name . ');
-        });
-        </script>
-        ';
         return $str;
     }
 
@@ -433,13 +364,13 @@ class ViewTag
     public function _highlight()
     {
         return '<link type="text/css" rel="stylesheet" href="__HDPHP_EXTEND__/Org/Editor/Keditor/plugins/code/prettify.css"/>
-        <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.js"></script>
-    <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.css"/>
-    <script>
-  var editor = CodeMirror.fromTextArea(myTextarea, {
-    mode: "text/html"
-  });
-</script>';
+                <script type="text/javascript" charset="utf-8" src="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.js"></script>
+                <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/Ueditor/third-party/codemirror/codemirror.css"/>
+                <script>
+                    var editor = CodeMirror.fromTextArea(myTextarea, {
+                        mode: "text/html"
+                    });
+                </script>';
     }
 
     //加载CSS文件
@@ -458,20 +389,6 @@ class ViewTag
         return '<script type="text/javascript" src="' . $attr['file'] . '"></script>';
     }
 
-    public function _jquery($attr, $content)
-    {
-        $file = '__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js';
-        return "<script type='text/javascript' src='$file'></script>";
-    }
-
-    public function _jqueryui($attr, $content)
-    {
-        $path = '__HDPHP_EXTEND__/Org/JqueryUi/';
-        $str = '';
-        $str .= '<link href="' . $path . 'css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">';
-        $str .= '<script src="' . $path . 'js/jquery-ui-1.10.3.custom.js"></script>';
-        return $str;
-    }
 
     public function _list($attr, $content)
     {
@@ -515,29 +432,15 @@ class ViewTag
         if (empty($attr['from'])) {
             halt('foreach 模板标签必须有from属性', false); //foreach 模板标签必须有from属性
         }
-        if (empty($attr['value'])) {
-            halt('foreach 模板标签必须有value属性', false); //foreach 模板标签必须有value属性
-        }
         $php = ''; //组合成PHP
         $from = $attr['from'];
-        $key = isset($attr['key']) ? $attr['key'] : false;
-        $value = $attr['value'];
-        $php .= "<?php if(is_array($from)):?>";
-        if ($key) {
-            $php .= '<?php ' . " foreach($from as $key=>$value){ ?>";
-        } else {
-            $php .= '<?php ' . " foreach($from as $value){ ?>";
-        }
+        $key = isset($attr['key']) ? $attr['key'] : '$key';
+        $value = isset($attr['value']) ? $attr['value'] : '$value';
+        $php .= "<?php if(is_array($from)){?>";
+        $php .= '<?php ' . " foreach($from as $key=>$value){ ?>";
         $php .= $content;
-        $php .= '<?php }?>';
-        $php .= "<?php endif;?>";
+        $php .= '<?php }}?>';
         return $php;
-    }
-
-    //load标签的别名，加载模板文件
-    public function _include($attr, $content)
-    {
-        return $this->_load($attr, $content);
     }
 
     /**
@@ -546,10 +449,10 @@ class ViewTag
      * @param $content
      * @return string
      */
-    public function _load($attr, $content)
+    public function _include($attr, $content)
     {
         if (!isset($attr['file'])) {
-            halt('load 模板标签必须有value属性', false); //load标签必须有file属性
+            halt('include 模板标签必须有file属性', false); //load标签必须有file属性
         }
         $const = print_const(false, true);
         foreach ($const as $k => $v) {
@@ -652,22 +555,6 @@ class ViewTag
         return '<?php }else{ ?>';
     }
 
-    //bootstrap
-    public function _bootstrap()
-    {
-        $str = '';
-        $str .= '<link href="__HDPHP_EXTEND__/Org/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">';
-        $str .= '<script src="__HDPHP_EXTEND__/Org/bootstrap/js/bootstrap.min.js"></script>';
-        $str .= '
-  <!--[if lte IE 6]>
-  <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/bootstrap-ie6.css">
-  <![endif]-->
-  <!--[if lte IE 7]>
-  <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/ie.css">
-  <![endif]-->';
-        return $str;
-    }
-
     //设置js常量
     public function _jsconst($attr, $content)
     {
@@ -675,32 +562,80 @@ class ViewTag
         $arr = preg_grep("/http/", $const['user']);
         $str = "<script type='text/javascript'>\n";
         foreach ($arr as $k => $v) {
-            $str .= "\t\t" . str_replace("_", '', $k) . " = '" . $v . "';\n";
+            $k = str_replace('_', '', $k);
+            $str .= $k . " = '$v';\n";
         }
         $str .= "</script>";
         return $str;
     }
 
-    //js轮换版
-    public function _slide($attr, $content)
+    //bootstrap
+    public function _bootstrap($attr, $content)
     {
-        return '<script src="__HDPHP_EXTEND__/Org/hdui/js/slide.js"></script>';
-    }
-
-    //HdUi
-    public function _hdui($attr, $content)
-    {
-        $bootstrap = isset($attr['bootstrap']) ? $attr['bootstrap'] : false;
         $str = '';
-        $str .= "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
-        $str .= '<script src="__HDPHP_EXTEND__/Org/hdui/js/lhgcalendar.min.js"></script>' . "\n";
-        $str .= "<link href='__HDPHP_EXTEND__/Org/hdui/css/hdui.css' rel='stylesheet' media='screen'>\n";
-        $str .= "<script src='__HDPHP_EXTEND__/Org/hdui/js/hdui.js'></script>\n";
-        $str .= $bootstrap ? $this->_bootstrap() : "";
-        $str .= $this->_jsconst(null, null);
-
+        $str .= "<link href='__HDPHP_EXTEND__/Org/bootstrap/css/bootstrap.min.css' rel='stylesheet' media='screen'>\n";
+        $str .= "<script src='__HDPHP_EXTEND__/Org/bootstrap/js/bootstrap.min.js'></script>";
+        $str .= '
+                <!--[if lte IE 6]>
+                <link rel="stylesheet" type="text/css" href="__HDPHP_EXTEND__/Org/bootstrap/ie6/css/bootstrap-ie6.css">
+                <![endif]-->';
+        $str .= '
+                <!--[if lt IE 9]>
+                <script src="__HDPHP_EXTEND__/Org/bootstrap/js/html5shiv.min.js"></script>
+                <script src="__HDPHP_EXTEND__/Org/bootstrap/js/respond.min.js"></script>
+                <![endif]-->';
         return $str;
     }
-}
 
-?>
+    //jquery
+    public function _jquery($attr, $content)
+    {
+        return "<script type='text/javascript' src='__HDPHP_EXTEND__/Org/Jquery/jquery-1.8.2.min.js'></script>\n";
+    }
+
+    //日历
+    public function _cal($attr, $content)
+    {
+        return "<script src='__HDPHP_EXTEND__/Org/cal/lhgcalendar.min.js'></script>\n";
+    }
+    //hdjs
+    public function _hdjs($attr, $content)
+    {
+        $php = '';
+        $php.=$this->_jquery(null,null);
+        $php.=$this->_hdui(null,null);
+        $php.=$this->_hdvalidate(null,null);
+        $php.=$this->_cal(null,null);
+        $php.=$this->_hdslide(null,null);
+        $php.=$this->_jsconst(null,null);
+        return $php;
+    }
+    //hdui前端框架
+    public function _hdui($attr, $content)
+    {
+        $php = '';
+        $php .= "<link href='__HDPHP_EXTEND__/Org/hdjs/hdui/css/hdui.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdui/js/hdui.js'></script>\n";
+        return $php;
+    }
+    //hdvalidate
+    public function _hdvalidate($attr, $content)
+    {
+        $php = '';
+        $php .= "<link href='__HDPHP_EXTEND__/Org/hdjs/hdvalidate/css/hdvalidate.css' rel='stylesheet' media='screen'>\n";
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdvalidate/js/hdvalidate.js'></script>\n";
+        return $php;
+    }
+    //js轮换版
+    public function _hdslide($attr,$content){
+        $php = '';
+        $php .= "<script src='__HDPHP_EXTEND__/Org/hdjs/hdslide/js/hdslide.js'></script>\n";
+        return $php;
+    }
+    //Jcrop图片裁切
+    public function _jcrop($attr, $content)
+    {
+        return "<link type='text/css' rel='stylesheet' href='__HDPHP_EXTEND__/Org/jcrop/css/jquery.Jcrop.min.css'/>\n
+        <script src='__HDPHP_EXTEND__/Org/jcrop/js/jquery.Jcrop.min.js'></script>\n";
+    }
+}

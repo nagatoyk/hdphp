@@ -1,48 +1,76 @@
 <?php
-if (!defined("HDPHP_PATH"))
-    exit('No direct script access allowed');
-// .-----------------------------------------------------------------------------------
-// | Software: [HDPHP framework]
-// | Version: 2013.01
-// | Site: http://www.hdphp.com
-// |-----------------------------------------------------------------------------------
-// | Author: 向军 <houdunwangxj@gmail.com>
-// | Copyright (c) 2012-2013, http://houdunwang.com. All Rights Reserved.
-// |-----------------------------------------------------------------------------------
-// | License: http://www.apache.org/licenses/LICENSE-2.0
-// '-----------------------------------------------------------------------------------
-header("Content-Type: text/html; charset=utf-8");
-C("WATER_ON", intval($_GET['water']));
-if ($_GET['maximagewidth'] != 'false' || $_GET['maximageheight'] != 'false') {
-    //最大图片高度
-    $maximageheight = intval($_GET['maximageheight']);
-    $maximageheight = $maximageheight ? $maximageheight : C("UPLOAD_IMG_MAX_HEIGHT");
-    //最大图片宽度
-    $maximagewidth = intval($_GET['maximagewidth']);
-    $maximagewidth = $maximagewidth ? $maximagewidth : C("UPLOAD_IMG_MAX_WIDTH");
+//header('Access-Control-Allow-Origin: http://www.baidu.com'); //设置http://www.baidu.com允许跨域访问
+//header('Access-Control-Allow-Headers: X-Requested-With,X_Requested_With'); //设置允许的跨域header
+$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents(HDPHP_ORG_PATH . "Ueditor/php/config.json")), true);
+//更改上传目录
+$CONFIG['imagePathFormat'] = C('EDITOR_SAVE_PATH');
+$action = $_GET['action'];
+switch ($action) {
+    case 'config':
+        $result = json_encode($CONFIG);
+        break;
+    /* 上传图片 */
+    case 'uploadimage':
+        /* 上传涂鸦 */
+    case 'uploadscrawl':
+        /* 上传视频 */
+    case 'uploadvideo':
+        /* 上传文件 */
+    case 'uploadfile':
+        $upload = new Upload($CONFIG['imagePathFormat']);
+        if ($info = $upload->upload()) {
+            //加水印
+            if ($_GET['water'] == 1) {
+                $image = new Image();
+                $image->water($info[0]['path']);
+            }
+            $info = $info[0];
+            $result = json_encode(array(
+                "state" => "SUCCESS", //上传状态，上传成功时必须返回"SUCCESS"
+                "url" => $info['url'], //返回的地址
+                "title" => $info['filename'], //新文件名
+                "original" => $info['name'], //原始文件名
+                "type" => $info['ext'], //文件类型
+                "size" => $info['size'], //文件大小
+            ));
+        } else {
+            $result = json_encode(array(
+                'state' => $upload->error
+            ));
+        }
+        break;
 
-    C("UPLOAD_IMG_RESIZE_ON", true);
-    C("UPLOAD_IMG_MAX_WIDTH", $maximagewidth);
-    C("UPLOAD_IMG_MAX_HEIGHT", $maximageheight);
+    /* 列出图片 */
+    case 'listimage':
+        $result = include("action_list.php");
+        break;
+    /* 列出文件 */
+    case 'listfile':
+        $result = include("action_list.php");
+        break;
+
+    /* 抓取远程文件 */
+    case 'catchimage':
+        $result = include("action_crawler.php");
+        break;
+
+    default:
+        $result = json_encode(array(
+            'state' => '请求地址出错'
+        ));
+        break;
 }
-//上传图片储存目录
-$imgSavePathConfig = array(C('EDITOR_SAVE_PATH'));
-//获取存储目录
-if (isset($_GET['fetch'])) {
-    header('Content-Type: text/javascript');
-    echo 'updateSavePath(' . json_encode($imgSavePathConfig) . ');';
-    exit;
-}
-//上传处理
-$upload = new upload($imgSavePathConfig[0], '', intval($_GET['uploadsize']));
-$title = htmlspecialchars($_POST['pictitle'], ENT_QUOTES);
-$file = $upload->upload();
-if (!$file) {
-    echo "{'title':'" . $upload->error . "','state':'" . $upload->error . "'}";
+
+/* 输出结果 */
+if (isset($_GET["callback"])) {
+    if (preg_match("/^[\w_]+$/", $_GET["callback"])) {
+        echo htmlspecialchars($_GET["callback"]) . '(' . $result . ')';
+    } else {
+        echo json_encode(array(
+            'state' => 'callback参数不合法'
+        ));
+    }
 } else {
-    $info = $file[0];
-    $info['url'] = __ROOT__ . '/' . $info['path'];
-    $info["state"] = "SUCCESS";
-    echo "{'url':'" . $info['url'] . "','title':'" . $title . "','original':'" . $info["filename"] . "','state':'" . $info["state"] . "'}";
+    echo $result;
 }
 exit;
